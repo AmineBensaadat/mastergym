@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGymTable extends Migration
+class CreateGymsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateGymTable extends Migration
      */
     public function up()
     {
-        Schema::create('gym', function (Blueprint $table) {
+        Schema::create('gyms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('desc');
-            $table->string('address');
+            $table->longText('desc')->default(NULL);
+            $table->string('address')->default(NULL);
             $table->boolean('is_main');
-            $table->string('phone');
+            $table->string('phone')->default(NULL);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateGymTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gym');
+        Schema::dropIfExists('gyms');
     }
 }
