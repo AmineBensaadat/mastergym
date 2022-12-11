@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
 //Gyms
-Route::get('index/gyms', [GymsController::class, 'index']);
+Route::get('/gyms', [GymsController::class, 'index']);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
