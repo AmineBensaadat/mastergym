@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Gyms;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller{
+class GymsController extends Controller{
       /**
      * Show all gym.
      *
@@ -11,7 +12,7 @@ class HomeController extends Controller{
      */
     public function index(Request $request)
     {
-        $members = "";
-        $count = "";
+        $gyms = Gyms::orderBy("created_at", "asc")->get();
+        dd($gyms);
     }
 }

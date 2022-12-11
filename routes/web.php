@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GymsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+
+//Gyms
+Route::get('index/gyms', [GymsController::class, 'index']);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
