@@ -1,1 +1,8 @@
+---clear the cah of routes---
 php artisan route:clear
+
+---Laravel Add a new column to existing table in a migration---
+php artisan make:migration add_paid_to_users_table --table=users
+
+---run the migration---
+php artisan migrate
