@@ -2,6 +2,7 @@
 return [
     "menu"=>"Menu",
     "dashboards"=>"Tableaux de bord",
+    "gyms"=>"Salles",
     "analytics"=>"Analytique",
     "crm"=>"GRC",
     "ecommerce"=>"Commerce électronique",

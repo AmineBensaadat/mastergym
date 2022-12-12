@@ -4,6 +4,7 @@ return [
     "dashboards"=>"Dashboards",
     "analytics"=>"Analytics",
     "crm"=>"CRM",
+    "gyms"=>"Gyms",
     "ecommerce"=>"Ecommerce",
     "crypto"=>"Crypto",
     "projects"=>"Projects",

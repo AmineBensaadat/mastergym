@@ -1,11 +1,22 @@
 
-<?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.Marketplace'); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.gyms'); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <?php $__env->startComponent('components.breadcrumb'); ?>
-<?php $__env->slot('li_1'); ?> NFT Marketplace <?php $__env->endSlot(); ?>
-<?php $__env->slot('title'); ?>Marketplace <?php $__env->endSlot(); ?>
+<?php $__env->slot('li_1'); ?> <?php echo app('translator')->get('translation.gyms'); ?> <?php $__env->endSlot(); ?>
+<?php $__env->slot('title'); ?><?php echo app('translator')->get('translation.gyms'); ?> <?php $__env->endSlot(); ?>
 <?php echo $__env->renderComponent(); ?>
-
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="d-lg-flex align-items-center mb-4">
+                <div class="flex-grow-1">
+                    <h5 class="card-title mb-0 fw-bold fs-17">All Gyms</h5>
+                </div>
+                <div class="flex-shrink-0 mt-4 mt-lg-0">
+                    <a href="gyms/add" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Gym </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php if(!$gyms->isEmpty()): ?>
         <div class="row row-cols-xl-5 row-cols-lg-3 row-cols-md-2 row-cols-1">
             <?php $__currentLoopData = $gyms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gym): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

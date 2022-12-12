@@ -33,8 +33,13 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span>@lang('translation.menu')</span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="widgets">
+                    <a class="nav-link menu-link" href="../widgets">
                         <i class="ri-honour-line"></i> <span>@lang('translation.dashboards')</span>
+                    </a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="../gyms">
+                        <i class="ri-honour-line"></i> <span>@lang('translation.gyms')</span>
                     </a>
                 </li> 
                 <!-- end Dashboard Menu -->

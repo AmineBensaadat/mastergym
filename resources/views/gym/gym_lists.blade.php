@@ -1,11 +1,22 @@
 @extends('layouts.master')
-@section('title') @lang('translation.Marketplace') @endsection
+@section('title') @lang('translation.gyms') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') NFT Marketplace @endslot
-@slot('title')Marketplace @endslot
+@slot('li_1') @lang('translation.gyms') @endslot
+@slot('title')@lang('translation.gyms') @endslot
 @endcomponent
-
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="d-lg-flex align-items-center mb-4">
+                <div class="flex-grow-1">
+                    <h5 class="card-title mb-0 fw-bold fs-17">All Gyms</h5>
+                </div>
+                <div class="flex-shrink-0 mt-4 mt-lg-0">
+                    <a href="gym/add" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Gym </a>
+                </div>
+            </div>
+        </div>
+    </div>
     @if (!$gyms->isEmpty())
         <div class="row row-cols-xl-5 row-cols-lg-3 row-cols-md-2 row-cols-1">
             @foreach ($gyms as $gym)
@@ -18,7 +29,7 @@
                             <img src="{{URL::asset('assets/images/gyms/'.$gym->gym_img.'.'.$gym->ext )}}" alt="" class="card-img-top explore-img" />
                             <div class="bg-overlay"></div>
                             <div class="place-bid-btn">
-                                <a href="#!" class="btn btn-success"><i class="ri-auction-fill align-bottom me-1"></i> View</a>
+                                <a href="../gym/show" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i> View</a>
                             </div>
                         </div>
                         <div class="card-body">
