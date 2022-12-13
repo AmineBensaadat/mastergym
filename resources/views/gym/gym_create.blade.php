@@ -9,7 +9,7 @@
 @slot('title') Create Gym @endslot
 @endcomponent
 
-<form id="createproduct-form" method="POST" autocomplete="off" class="needs-validation" action="/gym/store" novalidate>
+<form id="createproduct-form" method="POST" autocomplete="off" class="needs-validation" action="/gym/store" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <div class="col-lg-8">
@@ -77,7 +77,7 @@
                                                 </div>
                                             </div>
                                         </label>
-                                        <input class="form-control d-none" value="" id="product-image-input" type="file"
+                                        <input class="form-control d-none" name="profile_image"  id="product-image-input" type="file"
                                             accept="image/png, image/gif, image/jpeg">
                                     </div>
                                     <div class="avatar-lg">
@@ -86,6 +86,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                @error('profile_image')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div>

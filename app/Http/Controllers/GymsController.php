@@ -53,14 +53,32 @@ class GymsController extends Controller{
                         'gym_name' => 'required',
                         'gym_address' => 'required',
                         'gym_phone' => 'required',
+                        'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                     ],
+                  
                     [
                         'gym_name.required' => __('translation.require_gym_name'),
                         'gym_address.required' => __('translation.require_gym_address'),
                         'gym_phone.required' => __('translation.require_gym_phone'),
+                        'profile_image' =>   __('translation.file_not_autorized')
                     ],
                 );
-       
+
+               
+            $file = $request->file('profile_image') ;
+
+            if($file = $request->hasFile('profile_image')) {
+                    $file = $request->file('profile_image') ;
+                    $fileName = $file->getClientOriginalName() ;
+                    $destinationPath = public_path().'/images' ;
+                    $extension = $request->file('profile_image')->extension();
+
+                    
+                    $file->move($destinationPath,$fileName);
+                    dd($fileName, $destinationPath, $extension);
+                    // return redirect('/uploadfile');
+            }
+            //dd($file);
         $gym= new Gyms();
             $gym->name = $request['gym_name'];
             $gym->phone = $request['gym_phone'];
