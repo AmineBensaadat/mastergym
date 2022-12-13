@@ -15,31 +15,31 @@
         <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                    @foreach ($errors->all() as $error)
-                        <h1>{{ $error }}</h1>
-                    @endforeach
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label class="form-label" for="gym-name-input">Name</label>
                                 <input type="text" class="form-control" name="gym_name" id="gym-name-input" value="" placeholder="Enter gym name" required>
+                                @error('gym_name')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label class="form-label" for="product-title-input">Address</label>
-                                <input type="hidden" class="form-control" id="formAction" name="formAction" value="add">
-                                <input type="text" class="form-control d-none" id="product-id-input">
-                                <input type="text" class="form-control" id="gym-address-input" value="" placeholder="Enter gym address" required>
-                                <div class="invalid-feedback">Please Enter a product title.</div>
+                                <input type="text" class="form-control" name="gym_address" id="gym-address-input" value="" placeholder="Enter address of your gym" required>
+                                @error('gym_address')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label class="form-label" for="product-title-input">Phone</label>
-                                <input type="hidden" class="form-control" id="formAction" name="formAction" value="add">
-                                <input type="text" class="form-control d-none" id="product-id-input">
-                                <input type="text" class="form-control" id="product-title-input" value="" placeholder="Enter product title" required>
-                                <div class="invalid-feedback">Please Enter a product title.</div>
+                                <input type="text" class="form-control" name="gym_phone" id="gym-phone-input" value="" placeholder="Enter phone of your gym" required>
+                                @error('gym_phone')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div>

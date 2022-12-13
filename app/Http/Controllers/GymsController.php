@@ -47,15 +47,25 @@ class GymsController extends Controller{
     public function store(Request $request)
     {
         $user_id = auth()->user()->id;
-        //dd($request['gym_name']);
-            $this->validate(request(),[
-                'gym_name' => 'required',
-            ]);         
+            $this->validate(
+                $request, 
+                    [
+                        'gym_name' => 'required',
+                        'gym_address' => 'required',
+                        'gym_phone' => 'required',
+                    ],
+                    [
+                        'gym_name.required' => __('translation.require_gym_name'),
+                        'gym_address.required' => __('translation.require_gym_address'),
+                        'gym_phone.required' => __('translation.require_gym_phone'),
+                    ],
+                );
        
         $gym= new Gyms();
             $gym->name = $request['gym_name'];
+            $gym->phone = $request['gym_phone'];
+            $gym->address = $request['gym_address'];
             $gym->created_by = $user_id;
-        // add other fields
         $gym->save();
         return redirect('/gyms');
     }

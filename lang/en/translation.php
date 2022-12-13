@@ -1,6 +1,9 @@
 <?php
 return [
     "menu"=>"Menu",
+    "require_gym_name" => "name is require",
+    "require_gym_address" => "address is require",
+    "require_gym_phone" => "phone is require",
     "dashboards"=>"Dashboards",
     "analytics"=>"Analytics",
     "crm"=>"CRM",
