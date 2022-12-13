@@ -39,9 +39,25 @@ class GymsController extends Controller{
      *
      * @return Response
      */
-    public function add(Request $request)
+    public function create(Request $request)
     {
         return view('gym.gym_create');
+    }
+
+    public function store(Request $request)
+    {
+        $user_id = auth()->user()->id;
+        //dd($request['gym_name']);
+            $this->validate(request(),[
+                'gym_name' => 'required',
+            ]);         
+       
+        $gym= new Gyms();
+            $gym->name = $request['gym_name'];
+            $gym->created_by = $user_id;
+        // add other fields
+        $gym->save();
+        return redirect('/gyms');
     }
 
 

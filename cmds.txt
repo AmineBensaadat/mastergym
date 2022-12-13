@@ -6,3 +6,4 @@ php artisan make:migration add_paid_to_users_table --table=users
 
 ---run the migration---
 php artisan migrate
+

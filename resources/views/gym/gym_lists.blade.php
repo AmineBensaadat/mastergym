@@ -12,7 +12,7 @@
                     <h5 class="card-title mb-0 fw-bold fs-17">All Gyms</h5>
                 </div>
                 <div class="flex-shrink-0 mt-4 mt-lg-0">
-                    <a href="gym/add" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Gym </a>
+                    <a href="gym/create" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Gym </a>
                 </div>
             </div>
         </div>

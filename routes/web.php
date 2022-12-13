@@ -20,8 +20,9 @@ Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang'
 
 //Gyms
 Route::get('/gyms', [GymsController::class, 'index'])->name('gym_list');
-Route::get('/gym/add', [GymsController::class, 'add'])->name('add_gym');
+Route::get('/gym/create', [GymsController::class, 'create'])->name('add_gym');
 Route::get('/gym/show', [GymsController::class, 'show'])->name('show_gym');
+Route::post('/gym/store',[GymsController::class, 'store'])->name('storegym');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
