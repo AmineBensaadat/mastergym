@@ -12,7 +12,7 @@
                     <h5 class="card-title mb-0 fw-bold fs-17">All Gyms</h5>
                 </div>
                 <div class="flex-shrink-0 mt-4 mt-lg-0">
-                    <a href="gym/create" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Gym </a>
+                    <a href="./create" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Gym </a>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                             <img src="{{URL::asset('assets/images/gyms/'.$gym->gym_img )}}" alt="" class="card-img-top explore-img" />
                             <div class="bg-overlay"></div>
                             <div class="place-bid-btn">
-                                <a href="../gym/show" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i> View</a>
+                                <a href="../gym/show/{{ $gym->gym_id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i> View</a>
                             </div>
                         </div>
                         <div class="card-body">
