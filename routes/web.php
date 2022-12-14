@@ -19,10 +19,15 @@ Auth::routes();
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
 //Gyms
-Route::get('/gyms', [GymsController::class, 'index'])->name('gym_list');
-Route::get('/gym/create', [GymsController::class, 'create'])->name('add_gym');
-Route::get('/gym/show', [GymsController::class, 'show'])->name('show_gym');
-Route::post('/gym/store',[GymsController::class, 'store'])->name('storegym');
+Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
+    Route::get('/all', [GymsController::class, 'index'])->name('gym_list');
+    Route::get('/create', [GymsController::class, 'create'])->name('add_gym');
+    Route::get('/show', [GymsController::class, 'show'])->name('show_gym');
+    Route::get('/show/{id}', [GymsController::class, 'show'])->name('show_gym');
+
+
+    Route::post('/store',[GymsController::class, 'store'])->name('storegym');
+});
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 

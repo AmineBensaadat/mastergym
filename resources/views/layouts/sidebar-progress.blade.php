@@ -38,7 +38,7 @@
                     </a>
                 </li> 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="../gyms">
+                    <a class="nav-link menu-link" href="../gym/all">
                         <i class="ri-honour-line"></i> <span>@lang('translation.gyms')</span>
                     </a>
                 </li> 

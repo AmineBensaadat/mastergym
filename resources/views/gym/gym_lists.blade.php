@@ -29,7 +29,7 @@
                             <img src="{{URL::asset('assets/images/gyms/'.$gym->gym_img )}}" alt="" class="card-img-top explore-img" />
                             <div class="bg-overlay"></div>
                             <div class="place-bid-btn">
-                                <a href="../gym/show" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i> View</a>
+                                <a href="../gym/show/{{ $gym->gym_id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i> View</a>
                             </div>
                         </div>
                         <div class="card-body">

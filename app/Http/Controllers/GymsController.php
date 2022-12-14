@@ -28,7 +28,7 @@ class GymsController extends Controller{
         $gyms = DB::table('gyms')
             ->join('users', 'gyms.created_by', '=', 'users.id')
             ->join('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
+            ->select('gyms.id as gym_id', 'files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
             ->orderBy("gyms.created_at", "asc")->get();
         //$gyms = Gyms::orderBy("created_at", "asc")->get();
         return view('gym.gym_lists', compact('gyms'));
@@ -112,19 +112,18 @@ class GymsController extends Controller{
         return redirect('/gyms');
     }
 
-
      /**
      * Show all gym.
-     *
+     * @param  int  $id
      * @return Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
         $gym = DB::table('gyms')
             ->join('users', 'gyms.created_by', '=', 'users.id')
             ->join('files', 'gyms.id', '=', 'files.entitiy_id')
             ->select('files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
-            ->where('gyms.id', 1)->first();
+            ->where('gyms.id', $id)->first();
 
        
         return view('gym.gym_show', 
