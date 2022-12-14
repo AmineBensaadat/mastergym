@@ -15,3 +15,10 @@ php artisan serve
 
 -- get last version---
 git pull origin devlop
+
+-- push and save ----
+1 - git pull
+2 - git satus
+3 - git add .
+4 - git commit -m "update 1 your text"
+5 - git push origin devlop
