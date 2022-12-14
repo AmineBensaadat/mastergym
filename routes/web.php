@@ -22,7 +22,6 @@ Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang'
 Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
     Route::get('/all', [GymsController::class, 'index'])->name('gym_list');
     Route::get('/create', [GymsController::class, 'create'])->name('add_gym');
-    Route::get('/show', [GymsController::class, 'show'])->name('show_gym');
     Route::get('/show/{id}', [GymsController::class, 'show'])->name('show_gym');
 
 

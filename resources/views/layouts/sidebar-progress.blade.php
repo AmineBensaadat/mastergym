@@ -36,12 +36,12 @@
                     <a class="nav-link menu-link" href="../widgets">
                         <i class="ri-honour-line"></i> <span>@lang('translation.dashboards')</span>
                     </a>
-                </li> 
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="../gym/all">
+                    <a class="nav-link menu-link" href="{{ route('gym_list') }}">
                         <i class="ri-honour-line"></i> <span>@lang('translation.gyms')</span>
                     </a>
-                </li> 
+                </li>
                 <!-- end Dashboard Menu -->
 
             </ul>
