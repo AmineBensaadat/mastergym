@@ -214,5 +214,6 @@ return [
     "file-manager"=> "File Manager",
     "to-do"=> "To Do",
     "crypto-svg"=> "Crypto SVG",
+    "all_gym" => "All Gym"
 ];
 ?>
