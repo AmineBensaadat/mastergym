@@ -47,6 +47,7 @@ class GymsController extends Controller{
 
     public function store(Request $request)
     {
+        //dd($request->file('profile_image'),  $request->hasfile('file'), $request->file('file'));
         $user_id = auth()->user()->id;
         //validation form 
           $this->validate(
@@ -109,7 +110,7 @@ class GymsController extends Controller{
         }
 
 
-        return redirect('/gyms');
+        return redirect()->route('gym_list');
     }
 
      /**
