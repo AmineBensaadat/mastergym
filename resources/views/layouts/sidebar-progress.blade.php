@@ -37,9 +37,22 @@
                         <i class="ri-honour-line"></i> <span>@lang('translation.dashboards')</span>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('gym_list') }}">
                         <i class="ri-honour-line"></i> <span>@lang('translation.gyms')</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('gym_list') }}">
+                        <i class="ri-honour-line"></i> <span>@lang('translation.plans')</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('gym_list') }}">
+                        <i class="ri-honour-line"></i> <span>@lang('translation.members')</span>
                     </a>
                 </li>
                 <!-- end Dashboard Menu -->
