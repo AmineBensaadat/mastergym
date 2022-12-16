@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="avatar-lg">
                                         <div class="avatar-title bg-light rounded">
-                                            <img src="" id="single-img" class="avatar-md h-auto" />
+                                            <img src="{{ URL::asset('assets/images/img_icon.png') }}" id="single-img" class="avatar-md" />
                                         </div>
                                     </div>
                                 </div>
@@ -106,8 +106,12 @@
                                 <li class="mt-2 dz-processing dz-image-preview dz-success dz-complete" >
                                 </li>
                             </ul>
+                            @error('imgs_gallery')
+                                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+                   
                 </div>
                 <!-- end card -->
                 <!-- end card -->
@@ -163,7 +167,7 @@ $("#attachment").on('change', function(e){
       filesArr.forEach(function (f, index) {
         fileSizeKB = Math.round(f.size / 1024);
       });
-    var html = '<li class="mt-2" id="'+imageId+'"> <div class="border rounded"> <div class="d-flex p-2"> <div class="flex-shrink-0 me-3"> <div class="avatar-sm bg-light rounded"> <img data-dz-thumbnail=""  style="height: inherit;" class="img-fluid rounded d-block image_name" src="' + window.URL.createObjectURL(this.files[0])+ '"> </div> </div> <div class="flex-grow-1"> <div class="pt-1"> <h5 class="fs-14 mb-1" data-dz-name="">'+this.files.item(i).name+'</h5> <p class="fs-13 text-muted mb-0" data-dz-size=""><strong>'+fileSizeKB +' KB</strong></p> <strong class="error text-danger" data-dz-errormessage=""></strong> </div> </div> <div class="flex-shrink-0 ms-3"> <button  class="btn btn-sm btn-danger remove_image" image_name="'+this.files.item(i).name+'">Delete</button> </div> </div> </div> </li>';
+    var html = '<li class="mt-2" id="'+imageId+'"> <div class="border rounded"> <div class="d-flex p-2"> <div class="flex-shrink-0 me-3"> <div class="avatar-sm bg-light rounded"> <img data-dz-thumbnail=""  style="height: inherit; width: inherit;" class="img-fluid rounded d-block image_name" src="' + window.URL.createObjectURL(this.files[0])+ '"> </div> </div> <div class="flex-grow-1"> <div class="pt-1"> <h5 class="fs-14 mb-1" data-dz-name="">'+this.files.item(i).name+'</h5> <p class="fs-13 text-muted mb-0" data-dz-size=""><strong>'+fileSizeKB +' KB</strong></p> <strong class="error text-danger" data-dz-errormessage=""></strong> </div> </div> <div class="flex-shrink-0 ms-3"> <button  class="btn btn-sm btn-danger remove_image" image_name="'+this.files.item(i).name+'">Delete</button> </div> </div> </div> </li>';
 
     $("#filesList").append(html);
 	};

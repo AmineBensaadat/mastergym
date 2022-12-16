@@ -29,6 +29,7 @@ class GymsController extends Controller{
             ->join('users', 'gyms.created_by', '=', 'users.id')
             ->join('files', 'gyms.id', '=', 'files.entitiy_id')
             ->select('gyms.id as gym_id', 'files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
+            ->where('files.type', 'profile')
             ->orderBy("gyms.created_at", "asc")->get();
         //$gyms = Gyms::orderBy("created_at", "asc")->get();
         return view('gym.gym_lists', compact('gyms'));
@@ -47,8 +48,12 @@ class GymsController extends Controller{
 
     public function store(Request $request)
     {
-        dd($request->file('imgs_gallery'), $request->file('profile_image'));
+        // tables
+        $gym= new Gyms();
+
+        $destinationPath = public_path().'/assets/images/gyms/' ;
         $user_id = auth()->user()->id;
+        
         //validation form 
           $this->validate(
                 $request, 
@@ -56,20 +61,21 @@ class GymsController extends Controller{
                         'gym_name' => 'required',
                         'gym_address' => 'required',
                         'gym_phone' => 'regex:/[0-9]/',
-                        'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                        'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                        'imgs_gallery' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
                     ],
                     [
                         'gym_name.required' => __('translation.require_gym_name'),
                         'gym_address.required' => __('translation.require_gym_address'),
                         'gym_phone.regex' => __('translation.require_gym_phone'),
-                        'profile_image' =>   __('translation.file_not_autorized')
+                        'profile_image' =>   __('translation.file_not_autorized'),
+                        'imgs_gallery' =>   __('translation.file_not_autorized')
                     ],
                 );
 
             
            
         // save gym in gym table
-        $gym= new Gyms();
         $gym->name = $request['gym_name'];
         $gym->phone = $request['gym_phone'];
         $gym->address = $request['gym_address'];
@@ -85,7 +91,6 @@ class GymsController extends Controller{
             // file data 
             $file = $request->file('profile_image') ;
             $fileName = time().rand(100,999).preg_replace('/\s+/', '', $file->getClientOriginalName());
-            $destinationPath = public_path().'/assets/images/gyms/' ;
             $extension = $request->file('profile_image')->extension();
 
             // save gym image in file table
@@ -109,6 +114,27 @@ class GymsController extends Controller{
              $files_table->save();
         }
 
+         // save gallory images in files tabele
+         if($request->hasFile('imgs_gallery')) {
+            foreach($request->file('imgs_gallery') as $image)
+            {
+                $files_table= new Files();
+                $fileName = time().rand(100,999).preg_replace('/\s+/', '', $image->getClientOriginalName());
+                // save gym image in file table
+                $files_table->name = $fileName;
+                $files_table->ext = $image->extension();
+                $files_table->type = 'gallory';
+                $files_table->entitiy_id = $gym->id;   
+                $files_table->save();
+
+                // move file in dericory
+                $image->move($destinationPath,$fileName);
+            }
+        }
+
+         
+
+      
 
         return redirect()->route('gym_list');
     }
