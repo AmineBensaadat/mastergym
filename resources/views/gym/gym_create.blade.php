@@ -16,8 +16,8 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="gym-name-input">Name</label>
-                                <input type="text" class="form-control" name="gym_name" id="gym-name-input" value="{{ old('gym_name') }}" placeholder="Enter gym name" required>
+                                <label class="form-label" for="gym-name-input">@lang('translation.name')</label>
+                                <input type="text" class="form-control" name="gym_name" id="gym-name-input" value="{{ old('gym_name') }}" placeholder="@lang('translation.Enter-name')" required>
                                 @error('gym_name')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -25,8 +25,8 @@
                         </div>
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="product-title-input">Address</label>
-                                <input type="text" class="form-control" name="gym_address" id="gym-address-input" value="{{ old('gym_address') }}" placeholder="Enter address of your gym" required>
+                                <label class="form-label" for="product-title-input">@lang('translation.gym_address')</label>
+                                <input type="text" class="form-control" name="gym_address" id="gym-address-input" value="{{ old('gym_address') }}" placeholder="@lang('translation.Enter-address-of-your-gym')" required>
                                 @error('gym_address')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -34,8 +34,8 @@
                         </div>
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="product-title-input">Phone</label>
-                                <input type="text" class="form-control" name="gym_phone" id="gym-phone-input" value="{{ old('gym_phone') }}" placeholder="Enter phone of your gym" required>
+                                <label class="form-label" for="product-title-input">@lang('translation.gym_phone')</label>
+                                <input type="text" class="form-control" name="gym_phone" id="gym-phone-input" value="{{ old('gym_phone') }}" placeholder="@lang('translation.Enter-phone-of-your-gym')" required>
                                 @error('gym_phone')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -44,22 +44,24 @@
 
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="product-title-input">Description</label>
-                                <textarea name="gym_desc" class="form-control bg-light border-light" id="gym-desc-input" rows="3" placeholder="Enter descreption her"></textarea>
+                                <label class="form-label" for="product-title-input">@lang('translation.gym_descreption')</label>
+                                <textarea name="gym_desc" class="form-control bg-light border-light" id="gym-desc-input" rows="3" placeholder="@lang('translation.Enter-descreption-her')"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- end card -->
 
-                <div class="card">
+           <!-- end card -->
+
+           <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">Product Gallery</h5>
+                        <h5 class="card-title mb-0">Main Image</h5>
                     </div>
                     <div class="card-body">
                         <div class="mb-4">
-                            <h5 class="fs-14 mb-1">Product Image</h5>
-                            <p class="text-muted">Add Product main Image.</p>
+                            <h5 class="fs-14 mb-1">Image</h5>
+                            <p class="text-muted">Add Main  Image.</p>
                             <div class="text-center">
                                 <div class="position-relative d-inline-block">
                                     <div class="position-absolute top-100 start-100 translate-middle">
@@ -107,6 +109,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- end card -->
                 <!-- end card -->
 
                 <div class="text-end mb-3">
