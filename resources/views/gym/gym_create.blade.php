@@ -1,41 +1,6 @@
 @extends('layouts.master')
 @section('title') @lang('translation.create-product') @endsection
 @section('css')
-<style>
-  #files-area{
-	width: 30%;
-	margin: 0 auto;
-}
-.file-block{
-	border-radius: 10px;
-	background-color: rgba(144, 163, 203, 0.2);
-	margin: 5px;
-	color: initial;
-	display: inline-flex;
-	& > span.name{
-		padding-right: 10px;
-		width: max-content;
-		display: inline-flex;
-	}
-}
-.file-delete{
-	display: flex;
-	width: 24px;
-	color: initial;
-	background-color: #6eb4ff00;
-	font-size: large;
-	justify-content: center;
-	margin-right: 3px;
-	cursor: pointer;
-	&:hover{
-		background-color: rgba(144, 163, 203, 0.2);
-		border-radius: 10px;
-	}
-	& > span{
-		transform: rotate(45deg);
-	}
-} 
-</style>
 @endsection
 @section('content')
 @component('components.breadcrumb')
