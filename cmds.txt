@@ -13,8 +13,6 @@ php artisan db:seed
 --- run local server ---
 php artisan serve
 
--- get last version---
-git pull origin devlop
 
 -- push and save ----
 1 - git pull

@@ -22,7 +22,7 @@
     position: absolute;
     z-index: -1;
   }
-  
+
   &__btn {
     display: inline-block;
     font-weight: 600;
@@ -38,31 +38,31 @@
     border-radius: 10px;
     line-height: 26px;
     font-size: 14px;
-    
+
     &:hover {
       background-color: unset;
       color: #4045ba;
       transition: all .3s ease;
     }
-    
+
     &-box {
       margin-bottom: 10px;
     }
   }
-  
+
   &__img {
     &-wrap {
       display: flex;
       flex-wrap: wrap;
       margin: 0 -10px;
     }
-    
+
     &-box {
       width: 200px;
       padding: 0 10px;
       margin-bottom: 12px;
     }
-    
+
     &-close {
         width: 24px;
         height: 24px;
@@ -102,8 +102,8 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="gym-name-input">Name</label>
-                                <input type="text" class="form-control" name="gym_name" id="gym-name-input" value="{{ old('gym_name') }}" placeholder="Enter gym name" required>
+                                <label class="form-label" for="gym-name-input">@lang('translation.name')</label>
+                                <input type="text" class="form-control" name="gym_name" id="gym-name-input" value="{{ old('gym_name') }}" placeholder="@lang('translation.Enter-name')" required>
                                 @error('gym_name')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -111,8 +111,8 @@
                         </div>
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="product-title-input">Address</label>
-                                <input type="text" class="form-control" name="gym_address" id="gym-address-input" value="{{ old('gym_address') }}" placeholder="Enter address of your gym" required>
+                                <label class="form-label" for="product-title-input">@lang('translation.gym_address')</label>
+                                <input type="text" class="form-control" name="gym_address" id="gym-address-input" value="{{ old('gym_address') }}" placeholder="@lang('translation.Enter-address-of-your-gym')" required>
                                 @error('gym_address')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -120,8 +120,8 @@
                         </div>
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="product-title-input">Phone</label>
-                                <input type="text" class="form-control" name="gym_phone" id="gym-phone-input" value="{{ old('gym_phone') }}" placeholder="Enter phone of your gym" required>
+                                <label class="form-label" for="product-title-input">@lang('translation.gym_phone')</label>
+                                <input type="text" class="form-control" name="gym_phone" id="gym-phone-input" value="{{ old('gym_phone') }}" placeholder="@lang('translation.Enter-phone-of-your-gym')" required>
                                 @error('gym_phone')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -130,8 +130,8 @@
 
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="product-title-input">Description</label>
-                                <textarea name="gym_desc" class="form-control bg-light border-light" id="gym-desc-input" rows="3" placeholder="Enter descreption her"></textarea>
+                                <label class="form-label" for="product-title-input">@lang('translation.gym_descreption')</label>
+                                <textarea name="gym_desc" class="form-control bg-light border-light" id="gym-desc-input" rows="3" placeholder="@lang('translation.Enter-descreption-her')"></textarea>
                             </div>
                         </div>
                     </div>
@@ -177,11 +177,11 @@
                             <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
 
                             <ul class="list-unstyled mb-0 upload__img-wrap" id="dropzone-preview">
-                                    
-                             
+
+
                             </ul>
 
-                            
+
 
                             <!-- end dropzon-preview -->
                         </div>
@@ -270,7 +270,7 @@ function ImgUpload() {
             reader.onload = function (e) {
                 imageId = e.timeStamp;
                 imageId = (imageId.toString()).split('.').join("");
-               console.log(imageId); 
+               console.log(imageId);
               //var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
               //var html ="<img src='" + e.target.result + "'>";
               var html = '<li class="mt-2 dz-processing dz-image-preview dz-success dz-complete" id="'+imageId+'"> <div class="border rounded"> <div class="d-flex p-2"> <div class="flex-shrink-0 me-3"> <div class="avatar-sm bg-light rounded"> <img data-dz-thumbnail="" class="img-fluid rounded d-block" src="' + e.target.result + '"> </div> </div> <div class="flex-grow-1"> <div class="pt-1"> <h5 class="fs-14 mb-1" data-dz-name="">'+f.name+'</h5> <p class="fs-13 text-muted mb-0" data-dz-size=""><strong>'+fileSizeKB+'</strong> KB</p> <strong class="error text-danger" data-dz-errormessage=""></strong> </div> </div> <div class="flex-shrink-0 ms-3"> <button  class="btn btn-sm btn-danger upload__img-close"" id_target="'+imageId+'" ">Delete</button> </div> </div> </div> </li>';
