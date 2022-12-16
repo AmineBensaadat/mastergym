@@ -1,7 +1,41 @@
 @extends('layouts.master')
 @section('title') @lang('translation.create-product') @endsection
 @section('css')
-<link href="{{ URL::asset('assets/libs/dropzone/dropzone.min.css') }}" rel="stylesheet">
+<style>
+  #files-area{
+	width: 30%;
+	margin: 0 auto;
+}
+.file-block{
+	border-radius: 10px;
+	background-color: rgba(144, 163, 203, 0.2);
+	margin: 5px;
+	color: initial;
+	display: inline-flex;
+	& > span.name{
+		padding-right: 10px;
+		width: max-content;
+		display: inline-flex;
+	}
+}
+.file-delete{
+	display: flex;
+	width: 24px;
+	color: initial;
+	background-color: #6eb4ff00;
+	font-size: large;
+	justify-content: center;
+	margin-right: 3px;
+	cursor: pointer;
+	&:hover{
+		background-color: rgba(144, 163, 203, 0.2);
+		border-radius: 10px;
+	}
+	& > span{
+		transform: rotate(45deg);
+	}
+} 
+</style>
 @endsection
 @section('content')
 @component('components.breadcrumb')
@@ -9,92 +43,7 @@
 @slot('title') Create Gym @endslot
 @endcomponent
 
-<style>
-    .upload {
-  &__box {
-    padding: 40px;
-  }
-  &__inputfile {
-    width: .1px;
-    height: .1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
-  
-  &__btn {
-    display: inline-block;
-    font-weight: 600;
-    color: #fff;
-    text-align: center;
-    min-width: 116px;
-    padding: 5px;
-    transition: all .3s ease;
-    cursor: pointer;
-    border: 2px solid;
-    background-color: #4045ba;
-    border-color: #4045ba;
-    border-radius: 10px;
-    line-height: 26px;
-    font-size: 14px;
-    
-    &:hover {
-      background-color: unset;
-      color: #4045ba;
-      transition: all .3s ease;
-    }
-    
-    &-box {
-      margin-bottom: 10px;
-    }
-  }
-  
-  &__img {
-    &-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 0 -10px;
-    }
-    
-    &-box {
-      width: 200px;
-      padding: 0 10px;
-      margin-bottom: 12px;
-    }
-    
-    &-close {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background-color: rgba(0, 0, 0, 0.5);
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        text-align: center;
-        line-height: 24px;
-        z-index: 1;
-        cursor: pointer;
-
-        &:after {
-          content: '\2716';
-          font-size: 14px;
-          color: white;
-        }
-      }
-  }
-}
-
-.img-bg {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  padding-bottom: 20%;
-}
-</style>
-
-<form id="createproduct-form" method="POST" autocomplete="off" class="needs-validation"  action="/gym/store" novalidate enctype="multipart/form-data">
+<form id="createproduct-form" method="POST" class="needs-validation"  action="/gym/store" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <div class="col-lg-8">
@@ -149,19 +98,21 @@
                             <div class="text-center">
                                 <div class="position-relative d-inline-block">
                                     <div class="position-absolute top-100 start-100 translate-middle">
-                                        <label for="product-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
+                                        <label for="single-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
                                             <div class="avatar-xs">
                                                 <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
                                                     <i class="ri-image-fill"></i>
                                                 </div>
                                             </div>
                                         </label>
-                                        <input class="form-control d-none" name="profile_image"  id="product-image-input" type="file"
-                                            accept="image/png, image/gif, image/jpeg">
+                                        <input class="form-control d-none"  name="profile_image"  id="single-image-input" type="file"
+                                            accept="image/png, image/gif, image/jpeg"
+                                            onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])"
+                                            >
                                     </div>
                                     <div class="avatar-lg">
                                         <div class="avatar-title bg-light rounded">
-                                            <img src="" id="product-img" class="avatar-md h-auto" />
+                                            <img src="" id="single-img" class="avatar-md h-auto" />
                                         </div>
                                     </div>
                                 </div>
@@ -170,20 +121,24 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                       <label  class="btn btn-primary text-light float-end fs-11" for="attachment">
+                            <i class="ri-add-circle-line align-bottom"></i> Add
+                        </label>
+                      <h6 class="card-title mb-0">Images Gallery</h6>
+                  </div>
+                  <div class="card-body">
                         <div class="upload__box">
-                            <h5 class="fs-14 mb-1">Product Gallery</h5>
-                            <p class="text-muted">Add Product Gallery Images.</p>
-
-                            <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
-
-                            <ul class="list-unstyled mb-0 upload__img-wrap" id="dropzone-preview">
-                                    
-                             
+                            <h5 class="fs-14 mb-1">Gym Gallery</h5>
+                            <input type="file" name="imgs_gallery[]" accept="image/png, image/jpeg, image/gif" id="attachment" style="visibility: hidden; position: absolute;" multiple/>
+                            <ul class="list-unstyled mb-0 upload__img-wrap" id="filesList" >
+                                <li class="mt-2 dz-processing dz-image-preview dz-success dz-complete" >
+                                </li>
                             </ul>
-
-                            
-
-                            <!-- end dropzon-preview -->
                         </div>
                     </div>
                 </div>
@@ -221,82 +176,54 @@
 
 @endsection
 @section('script')
-<!-- <script src="{{ URL::asset('assets/libs/dropzone/dropzone.min.js') }}"></script> -->
-<script src="{{ URL::asset('assets/libs/@ckeditor/@ckeditor.min.js') }}"></script>
-
-
-<script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
-
+<script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 <script>
-    jQuery(document).ready(function () {
-  ImgUpload();
-});
+const dt = new DataTransfer(); // Permet de manipuler les fichiers de l'input file
 
-function ImgUpload() {
-  var imgWrap = "";
-  var imgArray = [];
-
-  $('.upload__inputfile').each(function () {
-    $(this).on('change', function (e) {
-      imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
-      var maxLength = $(this).attr('data-max_length');
-
+$("#attachment").on('change', function(e){
+	for(var i = 0; i < this.files.length; i++){
+    imageId = e.timeStamp;
+    imageId = (imageId.toString()).split('.').join("");
+		let fileBloc = $('<span/>', {class: 'file-block'}),
+			 fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
+		fileBloc.append('<span class="file-delete"><span>+</span></span>')
+			.append(fileName);
       var files = e.target.files;
       var filesArr = Array.prototype.slice.call(files);
-      var iterator = 0;
+
       filesArr.forEach(function (f, index) {
         fileSizeKB = Math.round(f.size / 1024);
-        if (!f.type.match('image.*')) {
-          return;
-        }
-
-        if (imgArray.length > maxLength) {
-          return false
-        } else {
-          var len = 0;
-          for (var i = 0; i < imgArray.length; i++) {
-            if (imgArray[i] !== undefined) {
-              len++;
-            }
-          }
-          if (len > maxLength) {
-            return false;
-          } else {
-            imgArray.push(f);
-
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                imageId = e.timeStamp;
-                imageId = (imageId.toString()).split('.').join("");
-               console.log(imageId); 
-              //var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
-              //var html ="<img src='" + e.target.result + "'>";
-              var html = '<li class="mt-2 dz-processing dz-image-preview dz-success dz-complete" id="'+imageId+'"> <div class="border rounded"> <div class="d-flex p-2"> <div class="flex-shrink-0 me-3"> <div class="avatar-sm bg-light rounded"> <img data-dz-thumbnail="" class="img-fluid rounded d-block" src="' + e.target.result + '"> </div> </div> <div class="flex-grow-1"> <div class="pt-1"> <h5 class="fs-14 mb-1" data-dz-name="">'+f.name+'</h5> <p class="fs-13 text-muted mb-0" data-dz-size=""><strong>'+fileSizeKB+'</strong> KB</p> <strong class="error text-danger" data-dz-errormessage=""></strong> </div> </div> <div class="flex-shrink-0 ms-3"> <button  class="btn btn-sm btn-danger upload__img-close"" id_target="'+imageId+'" ">Delete</button> </div> </div> </div> </li>';
-              imgWrap.append(html);
-              iterator++;
-            }
-            reader.readAsDataURL(f);
-          }
-        }
       });
-    });
-  });
+    var html = '<li class="mt-2" id="'+imageId+'"> <div class="border rounded"> <div class="d-flex p-2"> <div class="flex-shrink-0 me-3"> <div class="avatar-sm bg-light rounded"> <img data-dz-thumbnail=""  style="height: inherit;" class="img-fluid rounded d-block image_name" src="' + window.URL.createObjectURL(this.files[0])+ '"> </div> </div> <div class="flex-grow-1"> <div class="pt-1"> <h5 class="fs-14 mb-1" data-dz-name="">'+this.files.item(i).name+'</h5> <p class="fs-13 text-muted mb-0" data-dz-size=""><strong>'+fileSizeKB +' KB</strong></p> <strong class="error text-danger" data-dz-errormessage=""></strong> </div> </div> <div class="flex-shrink-0 ms-3"> <button  class="btn btn-sm btn-danger remove_image" image_name="'+this.files.item(i).name+'">Delete</button> </div> </div> </div> </li>';
 
-  $('body').on('click', ".upload__img-close", function (e) {
-    id_target = $(this).attr('id_target');
-    console.log(id_target);
-    var file = $(this).parent().data("file");
-    for (var i = 0; i < imgArray.length; i++) {
-      if (imgArray[i].name === file) {
-        imgArray.splice(i, 1);
-        break;
-      }
-    }
-    $(this).parent().parent().remove();
-  });
-}
+    $("#filesList").append(html);
+	};
+	// Ajout des fichiers dans l'objet DataTransfer
+	for (let file of this.files) {
+		dt.items.add(file);
+	}
+	// Mise à jour des fichiers de l'input file après ajout
+	this.files = dt.files;
+
+	// EventListener pour le bouton de suppression créé
+	$('.remove_image').click(function(e){
+		let name = $(this).attr('image_name');
+
+		// Supprimer l'affichage du nom de fichier
+		$(this).parent().parent().parent().remove();
+		for(let i = 0; i < dt.items.length; i++){
+			// Correspondance du fichier et du nom
+			if(name === dt.items[i].getAsFile().name){
+				// Suppression du fichier dans l'objet DataTransfer
+				dt.items.remove(i);
+				break;
+			}
+		}
+		// Mise à jour des fichiers de l'input file après suppression
+		document.getElementById('attachment').files = dt.files;
+	});
+});
 </script>
 @endsection
 

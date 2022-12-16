@@ -47,7 +47,7 @@ class GymsController extends Controller{
 
     public function store(Request $request)
     {
-        //dd($request->file('profile_image'),  $request->hasfile('file'), $request->file('file'));
+        dd($request->file('imgs_gallery'), $request->file('profile_image'));
         $user_id = auth()->user()->id;
         //validation form 
           $this->validate(
