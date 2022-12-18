@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\GymsController;
+use App\Http\Controllers\PlansController;
+use App\Http\Controllers\ServicesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -26,6 +28,16 @@ Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
 
 
     Route::post('/store',[GymsController::class, 'store'])->name('storegym');
+});
+
+//Plans
+Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
+    Route::get('/all', [PlansController::class, 'index'])->name('plans_list');
+});
+
+//Services
+Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
+    Route::get('/all', [ServicesController::class, 'index'])->name('services_list');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
