@@ -38,6 +38,7 @@ Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
 //Services
 Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
     Route::get('/all', [ServicesController::class, 'index'])->name('services_list');
+    
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');

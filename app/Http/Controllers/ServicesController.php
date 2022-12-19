@@ -20,22 +20,22 @@ class ServicesController extends Controller
      */
     public function index(Request $request)
     {
-        $query = "Camille Lesch";
-        $services = Services::select('id','name', 'description')
-              ->where('name','LIKE','%'.$query.'%')
-              ->orWhere('description', 'like', '%'. $query .'%')
-              ->paginate(3);
+      
 
+        if($request->isMethod('get')){
+            $query = $request['query'];
+            $services = Services::select('id','name', 'description')
+                ->where('name','LIKE','%'.$query.'%')
+                ->orWhere('description', 'like', '%'. $query .'%')
+                ->paginate(10);
+            $count = $services->count();
+            return view('services.service_list' , compact('services', 'count'));
+        }else{
+            $services = Services::paginate(10);
+            $count = $services->count();
+            return redirect()->route('services_list');
+        }
 
-        
-        // $services = Services::latest()
-        //     ->where('name', 'like', '%'. $query .'%')
-        //     ->orWhere('description', 'like', '%'. $query .'%')->get();
-        //$services = Services::search('aa')->paginate(3);
-        dd($services);
-        // $services = Service::search('"'.$request->input('search').'"')->paginate(10);
-        // $count = $services->count();
-
-        //return view('services.index', compact('services', 'count'));
+        return view('services.service_list' , compact('services', 'count'));
     }
 }
