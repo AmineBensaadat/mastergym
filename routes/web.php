@@ -33,7 +33,8 @@ Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
 //Plans
 Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
     Route::get('/all', [PlansController::class, 'index'])->name('plans_list');
-    Route::post('/add', [PlansController::class, 'add'])->name('plans_add');
+    Route::post('/store', [PlansController::class, 'add'])->name('plans_store');
+    Route::get('/create', [PlansController::class, 'create'])->name('plans_create');
 });
 
 //Services

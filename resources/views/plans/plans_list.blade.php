@@ -10,7 +10,7 @@
     <div class="card-body">
         <div class="row g-2">
                 <div class="col-sm-4">
-                <form method="GET"  action="{{ route('services_list') }}">
+                <form method="GET"  action="{{ route('plans_store') }}">
                     <div class="search-box">
                             @csrf   
                             <input type="text" name="query" class="form-control"  placeholder="Search for name or designation...">
@@ -32,7 +32,7 @@
                             <li><a class="dropdown-item" href="#">Last Month</a></li>
                             <li><a class="dropdown-item" href="#">Last Year</a></li>
                         </ul>
-                        <button class="btn btn-success addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> Add Service</button>
+                        <a href="{{ route('plans_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Plan </a>
                     </div>
                 </div>
             <!--end col-->
@@ -121,7 +121,7 @@
                     <div class="modal-content border-0">
 
                         <div class="modal-body">
-                            <form  method="POST" id="memberlist-form" class="needs-validation" action="{{ route('plans_add') }}" enctype="multipart/form-data">
+                            <form  method="POST" id="memberlist-form" class="needs-validation" action="{{ route('plans_store') }}" enctype="multipart/form-data">
                                 @csrf 
                                 <div class="row">
                                     <div class="col-lg-12">

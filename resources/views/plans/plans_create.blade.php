@@ -5,7 +5,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Ecommerce @endslot
-@slot('title') Create Gym @endslot
+@slot('title') Create Plan @endslot
 @endcomponent
 
 <form id="createproduct-form" method="POST" class="needs-validation"  action="/gym/store" novalidate enctype="multipart/form-data">

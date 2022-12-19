@@ -42,7 +42,17 @@ class PlansController extends Controller{
         return view('plans.plans_list' , compact('plans', 'count'));
     }
 
-    public function add(Request $request)
+    /**
+     * Show create plan.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('plans.plans_create');
+    }
+
+    public function store(Request $request)
     {
          // tables
          $palns= new Plans();
