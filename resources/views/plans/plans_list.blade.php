@@ -47,7 +47,7 @@
 
             <div id="teamlist">
                 <div class="team-list row list-view-filter" id="team-member-list">
-                    @foreach ($services as $service)
+                    @foreach ($plans as $plan)
                         <div class="col">
                             <div class="card team-box">
                                 <div class="team-cover"><img src="assets/images/small/img-3.jpg" alt="" class="img-fluid" /></div>
@@ -77,8 +77,8 @@
                                             <div class="team-profile-img">
                                                 <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="assets/images/users/avatar-5.jpg" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
-                                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $service->name}}</h5> </a>
-                                                    <p class="text-muted member-designation mb-0">{{ $service->description}}</p>
+                                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $plan->plan_name}}</h5> </a>
+                                                    <p class="text-muted member-designation mb-0">{{ $plan->plan_details}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                     <div class="modal-content border-0">
 
                         <div class="modal-body">
-                            <form  method="POST" id="memberlist-form" class="needs-validation" action="{{ route('services_add') }}" enctype="multipart/form-data">
+                            <form  method="POST" id="memberlist-form" class="needs-validation" action="{{ route('plans_add') }}" enctype="multipart/form-data">
                                 @csrf 
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -176,8 +176,8 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="serviceName" class="form-label">Name</label>
-                                            <input type="text" name="serviceName" class="form-control" id="serviceName" placeholder="Enter name" required>
+                                            <label for="planName" class="form-label">Name</label>
+                                            <input type="text" name="planName" class="form-control" id="planName" placeholder="Enter name" required>
                                             @error('service_name')
                                                 <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                             @enderror

@@ -37,7 +37,7 @@ class GymsController extends Controller{
     }
 
     /**
-     * Show all gym.
+     * Show create gym.
      *
      * @return Response
      */
