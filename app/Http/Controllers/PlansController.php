@@ -61,23 +61,18 @@ class PlansController extends Controller{
          $user_id = auth()->user()->id;
 
         //validation form 
-        // $this->validate(
-        // $request, 
-        //     [
-        //         'serviceName' => 'required',
-        //         'description' => 'required',
-        //         'service_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        //     ],
-        //     [
-        //         'serviceName.required' => __('translation.require_gym_name'),
-        //         'description.required' => __('translation.require_gym_address'),
-        //         'service_image' =>   __('translation.file_not_autorized')
-        //     ],
-        // );
-        
+        $this->validate(
+        $request, 
+            [
+                'plan_name' => 'required'
+            ],
+            [
+                'plan_name.required' => __('translation.require_plan_name')
+            ],
+        );
         // save plan in plans table
-        $palns->plan_name = $request['planName'];
-        $palns->plan_details = $request['description'];
+        $palns->plan_name = $request['plan_name'];
+        $palns->plan_details = $request['plan_desc'];
         $palns->service_id = 1;
         $palns->days = 30;
         $palns->amount = 500;

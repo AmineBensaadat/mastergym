@@ -7,8 +7,7 @@
 @slot('li_1') Ecommerce @endslot
 @slot('title') Create Plan @endslot
 @endcomponent
-
-<form id="createproduct-form" method="POST" class="needs-validation"  action="/gym/store" novalidate enctype="multipart/form-data">
+<form id="createplan-form" method="POST" class="needs-validation"  action="{{ route('plans_store') }}" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <div class="col-lg-8">
@@ -16,27 +15,9 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="gym-name-input">@lang('translation.name')</label>
-                                <input type="text" class="form-control" name="gym_name" id="gym-name-input" value="{{ old('gym_name') }}" placeholder="@lang('translation.Enter-name')" required>
-                                @error('gym_name')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="product-title-input">@lang('translation.gym_address')</label>
-                                <input type="text" class="form-control" name="gym_address" id="gym-address-input" value="{{ old('gym_address') }}" placeholder="@lang('translation.Enter-address-of-your-gym')" required>
-                                @error('gym_address')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="product-title-input">@lang('translation.gym_phone')</label>
-                                <input type="text" class="form-control" name="gym_phone" id="gym-phone-input" value="{{ old('gym_phone') }}" placeholder="@lang('translation.Enter-phone-of-your-gym')" required>
-                                @error('gym_phone')
+                                <label class="form-label" for="plan-name-input">@lang('translation.name')</label>
+                                <input type="text" class="form-control" name="plan_name" id="plan-name-input" value="{{ old('plan_name') }}" placeholder="@lang('translation.Enter-name')" required>
+                                @error('plan_name')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -44,8 +25,29 @@
 
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="product-title-input">@lang('translation.gym_descreption')</label>
-                                <textarea name="gym_desc" class="form-control bg-light border-light" id="gym-desc-input" rows="3" placeholder="@lang('translation.Enter-descreption-her')"></textarea>
+                                <label class="form-label" for="product-title-input">@lang('translation.plan_descreption')</label>
+                                <textarea name="plan_desc" class="form-control bg-light border-light" id="plan-desc-input" rows="3" placeholder="@lang('translation.Enter-descreption-her')"></textarea>
+                            </div>
+
+                            <div>
+                                <h5 class="fs-14 mb-3">Single select input Example</h5>
+    
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="mb-3">
+                                            <label for="choices-single-default" class="form-label text-muted">Default</label>
+                                            <p class="text-muted">Set <code>data-choices</code> attribute to set a default single select.</p>
+                                            <select class="form-control" data-choices name="choices-single-default"
+                                                id="choices-single-default">
+                                                <option value="">This is a placeholder</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end row -->
                             </div>
                         </div>
                     </div>
@@ -53,94 +55,7 @@
                 <!-- end card -->
                 
            <!-- end card -->
-
-           <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Main Image</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <h5 class="fs-14 mb-1">Image</h5>
-                            <p class="text-muted">Add Main  Image.</p>
-                            <div class="text-center">
-                                <div class="position-relative d-inline-block">
-                                    <div class="position-absolute top-100 start-100 translate-middle">
-                                        <label for="single-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
-                                            <div class="avatar-xs">
-                                                <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-                                                    <i class="ri-image-fill"></i>
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <input class="form-control d-none"  name="profile_image"  id="single-image-input" type="file"
-                                            accept="image/png, image/gif, image/jpeg"
-                                            onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])"
-                                            >
-                                    </div>
-                                    <div class="avatar-lg">
-                                        <div class="avatar-title bg-light rounded">
-                                            <img src="{{ URL::asset('assets/images/img_icon.png') }}" id="single-img" class="avatar-md" />
-                                        </div>
-                                    </div>
-                                </div>
-                                @error('profile_image')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                  <div class="card-header">
-                       <label  class="btn btn-primary text-light float-end fs-11" for="attachment">
-                            <i class="ri-add-circle-line align-bottom"></i> Add
-                        </label>
-                      <h6 class="card-title mb-0">Images Gallery</h6>
-                  </div>
-                  <div class="card-body">
-                        <div class="upload__box">
-                            <h5 class="fs-14 mb-1">Gym Gallery</h5>
-                            <input type="file" name="imgs_gallery[]" accept="image/png, image/jpeg, image/gif" id="attachment" style="visibility: hidden; position: absolute;" multiple/>
-                            <ul class="list-unstyled mb-0 upload__img-wrap" id="filesList" >
-                                <li class="mt-2 dz-processing dz-image-preview dz-success dz-complete" >
-                                </li>
-                            </ul>
-                            @error('imgs_gallery')
-                                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                   
-                </div>
-                <!-- end card -->
-                <!-- end card -->
-
-                <div class="text-end mb-3">
-                    <button type="submit" class="btn btn-success w-sm">Submit</button>
-                </div>
-        </div>
-        <!-- end col -->
-
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Gym statu</h5>
-                </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="choices-is_main" class="form-label">Is main ?</label>
-
-                        <select name="is_main" class="form-select" id="choices-is_main">
-                            <option value="1" selected>Is main</option>
-                            <option value="0">Is not main</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- end card body -->
-            </div>
-            <!-- end card -->
-        </div>
+           <button type="submit" class="btn btn-success w-sm">Submit</button>
     </div>
     <!-- end row -->
 </form>
@@ -149,6 +64,7 @@
 @endsection
 @section('script')
 <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+<script src="{{ URL::asset('assets/libs/choices.js/choices.js.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 <script>
 const dt = new DataTransfer(); // Permet de manipuler les fichiers de l'input file
