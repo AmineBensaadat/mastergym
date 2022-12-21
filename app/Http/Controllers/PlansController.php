@@ -67,10 +67,14 @@ class PlansController extends Controller{
         $this->validate(
         $request, 
             [
-                'plan_name' => 'required'
+                'plan_name' => 'required',
+                'plan_day' => 'required',
+                'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
-                'plan_name.required' => __('translation.require_plan_name')
+                'plan_name.required' => __('translation.require_plan_name'),
+                'plan_day.required' => __('translation.this_filed_required'),
+                'profile_image' =>   __('translation.file_not_autorized'),
             ],
         );
 
@@ -108,7 +112,7 @@ class PlansController extends Controller{
         }else{
             // save plan image in file table
             $files_table= new Files();
-            $files_table->name = "plan_Logo.png";
+            $files_table->name = "plan_Logo.jpg";
             $files_table->ext = "png";
             $files_table->type = 'profile';
             $files_table->entitiy_id = $palns->id;   
@@ -116,26 +120,6 @@ class PlansController extends Controller{
         }
 
 
-        // save gym profile image
-        // $file = $request->file('service_image');
-        // if($file = $request->hasFile('service_image')) {
-
-            // file data 
-            // $file = $request->file('service_image') ;
-            // $fileName = time().rand(100,999).preg_replace('/\s+/', '', $file->getClientOriginalName());
-            // $extension = $request->file('service_image')->extension();
-
-            // save gym image in file table
-            // $files_table->name = $fileName;
-            // $files_table->ext = $extension;
-            // $files_table->type = 'profile';
-            // $files_table->entitiy_id = $plans->id;   
-            // $files_table->save();
-
-            // // move file in dericory
-            // $file->move($destinationPath,$fileName);
-
-        // }
 
         return redirect()->route('plans_list');
     }

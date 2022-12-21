@@ -55,6 +55,12 @@
                         <i class="ri-honour-line"></i> <span>@lang('translation.services')</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('users_list') }}">
+                        <i class="ri-honour-line"></i> <span>@lang('translation.users')</span>
+                    </a>
+                </li>
                 <!-- end Dashboard Menu -->
 
             </ul>

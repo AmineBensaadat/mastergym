@@ -3,6 +3,7 @@
 use App\Http\Controllers\GymsController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -35,6 +36,13 @@ Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
     Route::get('/all', [PlansController::class, 'index'])->name('plans_list');
     Route::post('/store', [PlansController::class, 'store'])->name('plans_store');
     Route::get('/create', [PlansController::class, 'create'])->name('plans_create');
+});
+
+//Users
+Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
+    Route::get('/all', [UsersController::class, 'index'])->name('users_list');
+    Route::post('/store', [UsersController::class, 'store'])->name('user_store');
+    Route::get('/create', [UsersController::class, 'create'])->name('users_create');
 });
 
 //Services
