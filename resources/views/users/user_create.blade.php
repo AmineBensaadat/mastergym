@@ -50,10 +50,10 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="mb-3">
-                                            <select name="service" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
-                                                {{-- @foreach ($services as $service)
-                                                    <option value="{{ $service['id'] }}">{{ $service['name'] }}</option>
-                                                @endforeach --}}
+                                            <select name="gym" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
+                                                @foreach ($gyms as $gym)
+                                                    <option value="{{ $gym['id'] }}">{{ $gym['name'] }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Files;
+use App\Models\Gyms;
 use App\Models\User;
+use App\Models\UsersGym;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,7 +43,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.user_create');
+        $gyms = Gyms::all();
+        return view('users.user_create', compact('gyms'));
     }
 
     /**
@@ -51,7 +54,6 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
         //validation form 
         $this->validate(
             $request, 
@@ -66,7 +68,7 @@ class UsersController extends Controller
                     'user_password.required' => __('translation.require_password')
                 ],
             );
-            // request()->file('avatar');
+            $usersgym = UsersGym::all();
             if (request()->has('avatar')) {
                 $avatar = request()->file('avatar');
                 $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
@@ -80,6 +82,13 @@ class UsersController extends Controller
                     'avatar' =>  'default_user_profile_img.jpg',
                 ]);
             }
+
+             // save users_gyms table
+              $usersgym = new UsersGym();
+              $user_id = auth()->user()->id;
+              $usersgym->gym_id = $request['gym'];
+              $usersgym->user_id = $user_id; 
+              $usersgym->save();
             return redirect()->route('users_list');
     }
 
