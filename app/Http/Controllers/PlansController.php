@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Files;
 use App\Models\Plans;
+use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -49,7 +50,9 @@ class PlansController extends Controller{
      */
     public function create()
     {
-        return view('plans.plans_create');
+        $services = Services::all();
+        //dd($services);
+        return view('plans.plans_create', compact('services'));
     }
 
     public function store(Request $request)
@@ -70,16 +73,48 @@ class PlansController extends Controller{
                 'plan_name.required' => __('translation.require_plan_name')
             ],
         );
+
         // save plan in plans table
         $palns->plan_name = $request['plan_name'];
         $palns->plan_details = $request['plan_desc'];
-        $palns->service_id = 1;
-        $palns->days = 30;
-        $palns->amount = 500;
-        $palns->status = 1;
+        $palns->service_id = $request['service'];
+        $palns->days = $request['plan_day'];
+        $palns->amount = $request['plan_amount'];
+        $palns->status = $request['status'];
         $palns->created_by = $user_id;
         $palns->updated_by = $user_id;
         $palns->save();
+
+        // save plan profile image
+        $file = $request->file('profile_image');
+        if($file = $request->hasFile('profile_image')) {
+
+            // file data 
+            $file = $request->file('profile_image') ;
+            $fileName = time().rand(100,999).preg_replace('/\s+/', '', $file->getClientOriginalName());
+            $extension = $request->file('profile_image')->extension();
+
+            // save plan image in file table
+            $files_table= new Files();
+            $files_table->name = $fileName;
+            $files_table->ext = $extension;
+            $files_table->type = 'profile';
+            $files_table->entitiy_id = $palns->id;   
+            $files_table->save();
+
+            // move file in dericory
+            $file->move($destinationPath,$fileName);
+
+        }else{
+            // save plan image in file table
+            $files_table= new Files();
+            $files_table->name = "plan_Logo.png";
+            $files_table->ext = "png";
+            $files_table->type = 'profile';
+            $files_table->entitiy_id = $palns->id;   
+            $files_table->save();
+        }
+
 
         // save gym profile image
         // $file = $request->file('service_image');

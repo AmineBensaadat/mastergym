@@ -30,19 +30,15 @@
                             </div>
 
                             <div>
-                                <h5 class="fs-14 mb-3">Single select input Example</h5>
+                                <h5 class="fs-14 mb-3">Service</h5>
     
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6">
+                                    <div class="col-lg-6 col-md-6">
                                         <div class="mb-3">
-                                            <label for="choices-single-default" class="form-label text-muted">Default</label>
-                                            <p class="text-muted">Set <code>data-choices</code> attribute to set a default single select.</p>
-                                            <select class="form-control" data-choices name="choices-single-default"
-                                                id="choices-single-default">
-                                                <option value="">This is a placeholder</option>
-                                                <option value="Choice 1">Choice 1</option>
-                                                <option value="Choice 2">Choice 2</option>
-                                                <option value="Choice 3">Choice 3</option>
+                                            <select name="service" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
+                                                @foreach ($services as $service)
+                                                    <option value="{{ $service['id'] }}">{{ $service['name'] }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -50,13 +46,83 @@
                                 <!-- end row -->
                             </div>
                         </div>
+
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="plan-day-input">@lang('translation.day')</label>
+                                <input type="number" class="form-control" name="plan_day" id="plan-day-input" value="" placeholder="@lang('translation.Enter-day')" required>
+                                @error('plan_day')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="plan-amount-input">@lang('translation.amount')</label>
+                                <input type="number" class="form-control" name="plan_amount" id="plan-amount-input" value="" placeholder="@lang('translation.Enter-amount')" required>
+                                @error('plan_amount')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="choices-status" class="form-label">Status</label>
+    
+                            <select name="status" class="form-select" id="choices-status">
+                                <option value="1" selected>Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <!-- end card -->
-                
+        </div> 
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Plan Image</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5 class="fs-14 mb-1">Image</h5>
+                        <p class="text-muted">Add Plan Image</p>
+                        <div class="text-center">
+                            <div class="position-relative d-inline-block">
+                                <div class="position-absolute top-100 start-100 translate-middle">
+                                    <label for="single-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
+                                        <div class="avatar-xs">
+                                            <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
+                                                <i class="ri-image-fill"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <input class="form-control d-none"  name="profile_image"  id="single-image-input" type="file"
+                                        accept="image/png, image/gif, image/jpeg"
+                                        onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])"
+                                        >
+                                </div>
+                                <div class="avatar-lg">
+                                    <div class="avatar-title bg-light rounded">
+                                        <img src="{{ URL::asset('assets/images/img_icon.png') }}" id="single-img" class="avatar-md" />
+                                    </div>
+                                </div>
+                            </div>
+                            @error('profile_image')
+                                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-lg-2">
+            <button type="submit" class="btn btn-success w-sm">Submit</button>
+        </div>   
            <!-- end card -->
-           <button type="submit" class="btn btn-success w-sm">Submit</button>
-    </div>
+           
+  
     <!-- end row -->
 </form>
 

@@ -54,7 +54,7 @@
                 
            <!-- end card -->
 
-           <div class="card">
+                <div class="card">
                     <div class="card-header">
                         <h5 class="card-title mb-0">Main Image</h5>
                     </div>
