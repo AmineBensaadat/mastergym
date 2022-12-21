@@ -51,11 +51,15 @@
                                     <div class="col-lg-6 col-md-6">
                                         <div class="mb-3">
                                             <select name="gym" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
+                                                <option value="">Select yout gym</option>
                                                 @foreach ($gyms as $gym)
                                                     <option value="{{ $gym['id'] }}">{{ $gym['name'] }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
+                                        @error('gym')
+                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- end row -->
