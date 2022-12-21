@@ -51,7 +51,6 @@ class PlansController extends Controller{
     public function create()
     {
         $services = Services::all();
-        //dd($services);
         return view('plans.plans_create', compact('services'));
     }
 
