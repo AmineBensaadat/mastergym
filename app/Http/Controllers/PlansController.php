@@ -68,12 +68,14 @@ class PlansController extends Controller{
             [
                 'plan_name' => 'required',
                 'plan_day' => 'required',
-                'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'plan_day' => 'required',
+                'service' => 'required',
             ],
             [
                 'plan_name.required' => __('translation.require_plan_name'),
                 'plan_day.required' => __('translation.this_filed_required'),
                 'profile_image' =>   __('translation.file_not_autorized'),
+                'service.required' =>   __('translation.service_required'),
             ],
         );
 

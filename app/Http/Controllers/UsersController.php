@@ -60,12 +60,14 @@ class UsersController extends Controller
                 [
                     'user_name' => 'required',
                     'user_email' => 'required|email',
-                    'user_password' => 'required'
+                    'user_password' => 'required',
+                    'gym' => 'required'
                 ],
                 [
                     'user_name.required' => __('translation.require'),
                     'user_email.required' => __('translation.require_email'),
-                    'user_password.required' => __('translation.require_password')
+                    'user_password.required' => __('translation.require_password'),
+                    'gym.required' =>  __('translation.require_gym')
                 ],
             );
             $usersgym = UsersGym::all();
