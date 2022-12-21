@@ -9,10 +9,10 @@
         <div class="col-lg-12">
             <div class="d-lg-flex align-items-center mb-4">
                 <div class="flex-grow-1">
-                    <h5 class="card-title mb-0 fw-bold fs-17">@lang('translation.all_gym')</h5>
+                    <h5 class="card-title mb-0 fw-bold fs-17">All Gyms</h5>
                 </div>
                 <div class="flex-shrink-0 mt-4 mt-lg-0">
-                    <a href="{{ route('add_gym') }}" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.add_gym')</a>
+                    <a href="./create" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Gym </a>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                         <div class="card-footer border-top border-top-dashed">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1 fs-14">
-                                    <i class="ri-price-tag-3-fill text-warning align-bottom me-1"></i> Tottale Membres:
+                                    <i class="ri-price-tag-3-fill text-warning align-bottom me-1"></i> Tottale Membres: 
                                 </div>
                                 <h5 class="flex-shrink-0 fs-14 text-primary mb-0">3500</h5>
                             </div>
@@ -62,7 +62,4 @@
         </div>
     @endif
 
-@endsection
-@section('script')
-<script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection

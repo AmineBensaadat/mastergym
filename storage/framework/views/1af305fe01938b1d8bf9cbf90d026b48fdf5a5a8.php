@@ -33,10 +33,28 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span><?php echo app('translator')->get('translation.menu'); ?></span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="widgets">
+                    <a class="nav-link menu-link" href="../widgets">
                         <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.dashboards'); ?></span>
                     </a>
-                </li> 
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.gyms'); ?></span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.plans'); ?></span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.members'); ?></span>
+                    </a>
+                </li>
                 <!-- end Dashboard Menu -->
 
             </ul>
