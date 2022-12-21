@@ -71,11 +71,18 @@ class UsersController extends Controller
                 ],
             );
             $usersgym = UsersGym::all();
-            if (request()->has('avatar')) {
-                $avatar = request()->file('avatar');
-                $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
-                $avatarPath = public_path('/images/');
-                $avatar->move($avatarPath, $avatarName);
+            if (request()->has('profile_image')) {
+                $avatar = request()->file('profile_image');
+                $fileName = time().rand(100,999).preg_replace('/\s+/', '', $avatar->getClientOriginalName());
+                $avatarPath = public_path('/images/users');
+                $avatar->move($avatarPath, $fileName);
+                
+                User::create([
+                    'name' => $request['user_name'],
+                    'email' => $request['user_email'],
+                    'password' => Hash::make($request['user_password']),
+                    'avatar' =>  $fileName,
+                ]);
             }else{
                 $user = User::create([
                     'name' => $request['user_name'],
