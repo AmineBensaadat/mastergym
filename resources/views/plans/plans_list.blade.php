@@ -103,8 +103,8 @@
                         </div>
                     @endforeach
                 </div>
-                 <!-- Pagination -->
-
+                <!-- Pagination -->
+                 {{$plans->links('pagination-links')}}
                 <!-- End Pagination -->
                                    
                 <!-- <div class="text-center mb-3">
