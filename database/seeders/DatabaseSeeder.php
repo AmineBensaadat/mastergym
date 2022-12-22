@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
         //Files::factory(10)->create();
         //Services::factory(10)->create();
         //$this->call(GymTableSeeder::class);
-        //Members::factory(300)->create();
+        Members::factory(300)->create();
     }
 }
