@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UsersGym;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
@@ -19,7 +20,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-
+        $saved = true;
         return view('users.users_list', compact('users'));
     }
 
@@ -98,6 +99,8 @@ class UsersController extends Controller
               $usersgym->gym_id = $request['gym'];
               $usersgym->user_id = $user_id; 
               $usersgym->save();
+              
+              session(['stored' => true]);
             return redirect()->route('users_list');
     }
 

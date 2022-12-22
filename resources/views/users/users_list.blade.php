@@ -383,4 +383,11 @@
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+
+@if (session('stored'))
+    <script src="{{ URL::asset('/assets/js/custom/coustom_toastify.js') }}"></script>
+    {{ session(['stored' => false]) }}
+@endif
+
 @endsection
+
