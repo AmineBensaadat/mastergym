@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GymsController;
+use App\Http\Controllers\MembersController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UsersController;
@@ -43,6 +44,13 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::get('/all', [UsersController::class, 'index'])->name('users_list');
     Route::post('/store', [UsersController::class, 'store'])->name('user_store');
     Route::get('/create', [UsersController::class, 'create'])->name('users_create');
+});
+
+//Members
+Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
+    Route::get('/all', [MembersController::class, 'index'])->name('members_list');
+    Route::post('/store', [MembersController::class, 'store'])->name('members_store');
+    Route::get('/create', [MembersController::class, 'create'])->name('members_create');
 });
 
 //Services
