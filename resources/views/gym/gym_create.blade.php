@@ -148,7 +148,7 @@
 
 @endsection
 @section('script')
-<script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+<script src="{{ URL::asset('/assets/js/jquery-3.6.0.min.js') }}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 <script>
 const dt = new DataTransfer(); // Permet de manipuler les fichiers de l'input file
