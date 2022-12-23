@@ -8,7 +8,7 @@
 @slot('title') Create Gym @endslot
 @endcomponent
 
-<form id="createproduct-form" method="POST" class="needs-validation"  action="/gym/store" novalidate enctype="multipart/form-data">
+<form id="createproduct-form" method="POST" class="needs-validation"  action="{{ route('store_gym') }}" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <div class="col-lg-8">

@@ -20,9 +20,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <div class="flex-grow-1">
-                        <button class="btn btn-info add-btn" data-bs-toggle="modal"
-                            data-bs-target="#showModal"><i
-                                class="ri-add-fill me-1 align-bottom"></i> Add Contacts</button>
+                        <a href="{{ route('members_create') }}" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
                     </div>
                     <div class="flex-shrink-0">
                         <div class="hstack text-nowrap gap-2">
@@ -49,9 +47,6 @@
         <!--end col-->
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">All Members</h5>
-            </div>
             <div class="card-body">
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Files;
+use App\Models\Gyms;
 use App\Models\Members;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -27,8 +28,8 @@ class MembersController extends Controller
      */
     public function create()
     {
-        $gyms = Members::all();
-        return view('users.user_create', compact('gyms'));
+        $gyms = Gyms::all();
+        return view('members.member_create', compact('gyms'));
     }
 
     /**
