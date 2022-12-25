@@ -9,10 +9,10 @@
         <div class="col-lg-12">
             <div class="d-lg-flex align-items-center mb-4">
                 <div class="flex-grow-1">
-                    <h5 class="card-title mb-0 fw-bold fs-17">All Gyms</h5>
+                    <h5 class="card-title mb-0 fw-bold fs-17">@lang('translation.all_gym')</h5>
                 </div>
                 <div class="flex-shrink-0 mt-4 mt-lg-0">
-                    <a href="./create" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Gym </a>
+                    <a href="./create" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.add_gym_lists')</a>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                             <img src="{{URL::asset('assets/images/gyms/'.$gym->gym_img )}}" alt="" class="card-img-top explore-img" />
                             <div class="bg-overlay"></div>
                             <div class="place-bid-btn">
-                                <a href="../gym/show/{{ $gym->gym_id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i> View</a>
+                                <a href="../gym/show/{{ $gym->gym_id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i>@lang('translation.View_')</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -39,7 +39,7 @@
                         <div class="card-footer border-top border-top-dashed">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1 fs-14">
-                                    <i class="ri-price-tag-3-fill text-warning align-bottom me-1"></i> Tottale Membres: 
+                                    <i class="ri-price-tag-3-fill text-warning align-bottom me-1"></i> Tottale Membres:
                                 </div>
                                 <h5 class="flex-shrink-0 fs-14 text-primary mb-0">3500</h5>
                             </div>

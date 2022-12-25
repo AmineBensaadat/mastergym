@@ -4,7 +4,8 @@ php artisan route:clear
 --- Laravel Add a new column to existing table in a migration---
 php artisan make:migration add_paid_to_users_table --table=users
 
-
+--- run the migration ---
+php artisan migrate
 
 --- Running Seeders ---
 php artisan db:seed
@@ -14,16 +15,8 @@ php artisan serve
 
 
 -- push and save ----
-1 - git pull
+1 - git pull origin devlop
 2 - git satus
 3 - git add .
 4 - git commit -m "update 1 your text"
 5 - git push origin devlop
-
---- migrations mangment --------
-
-create migration 
-php artisan make:migration create_flights_table
-
-run the migration
-php artisan migrate
