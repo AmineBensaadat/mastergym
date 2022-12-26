@@ -31,7 +31,7 @@ class PlansController extends Controller{
             $plans = Plans::select('id','plan_name', 'plan_details')
                 ->where('plan_name','LIKE','%'.$query.'%')
                 ->orWhere('plan_details', 'like', '%'. $query .'%')
-                ->paginate(10);
+                ->paginate(2);
             $count = $plans->count();
             return view('plans.plans_list' , compact('plans', 'count'));
         }else{

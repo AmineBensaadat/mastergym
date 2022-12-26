@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Files;
-use App\Models\Gyms;
-use App\Models\User;
-use App\Models\UsersGym;
+use App\Models\Members;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class UsersController extends Controller
+class MembersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,21 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.users_list', compact('users'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show()
-    {
-        $user = User::findOrFail($id);
-
-        return view('users.show', compact('user'));
+        $members = Members::all();
+        return view('members.members_list', compact('members'));
     }
 
     /**
@@ -43,7 +27,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $gyms = Gyms::all();
+        $gyms = Members::all();
         return view('users.user_create', compact('gyms'));
     }
 
@@ -98,7 +82,7 @@ class UsersController extends Controller
               $usersgym->gym_id = $request['gym'];
               $usersgym->user_id = $user_id; 
               $usersgym->save();
-
+              
               session(['stored' => true]);
             return redirect()->route('users_list');
     }
@@ -134,13 +118,4 @@ class UsersController extends Controller
         return redirect('users');
     }
 
-    public function archive($id, Request $request)
-    {
-        $user = User::findOrFail($id);
-        $user->status = \constStatus::Archive;
-        $user->save();
-        flash()->error('User was successfully deleted');
-
-        return redirect('users');
-    }
 }
