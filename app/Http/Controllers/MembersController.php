@@ -35,7 +35,7 @@ class MembersController extends Controller
     public function create()
     {
         $gyms = Members::all();
-        return view('members.member_create', compact('gyms'));
+        return view('members.create', compact('gyms'));
     }
 
     /**
@@ -49,48 +49,61 @@ class MembersController extends Controller
         $this->validate(
             $request, 
                 [
-                    'user_name' => 'required',
-                    'user_email' => 'required|email',
-                    'user_password' => 'required',
-                    'gym' => 'required'
+                    'lastname' => 'required',
+                    'firstname' => 'required',
+                    'cin' => 'required',
+                    'address' => 'required',
+                    'phone' => 'required',
+                    'email' => 'required|email',
+                    'dob' => 'required',
+                    'emergency_cont' => 'required',
+                    // 'user_password' => 'required',
+                    // 'gym' => 'required'
                 ],
                 [
-                    'user_name.required' => __('translation.require'),
-                    'user_email.required' => __('translation.require_email'),
-                    'user_password.required' => __('translation.require_password'),
-                    'gym.required' =>  __('translation.require_gym')
+                    'lastname.required' => __('translation.require'),
+                    'firstname.required' => __('translation.require'),
+                    'lastname.cin' => __('translation.require'),
+                    'address.required' => __('translation.require'),
+                    'phone.required' => __('translation.require'),
+                    'email.required' => __('translation.require_email'),
+                    'dob.required' => __('translation.require'),
+                    'emergency_cont.required' => __('translation.require'),
+                    // 'user_password.required' => __('translation.require_password'),
+                    // 'gym.required' =>  __('translation.require_gym')
                 ],
             );
-            $usersgym = UsersGym::all();
-            if (request()->has('profile_image')) {
-                $avatar = request()->file('profile_image');
-                $fileName = time().rand(100,999).preg_replace('/\s+/', '', $avatar->getClientOriginalName());
-                $avatarPath = public_path('/images/users');
-                $avatar->move($avatarPath, $fileName);
+            $members = $this->membersRepository->saveMember($request);
+            // $usersgym = UsersGym::all();
+            // if (request()->has('profile_image')) {
+            //     $avatar = request()->file('profile_image');
+            //     $fileName = time().rand(100,999).preg_replace('/\s+/', '', $avatar->getClientOriginalName());
+            //     $avatarPath = public_path('/images/users');
+            //     $avatar->move($avatarPath, $fileName);
                 
-                User::create([
-                    'name' => $request['user_name'],
-                    'email' => $request['user_email'],
-                    'password' => Hash::make($request['user_password']),
-                    'avatar' =>  $fileName,
-                ]);
-            }else{
-                $user = User::create([
-                    'name' => $request['user_name'],
-                    'email' => $request['user_email'],
-                    'password' => Hash::make($request['user_password']),
-                    'avatar' =>  'default_user_profile_img.jpg',
-                ]);
-            }
+            //     User::create([
+            //         'name' => $request['user_name'],
+            //         'email' => $request['user_email'],
+            //         'password' => Hash::make($request['user_password']),
+            //         'avatar' =>  $fileName,
+            //     ]);
+            // }else{
+            //     $user = User::create([
+            //         'name' => $request['user_name'],
+            //         'email' => $request['user_email'],
+            //         'password' => Hash::make($request['user_password']),
+            //         'avatar' =>  'default_user_profile_img.jpg',
+            //     ]);
+            // }
 
-             // save users_gyms table
-              $usersgym = new UsersGym();
-              $user_id = auth()->user()->id;
-              $usersgym->gym_id = $request['gym'];
-              $usersgym->user_id = $user_id; 
-              $usersgym->save();
+            //  // save users_gyms table
+            //   $usersgym = new UsersGym();
+            //   $user_id = auth()->user()->id;
+            //   $usersgym->gym_id = $request['gym'];
+            //   $usersgym->user_id = $user_id; 
+            //   $usersgym->save();
               
-              session(['stored' => true]);
+            //   session(['stored' => true]);
             return redirect()->route('users_list');
     }
 
