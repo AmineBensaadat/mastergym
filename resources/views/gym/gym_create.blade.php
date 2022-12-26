@@ -51,17 +51,17 @@
                     </div>
                 </div>
                 <!-- end card -->
-                
+
            <!-- end card -->
 
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">Main Image</h5>
+                        <h5 class="card-title mb-0">@lang('translation.images_')</h5>
                     </div>
                     <div class="card-body">
                         <div class="mb-4">
-                            <h5 class="fs-14 mb-1">Image</h5>
-                            <p class="text-muted">Add Main  Image.</p>
+                            <h5 class="fs-14 mb-1">@lang('translation.images_')</h5>
+                            <p class="text-muted">@lang('translation.add_Main_Image')</p>
                             <div class="text-center">
                                 <div class="position-relative d-inline-block">
                                     <div class="position-absolute top-100 start-100 translate-middle">
@@ -94,13 +94,13 @@
                 <div class="card">
                   <div class="card-header">
                        <label  class="btn btn-primary text-light float-end fs-11" for="attachment">
-                            <i class="ri-add-circle-line align-bottom"></i> Add
+                            <i class="ri-add-circle-line align-bottom"></i>@lang('translation.Add_image')
                         </label>
-                      <h6 class="card-title mb-0">Images Gallery</h6>
+                      <h6 class="card-title mb-0">@lang('translation.Images_Gallery')</h6>
                   </div>
                   <div class="card-body">
                         <div class="upload__box">
-                            <h5 class="fs-14 mb-1">Gym Gallery</h5>
+                            <h5 class="fs-14 mb-1">@lang('translation.Gym_Gallery')</h5>
                             <input type="file" name="imgs_gallery[]" accept="image/png, image/jpeg, image/gif" id="attachment" style="visibility: hidden; position: absolute;" multiple/>
                             <ul class="list-unstyled mb-0 upload__img-wrap" id="filesList" >
                                 <li class="mt-2 dz-processing dz-image-preview dz-success dz-complete" >
@@ -111,13 +111,13 @@
                             @enderror
                         </div>
                     </div>
-                   
+
                 </div>
                 <!-- end card -->
                 <!-- end card -->
 
                 <div class="text-end mb-3">
-                    <button type="submit" class="btn btn-success w-sm">Submit</button>
+                    <button type="submit" class="btn btn-success w-sm">@lang('translation.Submit')</button>
                 </div>
         </div>
         <!-- end col -->

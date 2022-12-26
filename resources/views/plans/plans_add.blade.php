@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <!-- end card -->
-                
+
            <!-- end card -->
 
            <div class="card">
@@ -111,7 +111,7 @@
                             @enderror
                         </div>
                     </div>
-                   
+
                 </div>
                 <!-- end card -->
                 <!-- end card -->

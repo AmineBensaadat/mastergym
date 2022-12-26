@@ -217,5 +217,27 @@ return [
 
     "all_gym" => "All Gym",
     "add_gym" => "add gym",
+    "add_gym_lists" => "add gym",
+
+    "name" => " name ",
+    "gym_address" => " gym address ",
+    "gym_phone" => " gym phone",
+    "gym_descreption" => " gym descreption",
+
+    "Enter-name" => "Enter name",
+    "Enter-address-of-your-gym" => " Enter address of your gym ",
+    "Enter-phone-of-your-gym" => "Enter phone of your gym  ",
+    "Enter-descreption-her" => " Enter descreption her",
+
+    "View_" => " View ",
+    "Main_Image" => " Main Image ",
+    "images_" => " Image ",
+    "add_Main_Image" => " add Main Image ",
+    "Images_Gallery" => " Images Gallery ",
+    "Gym_Gallery" => " Gym Gallery ",
+    "Add_image" => " Add image ",
+    "Submit" => " Submit ",
+
+
 ];
 ?>

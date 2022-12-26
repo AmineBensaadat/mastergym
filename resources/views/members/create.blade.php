@@ -8,7 +8,7 @@
 @slot('title') Create Memeber @endslot
 @endcomponent
 
-<form id="createproduct-form" method="POST" class="needs-validation"  action="/Memeber/store" novalidate enctype="multipart/form-data">
+<form id="createMember-form" method="POST" class="needs-validation"  action="{{ route('members_store') }}" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <!-- start col -->
@@ -19,7 +19,7 @@
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label class="form-label" for="lastname-input">@lang('translation.lastname')</label>
-                                <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required>
+                                <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required >
                                 @error('lastname')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -175,7 +175,7 @@
                         <label class="form-label" for="health_issues-input">@lang('translation.health_issues')</label>
 
                         <div class="form-icon">
-                            <input type="text" class="form-control form-control-icon" name="health_issues" id="phone-input" value="{{ old('health_issues') }}" placeholder="@lang('translation.entrer thea') @lang('translation.health_issues')"  required>
+                            <input type="text" class="form-control form-control-icon" name="health_issues" id="phone-input" value="{{ old('health_issues') }}" placeholder="@lang('translation.entrer thea') @lang('translation.health_issues')">
                             <i class="ri-sword-fill"></i>
                         </div>
                         
@@ -188,7 +188,7 @@
                         <label class="form-label" for="source-input">@lang('translation.source')</label>
 
                         <div class="form-icon">
-                            <input type="text" class="form-control form-control-icon" name="source" id="source-input" value="{{ old('source') }}" placeholder="@lang('translation.entrer thea') @lang('translation.source')"  required>
+                            <input type="text" class="form-control form-control-icon" name="source" id="source-input" value="{{ old('source') }}" placeholder="@lang('translation.entrer thea') @lang('translation.source')">
                             <i class="ri-sword-fill"></i>
                         </div>
                         
