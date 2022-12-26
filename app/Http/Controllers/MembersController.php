@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Files;
 use App\Models\Members;
+use App\Repositorries\MembersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class MembersController extends Controller
 {
+    private $membersRepository;
+
+    public function __construct(MembersRepository $membersRepository)
+    {
+        $this->membersRepository = $membersRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,7 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $members = Members::all();
+        $members = $this->membersRepository->all();
         return view('members.members_list', compact('members'));
     }
 
@@ -28,7 +35,7 @@ class MembersController extends Controller
     public function create()
     {
         $gyms = Members::all();
-        return view('users.user_create', compact('gyms'));
+        return view('members.member_create', compact('gyms'));
     }
 
     /**
