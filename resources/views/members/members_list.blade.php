@@ -20,7 +20,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <div class="flex-grow-1">
-                        <a href="{{ route('members_create') }}" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
+                        <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
                     </div>
                     <div class="flex-shrink-0">
                         <div class="hstack text-nowrap gap-2">

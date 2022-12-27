@@ -212,7 +212,16 @@ return [
     "to-do"=> "Faire",
     "crypto-svg"=> "Crypto SVG",
     "totale-membres"=> "Totale membres",
-    "view-all-users" => "view all users"
+    "view-all-users" => "view all users",
+    "firstname" => "nom",
+    "lastname" => "prénom",
+    "entrer the" => "entrer le",
+    "entrer thee" => "entrer l'",
+    "entrer thea" => "entrer la",
+    "cin" => "cin",
+    "address" => "addresse",
+    "phone"  => "téléphone"
+    
 
 ];
 ?>
