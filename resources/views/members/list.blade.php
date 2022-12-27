@@ -56,17 +56,13 @@
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>
                             </th>
-                            <th data-ordering="false">SR No.</th>
-                            <th data-ordering="false">ID</th>
-                            <th data-ordering="false">Purchase ID</th>
-                            <th data-ordering="false">Title</th>
-                            <th data-ordering="false">User</th>
-                            <th>Assigned To</th>
-                            <th>Created By</th>
-                            <th>Create Date</th>
-                            <th>Status</th>
-                            <th>Priority</th>
-                            <th>Action</th>
+                            <th >@lang('translation.member')</th>
+                            <th >@lang('translation.phone')</th>
+                            <th >@lang('translation.email')</th>
+                            <th >@lang('translation.address')</th>
+                            <th >@lang('translation.cin')</th>
+                            <th >@lang('translation.status')</th>
+                         
                         </tr>
                     </thead>
                     <tbody>
@@ -77,32 +73,36 @@
                                     <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
                                 </div>
                             </th>
-                            <td>01</td>
-                            <td>VLZ-452</td>
-                            <td>VLZ1400087402</td>
-                            <td><a href="#!">Post launch reminder/ post list</a></td>
-                            <td>Joseph Parker</td>
-                            <td>Alexis Clarke</td>
-                            <td>Joseph Parker</td>
-                            <td>03 Oct, 2021</td>
-                            <td><span class="badge badge-soft-info">Re-open</span></td>
-                            <td><span class="badge bg-danger">High</span></td>
                             <td>
-                                <div class="dropdown d-inline-block">
-                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="ri-more-fill align-middle"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a href="#!" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                        <li><a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
-                                        <li>
-                                            <a class="dropdown-item remove-item-btn">
-                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="d-flex align-items-start">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div>
+                                            @if ($member->img_name)
+                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
+                                            @else
+                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
+                                            @endif
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="contact-name fs-13 mb-1"><a href="#" class="link text-dark">{{ $member->lastname." ".$member->firstname }} </a></h5>
+                                    </div>
                                 </div>
                             </td>
+                            <td>{{ $member->contact }}</td>
+                            <td>{{ $member->email }}</td>
+                            <td>{{ $member->address }}</td>
+                            <td>{{ $member->cin }}</td>
+                            <td>
+                                @if ($member->status == 1)
+                                    <span class="badge bg-success">active</span>
+                                @else
+                                    <span class="badge bg-danger">inactive</span>
+                                @endif
+                            </td>
+             
                         </tr>
                         @endforeach
                     </tbody>

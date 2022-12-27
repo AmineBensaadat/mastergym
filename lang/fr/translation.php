@@ -220,7 +220,9 @@ return [
     "entrer thea" => "entrer la",
     "cin" => "cin",
     "address" => "addresse",
-    "phone"  => "téléphone"
+    "phone"  => "téléphone",
+    "member"  => "member",
+    "status" => "status"
     
 
 ];

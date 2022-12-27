@@ -25,7 +25,7 @@ class MembersController extends Controller
     public function index()
     {
         $members = $this->membersRepository->all();
-        return view('members.members_list', compact('members'));
+        return view('members.list', compact('members'));
     }
 
     /**
