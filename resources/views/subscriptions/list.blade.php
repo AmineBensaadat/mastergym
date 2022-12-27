@@ -3,7 +3,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Pages @endslot
-@slot('title') Members @endslot
+@slot('title') Subscriptions @endslot
 @endcomponent
 
 <!--datatable css-->
@@ -51,6 +51,11 @@
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
+                            <th scope="col" style="width: 10px;">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                                </div>
+                            </th>
                             <th >@lang('translation.member')</th>
                             <th >@lang('translation.phone')</th>
                             <th >@lang('translation.email')</th>
@@ -63,18 +68,26 @@
                     <tbody>
                         @foreach ($members as $member)
                         <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
                             <td>
-                                <div class="d-flex align-items-center">            
-                                    <div class="flex-shrink-0">
-                                        @if ($member->img_name)
-                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
-                                        @else
-                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
-                                        @endif 
-                                    </div>            
-                                    <div class="flex-grow-1 ms-2 name">
-                                        {{ $member->lastname." ".$member->firstname }} 
-                                    </div>            
+                                <div class="d-flex align-items-start">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div>
+                                            @if ($member->img_name)
+                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
+                                            @else
+                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
+                                            @endif 
+                                        </div>
+                                    </div>
+
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="contact-name fs-13 mb-1"><a href="#" class="link text-dark">{{ $member->lastname." ".$member->firstname }} </a></h5>
+                                    </div>
                                 </div>
                             </td>
                             <td>{{ $member->contact }}</td>
