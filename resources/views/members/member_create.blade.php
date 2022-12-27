@@ -1,114 +1,85 @@
 @extends('layouts.master')
-@section('title') @lang('translation.create-product') @endsection
+@section('title') @lang('translation.add-member') @endsection
 @section('css')
 @endsection
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Ecommerce @endslot
-@slot('title') Create Member @endslot
+@slot('title') Create Memeber @endslot
 @endcomponent
 
-<form id="createproduct-form" method="POST" class="needs-validation"  action="{{ route('members_store') }}" novalidate enctype="multipart/form-data">
+<form id="createproduct-form" method="POST" class="needs-validation"  action="/Memeber/store" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
+        <!-- start col -->
         <div class="col-lg-8">
+                <!-- start card -->
                 <div class="card">
                     <div class="card-body">
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="member_firstname">@lang('translation.firstname')</label>
-                                <input type="text" class="form-control" name="firstname" id="member_firstname" value="{{ old('firstname') }}" placeholder="@lang('translation.Enter_firstname')" required>
-                                @error('firstname')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="member_lastname">@lang('translation.lastname')</label>
-                                <input type="text" class="form-control" name="lastname" id="member_lastname" value="{{ old('lastname') }}" placeholder="@lang('translation.Enter_lastname')" required>
+                                <label class="form-label" for="lastname-input">@lang('translation.lastname')</label>
+                                <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required>
                                 @error('lastname')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
 
+                        <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="member_cin">@lang('translation.cin')</label>
-                                    <div class="form-icon right">
-                                        <input type="text" class="form-control" name="cin" id="member_cin" value="{{ old('cin') }}" placeholder="@lang('translation.cin')" required>
-                                        <i class="ri-bank-card-2-fill"></i>
-                                    </div>
-                                @error('cin')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="member_email">@lang('translation.email')</label>
-                                <div class="form-icon right">
-                                    <input type="email" class="form-control" name="email" id="member_email" value="{{ old('email') }}" placeholder="example@gmail.com" >
-                                    <i class="ri-mail-unread-line"></i>
-                                </div>
-                                @error('email')
+                                <label class="form-label" for="firstname-input">@lang('translation.firstname')</label>
+                                <input type="text" class="form-control" name="firstname" id="firstname-input" value="{{ old('firstname') }}" placeholder="@lang('translation.entrer the') @lang('translation.firstname')" required>
+                                @error('firstname')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="member_address">@lang('translation.address')</label>
-                                <div class="form-icon right">
-                                    <input type="text" class="form-control" name="address" id="member_address" value="{{ old('member_address') }}" placeholder="@lang('translation.Enter_address')" required>
-                                    <i class="ri-mail-unread-line"></i>
-                                </div>
+                                <label class="form-label" for="cin-input">@lang('translation.cin')</label>
+                                <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') }}" placeholder="@lang('translation.entrer the') @lang('translation.cin')" required>
+                                @error('cin')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="address-input">@lang('translation.address')</label>
+                                <input type="text" class="form-control" name="address" id="firstname-input" value="{{ old('address') }}" placeholder="@lang('translation.entrer thee') @lang('translation.address')" required>
                                 @error('address')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="dob">@lang('translation.dob')</label>
-                                <input type="date" class="form-control" name="dob" id="dob" value="{{ old('dob') }}" placeholder="@lang('translation.Enter-dob')" required>
-                                @error('dob')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="product-title-input">@lang('translation.member_phone')</label>
-                                <div class="form-icon right">
-                                    <input type="text" class="form-control" name="member_phone" value="{{ old('member_phone') }}" placeholder="@lang('translation.Enter-phone-of-your-member')" required>
-                                    <i class="ri-phone-fill"></i>
+                                <label class="form-label" for="phone-input">@lang('translation.phone')</label>
+
+                                <div class="form-icon">
+                                    <input type="phone" class="form-control form-control-icon" name="phone" id="phone-input" value="{{ old('phone') }}" placeholder="@lang('translation.entrer the') @lang('translation.phone')" required>
+                                    <i class="ri-phone-line"></i>
                                 </div>
-                                    @error('member_phone')
+                                
+                                @error('phone')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="product-title-input">@lang('translation.emergency_contact')</label>
-                                <input type="text" class="form-control" name="member_emergency_contact" value="{{ old('member_emergency_contact') }}" placeholder="@lang('translation.Enter-emergency-contact-of-your-member')" required>
-                                @error('member_emergency_contact')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>       
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="product-title-input">@lang('translation.health_issues')</label>
-                                <input type="text" class="form-control" name="member_health_issues_contact" value="{{ old('member_health_issues_contact') }}" placeholder="@lang('translation.Enter-health-issues-of-your-member')" required>
-                                @error('member_health_issues_contact')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="product-title-input">@lang('translation.source')</label>
-                                <input type="text" class="form-control" name="source" value="{{ old('source') }}" placeholder="@lang('translation.source')" required>
-                                @error('source')
+                                <label class="form-label" for="phone-input">@lang('translation.email')</label>
+
+                                <div class="form-icon">
+                                    <input type="email" class="form-control form-control-icon" name="email" id="phone-input" value="{{ old('email') }}" placeholder="@lang('translation.entrer thee') @lang('translation.email')" required>
+                                    <i class=" ri-mail-line"></i>
+                                </div>
+                                @error('email')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -116,17 +87,13 @@
                     </div>
                 </div>
                 <!-- end card -->
-                
-           <!-- end card -->
 
+                <!-- start card -->
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Image profile</h5>
-                    </div>
                     <div class="card-body">
                         <div class="mb-4">
                             <h5 class="fs-14 mb-1">Image</h5>
-                            <p class="text-muted">Add Main  Image.</p>
+                            <p class="text-muted">Add profile Image.</p>
                             <div class="text-center">
                                 <div class="position-relative d-inline-block">
                                     <div class="position-absolute top-100 start-100 translate-middle">
@@ -156,85 +123,91 @@
                     </div>
                 </div>
                 <!-- end card -->
-
-                <div class="text-end mb-3">
-                    <button type="submit" class="btn btn-success w-sm">Submit</button>
-                </div>
         </div>
         <!-- end col -->
-
         <div class="col-lg-4">
+            <!-- start card -->
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="choices-gender" class="form-label">Gym</label>
-
-                        <select name="gym" class="form-select" id="choices-gender">
-                            <option value="male" selected>male</option>
+                        <label for="choices-is_main" class="form-label">gender</label>
+                        <select name="is_main" class="form-select" id="choices-is_main">
+                            <option value="men" selected>men</option>
                             <option value="female">female</option>
                         </select>
                     </div>
-                </div>
-                <!-- end card body -->
+
+                    <div class="mb-3">
+                        <label for="choices-is_main" class="form-label">status</label>
+                        <select name="is_main" class="form-select" id="choices-is_main">
+                            <option value="1" selected>active</option>
+                            <option value="0">inactive</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="dob-input">@lang('translation.dob')</label>
+
+                        <div class="form-icon">
+                            <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
+                            <i class="ri-map-pin-time-line"></i>
+                        </div>
+                        
+                        @error('dob')
+                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="emergency_cont-input">@lang('translation.emergency_cont')</label>
+
+                        <div class="form-icon">
+                            <input type="text" class="form-control form-control-icon" name="emergency_cont" id="emergency_cont-input" value="{{ old('emergency_cont') }}" placeholder="@lang('translation.entrer thea') @lang('translation.emergency_cont')"  required>
+                            <i class="ri-cellphone-line"></i>
+                        </div>
+                        
+                        @error('emergency_cont')
+                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="health_issues-input">@lang('translation.health_issues')</label>
+
+                        <div class="form-icon">
+                            <input type="text" class="form-control form-control-icon" name="health_issues" id="phone-input" value="{{ old('health_issues') }}" placeholder="@lang('translation.entrer thea') @lang('translation.health_issues')"  required>
+                            <i class="ri-sword-fill"></i>
+                        </div>
+                        
+                        @error('health_issues')
+                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="source-input">@lang('translation.source')</label>
+
+                        <div class="form-icon">
+                            <input type="text" class="form-control form-control-icon" name="source" id="source-input" value="{{ old('source') }}" placeholder="@lang('translation.entrer thea') @lang('translation.source')"  required>
+                            <i class="ri-sword-fill"></i>
+                        </div>
+                        
+                        @error('source')
+                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    
+                    
+                </div>    
+            </div>
+            <!-- end card body -->
             </div>
             <!-- end card -->
+        </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="choices-gender" class="form-label">Status</label>
-
-                        <select name="gender" class="form-select" id="choices-gender">
-                            <option value="male" selected>male</option>
-                            <option value="female">female</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- end card body -->
-            </div>
-            <!-- end card -->
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="choices-gender" class="form-label">Gender</label>
-
-                        <select name="gender" class="form-select" id="choices-gender">
-                            <option value="male" selected>male</option>
-                            <option value="female">female</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- end card body -->
-            </div>
-            <!-- end card -->
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="choices-gender" class="form-label">Service</label>
-
-                        <select name="gender" class="form-select" id="choices-gender">
-                            <option value="male" selected>male</option>
-                            <option value="female">female</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- end card body -->
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="choices-gender" class="form-label">Plan</label>
-                        <select name="gender" class="form-select" id="choices-gender">
-                            <option value="male" selected>male</option>
-                            <option value="female">female</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- end card body -->
-            </div>
+        <div class="text-start mb-3">
+            <button type="submit" class="btn btn-success w-sm">Submit</button>
         </div>
     </div>
     <!-- end row -->
