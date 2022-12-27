@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Files;
+use App\Models\Gyms;
 use App\Models\Members;
 use App\Repositorries\MembersRepository;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class MembersController extends Controller
     public function index()
     {
         $members = $this->membersRepository->all();
-        return view('members.members_list', compact('members'));
+        return view('members.list', compact('members'));
     }
 
     /**
@@ -51,14 +52,12 @@ class MembersController extends Controller
                 [
                     'lastname' => 'required',
                     'firstname' => 'required',
-                    'cin' => 'required',
+                    'cin' => 'required|unique:members',
                     'address' => 'required',
                     'phone' => 'required',
-                    'email' => 'required|email',
+                    'email' => 'required|email|unique:members',
                     'dob' => 'required',
                     'emergency_cont' => 'required',
-                    // 'user_password' => 'required',
-                    // 'gym' => 'required'
                 ],
                 [
                     'lastname.required' => __('translation.require'),
@@ -69,42 +68,11 @@ class MembersController extends Controller
                     'email.required' => __('translation.require_email'),
                     'dob.required' => __('translation.require'),
                     'emergency_cont.required' => __('translation.require'),
-                    // 'user_password.required' => __('translation.require_password'),
-                    // 'gym.required' =>  __('translation.require_gym')
                 ],
             );
             $members = $this->membersRepository->saveMember($request);
-            // $usersgym = UsersGym::all();
-            // if (request()->has('profile_image')) {
-            //     $avatar = request()->file('profile_image');
-            //     $fileName = time().rand(100,999).preg_replace('/\s+/', '', $avatar->getClientOriginalName());
-            //     $avatarPath = public_path('/images/users');
-            //     $avatar->move($avatarPath, $fileName);
-                
-            //     User::create([
-            //         'name' => $request['user_name'],
-            //         'email' => $request['user_email'],
-            //         'password' => Hash::make($request['user_password']),
-            //         'avatar' =>  $fileName,
-            //     ]);
-            // }else{
-            //     $user = User::create([
-            //         'name' => $request['user_name'],
-            //         'email' => $request['user_email'],
-            //         'password' => Hash::make($request['user_password']),
-            //         'avatar' =>  'default_user_profile_img.jpg',
-            //     ]);
-            // }
-
-            //  // save users_gyms table
-            //   $usersgym = new UsersGym();
-            //   $user_id = auth()->user()->id;
-            //   $usersgym->gym_id = $request['gym'];
-            //   $usersgym->user_id = $user_id; 
-            //   $usersgym->save();
-              
-            //   session(['stored' => true]);
-            return redirect()->route('users_list');
+          
+            return redirect()->route('members_list');
     }
 
     public function edit($id)

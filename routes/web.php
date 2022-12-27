@@ -27,9 +27,7 @@ Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
     Route::get('/all', [GymsController::class, 'index'])->name('gym_list');
     Route::get('/create', [GymsController::class, 'create'])->name('add_gym');
     Route::get('/show/{id}', [GymsController::class, 'show'])->name('show_gym');
-
-
-    Route::post('/store',[GymsController::class, 'store'])->name('storegym');
+    Route::post('/store',[GymsController::class, 'store'])->name('store_gym');
 });
 
 //Plans
@@ -49,8 +47,8 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
 //Members
 Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/all', [MembersController::class, 'index'])->name('members_list');
-    Route::post('/store', [MembersController::class, 'store'])->name('members_store');
     Route::get('/create', [MembersController::class, 'create'])->name('members_create');
+    Route::post('/store', [MembersController::class, 'store'])->name('members_store');
 });
 
 //Services

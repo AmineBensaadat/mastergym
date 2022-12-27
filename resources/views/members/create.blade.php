@@ -130,16 +130,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="choices-is_main" class="form-label">gender</label>
-                        <select name="is_main" class="form-select" id="choices-is_main">
+                        <label for="choices-gender" class="form-label">gender</label>
+                        <select name="gender" class="form-select" id="choices-gender">
                             <option value="men" selected>men</option>
                             <option value="female">female</option>
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="choices-is_main" class="form-label">status</label>
-                        <select name="is_main" class="form-select" id="choices-is_main">
+                        <label for="choices-status" class="form-label">status</label>
+                        <select name="status" class="form-select" id="choices-status">
                             <option value="1" selected>active</option>
                             <option value="0">inactive</option>
                         </select>
