@@ -57,7 +57,6 @@
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.cin')</th>
                             <th >@lang('translation.status')</th>
-                         
                         </tr>
                     </thead>
                     <tbody>
