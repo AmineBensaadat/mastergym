@@ -222,8 +222,12 @@ return [
     "address" => "addresse",
     "phone"  => "téléphone",
     "member"  => "member",
-    "status" => "status"
-    
+    "status" => "status",
+    "services" => "services",
+    "plans" => "plans",
+    "users" => "utilisateurs",
+    "members" => "members",
+    "subscriptions" => "abonnements"
 
 ];
 ?>

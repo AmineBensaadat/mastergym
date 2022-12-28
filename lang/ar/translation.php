@@ -19,12 +19,29 @@ return [
 
     "View_" => " معاينة ",
     "Main_Image" => " الصورة الرئيسية  ",
-    "images_"=>"صورة",
+    "images"=>"صورة",
     "add_Main_Image" => "  أضف الصورة الرئيسية ",
     "Images_Gallery" => " مكتبة الصور ",
     "Gym_Gallery" => " معرض الصالة الرياضية ",
     "Add_image" => " إضافة صورة ",
     "Submit" => " حفظ ",
+
+    "CREATE_PLAN" => "إنشاء خطة",
+    "plan_descreption" => "وصف الخطة",
+    "Enter-plan-descreption-her" => "أدخل وصف الخطة ",
+    "Service" => " خدمة ",
+    "Select_the_service" => " اختر الخدمة ",
+    "day" => "التاريخ",
+    "Enter-day" => "أدخل التاريخ",
+    "amount" => "المبلغ",
+    "Enter_amount" => "أدخل المبلغ",
+    "Status" => "الحالة",
+    "Inactive" => "غير مفعّل",
+    "Active" => " مفعّل",
+    "Plan_Image" => "صورة الخطة",
+    "Add_Plan_Image" => "أضف صورة الخطة",
+
+
 
 ]
 ?>

@@ -56,11 +56,11 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">@lang('translation.images_')</h5>
+                        <h5 class="card-title mb-0">@lang('translation.images')</h5>
                     </div>
                     <div class="card-body">
                         <div class="mb-4">
-                            <h5 class="fs-14 mb-1">@lang('translation.images_')</h5>
+                            <h5 class="fs-14 mb-1">@lang('translation.images')</h5>
                             <p class="text-muted">@lang('translation.add_Main_Image')</p>
                             <div class="text-center">
                                 <div class="position-relative d-inline-block">
