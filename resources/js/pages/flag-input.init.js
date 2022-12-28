@@ -7,7 +7,7 @@ File: flag input Js File
 */
 (function () {
     ("use strict");
-    var url = "assets/json/";
+    var url = "../assets/json/";
     var countryListData = '';
     var getJSON = function (jsonurl, callback) {
         var xhr = new XMLHttpRequest();
