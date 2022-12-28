@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class Localization
 {
@@ -17,9 +18,19 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        /* Set new lang with the use of session */
-        if (session()->has('lang')) {
-            App::setLocale(session()->get('lang'));
+       
+
+        if (Auth::check()) {
+            App::setLocale(Auth::user()->language);
+
+             /* Set new lang with the use of session */
+            if (session()->has('lang')) {
+                App::setLocale(session()->get('lang'));
+            }
+            else{
+                // get lang of the user connexted
+                App::setLocale("ar");
+            }
         }
         return $next($request);
     }

@@ -73,6 +73,13 @@
                         <i class="ri-honour-line"></i> <span>@lang('translation.subscriptions')</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('setting') }}">
+                        <i class="ri-honour-line"></i> <span>@lang('translation.setting')</span>
+                    </a>
+                </li>
+
                 <!-- end Dashboard Menu -->
 
             </ul>

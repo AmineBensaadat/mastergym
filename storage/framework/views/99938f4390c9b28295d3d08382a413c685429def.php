@@ -73,6 +73,13 @@
                         <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.subscriptions'); ?></span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="<?php echo e(route('setting')); ?>">
+                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.setting'); ?></span>
+                    </a>
+                </li>
+
                 <!-- end Dashboard Menu -->
 
             </ul>
