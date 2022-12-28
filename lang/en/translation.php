@@ -229,14 +229,33 @@ return [
     "Enter-phone-of-your-gym" => "Enter phone of your gym  ",
     "Enter-descreption-her" => " Enter descreption her",
 
-    "View_" => " View ",
-    "Main_Image" => " Main Image ",
-    "images_" => " Image ",
-    "add_Main_Image" => " add Main Image ",
-    "Images_Gallery" => " Images Gallery ",
-    "Gym_Gallery" => " Gym Gallery ",
-    "Add_image" => " Add image ",
-    "Submit" => " Submit ",
+    "View_" => "View",
+    "Main_Image" => "Main Image",
+    "images" => "Image",
+    "add_Main_Image" => "add Main Image",
+    "Images_Gallery" => "Images Gallery",
+    "Gym_Gallery" => "Gym Gallery",
+    "Add_image" => "Add image",
+    "Submit" => "Submit",
+
+    "CREATE_PLAN" => "CREATE PLAN",
+    "plan_descreption" => "plan descreption",
+    "Enter-plan-descreption-her" => "Enter plan descreption her",
+    "Service" => "Service",
+    "Select_the_service" => "Select the service",
+    "day" => "day",
+    "Enter-day" => "Enter day",
+    "amount" => "amount",
+    "Enter_amount" => "Enter amount",
+    "Status" => "Status",
+    "Inactive" => "Inactive",
+    "Active" => "Active",
+    "Plan_Image" => "Plan Image",
+    "Add_Plan_Image" => "Add Plan Image",
+
+
+
+
 
 
 ];
