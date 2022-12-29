@@ -4,6 +4,7 @@ use App\Http\Controllers\GymsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SubscriptionsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -62,7 +63,12 @@ Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function (
 Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
     Route::get('/all', [ServicesController::class, 'index'])->name('services_list');
     Route::post('/add', [ServicesControlller::class, 'add'])->name('services_add');
-    
+});
+
+//setting
+Route::group(['prefix' => 'setting', 'middleware' => ['auth']], function () {
+    Route::get('/index', [SettingController::class, 'index'])->name('setting');
+    Route::post('/storeLang', [SettingController::class, 'storeLang'])->name('storeLang');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
