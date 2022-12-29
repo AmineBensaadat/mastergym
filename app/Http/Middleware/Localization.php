@@ -27,28 +27,27 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-       
         /* Set new lang with the use of session */
         if (session()->has('lang')) {
             App::setLocale(session()->get('lang'));
         }
 
         if (Auth::check()) {
-            //App::setLocale(Auth::user()->lang);
+            $curtentUser = $this->userRepository->getCurrentUser();
 
              /* Set new lang with the use of session */
             if (session()->has('lang')) {
                 App::setLocale(session()->get('lang'));
             }
-            else{
-                // get lang of the user connected
-                $curtentUser = $this->userRepository->getCurrentUser();
-                if($curtentUser->lang){
-                    App::setLocale($curtentUser->lang);
-                    Session::put('lang',$curtentUser->lang);
-                    Session::save();
-                }
-                
+            elseif($curtentUser->lang){
+            // get lang of the user connected
+                App::setLocale($curtentUser->lang);
+                Session::put('lang',$curtentUser->lang);
+                Session::save();
+            }else{
+                App::setLocale('fr');
+                Session::put('lang','fr');
+                Session::save();
             }
         }
         return $next($request);

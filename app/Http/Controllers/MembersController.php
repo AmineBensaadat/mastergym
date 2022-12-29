@@ -7,6 +7,8 @@ use App\Models\Gyms;
 use App\Models\Members;
 use App\Repositorries\MembersRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class MembersController extends Controller
@@ -104,6 +106,21 @@ class MembersController extends Controller
         flash()->success('User details was successfully updated');
 
         return redirect('users');
+    }
+
+    /**
+     * Show member.
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $member = DB::table('members')
+            ->join('files', 'members.id', '=', 'files.entitiy_id')
+            ->select('files.img_name','members.*')
+            ->where('members.id', $id)->first();
+
+        return view('members.show', array("member"  => $member));
     }
 
 }
