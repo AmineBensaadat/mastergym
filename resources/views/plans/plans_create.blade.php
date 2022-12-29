@@ -26,7 +26,7 @@
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label class="form-label" for="product-title-input">@lang('translation.plan_descreption')</label>
-                                <textarea name="plan_desc" class="form-control bg-light border-light" id="plan-desc-input" rows="3" placeholder="@lang('translation.Enter-plan-descreption-her')"></textarea>
+                                <textarea name="plan_desc" class="form-control bg-light border-light" id="plan-desc-input" rows="3" placeholder="@lang('translation.landd')"></textarea>
                             </div>
 
                             <div>

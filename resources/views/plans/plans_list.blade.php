@@ -2,8 +2,8 @@
 @section('title') @lang('translation.team') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
-@slot('title') Team @endslot
+@slot('li_1') @lang('translation.pages') @endslot
+@slot('title') @lang('translation.team') @endslot
 @endcomponent
 
 <div class="card">
@@ -12,7 +12,7 @@
                 <div class="col-sm-4">
                 <form method="GET"  action="{{ route('plans_store') }}">
                     <div class="search-box">
-                            @csrf   
+                            @csrf
                             <input type="text" name="query" class="form-control"  placeholder="Search for name or designation...">
                         <i class="ri-search-line search-icon"></i>
                     </div>
@@ -32,7 +32,7 @@
                             <li><a class="dropdown-item" href="#">Last Month</a></li>
                             <li><a class="dropdown-item" href="#">Last Year</a></li>
                         </ul>
-                        <a href="{{ route('plans_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Plan </a>
+                        <a href="{{ route('plans_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.Add-Plan')</a>
                     </div>
                 </div>
             <!--end col-->
@@ -106,7 +106,7 @@
                 <!-- Pagination -->
                  {{$plans->links('pagination-links')}}
                 <!-- End Pagination -->
-                                   
+
                 <!-- <div class="text-center mb-3">
                     <a href="javascript:void(0);" class="text-success"><i class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load More </a>
                 </div> -->
@@ -122,7 +122,7 @@
 
                         <div class="modal-body">
                             <form  method="POST" id="memberlist-form" class="needs-validation" action="{{ route('plans_store') }}" enctype="multipart/form-data">
-                                @csrf 
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <input type="hidden" id="memberid-input" class="form-control" value="">
@@ -162,7 +162,7 @@
                                                             </div>
                                                         </div>
                                                     </label>
-                                                    <input class="form-control d-none" name="service_image" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg" 
+                                                    <input class="form-control d-none" name="service_image" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg"
                                                     onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])">
                                                 </div>
                                                 <div class="avatar-lg">
