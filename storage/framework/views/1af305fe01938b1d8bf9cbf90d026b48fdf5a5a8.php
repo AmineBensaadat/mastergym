@@ -67,6 +67,12 @@
                         <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.members'); ?></span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="<?php echo e(route('subscriptions_list')); ?>">
+                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.subscriptions'); ?></span>
+                    </a>
+                </li>
                 <!-- end Dashboard Menu -->
 
             </ul>

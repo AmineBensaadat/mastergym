@@ -10,6 +10,7 @@ class MembersRepository
     public function all(){
         $members = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
+            ->select('files.img_name','members.*')
             ->get();
         return $members;
     }
@@ -44,7 +45,7 @@ class MembersRepository
  
              // save gym image in file table
              $files_table= new Files();
-             $files_table->name = $fileName;
+             $files_table->img_name = $fileName;
              $files_table->ext = $extension;
              $files_table->type = 'profile';
              $files_table->entitiy_id = $member->id;   
