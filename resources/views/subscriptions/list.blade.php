@@ -2,8 +2,8 @@
 @section('title') @lang('translation.team') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
-@slot('title') Subscriptions @endslot
+@slot('li_1') @lang('translation.pages') @endslot
+@slot('title') @lang('translation.subscriptions') @endslot
 @endcomponent
 
 <!--datatable css-->
@@ -56,13 +56,13 @@
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>
                             </th>
-                            <th >@lang('translation.member')</th>
+                            <th >@lang('translation.members')</th>
                             <th >@lang('translation.phone')</th>
                             <th >@lang('translation.email')</th>
                             <th >@lang('translation.address')</th>
-                            <th >@lang('translation.cin')</th>
-                            <th >@lang('translation.status')</th>
-                         
+                            <th >@lang('translation.CNIE')</th>
+                            <th >@lang('translation.Status')</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -81,7 +81,7 @@
                                                 <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
                                             @else
                                                 <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
-                                            @endif 
+                                            @endif
                                         </div>
                                     </div>
 
@@ -101,7 +101,7 @@
                                     <span class="badge bg-danger">inactive</span>
                                 @endif
                             </td>
-             
+
                         </tr>
                         @endforeach
                     </tbody>

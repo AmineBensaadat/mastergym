@@ -53,7 +53,7 @@ File: flag input Js File
       flags += '<li class="dropdown-item d-flex">\
             <div class="flex-shrink-0 me-2"><img src="' + arr[index]['flagImg'] + '" alt="country flag" class="options-flagimg" height="20"></div>\
                 <div class="flex-grow-1">\
-                <div class="d-flex"><div class="country-name me-1">' + arr[index]['countryName'] + '</div><span class="countrylist-codeno text-muted">' + arr[index]['countryCode'] + '</span></div>\
+                <div class="d-flex"><div class="country-name me-1">' + arr[index]['countryName'] + '</div></div>\
             </div>\
             </li>';
     }
@@ -75,14 +75,11 @@ File: flag input Js File
     Array.from(item.querySelectorAll(".dropdown-menu li")).forEach(function (subitem) {
       var optionFlagImg = subitem.querySelector(".options-flagimg").getAttribute("src");
       subitem.addEventListener("click", function () {
-        var optionCodeNo = subitem.querySelector(".countrylist-codeno").innerHTML;
 
         if (item.querySelector("button")) {
           item.querySelector("button img").setAttribute("src", optionFlagImg);
 
-          if (item.querySelector("button span")) {
-            item.querySelector("button span").innerHTML = optionCodeNo;
-          }
+         
         }
       });
 
@@ -136,7 +133,7 @@ File: flag input Js File
 
         function filterItems(arr, query) {
           return arr.filter(function (el) {
-            return el.countryName.toLowerCase().indexOf(query.toLowerCase()) !== -1 || el.countryCode.indexOf(query) !== -1;
+            return el.countryName.toLowerCase().indexOf(query.toLowerCase()) !== -1 ;
           });
         }
 
@@ -147,7 +144,7 @@ File: flag input Js File
             item.querySelector(".dropdown-menu-list").innerHTML += '<li class="dropdown-item d-flex">\
                         <div class="flex-shrink-0 me-2"><img src="' + listData.flagImg + '" alt="country flag" class="options-flagimg" height="20"></div>\
                         <div class="flex-grow-1">\
-                        <div class="d-flex"><div class="country-name me-1">' + listData.countryName + '</div><span class="countrylist-codeno text-muted">' + listData.countryCode + '</span></div>\
+                        <div class="d-flex"><div class="country-name me-1">' + listData.countryName + '</div></div>\
                         </div>\
                         </li>';
           });

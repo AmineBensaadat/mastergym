@@ -60,22 +60,11 @@
                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
                         <?php switch(Session::get('lang')):
-                        case ('ru'): ?>
-                            <img src="<?php echo e(URL::asset('/assets/images/flags/russia.svg')); ?>" class="rounded" alt="Header Language"
-                                height="20">
-                        <?php break; ?>
-                        <?php case ('it'): ?>
-                            <img src="<?php echo e(URL::asset('/assets/images/flags/italy.svg')); ?>" class="rounded" alt="Header Language"
-                                height="20">
-                        <?php break; ?>
-                        <?php case ('sp'): ?>
-                            <img src="<?php echo e(URL::asset('/assets/images/flags/spain.svg')); ?>" class="rounded" alt="Header Language"
-                                height="20">
-                        <?php break; ?>
-                        <?php case ('ch'): ?>
-                            <img src="<?php echo e(URL::asset('/assets/images/flags/china.svg')); ?>" class="rounded" alt="Header Language"
-                                height="20">
+                        
+                        case ('en'): ?>
+                            <img src="<?php echo e(URL::asset('/assets/images/flags/en.svg')); ?>" class="rounded" alt="Header Language" height="20">
                         <?php break; ?>
                         <?php case ('fr'): ?>
                             <img src="<?php echo e(URL::asset('/assets/images/flags/fr.svg')); ?>" class="rounded" alt="Header Language"
@@ -86,7 +75,7 @@
                                 height="20">
                         <?php break; ?>
                         <?php default: ?>
-                            <img src="<?php echo e(URL::asset('/assets/images/flags/us.svg')); ?>" class="rounded" alt="Header Language" height="20">
+                            <img src="<?php echo e(URL::asset('/assets/images/flags/en.svg')); ?>" class="rounded" alt="Header Language" height="20">
                     <?php endswitch; ?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
@@ -94,7 +83,7 @@
                         <!-- item-->
                         <a href="<?php echo e(url('index/en')); ?>" class="dropdown-item notify-item language py-2" data-lang="en"
                             title="English">
-                            <img src="<?php echo e(URL::asset('assets/images/flags/us.svg')); ?>" alt="user-image" class="me-2 rounded" height="20">
+                            <img src="<?php echo e(URL::asset('assets/images/flags/en.svg')); ?>" alt="user-image" class="me-2 rounded" height="20">
                             <span class="align-middle">English</span>
                         </a>
 

@@ -41,6 +41,32 @@ return [
     "Plan_Image" => "صورة الخطة",
     "Add_Plan_Image" => "أضف صورة الخطة",
 
+    "Create-Memeber" => "إنشاء عضو",
+    "lastname" => " اسم العائلة",
+    "entrer the" => " أدخل",
+    "CNIE" => " البطاقة الوطنية",
+    "address" => " العنوان ",
+    "phone" => " الهاتف ",
+    "email"=> "بريد إلكتروني",
+    "gender" => " الجنس",
+    "men" => " ذكر",
+    "female" => " أنثى",
+    "emergency_cont" => " خط الطوارئ ",
+    "emergency_cont" => "مشاكل صحية",
+
+    "menu"=>"الأقسام",
+    "dashboards"=>"لوحة المعلومات",
+    "services" => "الخدمات",
+    "subscriptions" => "الاشتراكات",
+    "settings"=>"إعدادات",
+    "members" => "المنخرطون",
+    "users" => "المستخدمين",
+    "plans" => "الخطط",
+    "pages"=>"صفحة",
+    "member" => "منخرط",
+    "team"=>"الفريق",
+    "Add-Plan" => " أضف خطة ",
+    "Search-for-name-or-designation" => "البحث عن اسم أو إحالة ...",
 
 
 ]

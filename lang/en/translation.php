@@ -215,6 +215,16 @@ return [
     "to-do"=> "To Do",
     "crypto-svg"=> "Crypto SVG",
 
+
+    "services" => "services",
+    "subscriptions" => "Subscriptions",
+    "members" => "members",
+    "users" => "users",
+    "plans" => "plans",
+
+
+
+
     "all_gym" => "All Gym",
     "add_gym" => "add gym",
     "add_gym_lists" => "add gym",
@@ -252,6 +262,25 @@ return [
     "Active" => "Active",
     "Plan_Image" => "Plan Image",
     "Add_Plan_Image" => "Add Plan Image",
+
+    "Create-Memeber" => "CREATE MEMEBER",
+    "lastname" => " lastname",
+    "entrer the" => " entrer the",
+    "CNIE" => " CNIE",
+    "address" => " address ",
+    "phone" => " phone ",
+    "gender" => " gender",
+    "men" => " men",
+    "female" => " female",
+    "emergency_cont" => " emergency cont",
+    "health_issues" => " health issues",
+    "Add-Plan" => "Add Plan",
+    "Search-for-name-or-designation" => "Search for name or designation...",
+
+
+
+
+
 
 
 
