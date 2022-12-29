@@ -227,7 +227,11 @@ return [
     "plans" => "plans",
     "users" => "utilisateurs",
     "members" => "members",
-    "subscriptions" => "abonnements"
+    "subscriptions" => "abonnements",
+    // lag
+    "fr" => "Français",
+    "en" => "Englais",
+    "ar" => "Arabe"
 
 ];
 ?>

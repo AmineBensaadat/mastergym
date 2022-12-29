@@ -119,157 +119,57 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#personalDetails" role="tab">
-                                <i class="fas fa-home"></i>
-                                Personal Details
+                            <a class="nav-link active" data-bs-toggle="tab" href="#lang" role="tab" aria-selected="true">
+                                <i class="far fa-envelope"></i>
+                                Langue
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#changePassword" role="tab">
+                            <a class="nav-link " data-bs-toggle="tab" href="#changePassword" role="tab">
                                 <i class="far fa-user"></i>
                                 Change Password
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#experience" role="tab">
-                                <i class="far fa-envelope"></i>
-                                Experience
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#Lang" role="tab">
-                                <i class="far fa-envelope"></i>
-                                Lang
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body p-4">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="personalDetails" role="tabpanel">
-                            <form action="javascript:void(0);">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="firstnameInput" class="form-label">First
-                                                Name</label>
-                                            <input type="text" class="form-control" id="firstnameInput"
-                                                placeholder="Enter your firstname" value="Dave">
+                        <div class="tab-pane active" id="lang" role="tabpanel">
+                            <form id="createMember-form" method="POST" class="needs-validation"  action="{{ route('storeLang') }}" >
+                                @csrf
+                                <div id="newlink">
+                                    <div id="1">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="jobTitle" class="form-label">Langue</label>
+                                                    <div data-input-flag data-option-flag-img-name>
+                                                        <input type="text" name="lang" class="form-control rounded-end flag-input" style=" background-image: url(../assets/images/flags/{{ $curtentUser->lang }}.svg);" readonly value="{{ __('translation.'.$curtentUser->lang) }}" placeholder="Select country" data-bs-toggle="dropdown" aria-expanded="false" />
+                                                        <div class="dropdown-menu w-100">
+                                                            <div class="p-2 px-3 pt-1 searchlist-input">
+                                                                <input type="text" class="form-control form-control-sm border search-countryList" placeholder="Search country name or country code..." />
+                                                            </div>
+                                                            <ul class="list-unstyled dropdown-menu-list mb-0">
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end col-->
                                         </div>
+                                        <!--end row-->
                                     </div>
-                                    <!--end col-->
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="lastnameInput" class="form-label">Last
-                                                Name</label>
-                                            <input type="text" class="form-control" id="lastnameInput"
-                                                placeholder="Enter your lastname" value="Adame">
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="phonenumberInput" class="form-label">Phone
-                                                Number</label>
-                                            <input type="text" class="form-control" id="phonenumberInput"
-                                                placeholder="Enter your phone number" value="+(1) 987 6543">
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="emailInput" class="form-label">Email
-                                                Address</label>
-                                            <input type="email" class="form-control" id="emailInput"
-                                                placeholder="Enter your email" value="daveadame@velzon.com">
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="JoiningdatInput" class="form-label">Joining
-                                                Date</label>
-                                            <input type="text" class="form-control" data-provider="flatpickr"
-                                                id="JoiningdatInput" data-date-format="d M, Y"
-                                                data-deafult-date="24 Nov, 2021" placeholder="Select date" />
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="skillsInput" class="form-label">Skills</label>
-                                            <select class="form-control" name="skillsInput" data-choices
-                                                data-choices-text-unique-true multiple id="skillsInput">
-                                                <option value="illustrator">Illustrator</option>
-                                                <option value="photoshop">Photoshop</option>
-                                                <option value="css">CSS</option>
-                                                <option value="html">HTML</option>
-                                                <option value="javascript" selected>Javascript</option>
-                                                <option value="python">Python</option>
-                                                <option value="php">PHP</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="designationInput" class="form-label">Designation</label>
-                                            <input type="text" class="form-control" id="designationInput"
-                                                placeholder="Designation" value="Lead Designer / Developer">
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="websiteInput1" class="form-label">Website</label>
-                                            <input type="text" class="form-control" id="websiteInput1"
-                                                placeholder="www.example.com" value="www.velzon.com" />
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="cityInput" class="form-label">City</label>
-                                            <input type="text" class="form-control" id="cityInput" placeholder="City"
-                                                value="California" />
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="countryInput" class="form-label">Country</label>
-                                            <input type="text" class="form-control" id="countryInput"
-                                                placeholder="Country" value="United States" />
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="zipcodeInput" class="form-label">Zip
-                                                Code</label>
-                                            <input type="text" class="form-control" minlength="5" maxlength="6"
-                                                id="zipcodeInput" placeholder="Enter zipcode" value="90011">
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-12">
-                                        <div class="mb-3 pb-2">
-                                            <label for="exampleFormControlTextarea"
-                                                class="form-label">Description</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea" placeholder="Enter your description"
-                                                rows="3">Hi I'm Anna Adame,It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is European languages are members of the same family.</textarea>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-12">
-                                        <div class="hstack gap-2 justify-content-end">
-                                            <button type="submit" class="btn btn-primary">Updates</button>
-                                            <button type="button" class="btn btn-soft-success">Cancel</button>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
                                 </div>
-                                <!--end row-->
+                                <div id="newForm" style="display: none;">
+
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="hstack gap-2">
+                                        <button type="submit" class="btn btn-success">Update</button>
+                                    </div>
+                                </div>
+                                <!--end col-->
                             </form>
                         </div>
                         <!--end tab-pane-->
@@ -321,200 +221,6 @@
                                 </div>
                                 <!--end row-->
                             </form>
-                            <div class="mt-4 mb-3 border-bottom pb-2">
-                                <div class="float-end">
-                                    <a href="javascript:void(0);" class="link-primary">All Logout</a>
-                                </div>
-                                <h5 class="card-title">Login History</h5>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="flex-shrink-0 avatar-sm">
-                                    <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                                        <i class="ri-smartphone-line"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h6>iPhone 12 Pro</h6>
-                                    <p class="text-muted mb-0">Los Angeles, United States - March 16 at
-                                        2:47PM</p>
-                                </div>
-                                <div>
-                                    <a href="javascript:void(0);">Logout</a>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="flex-shrink-0 avatar-sm">
-                                    <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                                        <i class="ri-tablet-line"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h6>Apple iPad Pro</h6>
-                                    <p class="text-muted mb-0">Washington, United States - November 06
-                                        at 10:43AM</p>
-                                </div>
-                                <div>
-                                    <a href="javascript:void(0);">Logout</a>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="flex-shrink-0 avatar-sm">
-                                    <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                                        <i class="ri-smartphone-line"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h6>Galaxy S21 Ultra 5G</h6>
-                                    <p class="text-muted mb-0">Conneticut, United States - June 12 at
-                                        3:24PM</p>
-                                </div>
-                                <div>
-                                    <a href="javascript:void(0);">Logout</a>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 avatar-sm">
-                                    <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                                        <i class="ri-macbook-line"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h6>Dell Inspiron 14</h6>
-                                    <p class="text-muted mb-0">Phoenix, United States - July 26 at
-                                        8:10AM</p>
-                                </div>
-                                <div>
-                                    <a href="javascript:void(0);">Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end tab-pane-->
-                        <div class="tab-pane" id="experience" role="tabpanel">
-                            <form>
-                                <div id="newlink">
-                                    <div id="1">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label for="jobTitle" class="form-label">Job
-                                                        Title</label>
-                                                    <input type="text" class="form-control" id="jobTitle"
-                                                        placeholder="Job title" value="Lead Designer / Developer">
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="companyName" class="form-label">Company
-                                                        Name</label>
-                                                    <input type="text" class="form-control" id="companyName"
-                                                        placeholder="Company name" value="Themesbrand">
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="experienceYear" class="form-label">Experience
-                                                        Years</label>
-                                                    <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <select class="form-control" data-choices
-                                                                data-choices-search-false name="experienceYear"
-                                                                id="experienceYear">
-                                                                <option value="">Select years</option>
-                                                                <option value="Choice 1">2001</option>
-                                                                <option value="Choice 2">2002</option>
-                                                                <option value="Choice 3">2003</option>
-                                                                <option value="Choice 4">2004</option>
-                                                                <option value="Choice 5">2005</option>
-                                                                <option value="Choice 6">2006</option>
-                                                                <option value="Choice 7">2007</option>
-                                                                <option value="Choice 8">2008</option>
-                                                                <option value="Choice 9">2009</option>
-                                                                <option value="Choice 10">2010</option>
-                                                                <option value="Choice 11">2011</option>
-                                                                <option value="Choice 12">2012</option>
-                                                                <option value="Choice 13">2013</option>
-                                                                <option value="Choice 14">2014</option>
-                                                                <option value="Choice 15">2015</option>
-                                                                <option value="Choice 16">2016</option>
-                                                                <option value="Choice 17" selected>2017
-                                                                </option>
-                                                                <option value="Choice 18">2018</option>
-                                                                <option value="Choice 19">2019</option>
-                                                                <option value="Choice 20">2020</option>
-                                                                <option value="Choice 21">2021</option>
-                                                                <option value="Choice 22">2022</option>
-                                                            </select>
-                                                        </div>
-                                                        <!--end col-->
-                                                        <div class="col-auto align-self-center">
-                                                            to
-                                                        </div>
-                                                        <!--end col-->
-                                                        <div class="col-lg-5">
-                                                            <select class="form-control" data-choices
-                                                                data-choices-search-false name="choices-single-default2">
-                                                                <option value="">Select years</option>
-                                                                <option value="Choice 1">2001</option>
-                                                                <option value="Choice 2">2002</option>
-                                                                <option value="Choice 3">2003</option>
-                                                                <option value="Choice 4">2004</option>
-                                                                <option value="Choice 5">2005</option>
-                                                                <option value="Choice 6">2006</option>
-                                                                <option value="Choice 7">2007</option>
-                                                                <option value="Choice 8">2008</option>
-                                                                <option value="Choice 9">2009</option>
-                                                                <option value="Choice 10">2010</option>
-                                                                <option value="Choice 11">2011</option>
-                                                                <option value="Choice 12">2012</option>
-                                                                <option value="Choice 13">2013</option>
-                                                                <option value="Choice 14">2014</option>
-                                                                <option value="Choice 15">2015</option>
-                                                                <option value="Choice 16">2016</option>
-                                                                <option value="Choice 17">2017</option>
-                                                                <option value="Choice 18">2018</option>
-                                                                <option value="Choice 19">2019</option>
-                                                                <option value="Choice 20" selected>2020
-                                                                </option>
-                                                                <option value="Choice 21">2021</option>
-                                                                <option value="Choice 22">2022</option>
-                                                            </select>
-                                                        </div>
-                                                        <!--end col-->
-                                                    </div>
-                                                    <!--end row-->
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label for="jobDescription" class="form-label">Job
-                                                        Description</label>
-                                                    <textarea class="form-control" id="jobDescription" rows="3"
-                                                        placeholder="Enter description">You always want to make sure that your fonts work well together and try to limit the number of fonts you use to three or less. Experiment and play around with the fonts that you already have in the software you're working with reputable font websites. </textarea>
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="hstack gap-2 justify-content-end">
-                                                <a class="btn btn-success" href="javascript:deleteEl(1)">Delete</a>
-                                            </div>
-                                        </div>
-                                        <!--end row-->
-                                    </div>
-                                </div>
-                                <div id="newForm" style="display: none;">
-
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="hstack gap-2">
-                                        <button type="submit" class="btn btn-success">Update</button>
-                                        <a href="javascript:new_link()" class="btn btn-primary">Add
-                                            New</a>
-                                    </div>
-                                </div>
-                                <!--end col-->
-                            </form>
                         </div>
                         <!--end tab-pane-->
                         <div class="tab-pane" id="Lang" role="tabpanel">
@@ -531,27 +237,6 @@
                                                         <label class="form-label">Select input flag with img & name</label>
                                                         <form id="createMember-form" method="POST" class="needs-validation"  action="{{ route('storeLang') }}" novalidate enctype="multipart/form-data">
                                                             @csrf
-                                                            <div data-input-flag data-option-flag-img-name>
-                                                                <input type="text" name="lang" class="form-control rounded-end flag-input" readonly value="United States" placeholder="Select country" data-bs-toggle="dropdown" aria-expanded="false" />
-                                                                <div class="dropdown-menu w-100">
-                                                                    <div class="p-2 px-3 pt-1 searchlist-input">
-                                                                        <input type="text" class="form-control form-control-sm border search-countryList" placeholder="Search country name or country code..." />
-                                                                    </div>
-                                                                    <ul class="list-unstyled dropdown-menu-list mb-0">
-                                                                        <li class="dropdown-item d-flex">            
-                                                                            <div class="flex-shrink-0 me-2">
-                                                                                <img src="assets/images/flags/ac.svg" alt="country flag" class="options-flagimg" height="20">
-                                                                            </div>                
-                                                                            <div class="flex-grow-1">                
-                                                                                <div class="d-flex">
-                                                                                    <div class="country-name me-1">Ascension Island</div>
-                                                                                    <span class="countrylist-codeno text-muted">+247</span>
-                                                                                </div>            
-                                                                            </div>            
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
                                                     </div>
                                                     <button type="submit" class="btn btn-success w-sm">Submit</button>
                                                     </form>

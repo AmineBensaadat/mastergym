@@ -40,7 +40,7 @@ File: flag input Js File
             flags += '<li class="dropdown-item d-flex">\
             <div class="flex-shrink-0 me-2"><img src="'+ arr[index]['flagImg'] + '" alt="country flag" class="options-flagimg" height="20"></div>\
                 <div class="flex-grow-1">\
-                <div class="d-flex"><div class="country-name me-1">'+ arr[index]['countryName'] + '</div><span class="countrylist-codeno text-muted">' + arr[index]['countryCode'] + '</span></div>\
+                <div class="d-flex"><div class="country-name me-1">'+ arr[index]['countryName'] + '</div></div>\
             </div>\
             </li>';
         }

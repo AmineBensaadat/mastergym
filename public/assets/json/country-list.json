@@ -1,20 +1,17 @@
 [
     {
         "id": 1,
-        "flagImg": "../assets/images/flags/ac.svg",
-        "countryName": "Ascension Island",
-        "countryCode": "+247"
+        "flagImg": "../assets/images/flags/en.svg",
+        "countryName": "English"
     },
     {
         "id": 2,
-        "flagImg": "../assets/images/flags/ad.svg",
-        "countryName": "Andorra",
-        "countryCode": "+376"
+        "flagImg": "../assets/images/flags/fr.svg",
+        "countryName": "French"
     },
     {
         "id": 3,
-        "flagImg": "../assets/images/flags/ae.svg",
-        "countryName": "United Arab Emirates",
-        "countryCode": "+971"
+        "flagImg": "../assets/images/flags/ar.svg",
+        "countryName": "Arabic"
     }
 ]

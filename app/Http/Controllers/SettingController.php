@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Repositorries\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
 class SettingController extends Controller
 {
-    private $membersRepository;
+    private $userRepository;
 
     public function __construct(UserRepository $userRepository)
     {
@@ -21,13 +22,14 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $members = 55;
-        return view('setting.index', compact('members'));
+        $curtentUser = $this->userRepository->getCurrentUser();
+        return view('setting.index', compact('curtentUser'));
     }
 
     public function storeLang(Request $request){
 
-        dd($request->lang);
+        $result = $this->userRepository->updateUserLang($request);
+        return $result;
         
     }
 
