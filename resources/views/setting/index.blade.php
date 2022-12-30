@@ -260,14 +260,6 @@
     <!--end row-->
 @endsection
 @section('script')
-    <script src="{{ URL::asset('/assets/js/jquery-3.6.0.min.js') }}" crossorigin="anonymous"></script>
-    <script src="{{ URL::asset('assets/libs/multi.js/multi.js.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/@tarekraafat/@tarekraafat.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/pages/form-advanced.init.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/pages/form-input-spin.init.js') }}"></script>
     <!-- input flag init -->
     <script src="{{URL::asset('assets/js/pages/flag-input.init.js')}}"></script>
-
-    <script src="{{ URL::asset('assets/js/pages/profile-setting.init.js') }}"></script>
-    <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection

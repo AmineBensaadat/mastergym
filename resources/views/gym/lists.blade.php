@@ -26,14 +26,14 @@
                             <button type="button" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></button>
                         </div>
                         <div class="explore-place-bid-img">
-                            <img src="{{URL::asset('assets/images/gyms/'.$gym->gym_img )}}" alt="" class="card-img-top explore-img" />
+                            <img src="{{URL::asset('assets/images/gyms/'.($gym->img_name ? $gym->img_name : 'default.png')  )}}" alt="" class="card-img-top explore-img" />
                             <div class="bg-overlay"></div>
                             <div class="place-bid-btn">
-                                <a href="../gym/show/{{ $gym->gym_id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i>@lang('translation.View_')</a>
+                                <a href="../gym/show/{{ $gym->id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i>@lang('translation.View_')</a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="mb-1"><a href="apps-nft-item-details">{{ $gym->gym_name }}</a></h5>
+                            <h5 class="mb-1"><a href="apps-nft-item-details">{{ $gym->name }}</a></h5>
                             <p class="text-muted mb-0">Main</p>
                         </div>
                         <div class="card-footer border-top border-top-dashed">

@@ -16,119 +16,210 @@
                 <!-- start card -->
                 <div class="card">
                     <div class="card-body">
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="lastname-input">@lang('translation.lastname')</label>
-                                <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required >
-                                @error('lastname')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="firstname-input">@lang('translation.name')</label>
-                                <input type="text" class="form-control" name="firstname" id="firstname-input" value="{{ old('firstname') }}" placeholder="@lang('translation.entrer the') @lang('translation.name')" required>
-                                @error('firstname')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="cin-input">@lang('translation.CNIE')</label>
-                                <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') }}" placeholder="@lang('translation.entrer the') @lang('translation.CNIE')" required>
-                                @error('cin')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="address-input">@lang('translation.address')</label>
-                                <input type="text" class="form-control" name="address" id="firstname-input" value="{{ old('address') }}" placeholder="@lang('translation.entrer the') @lang('translation.address')" required>
-                                @error('address')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="phone-input">@lang('translation.phone')</label>
-
-                                <div class="form-icon">
-                                    <input type="phone" class="form-control form-control-icon" name="phone" id="phone-input" value="{{ old('phone') }}" placeholder="@lang('translation.entrer the') @lang('translation.phone')" required>
-                                    <i class="ri-phone-line"></i>
+                        <div class="container">
+                            <div class="row">
+                              <div class="col-sm">
+                                <div class="mb-3">
+                                    <label class="form-label" for="lastname-input">@lang('translation.lastname')</label>
+                                    <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required >
+                                    @error('lastname')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label class="form-label" for="firstname-input">@lang('translation.name')</label>
+                                    <input type="text" class="form-control" name="firstname" id="firstname-input" value="{{ old('firstname') }}" placeholder="@lang('translation.entrer the') @lang('translation.name')" required>
+                                    @error('firstname')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="cin-input">@lang('translation.CNIE')</label>
+                                    <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') }}" placeholder="@lang('translation.entrer the') @lang('translation.CNIE')" required>
+                                    @error('cin')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                              </div>
+                              <div class="col-sm">
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="address-input">@lang('translation.address')</label>
+                                        <input type="text" class="form-control" name="address" id="firstname-input" value="{{ old('address') }}" placeholder="@lang('translation.entrer the') @lang('translation.address')" required>
+                                        @error('address')
+                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
 
-                                @error('phone')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="phone-input">@lang('translation.phone')</label>
 
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="phone-input">@lang('translation.email')</label>
+                                        <div class="form-icon">
+                                            <input type="phone" class="form-control form-control-icon" name="phone" id="phone-input" value="{{ old('phone') }}" placeholder="@lang('translation.entrer the') @lang('translation.phone')" required>
+                                            <i class="ri-phone-line"></i>
+                                        </div>
 
-                                <div class="form-icon">
-                                    <input type="email" class="form-control form-control-icon" name="email" id="phone-input" value="{{ old('email') }}" placeholder="@lang('translation.entrer the') @lang('translation.email')" required>
-                                    <i class=" ri-mail-line"></i>
+                                        @error('phone')
+                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                @error('email')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
+
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="phone-input">@lang('translation.email')</label>
+
+                                        <div class="form-icon">
+                                            <input type="email" class="form-control form-control-icon" name="email" id="phone-input" value="{{ old('email') }}" placeholder="@lang('translation.entrer the') @lang('translation.email')" required>
+                                            <i class=" ri-mail-line"></i>
+                                        </div>
+                                        @error('email')
+                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                              </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- end card -->
 
-                <!-- start card -->
-                <div class="card">
+                <!-- start card subscription -->
+                <div class="card border card-border-info">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">Enter details of the subscription</h6>
+                    </div>
                     <div class="card-body">
-                        <div class="mb-4">
-                            <h5 class="fs-14 mb-1">@lang('translation.images')</h5>
-                            <p class="text-muted">@lang('translation.Add_image')</p>
-                            <div class="text-center">
-                                <div class="position-relative d-inline-block">
-                                    <div class="position-absolute top-100 start-100 translate-middle">
-                                        <label for="single-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
-                                            <div class="avatar-xs">
-                                                <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-                                                    <i class="ri-image-fill"></i>
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <input class="form-control d-none"  name="profile_image"  id="single-image-input" type="file"
-                                            accept="image/png, image/gif, image/jpeg"
-                                            onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])"
-                                            >
-                                    </div>
-                                    <div class="avatar-lg">
-                                        <div class="avatar-title bg-light rounded">
-                                            <img src="{{ URL::asset('assets/images/img_icon.png') }}" id="single-img" class="avatar-md" />
-                                        </div>
+                        <div class="container">
+                            <div class="row">
+                              <div class="col-sm">
+                                <div class="mb-3">
+                                    <label class="form-label" for="lastname-input">@lang('translation.service')</label>
+                                    <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required >
+                                    @error('lastname')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label class="form-label" for="firstname-input">@lang('translation.start_date')</label>
+                                    <input type="text" class="form-control" name="firstname" id="firstname-input" value="{{ old('firstname') }}" placeholder="@lang('translation.entrer the') @lang('translation.name')" required>
+                                    @error('firstname')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                              </div>
+                              <div class="col-sm">
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="address-input">@lang('translation.plan')</label>
+                                        <input type="text" class="form-control" name="address" id="firstname-input" value="{{ old('address') }}" placeholder="@lang('translation.entrer the') @lang('translation.address')" required>
+                                        @error('address')
+                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
-                                @error('profile_image')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                @enderror
+
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="phone-input">@lang('translation.end_date')</label>
+
+                                        <div class="form-icon">
+                                            <input type="phone" class="form-control form-control-icon" name="phone" id="phone-input" value="{{ old('phone') }}" placeholder="@lang('translation.entrer the') @lang('translation.phone')" required>
+                                            <i class="ri-phone-line"></i>
+                                        </div>
+
+                                        @error('phone')
+                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                              </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <!-- end card -->
+
+                <!-- start card payment -->
+                <div class="card border card-border-success">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">Enter details of the Payment</h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">They all have something to say beyond the words on the page. They can come across as casual or neutral, exotic or graphic. Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
                     </div>
                 </div>
                 <!-- end card -->
         </div>
+        
         <!-- end col -->
         <div class="col-lg-4">
+            <!-- start card img -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5 class="fs-14 mb-1">@lang('translation.images')</h5>
+                        <p class="text-muted">@lang('translation.Add_image')</p>
+                        <div class="text-center">
+                            <div class="position-relative d-inline-block">
+                                <div class="position-absolute top-100 start-100 translate-middle">
+                                    <label for="single-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
+                                        <div class="avatar-xs">
+                                            <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
+                                                <i class="ri-image-fill"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <input class="form-control d-none"  name="profile_image"  id="single-image-input" type="file"
+                                        accept="image/png, image/gif, image/jpeg"
+                                        onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])"
+                                        >
+                                </div>
+                                <div class="avatar-lg">
+                                    <div class="avatar-title bg-light rounded">
+                                        <img src="{{ URL::asset('assets/images/img_icon.png') }}" id="single-img" class="avatar-md" />
+                                    </div>
+                                </div>
+                            </div>
+                            @error('profile_image')
+                                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end card -->
+
             <!-- start card -->
             <div class="card">
                 <div class="card-body">
+                    <div class="mb-3">
+                        <label for="jobTitle" class="form-label">Gym</label>
+                        <div data-input-flag data-option-flag-img-name>
+                            <input type="text" name="lang" class="form-control rounded-end flag-input" style=" background-image: url(../assets/images/flags/fr.svg);" readonly value="{{ __('translation.fr') }}" placeholder="Select country" data-bs-toggle="dropdown" aria-expanded="false" />
+                            <div class="dropdown-menu w-100">
+                                <div class="p-2 px-3 pt-1 searchlist-input">
+                                    <input type="text" class="form-control form-control-sm border search-countryList" placeholder="Search country name or country code..." />
+                                </div>
+                                <ul class="list-unstyled dropdown-menu-list mb-0">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="choices-gym" class="form-label">@lang('translation.gym')</label>
+                        <select name="gym" class="form-select" id="choices-gym">
+                            <option value="men" selected>@lang('translation.gym')</option>
+                            <option value="female">@lang('translation.female')</option>
+                        </select>
+                    </div>
                     <div class="mb-3">
                         <label for="choices-gender" class="form-label">@lang('translation.gender')</label>
                         <select name="gender" class="form-select" id="choices-gender">
@@ -202,12 +293,10 @@
                 </div>
             </div>
             <!-- end card body -->
-            </div>
-            <!-- end card -->
         </div>
 
         <div class="text-start mb-3">
-            <button type="submit" class="btn btn-success w-sm">Submit</button>
+            <button type="submit" class="btn btn-success w-sm">Enregistrer</button>
         </div>
     </div>
     <!-- end row -->
@@ -264,6 +353,115 @@ $("#attachment").on('change', function(e){
 		document.getElementById('attachment').files = dt.files;
 	});
 });
+
+
+
+var gymsListData = {!! $gyms->toJson() !!};
+
+loadGymsListData(gymsListData);
+function loadGymsListData(datas) {
+        var mainArray = Array.from(document.querySelectorAll("[data-input-flag]"))
+        var flags = '';
+        var arr = Array.from(datas);
+
+        for (let index = 0; index < arr.length; index++) {
+            flags += '<li class="dropdown-item d-flex">\
+            <div class="flex-shrink-0 me-2"><img src="'+ ((arr[index]['gymImg']) ? '../assets/images/gyms/'+arr[index]['gymImg'] :'../assets/images/gyms/default.png' ) + '" alt="gym flag" class="options-gymimg" height="20"></div>\
+                <div class="flex-grow-1">\
+                <div class="d-flex"><div class="gym-name me-1" gym_id="'+arr[index]['id']+'">'+ arr[index]['gymName'] + '</div></div>\
+            </div>\
+            </li>';
+        }
+        for (let i = 0; i < mainArray.length; i++) {
+            mainArray[i].querySelector(".dropdown-menu-list").innerHTML = '';
+            mainArray[i].querySelector(".dropdown-menu-list").innerHTML = flags;
+            countryListClickEvent(mainArray[i]);
+        }
+    };
+
+    function countryListClickEvent(item) {
+        if (item.querySelector(".gym-gymImg")) {
+            var gymImg = item.querySelector(".gym-gymImg").getAttribute('src');
+        }
+        Array.from(item.querySelectorAll(".dropdown-menu li")).forEach(function (subitem) {
+            var optionGymImg = subitem.querySelector(".options-gymimg").getAttribute("src");
+            subitem.addEventListener("click", function () {
+                if (item.querySelector("button")) {
+                    item.querySelector("button img").setAttribute("src", optionGymImg);
+               
+                }
+            });
+            if (gymImg == optionGymImg) {
+                subitem.classList.add("active");
+            }
+        });
+        // data option flag img with name
+        Array.from(document.querySelectorAll("[data-option-flag-img-name]")).forEach(function (item) {
+            var gymImg = getComputedStyle(item.querySelector(".flag-input")).backgroundImage;
+            var gymImg = gymImg.substring(
+                gymImg.indexOf("/as") + 1,
+                gymImg.lastIndexOf('"')
+            );
+            Array.from(item.querySelectorAll(".dropdown-menu li")).forEach(function (subitem) {
+                var optionGymImg = subitem.querySelector(".options-gymimg").getAttribute("src");
+                subitem.addEventListener("click", function () {
+                    console.log(subitem.querySelector(".gym-name").innerHTML)
+                    var optionName = subitem.querySelector(".gym-name").innerHTML;
+                    item.querySelector(".flag-input").style.backgroundImage = "url(" + optionGymImg + ")";
+                    item.querySelector(".flag-input").value = optionName;
+                });
+                if (gymImg == optionGymImg) {
+                    subitem.classList.add("active");
+                    item.querySelector(".flag-input").value = subitem.querySelector(".gym-name").innerHTML;
+                }
+            });
+        });
+        // data option flag img with name
+        Array.from(document.querySelectorAll("[data-option-flag-name]")).forEach(function (item) {
+            var gymName = item.querySelector(".flag-input").value;
+            Array.from(item.querySelectorAll(".dropdown-menu li")).forEach(function (subitem) {
+                var optionName = subitem.querySelector(".gym-name").innerHTML;
+                subitem.addEventListener("click", function () {
+                    item.querySelector(".flag-input").value = optionName;
+                });
+                if (gymName == optionName) {
+                    subitem.classList.add("active");
+                    item.querySelector(".flag-input").value = subitem.querySelector(".gym-name").innerHTML;
+                }
+            });
+        });
+    };
+    //Search bar
+    Array.from(document.querySelectorAll("[data-input-flag]")).forEach(function (item) {
+        var searchInput = item.querySelector(".search-countryList");
+        if (searchInput) {
+            searchInput.addEventListener("keyup", function () {
+                var inputVal = searchInput.value.toLowerCase();
+                function filterItems(arr, query) {
+                    return arr.filter(function (el) {
+                        return (el.gymName.toLowerCase().indexOf(query.toLowerCase()) !== -1 )
+                    })
+                }
+                var filterData = filterItems(gymsListData, inputVal);
+                setTimeout(function () {
+                    item.querySelector(".dropdown-menu-list").innerHTML = '';
+                    Array.from(filterData).forEach(function (listData) {
+                        item.querySelector(".dropdown-menu-list").innerHTML +=
+                            '<li class="dropdown-item d-flex">\
+                        <div class="flex-shrink-0 me-2"><img src="'+ ((listData.gymImg) ? '../assets/images/gyms/'+listData.gymImg :'../assets/images/gyms/default.png' ) + '" alt="gym flag" class="options-gymimg" height="20"></div>\
+                        <div class="flex-grow-1">\
+                        <div class="d-flex"><div class="gym-name me-1">'+ listData.gymName + '</div></div>\
+                        </div>\
+                        </li>';
+                    });
+                    countryListClickEvent(item);
+                }, 350);
+            });
+        };
+    });
+
+
 </script>
+
 @endsection
 

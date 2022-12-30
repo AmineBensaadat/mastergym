@@ -14,6 +14,7 @@ class SettingController extends Controller
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
