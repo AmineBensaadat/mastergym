@@ -13,7 +13,7 @@
                 <form method="GET"  action="{{ route('plans_store') }}">
                     <div class="search-box">
                             @csrf
-                            <input type="text" name="query" class="form-control"  placeholder="Search for name or designation...">
+                            <input type="text" name="query" class="form-control"  placeholder="@lang('translation.Search-for-name-or-designation')">
                         <i class="ri-search-line search-icon"></i>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
             </div>
             <div class="py-4 mt-4 text-center" id="noresult" style =  "@if($count > 0) display: none @endif" >
                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:72px;height:72px"></lord-icon>
-                <h5 class="mt-4">Sorry! No Result Found</h5>
+                <h5 class="mt-4">@lang('translation.Sorry!-No-Result-Found')</h5>
             </div>
             <!-- Modal -->
             <div class="modal fade" id="addmemberModal" tabindex="-1" aria-hidden="true">
