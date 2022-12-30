@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Files;
 use App\Models\Gyms;
+use App\Repositorries\GymsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,8 +14,10 @@ class GymsController extends Controller{
      *
      * @return void
      */
-    public function __construct()
+    private $gymsRepository;
+    public function __construct(GymsRepository $gymsRepository)
     {
+        $this->gymsRepository = $gymsRepository;
         $this->middleware('auth');
     }
 
@@ -25,13 +28,8 @@ class GymsController extends Controller{
      */
     public function index()
     {
-        $gyms = DB::table('gyms')
-            ->join('users', 'gyms.created_by', '=', 'users.id')
-            ->join('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('gyms.id as gym_id', 'files.img_name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
-            ->where('files.type', 'profile')
-            ->orderBy("gyms.created_at", "asc")->get();
-        //$gyms = Gyms::orderBy("created_at", "asc")->get();
+        $gyms = $this->gymsRepository->getAllGymByCretedById();
+       
         return view('gym.lists', compact('gyms'));
 
     }
@@ -43,7 +41,7 @@ class GymsController extends Controller{
      */
     public function create(Request $request)
     {
-        return view('gym.gym_create');
+        return view('gym.create');
     }
 
     public function store(Request $request)
@@ -95,7 +93,7 @@ class GymsController extends Controller{
 
             // save gym image in file table
             $files_table= new Files();
-            $files_table->name = $fileName;
+            $files_table->img_name = $fileName;
             $files_table->ext = $extension;
             $files_table->type = 'profile';
             $files_table->entitiy_id = $gym->id;   
@@ -104,14 +102,6 @@ class GymsController extends Controller{
             // move file in dericory
             $file->move($destinationPath,$fileName);
 
-        }else{
-             // save gym image in file table
-             $files_table= new Files();
-             $files_table->name = "Simply-Gym-Logo.png";
-             $files_table->ext = "png";
-             $files_table->type = 'profile';
-             $files_table->entitiy_id = $gym->id;   
-             $files_table->save();
         }
 
          // save gallory images in files tabele
@@ -121,7 +111,7 @@ class GymsController extends Controller{
                 $files_table= new Files();
                 $fileName = time().rand(100,999).preg_replace('/\s+/', '', $image->getClientOriginalName());
                 // save gym image in file table
-                $files_table->name = $fileName;
+                $files_table->img_name = $fileName;
                 $files_table->ext = $image->extension();
                 $files_table->type = 'gallory';
                 $files_table->entitiy_id = $gym->id;   

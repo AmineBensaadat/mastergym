@@ -36,7 +36,6 @@ File: flag input Js File
         var mainArray = Array.from(document.querySelectorAll("[data-input-flag]"))
         var flags = '';
         var arr = Array.from(datas);
-
         for (let index = 0; index < arr.length; index++) {
             flags += '<li class="dropdown-item d-flex">\
             <div class="flex-shrink-0 me-2"><img src="'+ arr[index]['flagImg'] + '" alt="country flag" class="options-flagimg" height="20"></div>\

@@ -228,6 +228,80 @@ return [
     "users" => "utilisateurs",
     "members" => "members",
     "subscriptions" => "abonnements",
+
+    // anass translation
+
+    "all_gym" => "Toutes les salles",
+    "add_gym" => "ajouter une salle",
+    "add_gym_lists" => "ajouter des listes de gym",
+
+    "name" => " Nom ",
+    "gym_address" => " adresse du gymnase ",
+    "gym_phone" => " téléphone de gym",
+    "gym_descreption" => " descriptif salle de sport",
+
+    "Enter-name" => "Entrez le nom",
+    "Enter-address-of-your-gym" => "Entrez l'adresse de votre salle de sport",
+    "Enter-phone-of-your-gym" => "Entrez le téléphone de votre salle de sport",
+    "Enter-descreption-her" => "Entrez sa description",
+
+    "View_" => "Vue",
+    "Main_Image" => "Image principale",
+    "images" => "Image",
+    "add_Main_Image" => "ajouter l'image principale",
+    "Images_Gallery" => "Galerie d'images",
+    "Gym_Gallery" => "Galerie de gym",
+    "Add_image" => "Ajouter une image",
+    "Submit" => "sauvegarder",
+
+    "CREATE_PLAN" => "CRÉER UN PLAN",
+    "plan_descreption" => "description de plan",
+    "Enter-plan-descreption-her" => "Entrez la description de plan",
+    "Service" => "Service",
+    "Select_the_service" => "Sélectionnez la service",
+    "day" => "day",
+    "Enter-day" => "Enter day",
+    "amount" => "montante",
+    "Enter_amount" => "Entrer le montant",
+    "Status" => "Statut",
+    "Inactive" => "Inactif",
+    "Active" => "Actif",
+    "Plan_Image" => "Image du plan",
+    "Add_Plan_Image" => "Ajouter une image du plan",
+
+    "Create-Memeber" => "CRÉER UN MEMBRE",
+    "lastname" => "nom de famille",
+    "entrer the" => " entrer the",
+    "CNIE" => " CNIE",
+    "address" => " adresse ",
+    "phone" => " téléphone ",
+    "gender" => " le genre",
+    "men" => " Homme",
+    "female" => " Femme",
+    "emergency_cont" => "suite d'urgence",
+    "health_issues" => "problèmes de santé",
+    "Add-Plan" => "Ajouter un Plan",
+    "Search-for-name-or-designation" => "Rechercher un nom ou une désignation...",
+    "Sorry!-No-Result-Found" => "Pardon! Aucun résultat trouvé",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // lag
     "fr" => "Français",
     "en" => "Englais",

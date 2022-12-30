@@ -16,6 +16,7 @@ class SubscriptionsController extends Controller
     public function __construct(MembersRepository $membersRepository)
     {
         $this->membersRepository = $membersRepository;
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

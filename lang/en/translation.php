@@ -276,6 +276,7 @@ return [
     "health_issues" => " health issues",
     "Add-Plan" => "Add Plan",
     "Search-for-name-or-designation" => "Search for name or designation...",
+    "Sorry!-No-Result-Found" => "Sorry! No Result Found",
 
 
 

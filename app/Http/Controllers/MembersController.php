@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
+use App\Repositorries\GymsRepository;
 use App\Repositorries\MembersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Session;
 class MembersController extends Controller
 {
     private $membersRepository;
+    private $gymsRepository;
 
-    public function __construct(MembersRepository $membersRepository)
+    public function __construct(MembersRepository $membersRepository, GymsRepository $gymsRepository)
     {
         $this->membersRepository = $membersRepository;
+        $this->gymsRepository = $gymsRepository;
+        $this->gyms = $membersRepository;
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -37,7 +42,9 @@ class MembersController extends Controller
      */
     public function create()
     {
-        $gyms = Members::all();
+        $services = Members::all();
+        $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+   
         return view('members.create', compact('gyms'));
     }
 
@@ -48,6 +55,7 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request['gym']);
         //validation form 
         $this->validate(
             $request, 
