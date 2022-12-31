@@ -1,33 +1,58 @@
 <?php
-namespace App\Repositorries;
+namespace App\Repositories;
 
 use App\Models\Files;
 use App\Models\Members;
 use Illuminate\Support\Facades\DB;
 
-class GymsRepository 
+class ServicesRepository 
 {
-    public function getAllGymByCretedById(){
+    public function getAllServicesByGym(){
         $user_id = auth()->user()->id;
-        $gyms = DB::table('gyms')
+        $services = DB::table('services')
             ->leftJoin('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('files.img_name','gyms.*')
+            ->select('files.name as img_name','gyms.*')
             ->where('gyms.created_by', $user_id)
             ->get();
-        return $gyms;
+        return $services;
     }
+
+    public function getAllServices($request){
+        $user= auth()->user();
+        $query = $request['query'];
+        $services = DB::table('services')
+            ->join('users', 'services.created_by', '=', 'users.id')  
+            ->leftJoin('files', 'services.id', '=', 'files.entitiy_id')
+            ->select('services.*', 'files.name as img_name')
+            ->where('services.created_by', $user->id)
+            ->where('users.account_id', $user->account_id)
+            ->where('services.name','LIKE','%'.$query.'%')
+            ->orWhere('description', 'like', '%'. $query .'%')
+            ->paginate(10); 
+        return $services;
+   
+    }
+
+    public function renderAllServices(){
+        $user= auth()->user();
+        $services = DB::table('services')
+            ->join('users', 'services.created_by', '=', 'users.id')  
+            ->select('services.*')
+            ->where('services.created_by', $user->id)
+            ->where('users.account_id', $user->account_id)
+            ->get(); 
+        return $services;
+    }    
 
     public function renderAllGymByCretedById(){
         $user_id = auth()->user()->id;
         $gyms = DB::table('gyms')
             ->leftJoin('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('gyms.id', 'files.img_name as gymImg','gyms.name as gymName')
+            ->select('gyms.id', 'files.name as img_name as gymImg','gyms.name as gymName')
             ->where('gyms.created_by', $user_id)
             ->get();
         return $gyms;
     }
-    
-
 
     public function saveMember($request){
         $user_id = auth()->user()->id;

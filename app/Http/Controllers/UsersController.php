@@ -6,7 +6,7 @@ use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\User;
 use App\Models\UsersGym;
-use App\Repositorries\UserRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;

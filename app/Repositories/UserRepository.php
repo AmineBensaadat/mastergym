@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositorries;
+namespace App\Repositories;
 
 use App\Models\User;
 use Illuminate\Support\Facades\App;
@@ -13,6 +13,21 @@ class UserRepository
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->get();
         return $members;
+    }
+
+    public function countMaxAccountId(){
+        $result = DB::table('users')->max('account_id');
+        if (is_null($result)) {
+            $result = 1;
+        }
+        return $result;
+    }
+
+
+    public function getAccountId(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return $user->account_id;
     }
 
     

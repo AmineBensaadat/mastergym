@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
-use App\Repositorries\GymsRepository;
-use App\Repositorries\MembersRepository;
+use App\Repositories\GymsRepository;
+use App\Repositories\MembersRepository;
+use App\Rules\IsSelected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -42,10 +43,10 @@ class MembersController extends Controller
      */
     public function create()
     {
-        $services = Members::all();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        $services =  $this->gymsRepository->renderAllGymByCretedById();
    
-        return view('members.create', compact('gyms'));
+        return view('members.create', compact('gyms','services'));
     }
 
     /**
@@ -55,7 +56,7 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request['gym']);
+        
         //validation form 
         $this->validate(
             $request, 
@@ -68,6 +69,7 @@ class MembersController extends Controller
                     'email' => 'required|email|unique:members',
                     'dob' => 'required',
                     'emergency_cont' => 'required',
+                    'gym' => new IsSelected,
                 ],
                 [
                     'lastname.required' => __('translation.require'),
@@ -78,8 +80,10 @@ class MembersController extends Controller
                     'email.required' => __('translation.require_email'),
                     'dob.required' => __('translation.require'),
                     'emergency_cont.required' => __('translation.require'),
+                    'gym.required' => __('require')
                 ],
             );
+            dd($request['gym']);
             $members = $this->membersRepository->saveMember($request);
           
             return redirect()->route('members_list');
@@ -125,7 +129,7 @@ class MembersController extends Controller
     {
         $member = DB::table('members')
             ->join('files', 'members.id', '=', 'files.entitiy_id')
-            ->select('files.img_name','members.*')
+            ->select('files.name as img_name','members.*')
             ->where('members.id', $id)->first();
 
         return view('members.show', array("member"  => $member));

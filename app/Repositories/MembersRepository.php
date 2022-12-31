@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositorries;
+namespace App\Repositories;
 
 use App\Models\Files;
 use App\Models\Members;
@@ -10,7 +10,7 @@ class MembersRepository
     public function all(){
         $members = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
-            ->select('files.img_name','members.*')
+            ->select('files.name as img_name','members.*')
             ->get();
         return $members;
     }
