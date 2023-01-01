@@ -62,7 +62,7 @@ Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function (
 //Services
 Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
     Route::get('/all', [ServicesController::class, 'index'])->name('services_list');
-    Route::post('/add', [ServicesControlller::class, 'add'])->name('services_add');
+    Route::post('/add', [ServicesController::class, 'add'])->name('services_add');
 });
 
 //setting

@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositorries;
+namespace App\Repositories;
 
 use App\Models\Files;
 use App\Models\Members;
@@ -8,26 +8,27 @@ use Illuminate\Support\Facades\DB;
 class GymsRepository 
 {
     public function getAllGymByCretedById(){
-        $user_id = auth()->user()->id;
+        $user = auth()->user();
         $gyms = DB::table('gyms')
+            ->join('users', 'gyms.created_by', '=', 'users.id')
             ->leftJoin('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('files.img_name','gyms.*')
-            ->where('gyms.created_by', $user_id)
+            ->select('files.name as img_name','gyms.*')
+            ->where('gyms.created_by', $user->id)
+            ->where('users.account_id', $user->account_id)
             ->get();
         return $gyms;
     }
 
     public function renderAllGymByCretedById(){
-        $user_id = auth()->user()->id;
+        $user = auth()->user();
         $gyms = DB::table('gyms')
-            ->leftJoin('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('gyms.id', 'files.img_name as gymImg','gyms.name as gymName')
-            ->where('gyms.created_by', $user_id)
+            ->join('users', 'gyms.created_by', '=', 'users.id')
+            ->select('gyms.*')
+            ->where('gyms.created_by', $user->id)
+            ->where('users.account_id', $user->account_id)
             ->get();
         return $gyms;
     }
-    
-
 
     public function saveMember($request){
         $user_id = auth()->user()->id;

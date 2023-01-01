@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositorries\UserRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;

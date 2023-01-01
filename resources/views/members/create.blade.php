@@ -98,11 +98,13 @@
                             <div class="row">
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="lastname-input">@lang('translation.service')</label>
-                                    <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required >
-                                    @error('lastname')
-                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                    @enderror
+                                    <label class="form-label" for="service-input">@lang('translation.service')</label>
+                                    <select name="service" class="form-select" aria-label=".form-select-sm example" required>
+                                        <option selected="" value="0">chose service</option>
+                                        @foreach ($services as $service)
+                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                        @endforeach    
+                                    </select>
                                 </div>
             
                                 <div class="mb-3">
@@ -199,26 +201,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="jobTitle" class="form-label">Gym</label>
-                        <div data-input-flag data-option-flag-img-name>
-                            <input type="text" name="lang" class="form-control rounded-end flag-input" style=" background-image: url(../assets/images/flags/fr.svg);" readonly value="{{ __('translation.fr') }}" placeholder="Select country" data-bs-toggle="dropdown" aria-expanded="false" />
-                            <div class="dropdown-menu w-100">
-                                <div class="p-2 px-3 pt-1 searchlist-input">
-                                    <input type="text" class="form-control form-control-sm border search-countryList" placeholder="Search country name or country code..." />
-                                </div>
-                                <ul class="list-unstyled dropdown-menu-list mb-0">
-                                    
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="choices-gym" class="form-label">@lang('translation.gym')</label>
-                        <select name="gym" class="form-select" id="choices-gym">
-                            <option value="men" selected>@lang('translation.gym')</option>
-                            <option value="female">@lang('translation.female')</option>
+                        <label for="gym" class="form-label">Gym</label>
+                        <select name="gym" class="form-select" aria-label=".form-select-sm example" required>
+                            <option selected="" value="0">chose gym</option>
+                            @foreach ($gyms as $gym)
+                                <option value="{{ $gym->id }}">{{ $gym->name }}</option>
+                            @endforeach    
                         </select>
+                        @error('gym')
+                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="choices-gender" class="form-label">@lang('translation.gender')</label>
@@ -353,113 +345,6 @@ $("#attachment").on('change', function(e){
 		document.getElementById('attachment').files = dt.files;
 	});
 });
-
-
-
-var gymsListData = {!! $gyms->toJson() !!};
-
-loadGymsListData(gymsListData);
-function loadGymsListData(datas) {
-        var mainArray = Array.from(document.querySelectorAll("[data-input-flag]"))
-        var flags = '';
-        var arr = Array.from(datas);
-
-        for (let index = 0; index < arr.length; index++) {
-            flags += '<li class="dropdown-item d-flex">\
-            <div class="flex-shrink-0 me-2"><img src="'+ ((arr[index]['gymImg']) ? '../assets/images/gyms/'+arr[index]['gymImg'] :'../assets/images/gyms/default.png' ) + '" alt="gym flag" class="options-gymimg" height="20"></div>\
-                <div class="flex-grow-1">\
-                <div class="d-flex"><div class="gym-name me-1" gym_id="'+arr[index]['id']+'">'+ arr[index]['gymName'] + '</div></div>\
-            </div>\
-            </li>';
-        }
-        for (let i = 0; i < mainArray.length; i++) {
-            mainArray[i].querySelector(".dropdown-menu-list").innerHTML = '';
-            mainArray[i].querySelector(".dropdown-menu-list").innerHTML = flags;
-            countryListClickEvent(mainArray[i]);
-        }
-    };
-
-    function countryListClickEvent(item) {
-        if (item.querySelector(".gym-gymImg")) {
-            var gymImg = item.querySelector(".gym-gymImg").getAttribute('src');
-        }
-        Array.from(item.querySelectorAll(".dropdown-menu li")).forEach(function (subitem) {
-            var optionGymImg = subitem.querySelector(".options-gymimg").getAttribute("src");
-            subitem.addEventListener("click", function () {
-                if (item.querySelector("button")) {
-                    item.querySelector("button img").setAttribute("src", optionGymImg);
-               
-                }
-            });
-            if (gymImg == optionGymImg) {
-                subitem.classList.add("active");
-            }
-        });
-        // data option flag img with name
-        Array.from(document.querySelectorAll("[data-option-flag-img-name]")).forEach(function (item) {
-            var gymImg = getComputedStyle(item.querySelector(".flag-input")).backgroundImage;
-            var gymImg = gymImg.substring(
-                gymImg.indexOf("/as") + 1,
-                gymImg.lastIndexOf('"')
-            );
-            Array.from(item.querySelectorAll(".dropdown-menu li")).forEach(function (subitem) {
-                var optionGymImg = subitem.querySelector(".options-gymimg").getAttribute("src");
-                subitem.addEventListener("click", function () {
-                    console.log(subitem.querySelector(".gym-name").innerHTML)
-                    var optionName = subitem.querySelector(".gym-name").innerHTML;
-                    item.querySelector(".flag-input").style.backgroundImage = "url(" + optionGymImg + ")";
-                    item.querySelector(".flag-input").value = optionName;
-                });
-                if (gymImg == optionGymImg) {
-                    subitem.classList.add("active");
-                    item.querySelector(".flag-input").value = subitem.querySelector(".gym-name").innerHTML;
-                }
-            });
-        });
-        // data option flag img with name
-        Array.from(document.querySelectorAll("[data-option-flag-name]")).forEach(function (item) {
-            var gymName = item.querySelector(".flag-input").value;
-            Array.from(item.querySelectorAll(".dropdown-menu li")).forEach(function (subitem) {
-                var optionName = subitem.querySelector(".gym-name").innerHTML;
-                subitem.addEventListener("click", function () {
-                    item.querySelector(".flag-input").value = optionName;
-                });
-                if (gymName == optionName) {
-                    subitem.classList.add("active");
-                    item.querySelector(".flag-input").value = subitem.querySelector(".gym-name").innerHTML;
-                }
-            });
-        });
-    };
-    //Search bar
-    Array.from(document.querySelectorAll("[data-input-flag]")).forEach(function (item) {
-        var searchInput = item.querySelector(".search-countryList");
-        if (searchInput) {
-            searchInput.addEventListener("keyup", function () {
-                var inputVal = searchInput.value.toLowerCase();
-                function filterItems(arr, query) {
-                    return arr.filter(function (el) {
-                        return (el.gymName.toLowerCase().indexOf(query.toLowerCase()) !== -1 )
-                    })
-                }
-                var filterData = filterItems(gymsListData, inputVal);
-                setTimeout(function () {
-                    item.querySelector(".dropdown-menu-list").innerHTML = '';
-                    Array.from(filterData).forEach(function (listData) {
-                        item.querySelector(".dropdown-menu-list").innerHTML +=
-                            '<li class="dropdown-item d-flex">\
-                        <div class="flex-shrink-0 me-2"><img src="'+ ((listData.gymImg) ? '../assets/images/gyms/'+listData.gymImg :'../assets/images/gyms/default.png' ) + '" alt="gym flag" class="options-gymimg" height="20"></div>\
-                        <div class="flex-grow-1">\
-                        <div class="d-flex"><div class="gym-name me-1">'+ listData.gymName + '</div></div>\
-                        </div>\
-                        </li>';
-                    });
-                    countryListClickEvent(item);
-                }, 350);
-            });
-        };
-    });
-
 
 </script>
 

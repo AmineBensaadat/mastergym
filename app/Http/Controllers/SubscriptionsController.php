@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
-use App\Repositorries\MembersRepository;
+use App\Repositories\MembersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 

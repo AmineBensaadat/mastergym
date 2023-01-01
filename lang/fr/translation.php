@@ -233,7 +233,7 @@ return [
 
     "all_gym" => "Toutes les salles",
     "add_gym" => "ajouter une salle",
-    "add_gym_lists" => "ajouter des listes de gym",
+    "add_gym_lists" => " ajouter une salle",
 
     "name" => " Nom ",
     "gym_address" => " adresse du gymnase ",

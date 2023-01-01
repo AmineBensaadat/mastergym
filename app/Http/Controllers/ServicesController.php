@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Service;
 use App\Models\Services;
+use App\Repositories\ServicesRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
-    public function __construct()
+    private $servicesRepository;
+    private $userRepository;
+    public function __construct(ServicesRepository $servicesRepository, UserRepository $userRepository)
     {
         $this->middleware('auth');
+        $this->servicesRepository = $servicesRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -19,23 +25,11 @@ class ServicesController extends Controller
      *
      * @return Response
      */
-    public function index(Request $request)
-    {
-        if($request->isMethod('get')){
-            $query = $request['query'];
-            $services = Services::select('id','name', 'description')
-                ->where('name','LIKE','%'.$query.'%')
-                ->orWhere('description', 'like', '%'. $query .'%')
-                ->paginate(10);
-            $count = $services->count();
-            return view('services.service_list' , compact('services', 'count'));
-        }else{
-            $services = Services::paginate(10);
-            $count = $services->count();
-            return redirect()->route('services_list');
-        }
-
-        return view('services.service_list' , compact('services', 'count'));
+    public function index(Request $request){
+    
+        $services = $this->servicesRepository->getAllServices($request);
+        $count = 15;
+        return view('services.list' , compact('services', 'count'));
     }
 
     
@@ -82,6 +76,7 @@ class ServicesController extends Controller
             $files_table->name = $fileName;
             $files_table->ext = $extension;
             $files_table->type = 'profile';
+            $files_table->entity_name = 'services';
             $files_table->entitiy_id = $services->id;   
             $files_table->save();
 
