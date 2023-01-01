@@ -98,11 +98,13 @@
                             <div class="row">
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="lastname-input">@lang('translation.service')</label>
-                                    <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required >
-                                    @error('lastname')
-                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                    @enderror
+                                    <label class="form-label" for="service-input">@lang('translation.service')</label>
+                                    <select name="service" class="form-select" aria-label=".form-select-sm example" required>
+                                        <option selected="" value="0">chose service</option>
+                                        @foreach ($services as $service)
+                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                        @endforeach    
+                                    </select>
                                 </div>
             
                                 <div class="mb-3">
@@ -208,7 +210,7 @@
                         </select>
                         @error('gym')
                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                    @enderror
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="choices-gender" class="form-label">@lang('translation.gender')</label>

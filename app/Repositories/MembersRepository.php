@@ -18,6 +18,7 @@ class MembersRepository
     public function saveMember($request){
         $user_id = auth()->user()->id;
         $destinationPath = public_path().'/assets/images/members/' ;
+        // save in member table
         $member = Members::create([
             'firstname' => $request['firstname'],
             'lastname' => $request['lastname'],
@@ -34,6 +35,7 @@ class MembersRepository
             'updated_by' =>  $user_id,
             'source' =>  $request['source'],
         ]);
+
          // save gym profile image
          $file = $request->file('profile_image');
          if($file = $request->hasFile('profile_image')) {
@@ -45,7 +47,7 @@ class MembersRepository
  
              // save gym image in file table
              $files_table= new Files();
-             $files_table->img_name = $fileName;
+             $files_table->name = $fileName;
              $files_table->ext = $extension;
              $files_table->type = 'profile';
              $files_table->entitiy_id = $member->id;   

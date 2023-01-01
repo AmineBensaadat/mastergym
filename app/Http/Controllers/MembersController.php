@@ -7,6 +7,8 @@ use App\Models\Gyms;
 use App\Models\Members;
 use App\Repositories\GymsRepository;
 use App\Repositories\MembersRepository;
+use App\Repositories\ServicesRepository;
+use App\Repositories\SubscriptionsRepository;
 use App\Rules\IsSelected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -17,12 +19,20 @@ class MembersController extends Controller
 {
     private $membersRepository;
     private $gymsRepository;
+    private $servicesRepository;
+    private $subscriptionsRepository;
 
-    public function __construct(MembersRepository $membersRepository, GymsRepository $gymsRepository)
+    public function __construct(
+        MembersRepository $membersRepository, 
+        GymsRepository $gymsRepository, 
+        ServicesRepository $servicesRepository,
+        SubscriptionsRepository $subscriptionsRepository)
     {
         $this->membersRepository = $membersRepository;
         $this->gymsRepository = $gymsRepository;
+        $this->servicesRepository = $servicesRepository;
         $this->gyms = $membersRepository;
+        $this->subscriptionsRepository = $subscriptionsRepository;
         $this->middleware('auth');
     }
     /**
@@ -44,7 +54,7 @@ class MembersController extends Controller
     public function create()
     {
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
-        $services =  $this->gymsRepository->renderAllGymByCretedById();
+        $services =  $this->servicesRepository->renderAllServices();
    
         return view('members.create', compact('gyms','services'));
     }
@@ -56,36 +66,41 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
-        
-        //validation form 
-        $this->validate(
-            $request, 
-                [
-                    'lastname' => 'required',
-                    'firstname' => 'required',
-                    'cin' => 'required|unique:members',
-                    'address' => 'required',
-                    'phone' => 'required',
-                    'email' => 'required|email|unique:members',
-                    'dob' => 'required',
-                    'emergency_cont' => 'required',
-                    'gym' => new IsSelected,
-                ],
-                [
-                    'lastname.required' => __('translation.require'),
-                    'firstname.required' => __('translation.require'),
-                    'lastname.cin' => __('translation.require'),
-                    'address.required' => __('translation.require'),
-                    'phone.required' => __('translation.require'),
-                    'email.required' => __('translation.require_email'),
-                    'dob.required' => __('translation.require'),
-                    'emergency_cont.required' => __('translation.require'),
-                    'gym.required' => __('require')
-                ],
-            );
-            dd($request['gym']);
-            $members = $this->membersRepository->saveMember($request);
-          
+        // //validation form 
+        // $this->validate(
+        //     $request, 
+        //         [
+        //             'lastname' => 'required',
+        //             'firstname' => 'required',
+        //             'cin' => 'required|unique:members',
+        //             'address' => 'required',
+        //             'phone' => 'required',
+        //             'email' => 'required|email|unique:members',
+        //             'dob' => 'required',
+        //             'emergency_cont' => 'required',
+        //             'gym' => new IsSelected,
+        //         ],
+        //         [
+        //             'lastname.required' => __('translation.require'),
+        //             'firstname.required' => __('translation.require'),
+        //             'lastname.cin' => __('translation.require'),
+        //             'address.required' => __('translation.require'),
+        //             'phone.required' => __('translation.require'),
+        //             'email.required' => __('translation.require_email'),
+        //             'dob.required' => __('translation.require'),
+        //             'emergency_cont.required' => __('translation.require'),
+        //             'gym.required' => __('require')
+        //         ],
+        //     );
+        //     // save member in member table
+        //     $member = $this->membersRepository->saveMember($request);
+
+             // save subscription
+            if($request['service'] != 0){
+               // save subscription in subscription table table
+                $subscription = $this->subscriptionsRepository->addSubscription($request, 14);
+            }
+            
             return redirect()->route('members_list');
     }
 

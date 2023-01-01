@@ -7,7 +7,7 @@
 @slot('li_1') Ecommerce @endslot
 @slot('title') @lang('translation.CREATE_PLAN') @endslot
 @endcomponent
-<form id="createplan-form" method="POST" class="needs-validation"  action="{{ route('members_store') }}" novalidate enctype="multipart/form-data">
+<form id="createplan-form" method="POST" class="needs-validation"  action="{{ route('plans_store') }}" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <div class="col-lg-8">

@@ -31,7 +31,7 @@ class PlansController extends Controller{
             $plans = Plans::select('id','plan_name', 'plan_details')
                 ->where('plan_name','LIKE','%'.$query.'%')
                 ->orWhere('plan_details', 'like', '%'. $query .'%')
-                ->paginate(2);
+                ->paginate(10);
             $count = $plans->count();
             return view('plans.plans_list' , compact('plans', 'count'));
         }else{
@@ -103,6 +103,7 @@ class PlansController extends Controller{
             $files_table= new Files();
             $files_table->name = $fileName;
             $files_table->ext = $extension;
+            $files_table->entity_name = 'plans';
             $files_table->type = 'profile';
             $files_table->entitiy_id = $palns->id;   
             $files_table->save();
@@ -110,16 +111,7 @@ class PlansController extends Controller{
             // move file in dericory
             $file->move($destinationPath,$fileName);
 
-        }else{
-            // save plan image in file table
-            $files_table= new Files();
-            $files_table->name = "plan_Logo.jpg";
-            $files_table->ext = "png";
-            $files_table->type = 'profile';
-            $files_table->entitiy_id = $palns->id;   
-            $files_table->save();
         }
-
 
 
         return redirect()->route('plans_list');
