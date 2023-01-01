@@ -69,6 +69,7 @@ return [
     "Search-for-name-or-designation" => "البحث عن اسم أو إحالة ...",
     "Sorry!-No-Result-Found" => "آسف! لم يتم العثور على نتيجة",
 
+    "widgets"=>" الأدوات ",
 
 ]
 ?>

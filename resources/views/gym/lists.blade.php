@@ -32,7 +32,7 @@
                                 <a href="../gym/show/{{ $gym->id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i>@lang('translation.View_')</a>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body ">
                             <h5 class="mb-1"><a href="apps-nft-item-details">{{ $gym->name }}</a></h5>
                             <p class="text-muted mb-0">Main</p>
                         </div>
@@ -48,6 +48,7 @@
                 </div>
             @endforeach
         </div>
+
     @else
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
             <div class="col-lg-12">
