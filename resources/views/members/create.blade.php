@@ -99,7 +99,7 @@
                               <div class="col-sm">
                                 <div class="mb-3">
                                     <label class="form-label" for="service-input">@lang('translation.service')</label>
-                                    <select name="service" class="form-select" aria-label=".form-select-sm example" required>
+                                    <select name="service" id="services" class="form-select" aria-label=".form-select-sm example" required>
                                         <option selected="" value="0">chose service</option>
                                         @foreach ($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
@@ -109,33 +109,33 @@
             
                                 <div class="mb-3">
                                     <label class="form-label" for="firstname-input">@lang('translation.start_date')</label>
-                                    <input type="text" class="form-control" name="firstname" id="firstname-input" value="{{ old('firstname') }}" placeholder="@lang('translation.entrer the') @lang('translation.name')" required>
-                                    @error('firstname')
+                                    <input type="text" class="form-control" name="start_date" id="firstname-input" value="{{ old('start_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.start_date')" required>
+                                    @error('start_date')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
                               </div>
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="address-input">@lang('translation.plan')</label>
-                                        <input type="text" class="form-control" name="address" id="firstname-input" value="{{ old('address') }}" placeholder="@lang('translation.entrer the') @lang('translation.address')" required>
-                                        @error('address')
-                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                                    <label class="form-label" for="service-input">@lang('translation.plan')</label>
+                                    <select name="plans" id="plans" class="form-select" aria-label=".form-select-sm example" required>
+                                        <option selected="" value="0">chose paln</option>
+                                    </select>
+                                    @error('plans')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <div class="mb-3">
-                                        <label class="form-label" for="phone-input">@lang('translation.end_date')</label>
+                                        <label class="form-label" for="end_date-input">@lang('translation.end_date')</label>
 
                                         <div class="form-icon">
-                                            <input type="phone" class="form-control form-control-icon" name="phone" id="phone-input" value="{{ old('phone') }}" placeholder="@lang('translation.entrer the') @lang('translation.phone')" required>
+                                            <input type="date" class="form-control form-control-icon" name="end_date" id="end_date-input" value="{{ old('end_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.end_date')" required>
                                             <i class="ri-phone-line"></i>
                                         </div>
 
-                                        @error('phone')
+                                        @error('end_date')
                                             <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -344,6 +344,36 @@ $("#attachment").on('change', function(e){
 		// Mise à jour des fichiers de l'input file après suppression
 		document.getElementById('attachment').files = dt.files;
 	});
+});
+
+
+
+</script>
+
+<script>
+$(document).ready(function(){
+    var html = '';
+    $("#services").on("change",function(){
+        html = '';
+        var serviceId = $(this).val();
+        $.ajax({
+            url :"/plans/allPlansByService",
+            type:"POST",
+            cache:false,
+            data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
+            success:function(data){
+                if((data.plans).length > 0){
+                    $.each(data.plans, function (key, val) {
+                        html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
+                        $("#plans").html(html);
+                    });
+                }else{
+                    html = '<option value="">Select plans</option>';
+                    $("#plans").html(html);
+                }
+            }
+        });
+    });  
 });
 
 </script>
