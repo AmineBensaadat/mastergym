@@ -108,8 +108,8 @@
                                 </div>
             
                                 <div class="mb-3">
-                                    <label class="form-label" for="firstname-input">@lang('translation.start_date')</label>
-                                    <input type="text" class="form-control" name="start_date" id="firstname-input" value="{{ old('start_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.start_date')" required>
+                                    <label class="form-label" for="start_date">@lang('translation.start_date')</label>
+                                    <input type="date" class="form-control" name="start_date" id="start_date" value="{{ old('start_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.start_date')" required>
                                     @error('start_date')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
@@ -131,7 +131,7 @@
                                         <label class="form-label" for="end_date-input">@lang('translation.end_date')</label>
 
                                         <div class="form-icon">
-                                            <input type="date" class="form-control form-control-icon" name="end_date" id="end_date-input" value="{{ old('end_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.end_date')" required>
+                                            <input type="date" class="form-control form-control-icon" name="end_date" id="end_date" value="{{ old('end_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.end_date')" required>
                                             <i class="ri-phone-line"></i>
                                         </div>
 
@@ -203,9 +203,9 @@
                     <div class="mb-3">
                         <label for="gym" class="form-label">Gym</label>
                         <select name="gym" class="form-select" aria-label=".form-select-sm example" required>
-                            <option selected="" value="0">chose gym</option>
+                            <option value="0">chose gym</option>
                             @foreach ($gyms as $gym)
-                                <option value="{{ $gym->id }}">{{ $gym->name }}</option>
+                                <option {{ old('gym') == $gym->id ? "selected" : "" }} value="{{ $gym->id }}">{{ $gym->name }}</option>
                             @endforeach    
                         </select>
                         @error('gym')
@@ -351,7 +351,21 @@ $("#attachment").on('change', function(e){
 </script>
 
 <script>
+function padNumber(number) {
+    var string  = '' + number;
+    string      = string.length < 2 ? '0' + string : string;
+    return string;
+}
+var d = new Date();
+    var month = d.getMonth()+1;
+    var day = d.getDate();
+
+    var currentDay = d.getFullYear() + '-' +
+    (month<10 ? '0' : '') + month + '-' +
+    (day<10 ? '0' : '') + day;
+
 $(document).ready(function(){
+   
     var html = '';
     $("#services").on("change",function(){
         html = '';
@@ -362,6 +376,8 @@ $(document).ready(function(){
             cache:false,
             data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
             success:function(data){
+                $("#start_date").val(currentDay);
+                $("#end_date").val(getNextDate(data.plans[0].days));
                 if((data.plans).length > 0){
                     $.each(data.plans, function (key, val) {
                         html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
@@ -374,7 +390,30 @@ $(document).ready(function(){
             }
         });
     });  
+
+    $("#plans").on("change",function(){
+        var planId = $(this).val();
+        $.ajax({
+            url :"/plans/getPlansDays",
+            type:"POST",
+            cache:false,
+            data:{planId:planId, _token: '{{csrf_token()}}'},
+            success:function(data){
+                console.log(data.plans.days);
+                $("#start_date").val(currentDay);
+                $("#end_date").val(getNextDate(data.plans.days));
+            }
+        });
+    });  
 });
+
+function getNextDate(days){
+    date      = new Date(currentDay);
+    next_date = new Date(date.setDate(date.getDate() + days));
+    formatted = next_date.getUTCFullYear() + '-' + padNumber(next_date.getUTCMonth() + 1) + '-' + padNumber(next_date.getUTCDate())
+    return formatted;
+            
+}
 
 </script>
 

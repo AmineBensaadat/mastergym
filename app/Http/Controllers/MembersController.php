@@ -78,7 +78,7 @@ class MembersController extends Controller
                     'email' => 'required|email|unique:members',
                     'dob' => 'required',
                     'emergency_cont' => 'required',
-                    //'gym' => new IsSelected,
+                    'gym' => new IsSelected,
                 ],
                 [
                     'lastname.required' => __('translation.require'),
@@ -89,7 +89,7 @@ class MembersController extends Controller
                     'email.required' => __('translation.require_email'),
                     'dob.required' => __('translation.require'),
                     'emergency_cont.required' => __('translation.require'),
-                    //'gym.required' => __('require')
+                    'gym.required' => __('require')
                 ],
             );
             // save member in member table
