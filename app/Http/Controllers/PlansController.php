@@ -19,6 +19,16 @@ class PlansController extends Controller{
         $this->middleware('auth');
     }
 
+    public function getPlansBySrvice() {
+        $serviceId = $_POST['serviceId'];
+        
+        $plans = Plans::select('id','plan_name')
+                ->where('service_id', $serviceId)
+                ->get();
+        $msg = $_POST['serviceId'];
+        return response()->json(array('plans'=> $plans), 200);
+    }
+
     /**
      * Show all gym.
      *
