@@ -43,11 +43,11 @@ return [
 
     "Create-Memeber" => "إنشاء عضو",
     "lastname" => " اسم العائلة",
-    "entrer the" => " أدخل",
+    "entrer the" => " أدخل ",
     "CNIE" => " البطاقة الوطنية",
     "address" => " العنوان ",
     "phone" => " الهاتف ",
-    "email"=> "بريد إلكتروني",
+    "email"=> "بريد إلكتروني ",
     "gender" => " الجنس",
     "men" => " ذكر",
     "female" => " أنثى",
@@ -62,6 +62,7 @@ return [
     "members" => "المنخرطون",
     "users" => "المستخدمين",
     "plans" => "الخطط",
+
     "pages"=>"صفحة",
     "member" => "منخرط",
     "team"=>"الفريق",
@@ -70,6 +71,20 @@ return [
     "Sorry!-No-Result-Found" => "آسف! لم يتم العثور على نتيجة",
 
     "widgets"=>" الأدوات ",
+    "password-create"=>" إنشاء كلمة المرور ",
+    "Enter-password"=>" أدخل كلمة المرور ",
+    "Create-user" => "إنشاء مستخدم",
+    "Select_your_gym" => "اختر الصالة الرياضية الخاصة بك",
+    "user-Image" => " صورة المستخدم ",
+
+    "Enter-details-of-the-subscription" => " أدخل تفاصيل الاشتراك ",
+    "chose" => " إختيار ",
+    "start-date" => "تاريخ البدء",
+    "end-date" => "تاريخ النهاية",
+
+
+
+
 
 ]
 ?>

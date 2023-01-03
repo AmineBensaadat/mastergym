@@ -4,8 +4,8 @@
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Users @endslot
-@slot('title') Create user @endslot
+@slot('li_1') @lang('translation.users') @endslot
+@slot('title') @lang('translation.Create-user') @endslot
 @endcomponent
 <form id="createuser-form" method="POST" class="needs-validation"  action="{{ route('user_store') }}" novalidate enctype="multipart/form-data">
 @csrf
@@ -26,7 +26,7 @@
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label class="form-label" for="user-name-input">@lang('translation.email')</label>
-                                <input type="email" class="form-control" name="user_email" id="user-email-input" value="{{ old('user_email') }}" placeholder="@lang('translation.Enter-email')" required>
+                                <input type="email" class="form-control" name="user_email" id="user-email-input" value="{{ old('user_email') }}" placeholder="@lang('translation.entrer the')@lang('translation.email')" required>
                                 @error('user_email')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -35,7 +35,7 @@
 
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="user-password-input">@lang('translation.password')</label>
+                                <label class="form-label" for="user-password-input">@lang('translation.password-create')</label>
                                 <input type="password" class="form-control" name="user_password" id="user-password-input" value="" placeholder="@lang('translation.Enter-password')" required>
                                 @error('user_password')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
@@ -45,13 +45,13 @@
 
                         <div class="mb-3">
                             <div>
-                                <h5 class="fs-14 mb-3">Gym</h5>
-    
+                                <h5 class="fs-14 mb-3">@lang('translation.gyms')</h5>
+
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="mb-3">
                                             <select name="gym" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
-                                                <option value="">Select yout gym</option>
+                                                <option value="">@lang('translation.Select_your_gym')</option>
                                                 @foreach ($gyms as $gym)
                                                     <option value="{{ $gym['id'] }}">{{ $gym['name'] }}</option>
                                                 @endforeach
@@ -68,17 +68,17 @@
                     </div>
                 </div>
                 <!-- end card -->
-        </div> 
+        </div>
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">user Image</h5>
+                    <h5 class="card-title mb-0">@lang('translation.user-Image')</h5>
               <!-- Toast -->
                 </div>
                 <div class="card-body">
                     <div class="mb-4">
-                        <h5 class="fs-14 mb-1">Image</h5>
-                        <p class="text-muted">Add user Image</p>
+                        <h5 class="fs-14 mb-1">@lang('translation.images')</h5>
+                        <p class="text-muted">@lang('translation.Add_image')</p>
                         <div class="text-center">
                             <div class="position-relative d-inline-block">
                                 <div class="position-absolute top-100 start-100 translate-middle">
@@ -107,13 +107,13 @@
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>
         <div class="col-lg-2">
-            <button type="submit" class="btn btn-success w-sm">Submit</button>
-        </div>   
+            <button type="submit" class="btn btn-success w-sm">@lang('translation.Submit')</button>
+        </div>
            <!-- end card -->
-           
-  
+
+
     <!-- end row -->
 </form>
 

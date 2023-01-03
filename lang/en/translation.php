@@ -278,6 +278,18 @@ return [
     "Search-for-name-or-designation" => "Search for name or designation...",
     "Sorry!-No-Result-Found" => "Sorry! No Result Found",
 
+    "Create-user" => "CREATE USER",
+    "Enter-password"=>"Enter password",
+    "Select_your_gym" => "Select your gym",
+    "user-Image" => "user Image",
+
+    "Enter-details-of-the-subscription" => "Enter details of the subscription",
+    "chose" => " chose ",
+    "start-date" => "start date",
+    "end-date" => "end date",
+
+
+
 
 
 
