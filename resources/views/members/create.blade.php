@@ -399,7 +399,6 @@ $(document).ready(function(){
             cache:false,
             data:{planId:planId, _token: '{{csrf_token()}}'},
             success:function(data){
-                console.log(data.plans.days);
                 $("#start_date").val(currentDay);
                 $("#end_date").val(getNextDate(data.plans.days));
             }
