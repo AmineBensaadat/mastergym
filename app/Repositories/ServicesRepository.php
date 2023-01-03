@@ -41,7 +41,6 @@ class ServicesRepository
             ->orWhere('description', 'like', '%'. $query .'%')
             ->paginate(10); 
         return $services;
-   
     }
 
     public function renderAllServices(){

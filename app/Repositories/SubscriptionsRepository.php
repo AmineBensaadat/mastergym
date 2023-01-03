@@ -21,5 +21,21 @@ class SubscriptionsRepository
         ]);
        return $subscription;
     }
+
+    public function getAllSucription(){
+        $user= auth()->user();
+        $subscriptions = DB::table('subscriptions')
+            ->join('users', 'subscriptions.created_by', '=', 'users.id') 
+            ->join('members', 'subscriptions.member_id', '=', 'members.id')   
+            ->join('plans', 'subscriptions.plan_id', '=', 'plans.id')
+            ->join('services', 'plans.service_id', '=', 'services.id')      
+            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
+            ->select('subscriptions.*','members.firstname', 'members.lastname', 'files.name as img_name', 'plan_name', 'services.name as service_name')
+            ->where('users.account_id', $user->account_id)
+            // ->where('services.name','LIKE','%'.$query.'%')
+            // ->orWhere('description', 'like', '%'. $query .'%')
+            ->paginate(10); 
+        return $subscriptions;
+    }
    
 }
