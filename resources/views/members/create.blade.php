@@ -376,15 +376,17 @@ $(document).ready(function(){
             cache:false,
             data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
             success:function(data){
-                $("#start_date").val(currentDay);
-                $("#end_date").val(getNextDate(data.plans[0].days));
                 if((data.plans).length > 0){
+                    $("#start_date").val(currentDay);
+                    $("#end_date").val(getNextDate(data.plans[0].days));
                     $.each(data.plans, function (key, val) {
                         html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
                         $("#plans").html(html);
                     });
                 }else{
                     html = '<option value="">Select plans</option>';
+                    $("#end_date").val("");
+                    $("#start_date").val("");
                     $("#plans").html(html);
                 }
             }

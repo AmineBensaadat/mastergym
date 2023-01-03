@@ -79,6 +79,8 @@ class MembersController extends Controller
                     'dob' => 'required',
                     'emergency_cont' => 'required',
                     'gym' => new IsSelected,
+                    'start_date' => 'date|nullable',
+                    'end_date' => 'date|nullable|after:start_date',
                 ],
                 [
                     'lastname.required' => __('translation.require'),
@@ -89,7 +91,9 @@ class MembersController extends Controller
                     'email.required' => __('translation.require_email'),
                     'dob.required' => __('translation.require'),
                     'emergency_cont.required' => __('translation.require'),
-                    'gym.required' => __('require')
+                    'gym.required' => __('require'),
+                    'start_date' => __('require'),
+                    'end_date' => __('require'),
                 ],
             );
             // save member in member table
