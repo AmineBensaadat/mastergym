@@ -24,6 +24,7 @@ class MembersRepository
             'lastname' => $request['lastname'],
             'DOB' => $request['dob'],
             'email' => $request['email'],
+            'city' => $request['city'],
             'address' => $request['address'],
             'status' => $request['status'],
             'contact' => $request['phone'],

@@ -64,20 +64,35 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-start">
-                                    <div class="flex-shrink-0 me-3">
+                                    <div class="flex-shrink-0">
                                         <div>
-                                            @if ($subscription->img_name)
-                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$subscription->img_name )}}">
+                                            @if ($subscription->member_img)
+                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$subscription->member_img )}}">
                                             @else
                                                 <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
                                             @endif
                                         </div>
                                     </div>
-
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="contact-name fs-13 mb-1">
-                                            <a href="#" class="link text-dark">{{ $subscription->lastname." ".$subscription->firstname }} </a>
-                                        </h5>
+                                    <div class="flex-grow-1 ms-2 name">
+                                        <a href="../members/show/{{ $subscription->member_id }}">
+                                            {{ $subscription->lastname." ".$subscription->firstname }}
+                                        
+                                        </a>    
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-sm bg-light rounded p-1 me-2">
+                                        @if ($subscription->member_img)
+                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($subscription->service_id, "services") )}}">
+                                        @else
+                                            <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $subscription->service_name }}</a></h5>
+                                        <span class="text-muted">11 Feb 2021</span>
                                     </div>
                                 </div>
                             </td>
