@@ -284,6 +284,15 @@ return [
     "Search-for-name-or-designation" => "Rechercher un nom ou une désignation...",
     "Sorry!-No-Result-Found" => "Pardon! Aucun résultat trouvé",
 
+    "Enter-password"=>"Entrer le mot de passe",
+    "Create-user" => "CRÉER UN UTILISATEUR",
+    "Select_your_gym" => "Sélectionnez votre salle",
+    "user-Image" => "image de l'utilisateur",
+
+    "Enter-details-of-the-subscription" => "Entrez les détails de l'abonnement",
+    "chose" => " choisi ",
+    "start-date" => "date de début",
+    "end-date" => "date de fin",
 
 
 

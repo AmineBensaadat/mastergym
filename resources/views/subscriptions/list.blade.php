@@ -51,57 +51,56 @@
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 10px;">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
-                                </div>
-                            </th>
-                            <th >@lang('translation.members')</th>
-                            <th >@lang('translation.phone')</th>
-                            <th >@lang('translation.email')</th>
-                            <th >@lang('translation.address')</th>
-                            <th >@lang('translation.CNIE')</th>
-                            <th >@lang('translation.Status')</th>
-
+                            <th>@lang('translation.member')</th>
+                            <th>@lang('translation.service')</th>
+                            <th>@lang('translation.plan')</th>
+                            <th>@lang('translation.date_start')</th>
+                            <th>@lang('translation.date_end')</th>
+                            <th>@lang('translation.rest')</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($members as $member)
+                        @foreach ($subscriptions as $subscription)
                         <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                                </div>
-                            </th>
                             <td>
                                 <div class="d-flex align-items-start">
-                                    <div class="flex-shrink-0 me-3">
+                                    <div class="flex-shrink-0">
                                         <div>
-                                            @if ($member->img_name)
-                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
+                                            @if ($subscription->member_img)
+                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$subscription->member_img )}}">
                                             @else
                                                 <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
                                             @endif
                                         </div>
                                     </div>
-
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="contact-name fs-13 mb-1"><a href="#" class="link text-dark">{{ $member->lastname." ".$member->firstname }} </a></h5>
+                                    <div class="flex-grow-1 ms-2 name">
+                                        <a href="../members/show/{{ $subscription->member_id }}">
+                                            {{ $subscription->lastname." ".$subscription->firstname }}
+                                        
+                                        </a>    
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $member->contact }}</td>
-                            <td>{{ $member->email }}</td>
-                            <td>{{ $member->address }}</td>
-                            <td>{{ $member->cin }}</td>
                             <td>
-                                @if ($member->status == 1)
-                                    <span class="badge bg-success">active</span>
-                                @else
-                                    <span class="badge bg-danger">inactive</span>
-                                @endif
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-sm bg-light rounded p-1 me-2">
+                                        @if ($subscription->member_img)
+                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($subscription->service_id, "services") )}}">
+                                        @else
+                                            <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $subscription->service_name }}</a></h5>
+                                        <span class="text-muted">11 Feb 2021</span>
+                                    </div>
+                                </div>
                             </td>
-
+                            <td><span class="badge bg-info">{{ $subscription->service_name }}</span></td>
+                            <td><span class="badge bg-info">{{ $subscription->plan_name }}</span></td>
+                            <td><span class="badge bg-info">{{ $subscription->start_date }}</span></td>
+                            <td><span class="badge bg-info">{{ $subscription->end_date }}</span></td>
+                            <td><span class="badge bg-info">{!! Helper::dateDiff ($subscription->start_date,$subscription->end_date) !!}</span></td>
                         </tr>
                         @endforeach
                     </tbody>

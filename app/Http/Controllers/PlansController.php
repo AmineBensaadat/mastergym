@@ -22,11 +22,19 @@ class PlansController extends Controller{
     public function getPlansBySrvice() {
         $serviceId = $_POST['serviceId'];
         
-        $plans = Plans::select('id','plan_name')
+        $plans = Plans::select('id','plan_name', 'days')
                 ->where('service_id', $serviceId)
                 ->get();
-        $msg = $_POST['serviceId'];
         return response()->json(array('plans'=> $plans), 200);
+    }
+
+    public function getPlansDays() {
+        $planId = $_POST['planId'];
+        
+        $plans = Plans::select('id','plan_name', 'days')
+                ->where('id', $planId)
+                ->get();
+        return response()->json(array('plans'=> $plans[0]), 200);
     }
 
     /**

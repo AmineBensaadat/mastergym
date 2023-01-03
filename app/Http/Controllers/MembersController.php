@@ -75,10 +75,13 @@ class MembersController extends Controller
                     'cin' => 'required|unique:members',
                     'address' => 'required',
                     'phone' => 'required',
-                    'email' => 'required|email|unique:members',
+                    'city' => 'required',
+                    //'email' => 'required|email|unique:members',
                     'dob' => 'required',
                     'emergency_cont' => 'required',
-                    //'gym' => new IsSelected,
+                    'gym' => new IsSelected,
+                    'start_date' => 'date|nullable',
+                    'end_date' => 'date|nullable|after:start_date',
                 ],
                 [
                     'lastname.required' => __('translation.require'),
@@ -86,10 +89,13 @@ class MembersController extends Controller
                     'lastname.cin' => __('translation.require'),
                     'address.required' => __('translation.require'),
                     'phone.required' => __('translation.require'),
-                    'email.required' => __('translation.require_email'),
+                    //'email.required' => __('translation.require_email'),
                     'dob.required' => __('translation.require'),
                     'emergency_cont.required' => __('translation.require'),
-                    //'gym.required' => __('require')
+                    'gym.required' => __('require'),
+                    'gym.city' => __('require'),
+                    'start_date' => __('require'),
+                    'end_date' => __('require'),
                 ],
             );
             // save member in member table

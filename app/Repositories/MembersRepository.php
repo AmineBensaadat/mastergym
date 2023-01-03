@@ -24,6 +24,7 @@ class MembersRepository
             'lastname' => $request['lastname'],
             'DOB' => $request['dob'],
             'email' => $request['email'],
+            'city' => $request['city'],
             'address' => $request['address'],
             'status' => $request['status'],
             'contact' => $request['phone'],
@@ -48,6 +49,7 @@ class MembersRepository
              // save gym image in file table
              $files_table= new Files();
              $files_table->name = $fileName;
+             $files_table->entity_name = 'member';
              $files_table->ext = $extension;
              $files_table->type = 'profile';
              $files_table->entitiy_id = $member->id;   

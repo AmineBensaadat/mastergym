@@ -6,16 +6,19 @@ use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
 use App\Repositories\MembersRepository;
+use App\Repositories\SubscriptionsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class SubscriptionsController extends Controller
 {
     private $membersRepository;
+    private $subscriptionsRepository;
 
-    public function __construct(MembersRepository $membersRepository)
+    public function __construct(MembersRepository $membersRepository, SubscriptionsRepository $subscriptionsRepository)
     {
         $this->membersRepository = $membersRepository;
+        $this->subscriptionsRepository = $subscriptionsRepository;
         $this->middleware('auth');
     }
     /**
@@ -25,8 +28,8 @@ class SubscriptionsController extends Controller
      */
     public function index()
     {
-        $members = $this->membersRepository->all();
-        return view('subscriptions.list', compact('members'));
+        $subscriptions = $this->subscriptionsRepository->getAllSucription();
+        return view('subscriptions.list', compact('subscriptions'));
     }
 
     /**
