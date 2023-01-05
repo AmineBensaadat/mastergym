@@ -293,6 +293,14 @@ return [
     "chose" => " choisi ",
     "start-date" => "date de début",
     "end-date" => "date de fin",
+    "Is-main-?" => "Est-ce principal ?",
+    "Is-main" => "Est principal",
+    "Is-not-main" => "N'est pas principal",
+    "Gym-status" => "Statut de gym",
+    "Add-New-Service" => "Ajouter un nouveau service",
+    "description" => "Description",
+    "save" => "enregistrer",
+    "Close" => "Fermer",
 
 
 

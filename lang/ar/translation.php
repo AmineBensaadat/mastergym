@@ -81,6 +81,15 @@ return [
     "chose" => " إختيار ",
     "start-date" => "تاريخ البدء",
     "end-date" => "تاريخ النهاية",
+    "Is-main-?" => "رئيسي ؟",
+    "Is-main" => "رئيسي",
+    "Is-not-main" => "ليس رئيسي",
+    "Gym-status" => "الصالة الرياضية",
+    "Add-New-Service" => "أضف خدمة جديدة",
+    "description" => "الوصف ",
+    "save" => "حفظ",
+    "Close" => "إغلاق",
+
 
 
 

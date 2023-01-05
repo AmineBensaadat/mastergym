@@ -287,6 +287,13 @@ return [
     "chose" => " chose ",
     "start-date" => "start date",
     "end-date" => "end date",
+    "Is-main-?" => "Is main ?",
+    "Is-main" => "Is main",
+    "Is-not-main" => "Is not main",
+    "Gym-status" => "Gym status",
+    "Add-New-Service" => "Add New Service",
+    "description" => "Description",
+
 
 
 

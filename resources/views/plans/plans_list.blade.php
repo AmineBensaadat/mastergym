@@ -132,7 +132,7 @@
 
                                                 <div class="d-flex position-absolute start-0 end-0 top-0 p-3">
                                                     <div class="flex-grow-1">
-                                                        <h5 class="modal-title text-white" id="createMemberLabel">Add New Service</h5>
+                                                        <h5 class="modal-title text-white" id="createMemberLabel">>@lang('translation.Add-New-Service')</h5>
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         <div class="d-flex gap-3 align-items-center">

@@ -125,15 +125,15 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Gym statu</h5>
+                    <h5 class="card-title mb-0">@lang('translation.Gym-status')</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="choices-is_main" class="form-label">Is main ?</label>
+                        <label for="choices-is_main" class="form-label">@lang('translation.Is-main-?')</label>
 
                         <select name="is_main" class="form-select" id="choices-is_main">
-                            <option value="1" selected>Is main</option>
-                            <option value="0">Is not main</option>
+                            <option value="1" selected>@lang('translation.Is-main')</option>
+                            <option value="0">@lang('translation.Is-not-main')</option>
                         </select>
                     </div>
                 </div>

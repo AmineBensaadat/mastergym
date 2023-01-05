@@ -12,7 +12,7 @@
                 <div class="col-sm-4">
                 <form method="GET"  action="{{ route('services_list') }}">
                     <div class="search-box">
-                            @csrf   
+                            @csrf
                             <input type="text" name="query" class="form-control"  placeholder="Search for name or designation...">
                         <i class="ri-search-line search-icon"></i>
                     </div>
@@ -106,7 +106,7 @@
                  <!-- Pagination -->
 
                 <!-- End Pagination -->
-                                   
+
                 <!-- <div class="text-center mb-3">
                     <a href="javascript:void(0);" class="text-success"><i class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load More </a>
                 </div> -->
@@ -122,7 +122,7 @@
 
                         <div class="modal-body">
                             <form  method="POST" id="memberlist-form" class="needs-validation" action="{{ route('services_add') }}" enctype="multipart/form-data">
-                                @csrf 
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <input type="hidden" id="memberid-input" class="form-control" value="">
@@ -132,7 +132,7 @@
 
                                                 <div class="d-flex position-absolute start-0 end-0 top-0 p-3">
                                                     <div class="flex-grow-1">
-                                                        <h5 class="modal-title text-white" id="createMemberLabel">Add New Service</h5>
+                                                        <h5 class="modal-title text-white" id="createMemberLabel">@lang('translation.Add-New-Service')</h5>
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         <div class="d-flex gap-3 align-items-center">
@@ -162,7 +162,7 @@
                                                             </div>
                                                         </div>
                                                     </label>
-                                                    <input class="form-control d-none" name="service_image" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg" 
+                                                    <input class="form-control d-none" name="service_image" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg"
                                                     onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])">
                                                 </div>
                                                 <div class="avatar-lg">
@@ -176,24 +176,24 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="serviceName" class="form-label">Name</label>
-                                            <input type="text" name="serviceName" class="form-control" id="serviceName" placeholder="Enter name" required>
+                                            <label for="serviceName" class="form-label">@lang('translation.name')</label>
+                                            <input type="text" name="serviceName" class="form-control" id="serviceName" placeholder="@lang('translation.Enter-name')" required>
                                             @error('service_name')
                                                 <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <div class="mb-4">
-                                            <label for="description" class="form-label">Description</label>
-                                            <input type="text" name="description" class="form-control" id="description" placeholder="Enter description" required>
+                                            <label for="description" class="form-label">@lang('translation.description')</label>
+                                            <input type="text" name="description" class="form-control" id="description" placeholder="@lang('translation.entrer the')@lang('translation.description')" required>
                                             @error('service_description')
                                                 <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <div class="hstack gap-2 justify-content-end">
-                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success" id="addNewMember">save</button>
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">@lang('translation.Close')</button>
+                                            <button type="submit" class="btn btn-success" id="addNewMember">@lang('translation.save')</button>
                                         </div>
                                     </div>
                                 </div>
