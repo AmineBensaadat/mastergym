@@ -15,8 +15,13 @@ php artisan serve
 
 
 -- push and save ----
-1 - git pull origin devlop
-2 - git satus
+1 - git pull origin devlop         tahmil
+
+
+2 - git status
 3 - git add .
 4 - git commit -m "update 1 your text"
-5 - git push origin devlop
+5 - git push origin devlop          raf3
+
+
+
