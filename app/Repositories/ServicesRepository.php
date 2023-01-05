@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\DB;
 class ServicesRepository 
 {
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(subscriptionsRepository $servicesRepository)
+    {
+        
+    }
+
     public function getAllServicesByGym(){
         $user_id = auth()->user()->id;
         $services = DB::table('services')
@@ -22,17 +32,26 @@ class ServicesRepository
         $user= auth()->user();
         $query = $request['query'];
         $services = DB::table('services')
-            ->join('users', 'services.created_by', '=', 'users.id') 
-            ->join('plans', 'services.id', '=', 'plans.service_id')  
+            ->join('users', 'services.created_by', '=', 'users.id')  
             ->leftJoin('files', 'services.id', '=', 'files.entitiy_id')
-            ->select('services.*', 'files.name as img_name', 'plans.plan_name', 'plans.id as plan_id')
+            ->select('services.*', 'files.name as img_name')
             ->where('services.created_by', $user->id)
             ->where('users.account_id', $user->account_id)
             ->where('services.name','LIKE','%'.$query.'%')
             ->orWhere('description', 'like', '%'. $query .'%')
             ->paginate(10); 
         return $services;
-    } 
+    }
+
+    public function renderAllServices(){
+        $user= auth()->user();
+        $services = DB::table('services')
+            ->join('users', 'services.created_by', '=', 'users.id')  
+            ->select('services.*')
+            ->where('users.account_id', $user->account_id)
+            ->get(); 
+        return $services;
+    }  
     
     public function getServiceProfileImage(){
         $result = DB::table('services')

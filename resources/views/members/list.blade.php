@@ -72,17 +72,11 @@
                                         @endif 
                                     </div>            
                                     <div class="flex-grow-1 ms-2 name">
-<<<<<<< HEAD
-                                    <a href="../members/show/{{ $member->id }}">
-                                        {{ $member->lastname." ".$member->firstname }}
-                                    </a>
-                                         
-=======
+
                                         <a href="../members/show/{{ $member->id }}">
                                             {{ $member->lastname." ".$member->firstname }}
                                         
                                         </a>    
->>>>>>> 80f7556d0af36e6f39234cf7b5f62331772baa6d
                                     </div>            
                                 </div>
                             </td>
