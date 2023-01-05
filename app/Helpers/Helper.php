@@ -36,6 +36,6 @@ class Helper
             if(count($result) > 0){
                 return $result[0]->file_name;
             }
-            return null;
+            return "default.png";
     }
 }

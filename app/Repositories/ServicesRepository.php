@@ -22,9 +22,10 @@ class ServicesRepository
         $user= auth()->user();
         $query = $request['query'];
         $services = DB::table('services')
-            ->join('users', 'services.created_by', '=', 'users.id')  
+            ->join('users', 'services.created_by', '=', 'users.id') 
+            ->join('plans', 'services.id', '=', 'plans.service_id')  
             ->leftJoin('files', 'services.id', '=', 'files.entitiy_id')
-            ->select('services.*', 'files.name as img_name')
+            ->select('services.*', 'files.name as img_name', 'plans.plan_name', 'plans.id as plan_id')
             ->where('services.created_by', $user->id)
             ->where('users.account_id', $user->account_id)
             ->where('services.name','LIKE','%'.$query.'%')

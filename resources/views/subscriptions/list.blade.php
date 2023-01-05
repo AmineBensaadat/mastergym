@@ -84,22 +84,33 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="avatar-sm bg-light rounded p-1 me-2">
-                                        @if ($subscription->member_img)
                                         <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($subscription->service_id, "services") )}}">
-                                        @else
-                                            <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
-                                        @endif
                                     </div>
                                     <div>
                                         <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $subscription->service_name }}</a></h5>
-                                        <span class="text-muted">11 Feb 2021</span>
                                     </div>
                                 </div>
                             </td>
-                            <td><span class="badge bg-info">{{ $subscription->service_name }}</span></td>
-                            <td><span class="badge bg-info">{{ $subscription->plan_name }}</span></td>
-                            <td><span class="badge bg-info">{{ $subscription->start_date }}</span></td>
-                            <td><span class="badge bg-info">{{ $subscription->end_date }}</span></td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-sm bg-light rounded p-1 me-2">
+                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($subscription->plan_id, "plans") )}}">
+                                    </div>
+                                    <div>
+                                        <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $subscription->plan_name }}</a></h5>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-success alert-dismissible alert-label-icon label-arrow fade show" role="alert">
+                                    <i class="ri-notification-off-line label-icon"></i><strong>{{ $subscription->start_date }}</strong>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-secondary alert-dismissible alert-label-icon label-arrow fade show" role="alert">
+                                    <i class="ri-check-double-line label-icon"></i><strong>{{ $subscription->end_date }}</strong>
+                                </div>
+                            </td>
                             <td><span class="badge bg-info">{!! Helper::dateDiff ($subscription->start_date,$subscription->end_date) !!}</span></td>
                         </tr>
                         @endforeach
