@@ -301,7 +301,9 @@ return [
     "description" => "Description",
     "save" => "enregistrer",
     "Close" => "Fermer",
-
+    "city" => "Ville",
+    "gym" => "Salle de sport",
+    "Enter-details-of-the-invoice" => "Saisir les détails de la facture",
 
 
 

@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="city-input">@lang('translation.city')</label>
@@ -60,8 +60,8 @@
                                     </div>
                                 </div>
 
-                    
-                      
+
+
                                 <div class="mb-3">
                                     <label class="form-label" for="cin-input">@lang('translation.CNIE')</label>
                                     <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') }}" placeholder="@lang('translation.entrer the') @lang('translation.CNIE')" required>
@@ -81,19 +81,19 @@
 
                                 <div class="mb-3">
                                     <label class="form-label" for="dob-input">@lang('translation.day')</label>
-            
+
                                     <div class="form-icon">
                                         <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
                                         <i class="ri-map-pin-time-line"></i>
                                     </div>
-            
+
                                     @error('dob')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="emergency_cont-input">@lang('translation.emergency_cont')</label>
-            
+
                                     <div class="form-icon">
                                         <input type="text" class="form-control form-control-icon" name="emergency_cont" id="emergency_cont-input" value="{{ old('emergency_cont') }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_cont')"  required>
                                         <i class="ri-cellphone-line"></i>
@@ -126,7 +126,7 @@
                                         @enderror --}}
                                     </div>
                                 </div>
-                                
+
                               </div>
                             </div>
                         </div>
@@ -196,7 +196,7 @@
                 <!-- start card payment -->
                 <div class="card border card-border-success">
                     <div class="card-header">
-                        <h6 class="card-title mb-0">@lang('translation.Enter details of the invoice')</h6>
+                        <h6 class="card-title mb-0">@lang('translation.Enter-details-of-the-invoice')</h6>
                     </div>
                     <div class="card-body">
                         <div class="container">
@@ -216,7 +216,7 @@
                                         <option value="female">@lang('translation.female')</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="city-input">@lang('translation.city')</label>
@@ -227,8 +227,8 @@
                                     </div>
                                 </div>
 
-                    
-                      
+
+
                                 <div class="mb-3">
                                     <label class="form-label" for="cin-input">@lang('translation.CNIE')</label>
                                     <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') }}" placeholder="@lang('translation.entrer the') @lang('translation.CNIE')" required>
@@ -248,19 +248,19 @@
 
                                 <div class="mb-3">
                                     <label class="form-label" for="dob-input">@lang('translation.day')</label>
-            
+
                                     <div class="form-icon">
                                         <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
                                         <i class="ri-map-pin-time-line"></i>
                                     </div>
-            
+
                                     @error('dob')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="emergency_cont-input">@lang('translation.emergency_cont')</label>
-            
+
                                     <div class="form-icon">
                                         <input type="text" class="form-control form-control-icon" name="emergency_cont" id="emergency_cont-input" value="{{ old('emergency_cont') }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_cont')"  required>
                                         <i class="ri-cellphone-line"></i>
@@ -293,7 +293,7 @@
                                         @enderror --}}
                                     </div>
                                 </div>
-                                
+
                               </div>
                               <div class="col-sm">
                                 <div class="mb-3">
@@ -306,19 +306,19 @@
 
                                 <div class="mb-3">
                                     <label class="form-label" for="dob-input">@lang('translation.day')</label>
-            
+
                                     <div class="form-icon">
                                         <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
                                         <i class="ri-map-pin-time-line"></i>
                                     </div>
-            
+
                                     @error('dob')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="emergency_cont-input">@lang('translation.emergency_cont')</label>
-            
+
                                     <div class="form-icon">
                                         <input type="text" class="form-control form-control-icon" name="emergency_cont" id="emergency_cont-input" value="{{ old('emergency_cont') }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_cont')"  required>
                                         <i class="ri-cellphone-line"></i>
@@ -351,7 +351,7 @@
                                         @enderror --}}
                                     </div>
                                 </div>
-                                
+
                               </div>
                             </div>
                         </div>
@@ -402,9 +402,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="gym" class="form-label">Gym</label>
+                        <label for="gym" class="form-label">@lang('translation.gym')</label>
                         <select name="gym" class="form-select" aria-label=".form-select-sm example" required>
-                            <option value="0">chose gym</option>
+                            <option value="0">@lang('translation.chose')@lang('translation.gym')</option>
                             @foreach ($gyms as $gym)
                                 <option {{ old('gym') == $gym->id ? "selected" : "" }} value="{{ $gym->id }}">{{ $gym->name }}</option>
                             @endforeach
@@ -413,7 +413,7 @@
                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                         @enderror
                     </div>
-                  
+
                     <div class="mb-3">
                         <label for="choices-status" class="form-label">@lang('translation.Status')</label>
                         <select name="status" class="form-select" id="choices-status">
