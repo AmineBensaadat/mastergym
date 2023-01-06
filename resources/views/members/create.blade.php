@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="city-input">@lang('translation.city')</label>
@@ -60,8 +60,8 @@
                                     </div>
                                 </div>
 
-                    
-                      
+
+
                                 <div class="mb-3">
                                     <label class="form-label" for="cin-input">@lang('translation.CNIE')</label>
                                     <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') }}" placeholder="@lang('translation.entrer the') @lang('translation.CNIE')" required>
@@ -81,19 +81,19 @@
 
                                 <div class="mb-3">
                                     <label class="form-label" for="dob-input">@lang('translation.day')</label>
-            
+
                                     <div class="form-icon">
                                         <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
                                         <i class="ri-map-pin-time-line"></i>
                                     </div>
-            
+
                                     @error('dob')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="emergency_cont-input">@lang('translation.emergency_cont')</label>
-            
+
                                     <div class="form-icon">
                                         <input type="text" class="form-control form-control-icon" name="emergency_cont" id="emergency_cont-input" value="{{ old('emergency_cont') }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_cont')"  required>
                                         <i class="ri-cellphone-line"></i>
@@ -126,7 +126,7 @@
                                         @enderror --}}
                                     </div>
                                 </div>
-                                
+
                               </div>
                             </div>
                         </div>
@@ -196,10 +196,85 @@
                 <!-- start card payment -->
                 <div class="card border card-border-success">
                     <div class="card-header">
-                        <h6 class="card-title mb-0">@lang('translation.Enter-details-of-the-subscription')</h6>
+                        <h6 class="card-title mb-0">@lang('translation.Enter-details-of-the-invoice')</h6>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">They all have something to say beyond the words on the page. They can come across as casual or neutral,</p>
+                        <div class="container">
+                            <div class="row">
+                              <div class="col-sm">
+                                <div class="mb-3">
+                                    <label class="form-label" for="subscription_price">@lang('translation.subscription_price')</label>
+                                    <input readonly type="number" class="form-control" name="subscription_price" id="subscription_price" value="{{ old('subscription_price') }}" placeholder="@lang('translation.entrer the') @lang('translation.subscription_price')"  >
+                                    @error('subscription_price')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="choices-amount-received" class="form-label">@lang('translation.Amount Received')</label>
+                                    <input disabled type="number" class="form-control form-control-icon" name="amount-received" id="amount-received" value="{{ old('amount-received') }}"  placeholder="@lang('translation.entrer the') @lang('translation.Amount Received')">
+                                    @error('amount-received')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                              </div>
+                              <div class="col-sm">
+                                <div class="mb-3">
+                                    <label class="form-label" for="discount-input">@lang('translation.discount')</label>
+                                    <select disabled name="discount" class="form-select" id="choices-discount">
+                                        <option value="0" selected>@lang('translation.None')</option>
+                                        <option value="50">50 %</option>
+                                        <option value="80">80 %</option>
+                                    </select>
+                                    @error('discount')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="amount-pending-input">@lang('translation.Amount Pending')</label>
+
+                                    <div class="form-icon">
+                                        <input disabled type="number" class="form-control" name="amount-pending" id="amount-pending" value="{{ old('amount-pending') }}" placeholder="@lang('translation.entrer the') @lang('translation.amount-pending')" >
+                                    </div>
+                                    @error('amount-pending')
+                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                              </div>
+                              <div class="col-sm">
+                                <div class="mb-3">
+                                    <label class="form-label" for="discount-amount-input">@lang('translation.discount amount')</label>
+                                    <input readonly type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
+                                    @error('discount-amount')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="payment-mode-input">@lang('translation.payment_mode')</label>
+                                    <select disabled name="payment-mode" class="form-select" id="payment-mode">
+                                        <option value="cash" selected>@lang('translation.cash')</option>
+                                        <option value="virement">@lang('translation.virement')</option>
+                                        <option value="cheque">chèque</option>
+                                    </select>
+                                    @error('payment-mode')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label class="form-label" for="additional_fees">@lang('translation.additional_fees')</label>
+                                    <input disabled type="number" class="form-control" name="additional_fees" id="additional_fees" value="{{ old('additional_fees') }}" placeholder="@lang('translation.entrer the') @lang('translation.additional_fees')"  >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label class="form-label" for="payment_comment">@lang('translation.payment_comment')</label>
+                                    <textarea disabled name="payment_comment" class="form-control" id="payment_comment" rows="3" placeholder="@lang('translation.Enter-payment_comment-her')"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- end card -->
@@ -247,9 +322,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="gym" class="form-label">Gym</label>
+                        <label for="gym" class="form-label">@lang('translation.gym')</label>
                         <select name="gym" class="form-select" aria-label=".form-select-sm example" required>
-                            <option value="0">chose gym</option>
+                            <option value="0">@lang('translation.chose')@lang('translation.gym')</option>
                             @foreach ($gyms as $gym)
                                 <option {{ old('gym') == $gym->id ? "selected" : "" }} value="{{ $gym->id }}">{{ $gym->name }}</option>
                             @endforeach
@@ -258,7 +333,7 @@
                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                         @enderror
                     </div>
-                  
+
                     <div class="mb-3">
                         <label for="choices-status" class="form-label">@lang('translation.Status')</label>
                         <select name="status" class="form-select" id="choices-status">
@@ -392,15 +467,30 @@ $(document).ready(function(){
                 if((data.plans).length > 0){
                     $("#start_date").val(currentDay);
                     $("#end_date").val(getNextDate(data.plans[0].days));
+                    $("#subscription_price").val(data.plans[0].amount);
                     $.each(data.plans, function (key, val) {
                         html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
                         $("#plans").html(html);
+                        $("#choices-discount").prop('disabled', false);
+                        $("#payment-mode").prop('disabled', false);
+                        $("#amount-received").prop('disabled', false);
+                        $("#amount-pending").prop('disabled', false);
+                        $("#additional_fees").prop('disabled', false);
+                        $("#payment_comment").prop('disabled', false);
                     });
                 }else{
                     html = '<option value="">Select plans</option>';
                     $("#end_date").val("");
                     $("#start_date").val("");
+                    $("#subscription_price").val("");
                     $("#plans").html(html);
+                    $("#choices-discount").prop('disabled', true);
+                    $("#payment-mode").prop('disabled', true);
+                    $("#amount-received").prop('disabled', true);
+                    $("#amount-pending").prop('disabled', true);
+                    $("#additional_fees").prop('disabled', true);
+                    $("#payment_comment").prop('disabled', true);
+                    
                 }
             }
         });
@@ -416,17 +506,34 @@ $(document).ready(function(){
             success:function(data){
                 $("#start_date").val(currentDay);
                 $("#end_date").val(getNextDate(data.plans.days));
+                $("#subscription_price").val(data.plans.amount);
             }
         });
     });
+
+    $("#choices-discount").on("change",function(){
+        if($(this).val() > 0 ){
+            var discount = $(this).val();
+        var amount =  $("#subscription_price").val();
+        var amount_descounted = countDiscountAmount(amount, discount);
+        $("#discount-amount-input").val(amount_descounted);
+        }else{
+            $("#discount-amount-input").val("");
+        }
+    });
 });
+    
 
 function getNextDate(days){
     date      = new Date(currentDay);
     next_date = new Date(date.setDate(date.getDate() + days));
     formatted = next_date.getUTCFullYear() + '-' + padNumber(next_date.getUTCMonth() + 1) + '-' + padNumber(next_date.getUTCDate())
     return formatted;
+}
 
+function countDiscountAmount(price, percentage){
+    calcPrice = price - ((price / 100) * percentage);
+    return calcPrice;
 }
 
 </script>

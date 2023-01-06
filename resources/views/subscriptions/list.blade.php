@@ -11,6 +11,7 @@
 <!--datatable responsive css-->
 <link href="{{ URL::asset('assets/css/responsive.bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/buttons.dataTables.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/css/custom_subscription.css') }}" rel="stylesheet" type="text/css" />
 
 
 
@@ -20,7 +21,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <div class="flex-grow-1">
-                        <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
+                        <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Subscription </a>
                     </div>
                     <div class="flex-shrink-0">
                         <div class="hstack text-nowrap gap-2">
@@ -111,7 +112,9 @@
                                     <i class="ri-check-double-line label-icon"></i><strong>{{ $subscription->end_date }}</strong>
                                 </div>
                             </td>
-                            <td><span class="badge bg-info">{!! Helper::dateDiff ($subscription->start_date,$subscription->end_date) !!}</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-label"><i class="ri-time-fill label-icon align-middle fs-16 me-2 "></i> {!! Helper::dateDiff (date('Y-m-d'),$subscription->end_date) !!}</button>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

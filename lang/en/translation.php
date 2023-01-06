@@ -293,6 +293,12 @@ return [
     "Gym-status" => "Gym status",
     "Add-New-Service" => "Add New Service",
     "description" => "Description",
+    "save" => "save",
+    "Close" => "Close",
+    "city" => "City",
+    "gym" => "Gym",
+    "Enter-details-of-the-invoice" => "Enter details of the invoice",
+
 
 
 

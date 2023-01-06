@@ -89,6 +89,9 @@ return [
     "description" => "الوصف ",
     "save" => "حفظ",
     "Close" => "إغلاق",
+    "city" => " المدينة ",
+    "gym" => "الصالة الرياضية",
+    "Enter-details-of-the-invoice" => " أدخل تفاصيل الفاتورة ",
 
 
 

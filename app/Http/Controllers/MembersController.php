@@ -6,6 +6,7 @@ use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
 use App\Repositories\GymsRepository;
+use App\Repositories\InvoicesRepository;
 use App\Repositories\MembersRepository;
 use App\Repositories\ServicesRepository;
 use App\Repositories\SubscriptionsRepository;
@@ -21,18 +22,22 @@ class MembersController extends Controller
     private $gymsRepository;
     private $servicesRepository;
     private $subscriptionsRepository;
+    private $gyms;
+    private $invoicesRepository;
 
     public function __construct(
         MembersRepository $membersRepository, 
         GymsRepository $gymsRepository, 
         ServicesRepository $servicesRepository,
-        SubscriptionsRepository $subscriptionsRepository)
+        SubscriptionsRepository $subscriptionsRepository,
+        InvoicesRepository $invoicesRepository)
     {
         $this->membersRepository = $membersRepository;
         $this->gymsRepository = $gymsRepository;
         $this->servicesRepository = $servicesRepository;
         $this->gyms = $membersRepository;
         $this->subscriptionsRepository = $subscriptionsRepository;
+        $this->invoicesRepository = $invoicesRepository;
         $this->middleware('auth');
     }
     /**
@@ -67,44 +72,47 @@ class MembersController extends Controller
     public function store(Request $request)
     {
         //validation form 
-        $this->validate(
-            $request, 
-                [
-                    'lastname' => 'required',
-                    'firstname' => 'required',
-                    'cin' => 'required|unique:members',
-                    'address' => 'required',
-                    'phone' => 'required',
-                    'city' => 'required',
-                    //'email' => 'required|email|unique:members',
-                    'dob' => 'required',
-                    'emergency_cont' => 'required',
-                    'gym' => new IsSelected,
-                    'start_date' => 'date|nullable',
-                    'end_date' => 'date|nullable|after:start_date',
-                ],
-                [
-                    'lastname.required' => __('translation.require'),
-                    'firstname.required' => __('translation.require'),
-                    'lastname.cin' => __('translation.require'),
-                    'address.required' => __('translation.require'),
-                    'phone.required' => __('translation.require'),
-                    //'email.required' => __('translation.require_email'),
-                    'dob.required' => __('translation.require'),
-                    'emergency_cont.required' => __('translation.require'),
-                    'gym.required' => __('require'),
-                    'gym.city' => __('require'),
-                    'start_date' => __('require'),
-                    'end_date' => __('require'),
-                ],
-            );
-            // save member in member table
-            $member = $this->membersRepository->saveMember($request);
+        // $this->validate(
+        //     $request, 
+        //         [
+        //             'lastname' => 'required',
+        //             'firstname' => 'required',
+        //             'cin' => 'required|unique:members',
+        //             'address' => 'required',
+        //             'phone' => 'required',
+        //             'city' => 'required',
+        //             //'email' => 'required|email|unique:members',
+        //             'dob' => 'required',
+        //             'emergency_cont' => 'required',
+        //             'gym' => new IsSelected,
+        //             'start_date' => 'date|nullable',
+        //             'end_date' => 'date|nullable|after:start_date',
+        //         ],
+        //         [
+        //             'lastname.required' => __('translation.require'),
+        //             'firstname.required' => __('translation.require'),
+        //             'lastname.cin' => __('translation.require'),
+        //             'address.required' => __('translation.require'),
+        //             'phone.required' => __('translation.require'),
+        //             //'email.required' => __('translation.require_email'),
+        //             'dob.required' => __('translation.require'),
+        //             'emergency_cont.required' => __('translation.require'),
+        //             'gym.required' => __('require'),
+        //             'gym.city' => __('require'),
+        //             'start_date' => __('require'),
+        //             'end_date' => __('require'),
+        //         ],
+        //     );
+        //     // save member in member table
+        //     $member = $this->membersRepository->saveMember($request);
 
              // save subscription
             if($request['service'] != 0){
-               // save subscription in subscription table table
-                $subscription = $this->subscriptionsRepository->addSubscription($request, $member->id);
+               // save subscription in subscription table
+                //$subscription = $this->subscriptionsRepository->addSubscription($request, $member->id);
+
+                // save invoice in invoices table 
+                $subscription = $this->invoicesRepository->addInvoice($request, 1);
             }
             
             return redirect()->route('members_list');

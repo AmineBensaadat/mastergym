@@ -21,7 +21,7 @@ php artisan serve
 2 - git status
 3 - git add .
 4 - git commit -m "update 1 your text"
-5 - git push origin devlop          raf3
+5 - git push origin devlop          raf
 
 
 
