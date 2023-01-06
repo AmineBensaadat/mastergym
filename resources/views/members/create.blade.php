@@ -204,24 +204,24 @@
                               <div class="col-sm">
                                 <div class="mb-3">
                                     <label class="form-label" for="price-input">@lang('translation.price')</label>
-                                    <input disabled type="text" class="form-control" name="price" id="price-input" value="{{ old('price') }}" placeholder="@lang('translation.entrer the') @lang('translation.price')" required >
+                                    <input disabled type="text" class="form-control" name="price" id="price-input" value="{{ old('price') }}" placeholder="@lang('translation.entrer the') @lang('translation.price')"  >
                                     @error('price')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="choices-gender" class="form-label">@lang('translation.gender')</label>
-                                    <select name="gender" class="form-select" id="choices-gender">
-                                        <option value="men" selected>@lang('translation.men')</option>
-                                        <option value="female">@lang('translation.female')</option>
-                                    </select>
+                                    <label for="choices-amount-received" class="form-label">@lang('translation.Amount Received')</label>
+                                    <input disabled type="number" class="form-control form-control-icon" name="amount-received" id="amount-received" value="{{ old('amount-received') }}"  placeholder="@lang('translation.entrer the') @lang('translation.Amount Received')">
+                                    @error('amount-received')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
                                 </div>
                               </div>
                               <div class="col-sm">
                                 <div class="mb-3">
                                     <label class="form-label" for="discount-input">@lang('translation.discount')</label>
-                                    <select name="discount" class="form-select" id="choices-discount">
-                                        <option value="0" selected>@lang('translation.discount')</option>
+                                    <select disabled name="discount" class="form-select" id="choices-discount">
+                                        <option value="0" selected>@lang('translation.None')</option>
                                         <option value="50">50 %</option>
                                         <option value="80">80 %</option>
                                     </select>
@@ -231,14 +231,12 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="dob-input">@lang('translation.day')</label>
+                                    <label class="form-label" for="amount-pending-input">@lang('translation.Amount Pending')</label>
 
                                     <div class="form-icon">
-                                        <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
-                                        <i class="ri-map-pin-time-line"></i>
+                                        <input disabled type="number" class="form-control" name="amount-pending" id="amount-pending" value="{{ old('amount-pending') }}" placeholder="@lang('translation.entrer the') @lang('translation.amount-pending')" >
                                     </div>
-
-                                    @error('dob')
+                                    @error('amount-pending')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -253,18 +251,21 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="dob-input">@lang('translation.day')</label>
-
-                                    <div class="form-icon">
-                                        <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
-                                        <i class="ri-map-pin-time-line"></i>
-                                    </div>
-
-                                    @error('dob')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    <label class="form-label" for="payment-mode-input">@lang('translation.payment_mode')</label>
+                                    <select disabled name="payment-mode" class="form-select" id="payment-mode">
+                                        <option value="cash" selected>@lang('translation.cash')</option>
+                                        <option value="virement">@lang('translation.virement')</option>
+                                        <option value="cheque">chèque</option>
+                                    </select>
+                                    @error('payment-mode')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
                               </div>
+                              <div class="mb-3">
+                                <label class="form-label" for="product-title-input">@lang('translation.payment_comment')</label>
+                                <textarea name="payment_comment" class="form-control bg-light border-light" id="payment_comment" rows="3" placeholder="@lang('translation.Enter-payment_comment-her')"></textarea>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -463,6 +464,11 @@ $(document).ready(function(){
                     $.each(data.plans, function (key, val) {
                         html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
                         $("#plans").html(html);
+                        $("#choices-discount").prop('disabled', false);
+                        $("#payment-mode").prop('disabled', false);
+                        $("#amount-received").prop('disabled', false);
+                        $("#amount-pending").prop('disabled', false);
+                        
                     });
                 }else{
                     html = '<option value="">Select plans</option>';
@@ -470,6 +476,11 @@ $(document).ready(function(){
                     $("#start_date").val("");
                     $("#price-input").val("");
                     $("#plans").html(html);
+                    $("#choices-discount").prop('disabled', true);
+                    $("#payment-mode").prop('disabled', true);
+                    $("#amount-received").prop('disabled', true);
+                    $("#amount-pending").prop('disabled', true);
+                    
                 }
             }
         });
@@ -491,11 +502,14 @@ $(document).ready(function(){
     });
 
     $("#choices-discount").on("change",function(){
-        var discount = $(this).val();
+        if($(this).val() > 0 ){
+            var discount = $(this).val();
         var amount =  $("#price-input").val();
         var amount_descounted = countDiscountAmount(amount, discount);
         $("#discount-amount-input").val(amount_descounted);
-       
+        }else{
+            $("#discount-amount-input").val("");
+        }
     });
 });
     
