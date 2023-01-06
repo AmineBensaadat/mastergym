@@ -203,9 +203,9 @@
                             <div class="row">
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="price-input">@lang('translation.price')</label>
-                                    <input disabled type="text" class="form-control" name="price" id="price-input" value="{{ old('price') }}" placeholder="@lang('translation.entrer the') @lang('translation.price')"  >
-                                    @error('price')
+                                    <label class="form-label" for="subscription_price">@lang('translation.subscription_price')</label>
+                                    <input readonly type="number" class="form-control" name="subscription_price" id="subscription_price" value="{{ old('subscription_price') }}" placeholder="@lang('translation.entrer the') @lang('translation.subscription_price')"  >
+                                    @error('subscription_price')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -244,12 +244,11 @@
                               <div class="col-sm">
                                 <div class="mb-3">
                                     <label class="form-label" for="discount-amount-input">@lang('translation.discount amount')</label>
-                                    <input disabled type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
+                                    <input readonly type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
                                     @error('discount-amount')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3">
                                     <label class="form-label" for="payment-mode-input">@lang('translation.payment_mode')</label>
                                     <select disabled name="payment-mode" class="form-select" id="payment-mode">
@@ -262,10 +261,18 @@
                                     @enderror
                                 </div>
                               </div>
-                              <div class="mb-3">
-                                <label class="form-label" for="product-title-input">@lang('translation.payment_comment')</label>
-                                <textarea name="payment_comment" class="form-control bg-light border-light" id="payment_comment" rows="3" placeholder="@lang('translation.Enter-payment_comment-her')"></textarea>
                             </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label class="form-label" for="additional_fees">@lang('translation.additional_fees')</label>
+                                    <input disabled type="number" class="form-control" name="additional_fees" id="additional_fees" value="{{ old('additional_fees') }}" placeholder="@lang('translation.entrer the') @lang('translation.additional_fees')"  >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label class="form-label" for="payment_comment">@lang('translation.payment_comment')</label>
+                                    <textarea disabled name="payment_comment" class="form-control" id="payment_comment" rows="3" placeholder="@lang('translation.Enter-payment_comment-her')"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -460,7 +467,7 @@ $(document).ready(function(){
                 if((data.plans).length > 0){
                     $("#start_date").val(currentDay);
                     $("#end_date").val(getNextDate(data.plans[0].days));
-                    $("#price-input").val(data.plans[0].amount);
+                    $("#subscription_price").val(data.plans[0].amount);
                     $.each(data.plans, function (key, val) {
                         html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
                         $("#plans").html(html);
@@ -468,18 +475,21 @@ $(document).ready(function(){
                         $("#payment-mode").prop('disabled', false);
                         $("#amount-received").prop('disabled', false);
                         $("#amount-pending").prop('disabled', false);
-                        
+                        $("#additional_fees").prop('disabled', false);
+                        $("#payment_comment").prop('disabled', false);
                     });
                 }else{
                     html = '<option value="">Select plans</option>';
                     $("#end_date").val("");
                     $("#start_date").val("");
-                    $("#price-input").val("");
+                    $("#subscription_price").val("");
                     $("#plans").html(html);
                     $("#choices-discount").prop('disabled', true);
                     $("#payment-mode").prop('disabled', true);
                     $("#amount-received").prop('disabled', true);
                     $("#amount-pending").prop('disabled', true);
+                    $("#additional_fees").prop('disabled', true);
+                    $("#payment_comment").prop('disabled', true);
                     
                 }
             }
@@ -496,7 +506,7 @@ $(document).ready(function(){
             success:function(data){
                 $("#start_date").val(currentDay);
                 $("#end_date").val(getNextDate(data.plans.days));
-                $("#price-input").val(data.plans.amount);
+                $("#subscription_price").val(data.plans.amount);
             }
         });
     });
@@ -504,7 +514,7 @@ $(document).ready(function(){
     $("#choices-discount").on("change",function(){
         if($(this).val() > 0 ){
             var discount = $(this).val();
-        var amount =  $("#price-input").val();
+        var amount =  $("#subscription_price").val();
         var amount_descounted = countDiscountAmount(amount, discount);
         $("#discount-amount-input").val(amount_descounted);
         }else{
