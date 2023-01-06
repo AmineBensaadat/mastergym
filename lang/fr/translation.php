@@ -304,27 +304,15 @@ return [
     "city" => "Ville",
     "gym" => "Salle de sport",
     "Enter-details-of-the-invoice" => "Saisir les détails de la facture",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // lag
     "fr" => "Français",
     "en" => "Englais",
-    "ar" => "Arabe"
+    "ar" => "Arabe",
+
+    // payment
+    "price" => "Prix",
+    "discount" => "Remise",
+    "discount amount" => "montant de la remise",
 
 ];
 ?>

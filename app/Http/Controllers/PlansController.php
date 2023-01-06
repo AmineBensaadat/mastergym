@@ -22,7 +22,7 @@ class PlansController extends Controller{
     public function getPlansBySrvice() {
         $serviceId = $_POST['serviceId'];
         
-        $plans = Plans::select('id','plan_name', 'days')
+        $plans = Plans::select('id','plan_name', 'days', 'amount')
                 ->where('service_id', $serviceId)
                 ->get();
         return response()->json(array('plans'=> $plans), 200);
@@ -31,7 +31,7 @@ class PlansController extends Controller{
     public function getPlansDays() {
         $planId = $_POST['planId'];
         
-        $plans = Plans::select('id','plan_name', 'days')
+        $plans = Plans::select('id','plan_name', 'days', 'amount')
                 ->where('id', $planId)
                 ->get();
         return response()->json(array('plans'=> $plans[0]), 200);
