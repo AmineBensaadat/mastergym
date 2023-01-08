@@ -104,12 +104,12 @@
                             </td>
                             <td>
                                 <div class="alert alert-success alert-dismissible alert-label-icon label-arrow fade show" role="alert">
-                                    <i class="ri-notification-off-line label-icon"></i><strong>{{ $subscription->start_date }}</strong>
+                                    <i class="ri-map-pin-time-line label-icon"></i><strong>{{ $subscription->start_date }}</strong>
                                 </div>
                             </td>
                             <td>
                                 <div class="alert alert-secondary alert-dismissible alert-label-icon label-arrow fade show" role="alert">
-                                    <i class="ri-check-double-line label-icon"></i><strong>{{ $subscription->end_date }}</strong>
+                                    <i class="ri-map-pin-time-fill label-icon"></i><strong>{{ $subscription->end_date }}</strong>
                                 </div>
                             </td>
                             <td>

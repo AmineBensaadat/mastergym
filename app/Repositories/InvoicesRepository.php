@@ -43,6 +43,7 @@ class InvoicesRepository
                 'members.lastname', 
                 'services.id as service_id', 
                 'files.name as member_img', 
+                'plans.id as plan_id', 
                 'plan_name', 
                 'services.name as service_name')
             ->where('users.account_id', $user->account_id)
