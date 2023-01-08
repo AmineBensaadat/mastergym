@@ -14,9 +14,12 @@ class Invoices extends Model
      */
     protected $fillable = [
         'member_id',
+        'service_id',
+        'plan_id',
         'subscription_price',
         'amount_pending',
         'discount',
+        'amount_received',
         'discount_amount',
         'payment_mode',
         'additional_fees',

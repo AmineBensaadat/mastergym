@@ -31,7 +31,7 @@ class MembersFactory extends Factory
             'address' => $this->faker->address(),
             'status' => $this->faker->boolean(),
             'gender' =>  $this->faker->asciify('male'),
-            'contact' => $this->faker->phoneNumber(),
+            'phone' => $this->faker->phoneNumber(),
             'emergency_contact' => $this->faker->phoneNumber(),
             'health_issues' =>  $this->faker->asciify('no issue'),
             'source' =>  $this->faker->asciify('no one'),

@@ -92,13 +92,13 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="emergency_cont-input">@lang('translation.emergency_cont')</label>
+                                    <label class="form-label" for="emergency_contact-input">@lang('translation.emergency_contact')</label>
 
                                     <div class="form-icon">
-                                        <input type="text" class="form-control form-control-icon" name="emergency_cont" id="emergency_cont-input" value="{{ old('emergency_cont') }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_cont')"  required>
+                                        <input type="text" class="form-control form-control-icon" name="emergency_contact" id="emergency_contact" value="{{ old('emergency_contact') }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_contact')"  required>
                                         <i class="ri-cellphone-line"></i>
                                     </div>
-                                    @error('emergency_cont')
+                                    @error('emergency_contact')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>

@@ -75,6 +75,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('invioces_list') }}">
+                        <i class="ri-honour-line"></i> <span>@lang('translation.invoices')</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('setting') }}">
                         <i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span>@lang('translation.settings')</span>
                     </a>

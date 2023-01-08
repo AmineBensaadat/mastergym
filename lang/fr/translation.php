@@ -225,6 +225,7 @@ return [
     "status" => "status",
     "services" => "services",
     "plans" => "plans",
+    "plan" => "plan",
     "users" => "utilisateurs",
     "members" => "members",
     "subscriptions" => "abonnements",
@@ -313,6 +314,19 @@ return [
     "price" => "Prix",
     "discount" => "Remise",
     "discount amount" => "montant de la remise",
+
+    // invoices
+    'N°' => "N°",
+    "amount_received"  => "Montant reçu",
+    "received"  => "Reçu",
+    "amount_pending"  => "Montant en attente",
+    "rest"  => "Reste",
+    "subscription_price"  => "Prix d'abonnement",
+    "discount_amount"  => "Montant du remise",
+    "payment_mode"  => "Mode de paiement",
+    "additional_fees"  => "Frais supplémentaires",
+    "comment"  => "Commentaire",
+    "created_at"  => "Créé le",
 
 ];
 ?>
