@@ -68,7 +68,7 @@
                                         @if ($member->img_name)
                                             <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
                                         @else
-                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
+                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
                                         @endif 
                                     </div>            
                                     <div class="flex-grow-1 ms-2 name">
