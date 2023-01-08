@@ -51,47 +51,37 @@
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
+                            <th >@lang('translation.N°')</th>
+                            <th >@lang('translation.created_at')</th>
+                            <th >@lang('translation.received')</th>
+                            <th >@lang('translation.subscription_price')</th>
+                            <th >@lang('translation.discount')</th>
+                            <th >@lang('translation.discount_amount')</th>
+                            <th >@lang('translation.rest')</th>
+                            <th >@lang('translation.payment_mode')</th>
+                            <th >@lang('translation.additional_fees')</th>
                             <th >@lang('translation.member')</th>
-                            <th >@lang('translation.phone')</th>
-                            <th >@lang('translation.email')</th>
-                            <th >@lang('translation.address')</th>
-                            <th >@lang('translation.cin')</th>
-                            <th >@lang('translation.status')</th>
+                            <th >@lang('translation.service')</th>
+                            <th >@lang('translation.plan')</th>
+                            <th >@lang('translation.comment')</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($members as $member)
+                        @foreach ($invoices as $invoice)
                         <tr>
-                            <td>
-                                <div class="d-flex align-items-center">            
-                                    <div class="flex-shrink-0">
-                                        @if ($member->img_name)
-                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
-                                        @else
-                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
-                                        @endif 
-                                    </div>            
-                                    <div class="flex-grow-1 ms-2 name">
-
-                                        <a href="../members/show/{{ $member->id }}">
-                                            {{ $member->lastname." ".$member->firstname }}
-                                        
-                                        </a>    
-                                    </div>            
-                                </div>
-                            </td>
-                            <td>{{ $member->phone }}</td>
-                            <td>{{ $member->email }}</td>
-                            <td>{{ $member->address }}</td>
-                            <td>{{ $member->cin }}</td>
-                            <td>
-                                @if ($member->status == 1)
-                                    <span class="badge bg-success">active</span>
-                                @else
-                                    <span class="badge bg-danger">inactive</span>
-                                @endif
-                            </td>
-             
+                            <td>{{ $invoice->id }}</td>
+                            <td>{{ $invoice->created_at }}</td>
+                            <td>{{ $invoice->amount_received }}</td>
+                            <td>{{ $invoice->subscription_price }}</td>
+                            <td>{{ $invoice->discount }}</td>
+                            <td>{{ $invoice->discount_amount }}</td>
+                            <td>{{ $invoice->amount_pending }}</td>
+                            <td>{{ $invoice->payment_mode }}</td>
+                            <td>{{ $invoice->additional_fees }}</td>
+                            <td>member</td>
+                            <td>service</td>
+                            <td>plan</td>
+                            <td>{{ $invoice->payment_comment }}</td>
                         </tr>
                         @endforeach
                     </tbody>

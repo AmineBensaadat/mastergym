@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->integer('member_id');
+            $table->integer('service_id');
+            $table->integer('plan_id');
             $table->integer('subscription_price');
             $table->integer('amount_pending')->nullable();
             $table->integer('discount')->nullable();

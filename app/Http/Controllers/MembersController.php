@@ -72,47 +72,47 @@ class MembersController extends Controller
     public function store(Request $request)
     {
         //validation form 
-        // $this->validate(
-        //     $request, 
-        //         [
-        //             'lastname' => 'required',
-        //             'firstname' => 'required',
-        //             'cin' => 'required|unique:members',
-        //             'address' => 'required',
-        //             'phone' => 'required',
-        //             'city' => 'required',
-        //             //'email' => 'required|email|unique:members',
-        //             'dob' => 'required',
-        //             'emergency_cont' => 'required',
-        //             'gym' => new IsSelected,
-        //             'start_date' => 'date|nullable',
-        //             'end_date' => 'date|nullable|after:start_date',
-        //         ],
-        //         [
-        //             'lastname.required' => __('translation.require'),
-        //             'firstname.required' => __('translation.require'),
-        //             'lastname.cin' => __('translation.require'),
-        //             'address.required' => __('translation.require'),
-        //             'phone.required' => __('translation.require'),
-        //             //'email.required' => __('translation.require_email'),
-        //             'dob.required' => __('translation.require'),
-        //             'emergency_cont.required' => __('translation.require'),
-        //             'gym.required' => __('require'),
-        //             'gym.city' => __('require'),
-        //             'start_date' => __('require'),
-        //             'end_date' => __('require'),
-        //         ],
-        //     );
-        //     // save member in member table
-        //     $member = $this->membersRepository->saveMember($request);
+        $this->validate(
+            $request, 
+                [
+                    'lastname' => 'required',
+                    'firstname' => 'required',
+                    'cin' => 'required|unique:members',
+                    'address' => 'required',
+                    'phone' => 'required|unique:members',
+                    'city' => 'required',
+                    //'email' => 'required|email|unique:members',
+                    'dob' => 'required',
+                    'emergency_contact' => 'required|unique:members',
+                    'gym' => new IsSelected,
+                    'start_date' => 'date|nullable',
+                    'end_date' => 'date|nullable|after:start_date',
+                ],
+                [
+                    'lastname.required' => __('translation.require'),
+                    'firstname.required' => __('translation.require'),
+                    'lastname.cin' => __('translation.require'),
+                    'address.required' => __('translation.require'),
+                    'phone.required' => __('translation.require'),
+                    //'email.required' => __('translation.require_email'),
+                    'dob.required' => __('translation.require'),
+                    'emergency_contact.required' => __('translation.require'),
+                    'gym.required' => __('require'),
+                    'gym.city' => __('require'),
+                    'start_date' => __('require'),
+                    'end_date' => __('require'),
+                ],
+            );
+            // save member in member table
+            $member = $this->membersRepository->saveMember($request);
 
              // save subscription
             if($request['service'] != 0){
                // save subscription in subscription table
-                //$subscription = $this->subscriptionsRepository->addSubscription($request, $member->id);
+                $subscription = $this->subscriptionsRepository->addSubscription($request, $member->id);
 
                 // save invoice in invoices table 
-                $subscription = $this->invoicesRepository->addInvoice($request, 1);
+                $invoice = $this->invoicesRepository->addInvoice($request, $member->id);
             }
             
             return redirect()->route('members_list');

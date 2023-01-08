@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GymsController;
+use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ServicesController;
@@ -65,6 +66,11 @@ Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function (
 Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
     Route::get('/all', [ServicesController::class, 'index'])->name('services_list');
     Route::post('/add', [ServicesController::class, 'add'])->name('services_add');
+});
+
+//Invoices
+Route::group(['prefix' => 'Invoices', 'middleware' => ['auth']], function () {
+    Route::get('/all', [InvoicesController::class, 'index'])->name('invioces_list');
 });
 
 //setting
