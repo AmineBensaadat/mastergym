@@ -11,6 +11,7 @@
 <!--datatable responsive css-->
 <link href="{{ URL::asset('assets/css/responsive.bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/buttons.dataTables.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/css/custom_invoices.css') }}" rel="stylesheet" type="text/css" />
 
 
 
@@ -70,17 +71,80 @@
                         @foreach ($invoices as $invoice)
                         <tr>
                             <td>{{ $invoice->id }}</td>
-                            <td>{{ $invoice->created_at }}</td>
-                            <td>{{ $invoice->amount_received }}</td>
-                            <td>{{ $invoice->subscription_price }}</td>
-                            <td>{{ $invoice->discount }}</td>
-                            <td>{{ $invoice->discount_amount }}</td>
-                            <td>{{ $invoice->amount_pending }}</td>
-                            <td>{{ $invoice->payment_mode }}</td>
-                            <td>{{ $invoice->additional_fees }}</td>
-                            <td>member</td>
-                            <td>service</td>
-                            <td>plan</td>
+                            <td>
+                                <h4><center><span class="badge badge-outline-info">{{ $invoice->created_at }}</span></center></h4> 
+                            </td>
+                            <td>
+                                <h4><center><span class="badge badge-soft-success badge-border">{{ $invoice->amount_received }}  @lang('translation.DH')</span></center></h4>
+                            </td>
+                            <td>
+                                <h4><center><span class="badge text-bg-secondary bg-dark">{{ $invoice->subscription_price }}  @lang('translation.DH')</span></center></h4>
+                            </td>
+                            <td>
+                                <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount }} %</span></center></h4> 
+                            </td>
+                            <td>
+                                <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount_amount }}</span></center></h4>
+                            </td>
+                            <td>
+                                <h4>
+                                    <center>
+                                        <span class="badge rounded-pill badge-soft-warning">{{ $invoice->amount_pending }} @lang('translation.DH')</span>
+                                    </center>
+                                </h4>
+                            </td>
+                            <td>
+                                <h4>
+                                    <center>
+                                        <span class="badge badge-soft-info badge-border">{{ $invoice->payment_mode }}</span>
+                                    </center>
+                                </h4>
+                            </td>
+                            <td>
+                                <h4>
+                                    <center><span class="badge badge-soft-info badge-border">{{ $invoice->additional_fees }} @lang('translation.DH')</span></center>
+                                </h4>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">            
+                                    <div class="flex-shrink-0">
+                                    @if ($invoice->member_img)
+                                        @if(file_exists('assets/images/members/'.$invoice->member_img)) 
+                                        <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$invoice->member_img )}}">
+                                        @else
+                                        <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
+                                        @endif
+                                    @else
+                                    <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
+                                    @endif 
+                                    </div>            
+                                    <div class="flex-grow-1 ms-2 name">
+
+                                        <a href="../members/show/{{ $invoice->member_id }}">
+                                            {{ $invoice->lastname." ".$invoice->firstname }}
+                                        
+                                        </a>    
+                                    </div>            
+                                </div>
+                            </td>
+                            <td><div class="d-flex align-items-center">
+                                <div class="avatar-sm bg-light rounded p-1 me-2">
+                                    <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($invoice->service_id, "services") )}}">
+                                </div>
+                                <div>
+                                    <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $invoice->service_name }}</a></h5>
+                                </div>
+                            </div></td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-sm bg-light rounded p-1 me-2">
+                                            <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($invoice->plan_id, "plans") )}}">
+                                    </div>
+                                    <div>
+                                        <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $invoice->plan_name }}</a></h5>
+                                    </div>
+                                </div>
+                            </td>
                             <td>{{ $invoice->payment_comment }}</td>
                         </tr>
                         @endforeach

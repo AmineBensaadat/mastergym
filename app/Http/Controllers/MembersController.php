@@ -22,7 +22,6 @@ class MembersController extends Controller
     private $gymsRepository;
     private $servicesRepository;
     private $subscriptionsRepository;
-    private $gyms;
     private $invoicesRepository;
 
     public function __construct(
@@ -157,10 +156,9 @@ class MembersController extends Controller
     public function show($id)
     {
         $member = DB::table('members')
-            ->join('files', 'members.id', '=', 'files.entitiy_id')
+            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->select('files.name as img_name','members.*')
             ->where('members.id', $id)->first();
-
         return view('members.show', array("member"  => $member));
     }
 

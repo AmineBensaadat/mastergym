@@ -327,6 +327,7 @@ return [
     "additional_fees"  => "Frais supplémentaires",
     "comment"  => "Commentaire",
     "created_at"  => "Créé le",
+    "DH"  => "DH",
 
 ];
 ?>
