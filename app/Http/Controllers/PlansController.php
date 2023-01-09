@@ -46,19 +46,20 @@ class PlansController extends Controller{
     {
         if($request->isMethod('get')){
             $query = $request['query'];
-            $plans = Plans::select('id','plan_name', 'plan_details')
+            $plans = Plans::select('plans.id','plan_name', 'plan_details','files.name as plan_img')
+                ->leftJoin('files', 'plans.id', '=', 'files.entitiy_id')
                 ->where('plan_name','LIKE','%'.$query.'%')
                 ->orWhere('plan_details', 'like', '%'. $query .'%')
                 ->paginate(10);
             $count = $plans->count();
-            return view('plans.plans_list' , compact('plans', 'count'));
+            return view('plans.list' , compact('plans', 'count'));
         }else{
             $plans = Plans::paginate(10);
             $count = $plans->count();
-            return redirect()->route('plans_list');
+            return redirect()->route('list');
         }
 
-        return view('plans.plans_list' , compact('plans', 'count'));
+        return view('plans.list' , compact('plans', 'count'));
     }
 
     /**
@@ -132,6 +133,6 @@ class PlansController extends Controller{
         }
 
 
-        return redirect()->route('plans_list');
+        return redirect()->route('list');
     }
 }
