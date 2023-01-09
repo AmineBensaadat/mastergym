@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
+use App\Repositories\GymsRepository;
 use App\Repositories\MembersRepository;
+use App\Repositories\ServicesRepository;
 use App\Repositories\SubscriptionsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -14,10 +16,14 @@ class SubscriptionsController extends Controller
 {
     private $membersRepository;
     private $subscriptionsRepository;
+    private $servicesRepository;
+    private $gymsRepository;
 
-    public function __construct(MembersRepository $membersRepository, SubscriptionsRepository $subscriptionsRepository)
+    public function __construct(ServicesRepository $servicesRepository,GymsRepository $gymsRepository, MembersRepository $membersRepository, SubscriptionsRepository $subscriptionsRepository)
     {
         $this->membersRepository = $membersRepository;
+        $this->gymsRepository = $gymsRepository;
+        $this->servicesRepository = $servicesRepository;
         $this->subscriptionsRepository = $subscriptionsRepository;
         $this->middleware('auth');
     }
@@ -37,10 +43,11 @@ class SubscriptionsController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function add()
     {
-        $gyms = Members::all();
-        return view('members.create', compact('gyms'));
+        $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        $services =  $this->servicesRepository->renderAllServices();
+        return view('subscriptions.create', compact('gyms','services'));
     }
 
     /**

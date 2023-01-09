@@ -60,6 +60,7 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
 //Subscriptions
 Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function () {
     Route::get('/all', [SubscriptionsController::class, 'index'])->name('subscriptions_list');
+    Route::get('/add', [SubscriptionsController::class, 'add'])->name('subscriptions_add');
 });
 
 //Services

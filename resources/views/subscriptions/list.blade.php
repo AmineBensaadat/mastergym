@@ -21,7 +21,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <div class="flex-grow-1">
-                        <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Subscription </a>
+                        <a href="{{ route('subscriptions_add') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Subscription </a>
                     </div>
                     <div class="flex-shrink-0">
                         <div class="hstack text-nowrap gap-2">
