@@ -95,7 +95,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarUsers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUsers">
-                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.users'); ?></span>
+                        <i class="ri-group-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.users'); ?></span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarUsers" style="">
                         <ul class="nav nav-sm flex-column">
@@ -116,7 +116,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarMember" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMember">
-                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.members'); ?></span>
+                        <i class="ri-team-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.members'); ?></span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarMember" style="">
                         <ul class="nav nav-sm flex-column">
@@ -137,7 +137,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarSubscriptions" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSubscriptions">
-                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('².subscriptions'); ?></span>
+                        <i class="ri-file-list-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.subscriptions'); ?></span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarSubscriptions" style="">
                         <ul class="nav nav-sm flex-column">
