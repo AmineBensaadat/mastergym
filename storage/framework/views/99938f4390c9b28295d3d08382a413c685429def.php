@@ -39,10 +39,45 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
-                        <i class="ri-flood-fill" ></i> <span><?php echo app('translator')->get('translation.gyms'); ?></span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                        <i class="ri-building-2-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.gyms'); ?></span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarDashboards" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                                     <?php echo app('translator')->get('translation.all_gym'); ?>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                                     <?php echo app('translator')->get('translation.add_gym'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                        <i class="ri-clipboard-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.plans'); ?></span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarDashboards" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('plans_list')); ?>">
+                                     <?php echo app('translator')->get('translation.all_plans'); ?>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('plans_create')); ?>">
+                                     <?php echo app('translator')->get('translation.add_plan'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('plans_list')); ?>">
