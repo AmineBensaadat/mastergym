@@ -50,7 +50,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                                <a class="nav-link menu-link" href="<?php echo e(route('add_gym')); ?>">
                                      <?php echo app('translator')->get('translation.add_gym'); ?>
                                 </a>
                             </li>
@@ -137,7 +137,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarSubscriptions" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSubscriptions">
-                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.subscriptions'); ?></span>
+                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('².subscriptions'); ?></span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarSubscriptions" style="">
                         <ul class="nav nav-sm flex-column">
