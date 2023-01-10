@@ -8,6 +8,7 @@ use App\Models\Members;
 use App\Repositories\GymsRepository;
 use App\Repositories\InvoicesRepository;
 use App\Repositories\MembersRepository;
+use App\Repositories\PlansRepository;
 use App\Repositories\ServicesRepository;
 use App\Repositories\SubscriptionsRepository;
 use App\Rules\IsSelected;
@@ -25,19 +26,22 @@ class MembersController extends Controller
     private $servicesRepository;
     private $subscriptionsRepository;
     private $invoicesRepository;
+    private $plansRepository;
 
     public function __construct(
         MembersRepository $membersRepository, 
         GymsRepository $gymsRepository, 
         ServicesRepository $servicesRepository,
         SubscriptionsRepository $subscriptionsRepository,
-        InvoicesRepository $invoicesRepository)
+        InvoicesRepository $invoicesRepository,
+        PlansRepository $plansRepository)
     {
         $this->membersRepository = $membersRepository;
         $this->gymsRepository = $gymsRepository;
         $this->servicesRepository = $servicesRepository;
         $this->subscriptionsRepository = $subscriptionsRepository;
         $this->invoicesRepository = $invoicesRepository;
+        $this->plansRepository = $plansRepository;
         $this->middleware('auth');
     }
     /**
@@ -156,11 +160,12 @@ class MembersController extends Controller
     public function show($member_id)
     {
         $invoices = $this->invoicesRepository->getMemberInvoices($member_id);
+        $plan = $this->plansRepository->getMemberPlan($member_id);
         $member = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->select('files.name as img_name','members.*')
             ->where('members.id', $member_id)->first();
-        return view('members.show', array("member"  => $member, "invoices" => $invoices));
+        return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
     }
 
 }

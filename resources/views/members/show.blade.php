@@ -1741,6 +1741,7 @@
                     </div>
                     <!--end tab-pane-->
                     <div class="tab-pane fade" id="plan" role="tabpanel">
+                        @if($plan) 
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -1831,7 +1832,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="mt-3 pt-2">
-                                                    <a href="javascript:void(0);" class="btn btn-info w-100">Change Plan</a>
+                                                    <a href="javascript:void(0);" class="btn btn-info w-100">Renew</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1841,6 +1842,7 @@
                             </div>
                             <!--end card-body-->
                         </div>
+                        @endif
                         <!--end card-->
                     </div>
                     <!--end tab-pane-->
