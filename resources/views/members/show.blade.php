@@ -1751,14 +1751,14 @@
                                                 <div class="ribbon-two ribbon-two-danger"><span>Popular</span></div>
                                                 <div class="d-flex align-items-center mb-3">
                                                     <div class="flex-grow-1">
-                                                        <h5 class="mb-0 fw-semibold">Enterprise</h5>
+                                                        <h5 class="mb-0 fw-semibold">{{ $plan->plan_name }}</h5>
                                                     </div>
                                                     <div class="ms-auto">
-                                                        <h2 class="month mb-0" style="display: block;">$39 <small class="fs-13 text-muted">/Month</small></h2>
+                                                        <h2 class="month mb-0" style="display: block;"><small class="fs-13 text-muted">{{ $plan->amount }} DH/mois</small></h2>
                                                         <h2 class="annual mb-0" style="display: none;"><small class="fs-16"><del>$468</del></small> $351 <small class="fs-13 text-muted">/Year</small></h2>
                                                     </div>
                                                 </div>
-                                                <p class="text-muted">This plan is for those who have a team alredy and running a large business.</p>
+                                                <p class="text-muted">{{ $plan->plan_details }}</p>
                                                 <ul class="list-unstyled vstack gap-3">
                                                     <li>
                                                         <div class="d-flex">
