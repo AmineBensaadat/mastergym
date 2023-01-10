@@ -153,13 +153,13 @@ class MembersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($member_id)
     {
-        $invoices = $this->invoicesRepository->getAllInvoices();
+        $invoices = $this->invoicesRepository->getMemberInvoices($member_id);
         $member = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->select('files.name as img_name','members.*')
-            ->where('members.id', $id)->first();
+            ->where('members.id', $member_id)->first();
         return view('members.show', array("member"  => $member, "invoices" => $invoices));
     }
 
