@@ -82,9 +82,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-14" data-bs-toggle="tab" href="#projects" role="tab">
+                            <a class="nav-link fs-14" data-bs-toggle="tab" href="#invoices" role="tab">
                                 <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span
-                                    class="d-none d-md-inline-block">Projects</span>
+                                    class="d-none d-md-inline-block">Invoices</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -1259,7 +1259,7 @@
 
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Projects</h5>
+                                        <h5 class="card-title">invoices</h5>
                                         <!-- Swiper -->
                                         <div class="swiper project-swiper mt-n4">
                                             <div class="d-flex justify-content-end gap-2 mb-2">
@@ -1740,7 +1740,7 @@
                         <!--end card-->
                     </div>
                     <!--end tab-pane-->
-                    <div class="tab-pane fade" id="projects" role="tabpanel">
+                    <div class="tab-pane fade" id="invoices" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">

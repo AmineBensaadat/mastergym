@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
+
 
 class MembersController extends Controller
 {
@@ -34,7 +36,6 @@ class MembersController extends Controller
         $this->membersRepository = $membersRepository;
         $this->gymsRepository = $gymsRepository;
         $this->servicesRepository = $servicesRepository;
-        $this->gyms = $membersRepository;
         $this->subscriptionsRepository = $subscriptionsRepository;
         $this->invoicesRepository = $invoicesRepository;
         $this->middleware('auth');
@@ -80,12 +81,12 @@ class MembersController extends Controller
                     'address' => 'required',
                     'phone' => 'required|unique:members',
                     'city' => 'required',
-                    //'email' => 'required|email|unique:members',
                     'dob' => 'required',
                     'emergency_contact' => 'required|unique:members',
                     'gym' => new IsSelected,
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
+                    'amount-received' => 'required_unless:subscription_price.*,'
                 ],
                 [
                     'lastname.required' => __('translation.require'),
@@ -93,7 +94,6 @@ class MembersController extends Controller
                     'lastname.cin' => __('translation.require'),
                     'address.required' => __('translation.require'),
                     'phone.required' => __('translation.require'),
-                    //'email.required' => __('translation.require_email'),
                     'dob.required' => __('translation.require'),
                     'emergency_contact.required' => __('translation.require'),
                     'gym.required' => __('require'),
