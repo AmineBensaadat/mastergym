@@ -21,7 +21,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <div class="flex-grow-1">
-                        <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Subscription </a>
+                        <a href="{{ route('subscriptions_add') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Subscription </a>
                     </div>
                     <div class="flex-shrink-0">
                         <div class="hstack text-nowrap gap-2">
@@ -67,11 +67,15 @@
                                 <div class="d-flex align-items-start">
                                     <div class="flex-shrink-0">
                                         <div>
-                                            @if ($subscription->member_img)
-                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$subscription->member_img )}}">
+                                        @if ($subscription->member_img)
+                                            @if(file_exists('assets/images/members/'.$subscription->member_img)) 
+                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$subscription->member_img )}}">
                                             @else
-                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/users/user-dummy-img.jpg' )}}">
+                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
                                             @endif
+                                        @else
+                                        <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
+                                        @endif 
                                         </div>
                                     </div>
                                     <div class="flex-grow-1 ms-2 name">

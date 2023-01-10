@@ -33,6 +33,7 @@ File: flag input Js File
         }
     });
     function loadCountryListData(datas) {
+        
         var mainArray = Array.from(document.querySelectorAll("[data-input-flag]"))
         var flags = '';
         var arr = Array.from(datas);

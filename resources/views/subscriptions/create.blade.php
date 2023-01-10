@@ -1,139 +1,18 @@
 @extends('layouts.master')
-@section('title') @lang('translation.add-member') @endsection
+@section('title') @lang('translation.add-Subscription') @endsection
 @section('css')
 @endsection
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Ecommerce @endslot
-@slot('title') @lang('translation.Create-Memeber') @endslot
+@slot('title') @lang('translation.Add-Subscription') @endslot
 @endcomponent
 
-<form id="createMember-form" method="POST" class="needs-validation"  action="{{ route('members_store') }}" novalidate enctype="multipart/form-data">
+<form id="createSubscription-form" method="POST" class="needs-validation"  action="{{ route('members_store') }}" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <!-- start col -->
         <div class="col-lg-8">
-                <!-- start card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="container">
-                            <div class="row">
-                              <div class="col-sm">
-                                <div class="mb-3">
-                                    <label class="form-label" for="lastname-input">@lang('translation.lastname')</label>
-                                    <input type="text" class="form-control" name="lastname" id="lastname-input" value="{{ old('lastname') }}" placeholder="@lang('translation.entrer the') @lang('translation.lastname')" required >
-                                    @error('lastname')
-                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label for="choices-gender" class="form-label">@lang('translation.gender')</label>
-                                    <select name="gender" class="form-select" id="choices-gender">
-                                        <option value="men" selected>@lang('translation.men')</option>
-                                        <option value="female">@lang('translation.female')</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="phone-input">@lang('translation.phone')</label>
-
-                                        <div class="form-icon">
-                                            <input type="phone" class="form-control form-control-icon" name="phone" id="phone-input" value="{{ old('phone') }}" placeholder="@lang('translation.entrer the') @lang('translation.phone')" required>
-                                            <i class="ri-phone-line"></i>
-                                        </div>
-
-                                        @error('phone')
-                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="city-input">@lang('translation.city')</label>
-                                        <input type="text" class="form-control" name="city" id="firstname-input" value="{{ old('city') }}" placeholder="@lang('translation.entrer the') @lang('translation.city')" required>
-                                        @error('city')
-                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="cin-input">@lang('translation.CNIE')</label>
-                                    <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') }}" placeholder="@lang('translation.entrer the') @lang('translation.CNIE')" required>
-                                    @error('cin')
-                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                              </div>
-                              <div class="col-sm">
-                                <div class="mb-3">
-                                    <label class="form-label" for="firstname-input">@lang('translation.name')</label>
-                                    <input type="text" class="form-control" name="firstname" id="firstname-input" value="{{ old('firstname') }}" placeholder="@lang('translation.entrer the') @lang('translation.name')" required>
-                                    @error('firstname')
-                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="dob-input">@lang('translation.day')</label>
-
-                                    <div class="form-icon">
-                                        <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
-                                        <i class="ri-map-pin-time-line"></i>
-                                    </div>
-
-                                    @error('dob')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="emergency_contact-input">@lang('translation.emergency_contact')</label>
-
-                                    <div class="form-icon">
-                                        <input type="text" class="form-control form-control-icon" name="emergency_contact" id="emergency_contact" value="{{ old('emergency_contact') }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_contact')"  required>
-                                        <i class="ri-cellphone-line"></i>
-                                    </div>
-                                    @error('emergency_contact')
-                                    <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="address-input">@lang('translation.address')</label>
-                                        <input type="text" class="form-control" name="address" id="firstname-input" value="{{ old('address') }}" placeholder="@lang('translation.entrer the') @lang('translation.address')" required>
-                                        @error('address')
-                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="phone-input">@lang('translation.email')</label>
-
-                                        <div class="form-icon">
-                                            <input type="email" class="form-control form-control-icon" name="email" id="phone-input" value="{{ old('email') }}" placeholder="@lang('translation.entrer the') @lang('translation.email')">
-                                            <i class=" ri-mail-line"></i>
-                                        </div>
-                                        {{-- @error('email')
-                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                        @enderror --}}
-                                    </div>
-                                </div>
-
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end card -->
-
                 <!-- start card subscription -->
                 <div class="card border card-border-info">
                     <div class="card-header">
@@ -148,14 +27,14 @@
                                     <select name="service" id="services" class="form-select" aria-label=".form-select-sm example" required>
                                         <option value="0">@lang('translation.chose')@lang('translation.Service')</option>
                                         @foreach ($services as $service)
-                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                            <option {{ old('service') == $service->id ? "selected" : "" }} value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="start_date">@lang('translation.start-date')</label>
-                                    <input type="date" class="form-control" name="start_date" id="start_date"  placeholder="@lang('translation.entrer the') @lang('translation.start_date')" required>
+                                    <input type="date" class="form-control" name="start_date" id="start_date" value="{{ old('start_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.start_date')" required>
                                     @error('start_date')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
@@ -177,7 +56,7 @@
                                         <label class="form-label" for="end_date-input">@lang('translation.end-date')</label>
 
                                         <div class="form-icon">
-                                            <input type="date" class="form-control form-control-icon" name="end_date" id="end_date"  placeholder="@lang('translation.entrer the') @lang('translation.end_date')" required>
+                                            <input type="date" class="form-control form-control-icon" name="end_date" id="end_date" value="{{ old('end_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.end_date')" required>
                                             <i class="ri-phone-line"></i>
                                         </div>
 
@@ -204,7 +83,7 @@
                               <div class="col-sm">
                                 <div class="mb-3">
                                     <label class="form-label" for="subscription_price">@lang('translation.subscription_price')</label>
-                                    <input readonly type="number" class="form-control" name="subscription_price" id="subscription_price" placeholder="@lang('translation.entrer the') @lang('translation.subscription_price')"  >
+                                    <input readonly type="number" class="form-control" name="subscription_price" id="subscription_price" value="{{ old('subscription_price') }}" placeholder="@lang('translation.entrer the') @lang('translation.subscription_price')"  >
                                     @error('subscription_price')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
@@ -282,42 +161,6 @@
 
         <!-- end col -->
         <div class="col-lg-4">
-            <!-- start card img -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-4">
-                        <h5 class="fs-14 mb-1">@lang('translation.images')</h5>
-                        <p class="text-muted">@lang('translation.Add_image')</p>
-                        <div class="text-center">
-                            <div class="position-relative d-inline-block">
-                                <div class="position-absolute top-100 start-100 translate-middle">
-                                    <label for="single-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
-                                        <div class="avatar-xs">
-                                            <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-                                                <i class="ri-image-fill"></i>
-                                            </div>
-                                        </div>
-                                    </label>
-                                    <input class="form-control d-none"  name="profile_image"  id="single-image-input" type="file"
-                                        accept="image/png, image/gif, image/jpeg"
-                                        onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])"
-                                        >
-                                </div>
-                                <div class="avatar-lg">
-                                    <div class="avatar-title bg-light rounded">
-                                        <img src="{{ URL::asset('assets/images/img_icon.png') }}" id="single-img" class="avatar-md" />
-                                    </div>
-                                </div>
-                            </div>
-                            @error('profile_image')
-                                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end card -->
-
             <!-- start card -->
             <div class="card">
                 <div class="card-body">
@@ -333,43 +176,6 @@
                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="choices-status" class="form-label">@lang('translation.Status')</label>
-                        <select name="status" class="form-select" id="choices-status">
-                            <option value="1" selected>@lang('translation.Active')</option>
-                            <option value="0">@lang('translation.Inactive')</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="health_issues-input">@lang('translation.health_issues')</label>
-
-                        <div class="form-icon">
-                            <input type="text" class="form-control form-control-icon" name="health_issues" id="phone-input" value="{{ old('health_issues') }}" placeholder="@lang('translation.entrer the') @lang('translation.health_issues')">
-                            <i class="ri-sword-fill"></i>
-                        </div>
-
-                        @error('health_issues')
-                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="source-input">@lang('translation.source')</label>
-
-                        <div class="form-icon">
-                            <input type="text" class="form-control form-control-icon" name="source" id="source-input" value="{{ old('source') }}" placeholder="@lang('translation.entrer thea') @lang('translation.source')">
-                            <i class="ri-sword-fill"></i>
-                        </div>
-
-                        @error('source')
-                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-
-
                 </div>
             </div>
             <!-- end card body -->

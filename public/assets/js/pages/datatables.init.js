@@ -11,7 +11,9 @@ Contact: Themesbrand@gmail.com
 File: datatables init js
 */
 document.addEventListener('DOMContentLoaded', function () {
-  var table = new DataTable('#example');
+  var table = new DataTable('#example', {
+    "scrollX": true
+  });
 });
 document.addEventListener('DOMContentLoaded', function () {
   var table = new DataTable('#scroll-vertical', {
