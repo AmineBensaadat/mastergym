@@ -155,11 +155,12 @@ class MembersController extends Controller
      */
     public function show($id)
     {
+        $invoices = $this->invoicesRepository->getAllInvoices();
         $member = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->select('files.name as img_name','members.*')
             ->where('members.id', $id)->first();
-        return view('members.show', array("member"  => $member));
+        return view('members.show', array("member"  => $member, "invoices" => $invoices));
     }
 
 }
