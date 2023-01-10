@@ -59,10 +59,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                    <a class="nav-link menu-link collapsed" href="#sidebarPlans" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPlans">
                         <i class="ri-clipboard-line" ></i> <span data-key="t-dashboards">@lang('translation.plans')</span>
                     </a>
-                    <div class="menu-dropdown collapse" id="sidebarDashboards" style="">
+                    <div class="menu-dropdown collapse" id="sidebarPlans" style="">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ route('plans_list') }}">
@@ -78,37 +78,77 @@
                     </div>
                 </li>
 
-
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('plans_list') }}">
-                        <i class="ri-clipboard-line" ></i> <span>@lang('translation.plans')</span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarServices" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarServices">
+                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards">@lang('translation.services')</span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarServices" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('services_list') }}">
+                                     @lang('translation.services')
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('services_list') }}">
-                        <i class="ri-stack-fill" ></i> <span>@lang('translation.services')</span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarUsers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUsers">
+                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards">@lang('translation.users')</span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarUsers" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('users_list') }}">
+                                     @lang('translation.users')
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('users_create') }}">
+                                     @lang('translation.add_users')
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('users_list') }}">
-                        <i class="ri-group-line" ></i> <span>@lang('translation.users')</span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarMember" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMember">
+                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards">@lang('translation.members')</span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarMember" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('members_list') }}">
+                                     @lang('translation.members')
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('members_create') }}">
+                                     @lang('translation.add_member')
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('members_list') }}">
-                        <i class="ri-team-line" ></i> <span>@lang('translation.members')</span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarSubscriptions" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSubscriptions">
+                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards">@lang('translation.subscriptions')</span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarSubscriptions" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('subscriptions_list') }}">
+                                     @lang('translation.subscriptions')
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('subscriptions_list') }}">
-                        <i class="ri-file-list-3-fill" ></i> <span>@lang('translation.subscriptions')</span>
-                    </a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('invioces_list') }}">
                         <i class="ri-folders-line" ></i> <span>@lang('translation.invoices')</span>
