@@ -34,55 +34,55 @@
                 <li class="menu-title"><span>@lang('translation.menu')</span></li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="../widgets">
-                        <i class="ri-honour-line"></i> <span>@lang('translation.dashboards')</span>
+                        <i class="ri-dashboard-line" ></i> <span>@lang('translation.dashboards')</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('gym_list') }}">
-                        <i class="ri-honour-line"></i> <span>@lang('translation.gyms')</span>
+                        <i class="ri-flood-fill" ></i> <span>@lang('translation.gyms')</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('plans_list') }}">
-                        <i class="ri-honour-line"></i> <span>@lang('translation.plans')</span>
+                        <i class="ri-clipboard-line" ></i> <span>@lang('translation.plans')</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('services_list') }}">
-                        <i class="ri-honour-line"></i> <span>@lang('translation.services')</span>
+                        <i class="ri-stack-fill" ></i> <span>@lang('translation.services')</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('users_list') }}">
-                        <i class="ri-honour-line"></i> <span>@lang('translation.users')</span>
+                        <i class="ri-group-line" ></i> <span>@lang('translation.users')</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('members_list') }}">
-                        <i class="ri-honour-line"></i> <span>@lang('translation.members')</span>
+                        <i class="ri-team-line" ></i> <span>@lang('translation.members')</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('subscriptions_list') }}">
-                        <i class="ri-honour-line"></i> <span>@lang('translation.subscriptions')</span>
+                        <i class="ri-file-list-3-fill" ></i> <span>@lang('translation.subscriptions')</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('invioces_list') }}">
-                        <i class="ri-honour-line"></i> <span>@lang('translation.invoices')</span>
+                        <i class="ri-folders-line" ></i> <span>@lang('translation.invoices')</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('setting') }}">
-                        <i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span>@lang('translation.settings')</span>
+                        <i class="mdi mdi-cog-outline"></i> <span>@lang('translation.settings')</span>
                     </a>
                 </li>
 

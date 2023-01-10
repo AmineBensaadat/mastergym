@@ -34,55 +34,55 @@
                 <li class="menu-title"><span><?php echo app('translator')->get('translation.menu'); ?></span></li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="../widgets">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.dashboards'); ?></span>
+                        <i class="ri-dashboard-line" ></i> <span><?php echo app('translator')->get('translation.dashboards'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.gyms'); ?></span>
+                        <i class="ri-flood-fill" ></i> <span><?php echo app('translator')->get('translation.gyms'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('plans_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.plans'); ?></span>
+                        <i class="ri-clipboard-line" ></i> <span><?php echo app('translator')->get('translation.plans'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('services_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.services'); ?></span>
+                        <i class="ri-stack-fill" ></i> <span><?php echo app('translator')->get('translation.services'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('users_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.users'); ?></span>
+                        <i class="ri-group-line" ></i> <span><?php echo app('translator')->get('translation.users'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('members_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.members'); ?></span>
+                        <i class="ri-team-line" ></i> <span><?php echo app('translator')->get('translation.members'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('subscriptions_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.subscriptions'); ?></span>
+                        <i class="ri-file-list-3-fill" ></i> <span><?php echo app('translator')->get('translation.subscriptions'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('invioces_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.invoices'); ?></span>
+                        <i class="ri-folders-line" ></i> <span><?php echo app('translator')->get('translation.invoices'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('setting')); ?>">
-                        <i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span><?php echo app('translator')->get('translation.settings'); ?></span>
+                        <i class="mdi mdi-cog-outline"></i> <span><?php echo app('translator')->get('translation.settings'); ?></span>
                     </a>
                 </li>
 
