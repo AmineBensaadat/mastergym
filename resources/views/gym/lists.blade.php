@@ -26,7 +26,7 @@
                             <button type="button" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></button>
                         </div>
                         <div class="explore-place-bid-img">
-                            <img src="{{URL::asset('assets/images/gyms/'.($gym->img_name ? $gym->img_name : 'default.png')  )}}" alt="" class="card-img-top explore-img" />
+                            <img src="{{URL::asset('assets/images/gyms/'.(file_exists($gym->img_name) ? $gym->img_name : 'default.png')  )}}" alt="" class="card-img-top explore-img" />
                             <div class="bg-overlay"></div>
                             <div class="place-bid-btn">
                                 <a href="../gym/show/{{ $gym->id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i>@lang('translation.View_')</a>
