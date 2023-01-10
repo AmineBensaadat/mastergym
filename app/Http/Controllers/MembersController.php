@@ -163,7 +163,14 @@ class MembersController extends Controller
         $plan = $this->plansRepository->getMemberPlan($member_id);
         $member = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
-            ->select('files.name as img_name','members.*')
+            ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
+            ->select(
+                'files.name as img_name','members.*', 
+                'subscriptions.id as subscription_id',
+                'subscriptions.start_date',
+                'subscriptions.start_date',
+                'subscriptions.end_date',
+            )
             ->where('members.id', $member_id)->first();
         return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
     }

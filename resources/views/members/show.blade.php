@@ -1492,7 +1492,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="mt-3 pt-2">
-                                                    <a href="javascript:void(0);" class="btn btn-info w-100">Renew</a>
+                                                    <a href="{{ route('subscriptions_renwe', ['subscription_id' =>  $member->subscription_id, 'member_id' => $member->id ]) }}" class="btn btn-info w-100">Renew</a>
                                                 </div>
                                             </div>
                                         </div>
