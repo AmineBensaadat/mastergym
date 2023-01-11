@@ -63,24 +63,24 @@
                         @foreach ($members as $member)
                         <tr>
                             <td>
-                                <div class="d-flex align-items-center">            
+                                <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
                                      @if ($member->img_name)
-                                        @if(file_exists('assets/images/members/'.$member->img_name)) 
+                                        @if(file_exists('assets/images/members/'.$member->img_name))
                                         <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
                                         @else
                                         <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
                                         @endif
                                     @else
                                     <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                    @endif 
-                                    </div>            
+                                    @endif
+                                    </div>
                                     <div class="flex-grow-1 ms-2 name">
 
                                         <a href="../members/show/{{ $member->id }}">
                                             {{ $member->lastname." ".$member->firstname }}
-                                        </a>    
-                                    </div>            
+                                        </a>
+                                    </div>
                                 </div>
                             </td>
                             <td>{{ $member->phone }}</td>
@@ -94,7 +94,7 @@
                                     <span class="badge bg-danger">inactive</span>
                                 @endif
                             </td>
-             
+
                         </tr>
                         @endforeach
                     </tbody>
