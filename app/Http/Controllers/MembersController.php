@@ -8,6 +8,7 @@ use App\Models\Members;
 use App\Repositories\GymsRepository;
 use App\Repositories\InvoicesRepository;
 use App\Repositories\MembersRepository;
+use App\Repositories\PlansRepository;
 use App\Repositories\ServicesRepository;
 use App\Repositories\SubscriptionsRepository;
 use App\Rules\IsSelected;
@@ -15,6 +16,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
+
 
 class MembersController extends Controller
 {
@@ -23,20 +26,22 @@ class MembersController extends Controller
     private $servicesRepository;
     private $subscriptionsRepository;
     private $invoicesRepository;
+    private $plansRepository;
 
     public function __construct(
         MembersRepository $membersRepository, 
         GymsRepository $gymsRepository, 
         ServicesRepository $servicesRepository,
         SubscriptionsRepository $subscriptionsRepository,
-        InvoicesRepository $invoicesRepository)
+        InvoicesRepository $invoicesRepository,
+        PlansRepository $plansRepository)
     {
         $this->membersRepository = $membersRepository;
         $this->gymsRepository = $gymsRepository;
         $this->servicesRepository = $servicesRepository;
-        $this->gyms = $membersRepository;
         $this->subscriptionsRepository = $subscriptionsRepository;
         $this->invoicesRepository = $invoicesRepository;
+        $this->plansRepository = $plansRepository;
         $this->middleware('auth');
     }
     /**
@@ -80,12 +85,12 @@ class MembersController extends Controller
                     'address' => 'required',
                     'phone' => 'required|unique:members',
                     'city' => 'required',
-                    //'email' => 'required|email|unique:members',
                     'dob' => 'required',
                     'emergency_contact' => 'required|unique:members',
                     'gym' => new IsSelected,
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
+                    'amount-received' => 'required_unless:subscription_price.*,'
                 ],
                 [
                     'lastname.required' => __('translation.require'),
@@ -93,7 +98,6 @@ class MembersController extends Controller
                     'lastname.cin' => __('translation.require'),
                     'address.required' => __('translation.require'),
                     'phone.required' => __('translation.require'),
-                    //'email.required' => __('translation.require_email'),
                     'dob.required' => __('translation.require'),
                     'emergency_contact.required' => __('translation.require'),
                     'gym.required' => __('require'),
@@ -153,13 +157,22 @@ class MembersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($member_id)
     {
+        $invoices = $this->invoicesRepository->getMemberInvoices($member_id);
+        $plan = $this->plansRepository->getMemberPlan($member_id);
         $member = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
-            ->select('files.name as img_name','members.*')
-            ->where('members.id', $id)->first();
-        return view('members.show', array("member"  => $member));
+            ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
+            ->select(
+                'files.name as img_name','members.*', 
+                'subscriptions.id as subscription_id',
+                'subscriptions.start_date',
+                'subscriptions.start_date',
+                'subscriptions.end_date',
+            )
+            ->where('members.id', $member_id)->first();
+        return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
     }
 
 }

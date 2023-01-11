@@ -23,6 +23,23 @@ class SubscriptionsRepository
        return $subscription;
     }
 
+    public function updateSubscription($request, $subscription_id, $invoice_id){
+        $user_id= auth()->user()->id;
+        Subscriptions::where('id', $subscription_id)
+        ->update([
+            'invoice_id' => $invoice_id,
+            'plan_id' => $request['plans'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'status' => $request['status'],
+            'is_renewal' => 0,
+            'created_by' =>  $user_id,
+            'updated_by' =>  $user_id,
+        ]);
+        
+       return $subscription_id;
+    }
+
     public function getAllSucription(){
         $user= auth()->user();
         $subscriptions = DB::table('subscriptions')

@@ -34,55 +34,90 @@
                 <li class="menu-title"><span><?php echo app('translator')->get('translation.menu'); ?></span></li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="../widgets">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.dashboards'); ?></span>
+                        <i class="ri-dashboard-line" ></i> <span><?php echo app('translator')->get('translation.dashboards'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.gyms'); ?></span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                        <i class="ri-building-2-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.gyms'); ?></span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarDashboards" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                                     <?php echo app('translator')->get('translation.all_gym'); ?>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                                     <?php echo app('translator')->get('translation.add_gym'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                        <i class="ri-clipboard-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.plans'); ?></span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarDashboards" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('plans_list')); ?>">
+                                     <?php echo app('translator')->get('translation.all_plans'); ?>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('plans_create')); ?>">
+                                     <?php echo app('translator')->get('translation.add_plan'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('plans_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.plans'); ?></span>
+                        <i class="ri-clipboard-line" ></i> <span><?php echo app('translator')->get('translation.plans'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('services_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.services'); ?></span>
+                        <i class="ri-stack-fill" ></i> <span><?php echo app('translator')->get('translation.services'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('users_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.users'); ?></span>
+                        <i class="ri-group-line" ></i> <span><?php echo app('translator')->get('translation.users'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('members_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.members'); ?></span>
+                        <i class="ri-team-line" ></i> <span><?php echo app('translator')->get('translation.members'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('subscriptions_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.subscriptions'); ?></span>
+                        <i class="ri-file-list-3-fill" ></i> <span><?php echo app('translator')->get('translation.subscriptions'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('invioces_list')); ?>">
-                        <i class="ri-honour-line"></i> <span><?php echo app('translator')->get('translation.invoices'); ?></span>
+                        <i class="ri-folders-line" ></i> <span><?php echo app('translator')->get('translation.invoices'); ?></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('setting')); ?>">
-                        <i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span><?php echo app('translator')->get('translation.settings'); ?></span>
+                        <i class="mdi mdi-cog-outline"></i> <span><?php echo app('translator')->get('translation.settings'); ?></span>
                     </a>
                 </li>
 

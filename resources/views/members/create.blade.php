@@ -148,14 +148,14 @@
                                     <select name="service" id="services" class="form-select" aria-label=".form-select-sm example" required>
                                         <option value="0">@lang('translation.chose')@lang('translation.Service')</option>
                                         @foreach ($services as $service)
-                                            <option {{ old('service') == $service->id ? "selected" : "" }} value="{{ $service->id }}">{{ $service->name }}</option>
+                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="start_date">@lang('translation.start-date')</label>
-                                    <input type="date" class="form-control" name="start_date" id="start_date" value="{{ old('start_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.start_date')" required>
+                                    <input type="date" class="form-control" name="start_date" id="start_date"  placeholder="@lang('translation.entrer the') @lang('translation.start_date')" required>
                                     @error('start_date')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
@@ -177,7 +177,7 @@
                                         <label class="form-label" for="end_date-input">@lang('translation.end-date')</label>
 
                                         <div class="form-icon">
-                                            <input type="date" class="form-control form-control-icon" name="end_date" id="end_date" value="{{ old('end_date') }}" placeholder="@lang('translation.entrer the') @lang('translation.end_date')" required>
+                                            <input type="date" class="form-control form-control-icon" name="end_date" id="end_date"  placeholder="@lang('translation.entrer the') @lang('translation.end_date')" required>
                                             <i class="ri-phone-line"></i>
                                         </div>
 
@@ -204,7 +204,7 @@
                               <div class="col-sm">
                                 <div class="mb-3">
                                     <label class="form-label" for="subscription_price">@lang('translation.subscription_price')</label>
-                                    <input readonly type="number" class="form-control" name="subscription_price" id="subscription_price" value="{{ old('subscription_price') }}" placeholder="@lang('translation.entrer the') @lang('translation.subscription_price')"  >
+                                    <input readonly type="number" class="form-control" name="subscription_price" id="subscription_price" placeholder="@lang('translation.entrer the') @lang('translation.subscription_price')"  >
                                     @error('subscription_price')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
