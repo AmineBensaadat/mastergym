@@ -313,21 +313,28 @@ return [
     // payment
     "price" => "Prix",
     "discount" => "Remise",
-    "discount amount" => "montant de la remise",
+    "discount_amount" => "montant de la remise",
 
     // invoices
     'N°' => "N°",
-    "amount_received"  => "Montant reçu",
+    "Amount-Received"  => "Montant reçu",
     "received"  => "Reçu",
-    "amount_pending"  => "Montant en attente",
+    "amount-pending"  => "Montant en attente",
     "rest"  => "Reste",
-    "subscription_price"  => "Prix d'abonnement",
-    "discount_amount"  => "Montant du remise",
-    "payment_mode"  => "Mode de paiement",
-    "additional_fees"  => "Frais supplémentaires",
+    "subscription-price"  => "Prix d'abonnement",
+    "discount-amount"  => "Montant du remise",
+    "payment-mode"  => "Mode de paiement",
+    "additional-fees"  => "Frais supplémentaires",
     "comment"  => "Commentaire",
-    "created_at"  => "Créé le",
+    "created-at"  => "Créé le",
     "DH"  => "DH",
+
+    "None"  => "Aucun",
+    "check"  => "Chèque",
+    "virement"  => " virement",
+    "cash"  => "en espèces",
+    "payment_comment"  => "commentaire de paiement",
+    "source"  => "la source",
 
 ];
 ?>

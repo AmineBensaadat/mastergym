@@ -50,7 +50,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?php echo e(route('gym_list')); ?>">
+                                <a class="nav-link menu-link" href="<?php echo e(route('add_gym')); ?>">
                                      <?php echo app('translator')->get('translation.add_gym'); ?>
                                 </a>
                             </li>
@@ -59,10 +59,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                    <a class="nav-link menu-link collapsed" href="#sidebarPlans" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPlans">
                         <i class="ri-clipboard-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.plans'); ?></span>
                     </a>
-                    <div class="menu-dropdown collapse" id="sidebarDashboards" style="">
+                    <div class="menu-dropdown collapse" id="sidebarPlans" style="">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?php echo e(route('plans_list')); ?>">
@@ -78,37 +78,77 @@
                     </div>
                 </li>
 
-
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('plans_list')); ?>">
-                        <i class="ri-clipboard-line" ></i> <span><?php echo app('translator')->get('translation.plans'); ?></span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarServices" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarServices">
+                        <i class="ri-stack-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.services'); ?></span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarServices" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('services_list')); ?>">
+                                     <?php echo app('translator')->get('translation.services'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('services_list')); ?>">
-                        <i class="ri-stack-fill" ></i> <span><?php echo app('translator')->get('translation.services'); ?></span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarUsers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUsers">
+                        <i class="ri-group-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.users'); ?></span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarUsers" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('users_list')); ?>">
+                                     <?php echo app('translator')->get('translation.users'); ?>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('users_create')); ?>">
+                                     <?php echo app('translator')->get('translation.add_users'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('users_list')); ?>">
-                        <i class="ri-group-line" ></i> <span><?php echo app('translator')->get('translation.users'); ?></span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarMember" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMember">
+                        <i class="ri-team-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.members'); ?></span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarMember" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('members_list')); ?>">
+                                     <?php echo app('translator')->get('translation.members'); ?>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('members_create')); ?>">
+                                     <?php echo app('translator')->get('translation.add_member'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('members_list')); ?>">
-                        <i class="ri-team-line" ></i> <span><?php echo app('translator')->get('translation.members'); ?></span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarSubscriptions" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSubscriptions">
+                        <i class="ri-file-list-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.subscriptions'); ?></span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarSubscriptions" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('subscriptions_list')); ?>">
+                                     <?php echo app('translator')->get('translation.subscriptions'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('subscriptions_list')); ?>">
-                        <i class="ri-file-list-3-fill" ></i> <span><?php echo app('translator')->get('translation.subscriptions'); ?></span>
-                    </a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="<?php echo e(route('invioces_list')); ?>">
                         <i class="ri-folders-line" ></i> <span><?php echo app('translator')->get('translation.invoices'); ?></span>

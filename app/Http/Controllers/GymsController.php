@@ -29,7 +29,7 @@ class GymsController extends Controller{
     public function index()
     {
         $gyms = $this->gymsRepository->getAllGymByCretedById();
-       
+
         return view('gym.lists', compact('gyms'));
 
     }
@@ -51,10 +51,10 @@ class GymsController extends Controller{
 
         $destinationPath = public_path().'/assets/images/gyms/' ;
         $user_id = auth()->user()->id;
-        
-        //validation form 
+
+        //validation form
           $this->validate(
-                $request, 
+                $request,
                     [
                         'gym_name' => 'required',
                         'gym_address' => 'required',
@@ -71,8 +71,8 @@ class GymsController extends Controller{
                     ],
                 );
 
-            
-           
+
+
         // save gym in gym table
         $gym->name = $request['gym_name'];
         $gym->phone = $request['gym_phone'];
@@ -81,12 +81,12 @@ class GymsController extends Controller{
         $gym->is_main = $request['is_main'];
         $gym->created_by = $user_id;
         $gym->save();
-        
+
         // save gym profile image
         $file = $request->file('profile_image');
         if($file = $request->hasFile('profile_image')) {
 
-            // file data 
+            // file data
             $file = $request->file('profile_image') ;
             $fileName = time().rand(100,999).preg_replace('/\s+/', '', $file->getClientOriginalName());
             $extension = $request->file('profile_image')->extension();
@@ -96,7 +96,7 @@ class GymsController extends Controller{
             $files_table->img_name = $fileName;
             $files_table->ext = $extension;
             $files_table->type = 'profile';
-            $files_table->entitiy_id = $gym->id;   
+            $files_table->entitiy_id = $gym->id;
             $files_table->save();
 
             // move file in dericory
@@ -114,7 +114,7 @@ class GymsController extends Controller{
                 $files_table->img_name = $fileName;
                 $files_table->ext = $image->extension();
                 $files_table->type = 'gallory';
-                $files_table->entitiy_id = $gym->id;   
+                $files_table->entitiy_id = $gym->id;
                 $files_table->save();
 
                 // move file in dericory
@@ -122,9 +122,9 @@ class GymsController extends Controller{
             }
         }
 
-         
 
-      
+
+
 
         return redirect()->route('gym_list');
     }
@@ -139,15 +139,15 @@ class GymsController extends Controller{
         $gym = DB::table('gyms')
             ->join('users', 'gyms.created_by', '=', 'users.id')
             ->join('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
+            ->select('files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created-at as gym_created-at', 'users.name as user_name')
             ->where('gyms.id', $id)->first();
 
-       
-        return view('gym.show', 
+
+        return view('gym.show',
             array(
             "gym_name"  => $gym->gym_name,
             "gym_img" => $gym->gym_img,
-            "ext" => $gym->ext 
+            "ext" => $gym->ext
        ));
     }
 }

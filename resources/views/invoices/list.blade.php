@@ -53,17 +53,17 @@
                     <thead>
                         <tr>
                             <th >@lang('translation.N°')</th>
-                            <th >@lang('translation.created_at')</th>
+                            <th >@lang('translation.created-at')</th>
                             <th >@lang('translation.received')</th>
-                            <th >@lang('translation.subscription_price')</th>
+                            <th >@lang('translation.subscription-price')</th>
                             <th >@lang('translation.discount')</th>
                             <th >@lang('translation.discount_amount')</th>
                             <th >@lang('translation.rest')</th>
-                            <th >@lang('translation.payment_mode')</th>
-                            <th >@lang('translation.additional_fees')</th>
+                            <th >@lang('translation.payment-mode')</th>
+                            <th >@lang('translation.additional-fees')</th>
                             <th >@lang('translation.member')</th>
-                            <th >@lang('translation.service')</th>
-                            <th >@lang('translation.plan')</th>
+                            <th >@lang('translation.Service')</th>
+                            <th >@lang('translation.plans')</th>
                             <th >@lang('translation.comment')</th>
                         </tr>
                     </thead>
@@ -72,16 +72,16 @@
                         <tr>
                             <td>{{ $invoice->id }}</td>
                             <td>
-                                <h4><center><span class="badge badge-outline-info">{{ $invoice->created_at }}</span></center></h4> 
+                                <h4><center><span class="badge badge-outline-info">{{ $invoice->created-at }}</span></center></h4>
                             </td>
                             <td>
                                 <h4><center><span class="badge badge-soft-success badge-border">{{ $invoice->amount_received }}  @lang('translation.DH')</span></center></h4>
                             </td>
                             <td>
-                                <h4><center><span class="badge text-bg-secondary bg-dark">{{ $invoice->subscription_price }}  @lang('translation.DH')</span></center></h4>
+                                <h4><center><span class="badge text-bg-secondary bg-dark">{{ $invoice->subscription-price }}  @lang('translation.DH')</span></center></h4>
                             </td>
                             <td>
-                                <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount }} %</span></center></h4> 
+                                <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount }} %</span></center></h4>
                             </td>
                             <td>
                                 <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount_amount }}</span></center></h4>
@@ -96,7 +96,7 @@
                             <td>
                                 <h4>
                                     <center>
-                                        <span class="badge badge-soft-info badge-border">{{ $invoice->payment_mode }}</span>
+                                        <span class="badge badge-soft-info badge-border">{{ $invoice->payment-mode }}</span>
                                     </center>
                                 </h4>
                             </td>
@@ -106,25 +106,25 @@
                                 </h4>
                             </td>
                             <td>
-                                <div class="d-flex align-items-center">            
+                                <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
                                     @if ($invoice->member_img)
-                                        @if(file_exists('assets/images/members/'.$invoice->member_img)) 
+                                        @if(file_exists('assets/images/members/'.$invoice->member_img))
                                         <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$invoice->member_img )}}">
                                         @else
                                         <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
                                         @endif
                                     @else
                                     <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                    @endif 
-                                    </div>            
+                                    @endif
+                                    </div>
                                     <div class="flex-grow-1 ms-2 name">
 
                                         <a href="../members/show/{{ $invoice->member_id }}">
                                             {{ $invoice->lastname." ".$invoice->firstname }}
-                                        
-                                        </a>    
-                                    </div>            
+
+                                        </a>
+                                    </div>
                                 </div>
                             </td>
                             <td><div class="d-flex align-items-center">

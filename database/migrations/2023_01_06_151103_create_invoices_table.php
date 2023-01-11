@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('member_id');
             $table->integer('service_id');
             $table->integer('plan_id');
-            $table->integer('subscription_price');
+            $table->integer('subscription-price');
             $table->integer('amount_pending')->nullable();
             $table->integer('discount')->nullable();
             $table->integer('discount_amount')->nullable();

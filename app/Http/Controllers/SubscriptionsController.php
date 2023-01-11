@@ -46,7 +46,7 @@ class SubscriptionsController extends Controller
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
         return view('subscriptions.renew', compact('gyms', 'services', 'subscription_id', 'member_id'));
-    
+
     }
 
 
@@ -70,13 +70,13 @@ class SubscriptionsController extends Controller
      */
     public function update(Request $request)
     {
-        //validation form 
+        //validation form
         $this->validate(
-            $request, 
+            $request,
                 [
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
-                    'amount-received' => 'required_unless:subscription_price.*,'
+                    'amount-received' => 'required_unless:subscription-price.*,'
                 ],
                 [
                     'start_date' => __('require'),
@@ -92,7 +92,7 @@ class SubscriptionsController extends Controller
 
 
             }
-          
+
             return redirect()->route('members_list');
     }
 

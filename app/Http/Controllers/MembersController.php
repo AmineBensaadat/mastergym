@@ -29,8 +29,8 @@ class MembersController extends Controller
     private $plansRepository;
 
     public function __construct(
-        MembersRepository $membersRepository, 
-        GymsRepository $gymsRepository, 
+        MembersRepository $membersRepository,
+        GymsRepository $gymsRepository,
         ServicesRepository $servicesRepository,
         SubscriptionsRepository $subscriptionsRepository,
         InvoicesRepository $invoicesRepository,
@@ -64,7 +64,7 @@ class MembersController extends Controller
     {
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
-   
+
         return view('members.create', compact('gyms','services'));
     }
 
@@ -75,9 +75,9 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
-        //validation form 
+        //validation form
         $this->validate(
-            $request, 
+            $request,
                 [
                     'lastname' => 'required',
                     'firstname' => 'required',
@@ -90,7 +90,7 @@ class MembersController extends Controller
                     'gym' => new IsSelected,
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
-                    'amount-received' => 'required_unless:subscription_price.*,'
+                    'amount-received' => 'required_unless:subscription-price.*,'
                 ],
                 [
                     'lastname.required' => __('translation.require'),
@@ -114,10 +114,10 @@ class MembersController extends Controller
                // save subscription in subscription table
                 $subscription = $this->subscriptionsRepository->addSubscription($request, $member->id);
 
-                // save invoice in invoices table 
+                // save invoice in invoices table
                 $invoice = $this->invoicesRepository->addInvoice($request, $member->id);
             }
-            
+
             return redirect()->route('members_list');
     }
 
@@ -165,7 +165,7 @@ class MembersController extends Controller
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->select(
-                'files.name as img_name','members.*', 
+                'files.name as img_name','members.*',
                 'subscriptions.id as subscription_id',
                 'subscriptions.start_date',
                 'subscriptions.start_date',
