@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GymsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\MembersController;
@@ -24,6 +25,8 @@ define('PAGINATION_COUNT', 10);
 Auth::routes();
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //Gyms
 Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
@@ -88,4 +91,4 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('roo
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
 Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
 
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('{any}', [DashboardController::class, 'index'])->name('index');

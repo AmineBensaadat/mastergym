@@ -33,7 +33,7 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span>@lang('translation.menu')</span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="../widgets">
+                    <a class="nav-link menu-link" href="{{ route('dashboard') }}">
                         <i class="ri-dashboard-line" ></i> <span>@lang('translation.dashboards')</span>
                     </a>
                 </li>
