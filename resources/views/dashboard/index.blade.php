@@ -1,25 +1,25 @@
 @extends('layouts.master')
-@section('title') @lang('translation.projects') @endsection
+@section('title') @lang('translation.dashboard') @endsection
 @section('content')
 
     @component('components.breadcrumb')
         @slot('li_1') Dashboards @endslot
-        @slot('title') Projects @endslot
+        @slot('title') Dashboards @endslot
     @endcomponent
             <div class="row">
-                <div class="col-xl-4">
+                <div class="col-xl-3">
                     <div class="card card-animate">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="avatar-sm flex-shrink-0">
                                     <span
                                         class="avatar-title bg-soft-primary text-primary rounded-2 fs-2">
-                                        <i data-feather="briefcase" class="text-primary"></i>
+                                        <i class="ri-team-fill text-primary"></i>
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-3">
                                     <p class="text-uppercase fw-medium text-muted text-truncate mb-3">
-                                        Active Projects</p>
+                                        Total Members</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
                                                 data-target="825">0</span></h4>
@@ -27,25 +27,25 @@
                                                 class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>5.02
                                             %</span>
                                     </div>
-                                    <p class="text-muted text-truncate mb-0">Projects this month</p>
+                                    <p class="text-muted text-truncate mb-0">Totale member Active</p>
                                 </div>
                             </div>
                         </div><!-- end card body -->
                     </div>
                 </div><!-- end col -->
 
-                <div class="col-xl-4">
+                <div class="col-xl-3">
                     <div class="card card-animate">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="avatar-sm flex-shrink-0">
                                     <span
-                                        class="avatar-title bg-soft-warning text-warning rounded-2 fs-2">
-                                        <i data-feather="award" class="text-warning"></i>
+                                        class="avatar-title bg-soft-success text-success rounded-2 fs-2">
+                                        <i class="ri-user-add-fill text-success"></i>
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-medium text-muted mb-3">New Leads</p>
+                                    <p class="text-uppercase fw-medium text-muted mb-3">Monthly Joinings</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
                                                 data-target="7522">0</span></h4>
@@ -53,34 +53,59 @@
                                                 class="ri-arrow-up-s-line fs-13 align-middle me-1"></i>3.58
                                             %</span>
                                     </div>
-                                    <p class="text-muted mb-0">Leads this month</p>
+                                    <p class="text-muted mb-0">Members joines per month</p>
                                 </div>
                             </div>
                         </div><!-- end card body -->
                     </div>
                 </div><!-- end col -->
 
-                <div class="col-xl-4">
+                <div class="col-xl-3">
                     <div class="card card-animate">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="avatar-sm flex-shrink-0">
                                     <span class="avatar-title bg-soft-info text-info rounded-2 fs-2">
-                                        <i data-feather="clock" class="text-info"></i>
+                                        <i class="ri-coin-line text-info"></i>
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden ms-3">
                                     <p class="text-uppercase fw-medium text-muted text-truncate mb-3">
-                                        Total Hours</p>
+                                        Pending Payments</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
-                                                data-target="168">0</span>h <span class="counter-value"
-                                                data-target="40">0</span>m</h4>
+                                            data-target="777">0</span></h4>
                                         <span class="badge badge-soft-danger fs-12"><i
                                                 class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>10.35
                                             %</span>
                                     </div>
-                                    <p class="text-muted text-truncate mb-0">Work this month</p>
+                                    <p class="text-muted text-truncate mb-0">Member Pending Payments</p>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div>
+                </div><!-- end col -->
+
+                <div class="col-xl-3">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-soft-danger text-danger rounded-2 fs-2">
+                                        <i data-feather="clock" class="text-danger"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden ms-3">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-3">
+                                        Expired</p>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
+                                            data-target="777">0</span></h4>
+                                        <span class="badge badge-soft-danger fs-12"><i
+                                                class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>10.35
+                                            %</span>
+                                    </div>
+                                    <p class="text-muted text-truncate mb-0">Subscription Expire</p>
                                 </div>
                             </div>
                         </div><!-- end card body -->
@@ -92,7 +117,7 @@
         <div class="col-xl-7">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
-                    <h4 class="card-title flex-grow-1 mb-0">Active Projects</h4>
+                    <h4 class="card-title flex-grow-1 mb-0">Total Members</h4>
                     <div class="flex-shrink-0">
                         <a href="javascript:void(0);" class="btn btn-soft-info btn-sm">Export Report</a>
                     </div>
