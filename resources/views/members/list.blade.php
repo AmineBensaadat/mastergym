@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') @lang('translation.team') @endsection
+@section('title') @lang('translation.members') @endsection
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Pages @endslot
@@ -17,30 +17,29 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
-                <div class="d-flex align-items-center flex-wrap gap-2">
-                    <div class="flex-grow-1">
-                        <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
-                    </div>
-                    <div class="flex-shrink-0">
-                        <div class="hstack text-nowrap gap-2">
-                            <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#addmembers"><i
-                                    class="ri-filter-2-line me-1 align-bottom"></i> Filters</button>
-                            <button class="btn btn-soft-success">Import</button>
-                            <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
-                                aria-expanded="false" class="btn btn-soft-info"><i
-                                    class="ri-more-2-fill"></i></button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                <li><a class="dropdown-item" href="#">All</a></li>
-                                <li><a class="dropdown-item" href="#">Last Week</a></li>
-                                <li><a class="dropdown-item" href="#">Last Month</a></li>
-                                <li><a class="dropdown-item" href="#">Last Year</a></li>
-                            </ul>
+            <div class="card-header border-0 rounded">
+                <div class="row g-2">
+                    <div class="col-xl-3">
+                        <div class="search-box">
+                            <input type="text" class="form-control search" placeholder="Search for sellers &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
                         </div>
                     </div>
+                    <!--end col-->
+                    <div class="col-xxl-3 ms-auto">
+                        <div>
+                            <div class="choices" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div class="choices__inner"><select class="form-control choices__input" data-choices="" data-choices-search-false="" hidden="" tabindex="-1" data-choice="active"><option value="Computers &amp; Electronics" data-custom-properties="[object Object]">Computers &amp;amp; Electronics</option></select><div class="choices__list choices__list--single"><div class="choices__item choices__item--selectable" data-item="" data-id="4" data-value="Computers &amp; Electronics" data-custom-properties="[object Object]" aria-selected="true">Computers &amp; Electronics</div></div></div><div class="choices__list choices__list--dropdown" aria-expanded="false"><div class="choices__list" role="listbox"><div id="choices--5h0q-item-choice-7" class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted" role="option" data-choice="" data-id="7" data-value="" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Select Categories</div><div id="choices--5h0q-item-choice-1" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="1" data-value="All" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">All</div><div id="choices--5h0q-item-choice-2" class="choices__item choices__item--choice is-selected choices__item--selectable" role="option" data-choice="" data-id="2" data-value="Computers &amp; Electronics" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Computers &amp; Electronics</div><div id="choices--5h0q-item-choice-3" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="3" data-value="Food Service" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Food Service</div><div id="choices--5h0q-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="Health &amp; Medicine" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Health &amp; Medicine</div><div id="choices--5h0q-item-choice-5" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="5" data-value="Manufacturer" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Manufacturer</div><div id="choices--5h0q-item-choice-6" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="6" data-value="Retailer" data-select-text="Press to select" data-choice-selectable="">Retailer</div></div></div></div>
+                        </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-auto">
+                        <div class="hstack gap-2">
+                            <button type="button" class="btn btn-danger"><i class="ri-equalizer-fill me-1 align-bottom"></i> Filters</button>
+                            <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
+                        </div>
+                    </div>
+                    <!--end col-->
                 </div>
+                <!--end row-->
             </div>
         </div>
     </div>

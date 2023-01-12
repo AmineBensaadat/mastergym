@@ -30,6 +30,7 @@ class MembersRepository
             'phone' => $request['phone'],
             'emergency_contact' => $request['emergency_contact'],
             'gender' => $request['gender'],
+            'gender' => $request['gym'],
             'health_issues' =>  $request['health_issues'],
             'cin' => $request['cin'],
             'created_by' =>  $user_id,

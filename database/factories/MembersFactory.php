@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Members;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -30,11 +31,16 @@ class MembersFactory extends Factory
             'email' => $this->faker->unique()->email(),
             'address' => $this->faker->address(),
             'status' => $this->faker->boolean(),
-            'gender' =>  $this->faker->asciify('male'),
+            "gender" => $this->faker->randomElement([
+                "male",
+                "female",
+            ]),
             'phone' => $this->faker->phoneNumber(),
             'emergency_contact' => $this->faker->phoneNumber(),
             'health_issues' =>  $this->faker->asciify('no issue'),
             'source' =>  $this->faker->asciify('no one'),
+            'cin' => Str::random(10),
+            'gym_id' => $this->faker->numberBetween(1, 3),
             'created_by' => 1,
             'updated_by' => 1,
         ];

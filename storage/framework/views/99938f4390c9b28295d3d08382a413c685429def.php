@@ -39,6 +39,27 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarMember" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMember">
+                        <i class="ri-team-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.members'); ?></span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarMember" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('members_list')); ?>">
+                                     <?php echo app('translator')->get('translation.members'); ?>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('members_create')); ?>">
+                                     <?php echo app('translator')->get('translation.add_member'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="ri-building-2-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.gyms'); ?></span>
                     </a>
@@ -108,27 +129,6 @@
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?php echo e(route('users_create')); ?>">
                                      <?php echo app('translator')->get('translation.add_users'); ?>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link collapsed" href="#sidebarMember" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMember">
-                        <i class="ri-team-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.members'); ?></span>
-                    </a>
-                    <div class="menu-dropdown collapse" id="sidebarMember" style="">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?php echo e(route('members_list')); ?>">
-                                     <?php echo app('translator')->get('translation.members'); ?>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?php echo e(route('members_create')); ?>">
-                                     <?php echo app('translator')->get('translation.add_member'); ?>
                                 </a>
                             </li>
                         </ul>
