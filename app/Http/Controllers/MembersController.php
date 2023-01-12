@@ -13,6 +13,7 @@ use App\Repositories\ServicesRepository;
 use App\Repositories\SubscriptionsRepository;
 use App\Rules\IsSelected;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -54,6 +55,34 @@ class MembersController extends Controller
         $members = $this->membersRepository->all();
         return view('members.list', compact('members'));
     }
+
+    public function getAllMembers(Request $request)
+    {
+        $result = $this->membersRepository->getAllMembersByFilters($request);
+        $data = array();
+        foreach($result as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = $row->firstname;
+            $sub_array[] = $row->lastname;
+            $sub_array[] = $row->address;
+            $sub_array[] = $row->email;
+            $sub_array[] = $row->phone;
+            $sub_array[] = $row->DOB;
+            $data[] = $sub_array;
+        }
+
+        $number_filter_row = count($result);
+        $output = array(
+            "draw"       =>  intval($_POST["draw"]),
+            "recordsTotal"   =>  150,
+            "recordsFiltered"  => $number_filter_row,
+            "data"       =>  $data
+           );
+
+        return json_encode($output) ;
+    }
+    
 
     /**
      * Show the form for creating a new resource.

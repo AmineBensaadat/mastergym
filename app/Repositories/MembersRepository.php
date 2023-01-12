@@ -15,6 +15,23 @@ class MembersRepository
         return $members;
     }
 
+    public function getAllMembersByFilters($request){
+        $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
+        $query = DB::table('members')
+            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
+            ->select('files.name as img_name','members.*');
+        if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
+            {
+            $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
+         
+            }
+        
+        
+        $result= $query->get();
+        
+        return $result;
+    }
+
     public function saveMember($request){
         $user_id = auth()->user()->id;
         $destinationPath = public_path().'/assets/images/members/' ;
