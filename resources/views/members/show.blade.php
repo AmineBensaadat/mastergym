@@ -168,7 +168,7 @@
                                     </div><!-- end card body -->
                                 </div>
                                 <!--end card-->
-
+                                @if($plan)  
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center mb-4">
@@ -184,7 +184,7 @@
                                             </div>
                                             <div class="flex-grow-1 ms-3 overflow-hidden">
                                                 <a href="javascript:void(0);">
-                                                    <h6 class="text-truncate fs-14">{{ $plan->plan_name }}</h6>
+                                                    <h6 class="text-truncate fs-14">{{ $plan->plan_name  }}</h6>
                                                 </a>
                                                 <p class="text-muted mb-0">15 Dec 2021</p>
                                             </div>
@@ -192,6 +192,7 @@
                                     </div>
                                     <!--end card-body-->
                                 </div>
+                                @endif
                                 <!--end card-->
                             </div>
                             <!--end col-->

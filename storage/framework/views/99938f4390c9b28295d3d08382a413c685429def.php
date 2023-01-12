@@ -33,7 +33,7 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span><?php echo app('translator')->get('translation.menu'); ?></span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="../widgets">
+                    <a class="nav-link menu-link" href="<?php echo e(route('dashboard')); ?>">
                         <i class="ri-dashboard-line" ></i> <span><?php echo app('translator')->get('translation.dashboards'); ?></span>
                     </a>
                 </li>
