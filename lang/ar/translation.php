@@ -52,7 +52,7 @@ return [
     "men" => " ذكر",
     "female" => " أنثى",
     "emergency_cont" => " خط الطوارئ ",
-    "emergency_cont" => "مشاكل صحية",
+    "health_issues" => "مشاكل صحية",
 
     "menu"=>"الأقسام",
     "dashboards"=>"لوحة المعلومات",
@@ -92,6 +92,34 @@ return [
     "city" => " المدينة ",
     "gym" => "الصالة الرياضية",
     "Enter-details-of-the-invoice" => " أدخل تفاصيل الفاتورة ",
+
+
+    // payment
+    "price" => "السعر",
+    "discount" => "تخفيض",
+    "discount_amount" => "مقدار الخصم",
+
+    // invoices
+    'N°' => "N°",
+    "Amount-Received"  => "تم استلام المبلغ",
+    "received"  => "الواردة",
+    "amount-pending"  => "المبلغ المعلق",
+    "rest"  => "المتبقي",
+    "subscription-price"  => "سعر الاشتراك",
+    "discount-amount"  => "مقدار الخصم",
+    "payment-mode"  => "طريقة الدفع",
+    "additional-fees"  => "تكاليف إضافية",
+    "comment"  => "ملاحظة",
+    "created-at"  => "أنشأ",
+    "DH"  => "DH",
+
+    "None"  => "لا شيء",
+    "check"  => "شيك",
+    "virement"  => "تحويل مصرفي",
+    "cash"  => "دفع نقدا",
+    "payment_comment"  => " معلومات إضافية عن الدفع ",
+    "source"  => "المصدر",
+
 
 
 

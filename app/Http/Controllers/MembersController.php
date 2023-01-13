@@ -13,6 +13,7 @@ use App\Repositories\ServicesRepository;
 use App\Repositories\SubscriptionsRepository;
 use App\Rules\IsSelected;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -29,8 +30,8 @@ class MembersController extends Controller
     private $plansRepository;
 
     public function __construct(
-        MembersRepository $membersRepository, 
-        GymsRepository $gymsRepository, 
+        MembersRepository $membersRepository,
+        GymsRepository $gymsRepository,
         ServicesRepository $servicesRepository,
         SubscriptionsRepository $subscriptionsRepository,
         InvoicesRepository $invoicesRepository,
@@ -55,6 +56,35 @@ class MembersController extends Controller
         return view('members.list', compact('members'));
     }
 
+    public function getAllMembers(Request $request)
+    {
+        $result = $this->membersRepository->getAllMembersByFilters($request);
+        $recordsTotal = $this->membersRepository->countAllMembers();
+        $data = array();
+        foreach($result["all_result"] as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = $row->firstname;
+            $sub_array[] = $row->lastname;
+            $sub_array[] = $row->address;
+            $sub_array[] = $row->email;
+            $sub_array[] = $row->phone;
+            $sub_array[] = $row->DOB;
+            $data[] = $sub_array;
+        }
+
+        $number_filter_row = count($result["result"]);
+        $output = array(
+            "draw"       =>  intval($request["draw"]),
+            "recordsTotal"   =>  $recordsTotal ,
+            "recordsFiltered"  => $number_filter_row,
+            "data"       =>  $data
+           );
+
+        return json_encode($output) ;
+    }
+    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -64,7 +94,7 @@ class MembersController extends Controller
     {
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
-   
+
         return view('members.create', compact('gyms','services'));
     }
 
@@ -75,33 +105,31 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
-        //validation form 
+        //validation form
         $this->validate(
-            $request, 
+            $request,
                 [
                     'lastname' => 'required',
                     'firstname' => 'required',
-                    'cin' => 'required|unique:members',
+                    'cin' => 'unique:members',
                     'address' => 'required',
-                    'phone' => 'required|unique:members',
-                    'city' => 'required',
+                    'phone' => 'unique:members',
                     'dob' => 'required',
-                    'emergency_contact' => 'required|unique:members',
+                    'emergency_contact' => 'unique:members',
                     'gym' => new IsSelected,
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
-                    'amount-received' => 'required_unless:subscription_price.*,'
+                    'amount-received' => 'required_unless:subscription-price.*,'
                 ],
                 [
                     'lastname.required' => __('translation.require'),
                     'firstname.required' => __('translation.require'),
-                    'lastname.cin' => __('translation.require'),
+                    'cin.unique' => __('translation.unique'),
                     'address.required' => __('translation.require'),
-                    'phone.required' => __('translation.require'),
+                    'phone.unique' => __('translation.unique'),
                     'dob.required' => __('translation.require'),
-                    'emergency_contact.required' => __('translation.require'),
+                    'emergency_contact.unique' => __('translation.unique'),
                     'gym.required' => __('require'),
-                    'gym.city' => __('require'),
                     'start_date' => __('require'),
                     'end_date' => __('require'),
                 ],
@@ -114,10 +142,10 @@ class MembersController extends Controller
                // save subscription in subscription table
                 $subscription = $this->subscriptionsRepository->addSubscription($request, $member->id);
 
-                // save invoice in invoices table 
+                // save invoice in invoices table
                 $invoice = $this->invoicesRepository->addInvoice($request, $member->id);
             }
-            
+
             return redirect()->route('members_list');
     }
 
@@ -163,7 +191,14 @@ class MembersController extends Controller
         $plan = $this->plansRepository->getMemberPlan($member_id);
         $member = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
-            ->select('files.name as img_name','members.*')
+            ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
+            ->select(
+                'files.name as img_name','members.*',
+                'subscriptions.id as subscription_id',
+                'subscriptions.start_date',
+                'subscriptions.start_date',
+                'subscriptions.end_date',
+            )
             ->where('members.id', $member_id)->first();
         return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
     }

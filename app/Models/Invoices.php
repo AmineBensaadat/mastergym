@@ -16,7 +16,7 @@ class Invoices extends Model
         'member_id',
         'service_id',
         'plan_id',
-        'subscription_price',
+        'subscription-price',
         'amount_pending',
         'discount',
         'amount_received',

@@ -299,6 +299,32 @@ return [
     "gym" => "Gym",
     "Enter-details-of-the-invoice" => "Enter details of the invoice",
 
+    // payment
+    "price" => "price",
+    "discount" => "discount",
+    "discount_amount" => "discount amount",
+
+    // invoices
+    'N°' => "N°",
+    "Amount-Received"  => "amount received",
+    "received"  => "received",
+    "amount-pending"  => "amount pending",
+    "rest"  => "rest",
+    "subscription-price"  => "subscription price",
+    "discount-amount"  => "discount amount",
+    "payment-mode"  => "payment mode",
+    "additional-fees"  => " Frais supplémentaires",
+    "comment"  => "Commentaire",
+    "created-at"  => "Créé le",
+    "DH"  => "DH",
+
+    "None"  => "None",
+    "check"  => "check",
+    "virement"  => "virement",
+    "cash"  => "cash",
+    "payment_comment"  => "payment comment",
+    "source"  => "source",
+
 
 
 

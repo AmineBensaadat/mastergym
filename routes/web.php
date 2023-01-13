@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GymsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\MembersController;
@@ -24,6 +25,8 @@ define('PAGINATION_COUNT', 10);
 Auth::routes();
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //Gyms
 Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
@@ -53,14 +56,18 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
 Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/all', [MembersController::class, 'index'])->name('members_list');
     Route::get('/create', [MembersController::class, 'create'])->name('members_create');
-    Route::post('/store', [MembersController::class, 'store'])->name('members_store');
     Route::get('/show/{id}', [MembersController::class, 'show'])->name('members_show');
+    
+    Route::post('/getAllMembers', [MembersController::class, 'getAllMembers'])->name('members_list_json');
+    Route::post('/store', [MembersController::class, 'store'])->name('members_store');
 });
 
 //Subscriptions
 Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function () {
     Route::get('/all', [SubscriptionsController::class, 'index'])->name('subscriptions_list');
     Route::get('/add', [SubscriptionsController::class, 'add'])->name('subscriptions_add');
+    Route::get('/renwe/{subscription_id}/{member_id}', [SubscriptionsController::class, 'renwe'])->name('subscriptions_renwe');
+    Route::post('/update', [SubscriptionsController::class, 'update'])->name('subscriptions_update');
 });
 
 //Services
@@ -86,4 +93,4 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('roo
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
 Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
 
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('{any}', [DashboardController::class, 'index'])->name('index');

@@ -16,14 +16,14 @@
             <div class="col-auto">
                 <div class="avatar-lg">
                     @if ($member->img_name)
-                        @if(file_exists('assets/images/members/'.$member->img_name)) 
+                        @if(file_exists('assets/images/members/'.$member->img_name))
                             <img style="height: inherit;" src="{{URL::asset('assets/images/members/'.$member->img_name)}}" alt="user-img" class="img-thumbnail rounded-circle" />
                         @else
                             <img style="height: inherit;" class="img-thumbnail rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
                         @endif
                     @else
                         <img style="height: inherit;" class="img-thumbnail rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                    @endif 
+                    @endif
                 </div>
             </div>
             <!--end col-->
@@ -148,7 +148,7 @@
                                             <div class="flex-grow-1">
                                                 <h5 class="card-title mb-0">Services</h5>
                                             </div>
-                                            
+
                                         </div>
                                         <div>
                                             <div class="d-flex align-items-center py-3">
@@ -168,14 +168,14 @@
                                     </div><!-- end card body -->
                                 </div>
                                 <!--end card-->
-
+                                @if($plan)  
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center mb-4">
                                             <div class="flex-grow-1">
                                                 <h5 class="card-title mb-0">Plan</h5>
                                             </div>
-                                           
+
                                         </div>
                                         <div class="d-flex mb-4">
                                             <div class="flex-shrink-0">
@@ -184,7 +184,7 @@
                                             </div>
                                             <div class="flex-grow-1 ms-3 overflow-hidden">
                                                 <a href="javascript:void(0);">
-                                                    <h6 class="text-truncate fs-14">{{ $plan->plan_name }}</h6>
+                                                    <h6 class="text-truncate fs-14">{{ $plan->plan_name  }}</h6>
                                                 </a>
                                                 <p class="text-muted mb-0">15 Dec 2021</p>
                                             </div>
@@ -192,6 +192,7 @@
                                     </div>
                                     <!--end card-body-->
                                 </div>
+                                @endif
                                 <!--end card-->
                             </div>
                             <!--end col-->
@@ -1401,7 +1402,7 @@
                     </div>
                     <!--end tab-pane-->
                     <div class="tab-pane fade" id="plan" role="tabpanel">
-                        @if($plan) 
+                        @if($plan)
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -1492,7 +1493,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="mt-3 pt-2">
-                                                    <a href="javascript:void(0);" class="btn btn-info w-100">Renew</a>
+                                                    <a href="{{ route('subscriptions_renwe', ['subscription_id' =>  $member->subscription_id, 'member_id' => $member->id ]) }}" class="btn btn-info w-100">Renew</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1519,9 +1520,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th >@lang('translation.N°')</th>
-                                                        <th >@lang('translation.created_at')</th>
+                                                        <th >@lang('translation.created-at')</th>
                                                         <th >@lang('translation.received')</th>
-                                                        <th >@lang('translation.subscription_price')</th>
+                                                        <th >@lang('translation.subscription-price')</th>
                                                         <th >@lang('translation.discount')</th>
                                                         <th >@lang('translation.discount_amount')</th>
                                                         <th >@lang('translation.rest')</th>
@@ -1538,16 +1539,16 @@
                                                     <tr>
                                                         <td>{{ $invoice->id }}</td>
                                                         <td>
-                                                            <h4><center><span class="badge badge-outline-info">{{ $invoice->created_at }}</span></center></h4> 
+                                                            <h4><center><span class="badge badge-outline-info">{{ $invoice->created-at }}</span></center></h4>
                                                         </td>
                                                         <td>
                                                             <h4><center><span class="badge badge-soft-success badge-border">{{ $invoice->amount_received }}  @lang('translation.DH')</span></center></h4>
                                                         </td>
                                                         <td>
-                                                            <h4><center><span class="badge text-bg-secondary bg-dark">{{ $invoice->subscription_price }}  @lang('translation.DH')</span></center></h4>
+                                                            <h4><center><span class="badge text-bg-secondary bg-dark">{{ $invoice->subscription-price }}  @lang('translation.DH')</span></center></h4>
                                                         </td>
                                                         <td>
-                                                            <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount }} %</span></center></h4> 
+                                                            <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount }} %</span></center></h4>
                                                         </td>
                                                         <td>
                                                             <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount_amount }}</span></center></h4>
@@ -1572,25 +1573,25 @@
                                                             </h4>
                                                         </td>
                                                         <td>
-                                                            <div class="d-flex align-items-center">            
+                                                            <div class="d-flex align-items-center">
                                                                 <div class="flex-shrink-0">
                                                                 @if ($invoice->member_img)
-                                                                    @if(file_exists('assets/images/members/'.$invoice->member_img)) 
+                                                                    @if(file_exists('assets/images/members/'.$invoice->member_img))
                                                                     <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$invoice->member_img )}}">
                                                                     @else
                                                                     <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
                                                                     @endif
                                                                 @else
                                                                 <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                                                @endif 
-                                                                </div>            
+                                                                @endif
+                                                                </div>
                                                                 <div class="flex-grow-1 ms-2 name">
-                            
+
                                                                     <a href="../members/show/{{ $invoice->member_id }}">
                                                                         {{ $invoice->lastname." ".$invoice->firstname }}
-                                                                    
-                                                                    </a>    
-                                                                </div>            
+
+                                                                    </a>
+                                                                </div>
                                                             </div>
                                                         </td>
                                                         <td><div class="d-flex align-items-center">

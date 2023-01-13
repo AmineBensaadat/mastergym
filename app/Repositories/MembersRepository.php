@@ -15,6 +15,43 @@ class MembersRepository
         return $members;
     }
 
+    public function getAllMembersByFilters($request){
+        $data = array();
+        $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
+        $query = DB::table('members')
+            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
+            ->select('files.name as img_name','members.*');
+        if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
+        {
+        $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
+        }
+
+        if(isset($request['order']))
+        {
+            $query->orderBy($column[$request['order']['0']['column']], $request['order']['0']['dir']);
+        }
+        else
+        {
+            $query->orderBy($column[0], "DESC");
+        }
+
+        $data[ "result"]  = $query->get();
+        if($_POST["length"] != -1)
+        {
+            $query->offset($request['start'] )->limit($request['length']);
+        }
+                
+        $data ["all_result"] = $query->get();
+        return $data;
+    }
+
+    public function countAllMembers(){
+        $members = Members::get();
+        $membersCount = $members->count();
+        return $membersCount;
+
+    }
+
     public function saveMember($request){
         $user_id = auth()->user()->id;
         $destinationPath = public_path().'/assets/images/members/' ;
@@ -30,6 +67,7 @@ class MembersRepository
             'phone' => $request['phone'],
             'emergency_contact' => $request['emergency_contact'],
             'gender' => $request['gender'],
+            'gender' => $request['gym'],
             'health_issues' =>  $request['health_issues'],
             'cin' => $request['cin'],
             'created_by' =>  $user_id,
