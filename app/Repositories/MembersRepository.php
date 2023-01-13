@@ -16,26 +16,39 @@ class MembersRepository
     }
 
     public function getAllMembersByFilters($request){
+        $data = array();
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->select('files.name as img_name','members.*');
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
-            {
-            $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
-         
-            }
-        
-        
-        $result= $query->get();
-        
-        return $result;
+        {
+        $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
+        }
+
+        if(isset($request['order']))
+        {
+            $query->orderBy($column[$request['order']['0']['column']], $request['order']['0']['dir']);
+        }
+        else
+        {
+            $query->orderBy($column[0], "DESC");
+        }
+
+        $data[ "result"]  = $query->get();
+        if($_POST["length"] != -1)
+        {
+            $query->offset($request['start'] )->limit($request['length']);
+        }
+                
+        $data ["all_result"] = $query->get();
+        return $data;
     }
 
     public function countAllMembers(){
-        $members = Members::where('gym_id', 1)->get();
+        $members = Members::get();
         $membersCount = $members->count();
-        return $membersCount
+        return $membersCount;
 
     }
 

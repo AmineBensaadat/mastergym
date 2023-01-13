@@ -59,8 +59,9 @@ class MembersController extends Controller
     public function getAllMembers(Request $request)
     {
         $result = $this->membersRepository->getAllMembersByFilters($request);
+        $recordsTotal = $this->membersRepository->countAllMembers();
         $data = array();
-        foreach($result as $row)
+        foreach($result["all_result"] as $row)
         {
             $sub_array = array();
             $sub_array[] = $row->firstname;
@@ -72,10 +73,10 @@ class MembersController extends Controller
             $data[] = $sub_array;
         }
 
-        $number_filter_row = count($result);
+        $number_filter_row = count($result["result"]);
         $output = array(
-            "draw"       =>  intval($_POST["draw"]),
-            "recordsTotal"   =>  150,
+            "draw"       =>  intval($request["draw"]),
+            "recordsTotal"   =>  $recordsTotal ,
             "recordsFiltered"  => $number_filter_row,
             "data"       =>  $data
            );
