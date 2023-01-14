@@ -60,7 +60,7 @@ class MembersController extends Controller
     {
         $result = $this->membersRepository->getAllMembersByFilters($request);
         $recordsTotal = $this->membersRepository->countAllMembers();
-        $url = url('/assets/images/members/');
+        $url = url('/assets/images/');
         $data = array();
         foreach($result["all_result"] as $row)
         {
@@ -68,11 +68,17 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'/'.(file_exists($row->img_name) ? $row->img_name : 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$url.'//members/'.(file_exists($row->img_name) ? $row->img_name : 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->lastname. ' '.$row->firstname.'</div>            
             </div>';
-            $sub_array[] = $row->gym_name;
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0">
+                    <img src="'.$url.'//gyms/'.(file_exists($row->img_name) ? $row->img_name : 'default.png').'" alt="" class="avatar-xs">
+                </div>
+                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
+            </div>';
             $sub_array[] = $row->address;
             $sub_array[] = $row->email;
             $sub_array[] = $row->phone;
