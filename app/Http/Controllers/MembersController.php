@@ -60,12 +60,19 @@ class MembersController extends Controller
     {
         $result = $this->membersRepository->getAllMembersByFilters($request);
         $recordsTotal = $this->membersRepository->countAllMembers();
+        $url = url('/assets/images/members/');
         $data = array();
         foreach($result["all_result"] as $row)
         {
             $sub_array = array();
-            $sub_array[] = $row->firstname;
-            $sub_array[] = $row->lastname;
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0">
+                    <img src="'.$url.'/'.(file_exists($row->img_name) ? $row->img_name : 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                </div>
+                <div class="flex-grow-1 ms-2 name">'.$row->lastname. ' '.$row->firstname.'</div>            
+            </div>';
+            $sub_array[] = $row->gym_name;
             $sub_array[] = $row->address;
             $sub_array[] = $row->email;
             $sub_array[] = $row->phone;

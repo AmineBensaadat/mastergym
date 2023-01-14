@@ -20,10 +20,16 @@ class MembersRepository
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
-            ->select('files.name as img_name','members.*');
+            ->join('gyms', 'members.gym_id', '=', 'gyms.id')
+            ->select('files.name as img_name','members.*','gyms.name as gym_name');
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
+        }
+
+        if(isset($request['global_filter']) && $request['global_filter'] != '')
+        {
+        $query->where('firstname',  'like', '%'.$request['global_filter'].'%');
         }
 
         if(isset($request['order']))

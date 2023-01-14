@@ -21,24 +21,17 @@
                 <div class="row g-2">
                     <div class="col-xl-3">
                         <div class="search-box">
-                            <input type="text" class="form-control search" placeholder="Search for sellers &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
+                            <input type="text" class="form-control search" placeholder="Search for members &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
                         </div>
                     </div>
                     <!--end col-->
                     <div class="col-xxl-3 ms-auto">
-                        {{-- <div>
-                            <div class="choices" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div class="choices__inner"><select class="form-control choices__input" data-choices="" data-choices-search-false="" hidden="" tabindex="-1" data-choice="active"><option value="Computers &amp; Electronics" data-custom-properties="[object Object]">Computers &amp;amp; Electronics</option></select><div class="choices__list choices__list--single"><div class="choices__item choices__item--selectable" data-item="" data-id="4" data-value="Computers &amp; Electronics" data-custom-properties="[object Object]" aria-selected="true">Computers &amp; Electronics</div></div></div><div class="choices__list choices__list--dropdown" aria-expanded="false"><div class="choices__list" role="listbox"><div id="choices--5h0q-item-choice-7" class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted" role="option" data-choice="" data-id="7" data-value="" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Select Categories</div><div id="choices--5h0q-item-choice-1" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="1" data-value="All" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">All</div><div id="choices--5h0q-item-choice-2" class="choices__item choices__item--choice is-selected choices__item--selectable" role="option" data-choice="" data-id="2" data-value="Computers &amp; Electronics" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Computers &amp; Electronics</div><div id="choices--5h0q-item-choice-3" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="3" data-value="Food Service" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Food Service</div><div id="choices--5h0q-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="Health &amp; Medicine" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Health &amp; Medicine</div><div id="choices--5h0q-item-choice-5" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="5" data-value="Manufacturer" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Manufacturer</div><div id="choices--5h0q-item-choice-6" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="6" data-value="Retailer" data-select-text="Press to select" data-choice-selectable="">Retailer</div></div></div></div>
-                        </div> --}}
                     </div>
                     <!--end col-->
                     <div class="col-lg-auto">
                         <div class="hstack gap-2">
-                            <button type="button" class="btn btn-danger"><i class="ri-equalizer-fill me-1 align-bottom"></i> Filters</button>
+                            <a class="btn btn-info add-btn" data-bs-toggle="offcanvas" href="#costum-filter" aria-controls="costum-filter"> <i class="ri-filter-2-line me-1 align-bottom"></i> Filters </a>
                             <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
-                            <button type="button" class="btn btn-success add-btn"
-                                    data-bs-toggle="modal" id="create-btn"
-                                    data-bs-target="#showModal"><i
-                                        class="ri-add-line align-bottom me-1"></i> Add Customer</button>
                         </div>
                     </div>
                     <!--end col-->
@@ -64,24 +57,24 @@
                                     placeholder="ID" readonly />
                             </div>
     
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="customername-field" class="form-label">
                                     Firstname</label>
                                 <input type="text" id="filter_firstname"
                                     class="form-control" placeholder="Enter name"
                                     required />
-                            </div>
+                            </div> --}}
     
                          
                         </div>
-                        <div class="modal-footer">
+                        {{-- <div class="modal-footer">
                             <div class="hstack gap-2 justify-content-end">
                                 <button type="button" class="btn btn-light"
                                     data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-success"
                                     id="filter-btn">Filter</button>
                             </div>
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
             </div>
@@ -147,7 +140,7 @@
                     <thead>
                         <tr>
                             <th >@lang('translation.member')</th>
-                            <th >@lang('translation.phone')</th>
+                            <th >@lang('translation.gym')</th>
                             <th >@lang('translation.email')</th>
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.cin')</th>
@@ -157,6 +150,28 @@
                 </table>
 
             </div>
+             {{-- Custom Filtre Datatable --}}
+            <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="costum-filter">
+                <!--end offcanvas-header-->
+                <div class="offcanvas-body profile-offcanvas p-0">
+                    <!--end row-->
+                    <div class="p-3 border-top">
+                        <h5 class="fs-15 mb-4">Custom Filters</h5>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                Firstname</label>
+                            <input type="text" id="filter_firstname"class="form-control filter_input" placeholder="Enter name"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <!--end offcanvas-body-->
+                <div class="offcanvas-foorter border p-3 hstack gap-3 text-center position-relative">
+                    <button  id="reset_fiter" class="btn btn-light w-100"><i class="ri-close-line align-bottom ms-1"></i> Reset filter</button>
+                    <button  id="filter-btn" class="btn btn-primary w-100"><i class="ri-search-line search-icon align-bottom ms-1"></i> Search</button>
+                </div>
+            </div>
+            <!--end Filtre -->
         </div>
     </div>
     <!--end col-->
@@ -182,7 +197,7 @@
 
     $(document).ready(function(){
         fill_datatable();
-        function fill_datatable(filter_firstname = '')
+        function fill_datatable(global_filter = '' ,filter_firstname = '' )
             {
                 var dataTable = $('#members_dt').DataTable({
                     "processing" : true,
@@ -194,25 +209,40 @@
                     type:"POST",
                     data:{
                         "_token": "{{ csrf_token() }}",
+                        global_filter:global_filter,
                         filter_firstname:filter_firstname
                     }
                     }
                 });
             }
+        
+            $( ".search" ).keyup(function() {
+                $('#members_dt').DataTable().destroy();
+                var global_filter = $('.search').val();
+                fill_datatable(global_filter);
+            });
 
         $('#filter-btn').click(function(){
             var filter_firstname = $('#filter_firstname').val();
             if(filter_firstname != '')
             {
                 $('#members_dt').DataTable().destroy();
-                fill_datatable(filter_firstname);
+                fill_datatable(global_filter ,filter_firstname);
+                $('#costum-filter').offcanvas('hide');
             }
-            else
-            {
-                alert('Select Both filter option');
-                $('#members_dt').DataTable().destroy();
-                fill_datatable();
-            }
+            // else
+            // {
+            //     alert('Select Both filter option');
+            //     $('#members_dt').DataTable().destroy();
+            //     fill_datatable();
+            // }
+        });
+
+        $('#reset_fiter').click(function(){
+            $('#costum-filter').offcanvas('hide');
+            $('.filter_input').val('');
+            $('#members_dt').DataTable().destroy();
+            fill_datatable();
         });
     });
 </script>
