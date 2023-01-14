@@ -98,7 +98,7 @@ return [
     // payment
     "price" => "السعر",
     "discount" => "تخفيض",
-    "discount_amount" => "مقدار الخصم",
+    "discount-amount" => "مقدار الخصم",
 
     // invoices
     "invoices"=>"الفواتير",
@@ -120,8 +120,9 @@ return [
     "check"  => "شيك",
     "virement"  => "تحويل مصرفي",
     "cash"  => "دفع نقدا",
-    "payment_comment"  => " معلومات إضافية عن الدفع ",
+    "payment-comment"  => " معلومات إضافية عن الدفع ",
     "source"  => "المصدر",
+    "filter"  => "فلتر ",
 
 
 

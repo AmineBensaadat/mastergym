@@ -302,7 +302,7 @@ return [
     // payment
     "price" => "price",
     "discount" => "discount",
-    "discount_amount" => "discount amount",
+    "discount-amount" => "discount amount",
 
     // invoices
     'N°' => "N°",
@@ -322,8 +322,11 @@ return [
     "check"  => "check",
     "virement"  => "virement",
     "cash"  => "cash",
-    "payment_comment"  => "payment comment",
+    "payment-comment"  => "payment comment",
     "source"  => "source",
+    "filter"  => "filter",
+    "add" => "add",
+    "member" => "member",
 
 
 

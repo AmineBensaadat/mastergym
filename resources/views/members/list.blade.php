@@ -3,7 +3,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Pages @endslot
-@slot('title') Members @endslot
+@slot('title') @lang('translation.members') @endslot
 @endcomponent
 
 <!--datatable css-->
@@ -30,8 +30,8 @@
                     <!--end col-->
                     <div class="col-lg-auto">
                         <div class="hstack gap-2">
-                            <a class="btn btn-info add-btn" data-bs-toggle="offcanvas" href="#costum-filter" aria-controls="costum-filter"> <i class="ri-filter-2-line me-1 align-bottom"></i> Filters </a>
-                            <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
+                            <a class="btn btn-info add-btn" data-bs-toggle="offcanvas" href="#costum-filter" aria-controls="costum-filter"> <i class="ri-filter-2-line me-1 align-bottom"></i> @lang('translation.filter') </a>
+                            <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> @lang('translation.add') @lang('translation.member')</a>
                         </div>
                     </div>
                     <!--end col-->
@@ -43,20 +43,20 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-light p-3">
-                        <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">@lang('translation.filter')</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close" id="close-modal"></button>
                     </div>
                     <form action="#">
                         <div class="modal-body">
                             <input type="hidden" id="id-field" />
-    
+
                             <div class="mb-3" id="modal-id" style="display: none;">
                                 <label for="id-field1" class="form-label">ID</label>
                                 <input type="text" id="id-field1" class="form-control"
                                     placeholder="ID" readonly />
                             </div>
-    
+
                             {{-- <div class="mb-3">
                                 <label for="customername-field" class="form-label">
                                     Firstname</label>
@@ -64,8 +64,8 @@
                                     class="form-control" placeholder="Enter name"
                                     required />
                             </div> --}}
-    
-                         
+
+
                         </div>
                         {{-- <div class="modal-footer">
                             <div class="hstack gap-2 justify-content-end">
@@ -141,10 +141,10 @@
                         <tr>
                             <th >@lang('translation.member')</th>
                             <th >@lang('translation.gym')</th>
-                            <th >@lang('translation.service')</th>
+                            <th >@lang('translation.Service')</th>
                             <th >@lang('translation.address')</th>
-                            <th >@lang('translation.cin')</th>
-                            <th >@lang('translation.status')</th>
+                            <th >@lang('translation.CNIE')</th>
+                            <th >@lang('translation.Status')</th>
                         </tr>
                     </thead>
                 </table>
@@ -215,7 +215,7 @@
                     }
                 });
             }
-        
+
             $( ".search" ).keyup(function() {
                 $('#members_dt').DataTable().destroy();
                 var global_filter = $('.search').val();

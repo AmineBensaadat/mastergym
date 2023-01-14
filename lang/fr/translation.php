@@ -313,7 +313,7 @@ return [
     // payment
     "price" => "Prix",
     "discount" => "Remise",
-    "discount_amount" => "montant de la remise",
+    "discount-amount" => "montant de la remise",
 
     // invoices
     'N°' => "N°",
@@ -333,8 +333,11 @@ return [
     "check"  => "Chèque",
     "virement"  => " virement",
     "cash"  => "en espèces",
-    "payment_comment"  => "commentaire de paiement",
+    "payment-comment"  => "commentaire de paiement",
     "source"  => "la source",
+    "filter"  => "Filtre",
+    "add" => "ajouter",
+
 
 ];
 ?>
