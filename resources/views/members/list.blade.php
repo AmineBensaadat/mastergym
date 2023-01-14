@@ -141,7 +141,7 @@
                         <tr>
                             <th >@lang('translation.member')</th>
                             <th >@lang('translation.gym')</th>
-                            <th >@lang('translation.email')</th>
+                            <th >@lang('translation.service')</th>
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.cin')</th>
                             <th >@lang('translation.status')</th>

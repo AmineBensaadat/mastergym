@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
+use App\Repositories\FilesRepository;
 use App\Repositories\GymsRepository;
 use App\Repositories\InvoicesRepository;
 use App\Repositories\MembersRepository;
@@ -28,6 +29,7 @@ class MembersController extends Controller
     private $subscriptionsRepository;
     private $invoicesRepository;
     private $plansRepository;
+    private $filesRepository;
 
     public function __construct(
         MembersRepository $membersRepository,
@@ -35,7 +37,8 @@ class MembersController extends Controller
         ServicesRepository $servicesRepository,
         SubscriptionsRepository $subscriptionsRepository,
         InvoicesRepository $invoicesRepository,
-        PlansRepository $plansRepository)
+        PlansRepository $plansRepository,
+        FilesRepository $filesRepository)
     {
         $this->membersRepository = $membersRepository;
         $this->gymsRepository = $gymsRepository;
@@ -43,6 +46,7 @@ class MembersController extends Controller
         $this->subscriptionsRepository = $subscriptionsRepository;
         $this->invoicesRepository = $invoicesRepository;
         $this->plansRepository = $plansRepository;
+        $this->filesRepository = $filesRepository;
         $this->middleware('auth');
     }
     /**
@@ -58,6 +62,7 @@ class MembersController extends Controller
 
     public function getAllMembers(Request $request)
     {
+        
         $result = $this->membersRepository->getAllMembersByFilters($request);
         $recordsTotal = $this->membersRepository->countAllMembers();
         $url = url('/assets/images/');
@@ -68,19 +73,26 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.(file_exists($row->img_name) ? $row->img_name : 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$url.'//members/'.(file_exists('assets/images/members'.$row->member_img) &&  $row->member_img ? $row->member_img : 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->lastname. ' '.$row->firstname.'</div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
-                <div class="flex-shrink-0">
-                    <img src="'.$url.'//gyms/'.(file_exists($row->img_name) ? $row->img_name : 'default.png').'" alt="" class="avatar-xs">
+                <div class="flex-shrink-0 ">
+                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
-            $sub_array[] = $row->address;
-            $sub_array[] = $row->email;
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0 ">
+                    <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                </div>
+                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
+            </div>';
+            //$sub_array[] = $row->id;
+            $sub_array[] = $row->member_img;
             $sub_array[] = $row->phone;
             $sub_array[] = $row->DOB;
             $data[] = $sub_array;

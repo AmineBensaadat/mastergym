@@ -20,8 +20,15 @@ class MembersRepository
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
+            ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
+            ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
+            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
-            ->select('files.name as img_name','members.*','gyms.name as gym_name');
+            ->select(
+                'files.name as member_img',
+                'members.*',
+                'gyms.name as gym_name',
+                'services.name as service_name');
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
