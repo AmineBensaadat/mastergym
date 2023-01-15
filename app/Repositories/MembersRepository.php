@@ -28,7 +28,10 @@ class MembersRepository
                 'files.name as member_img',
                 'members.*',
                 'gyms.name as gym_name',
-                'services.name as service_name');
+                'services.id as service_id',
+                'services.name as service_name',
+                'plans.id as plan_id',
+                'plans.plan_name as plan_name');
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
@@ -37,6 +40,7 @@ class MembersRepository
         if(isset($request['global_filter']) && $request['global_filter'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['global_filter'].'%');
+        $query->orWhere('lastname', 'LIKE', '%'.$request['global_filter'].'%');
         }
 
         if(isset($request['order']))

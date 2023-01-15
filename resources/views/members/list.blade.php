@@ -142,8 +142,12 @@
                             <th >@lang('translation.member')</th>
                             <th >@lang('translation.gym')</th>
                             <th >@lang('translation.service')</th>
-                            <th >@lang('translation.address')</th>
+                            <th >@lang('translation.plan')</th>
+                            <th >@lang('translation.phone')</th>
                             <th >@lang('translation.cin')</th>
+                            <th >@lang('translation.city')</th>
+                            <th >@lang('translation.address')</th>
+                            <th >@lang('translation.DOB')</th>
                             <th >@lang('translation.status')</th>
                         </tr>
                     </thead>
@@ -167,7 +171,7 @@
                 </div>
                 <!--end offcanvas-body-->
                 <div class="offcanvas-foorter border p-3 hstack gap-3 text-center position-relative">
-                    <button  id="reset_fiter" class="btn btn-light w-100"><i class="ri-close-line align-bottom ms-1"></i> Reset filter</button>
+                    <button  id="reset_fiter" class="btn btn-light w-100"><i class="ri-close-line align-bottom ms-1"></i>Clear All</button>
                     <button  id="filter-btn" class="btn btn-primary w-100"><i class="ri-search-line search-icon align-bottom ms-1"></i> Search</button>
                 </div>
             </div>
@@ -185,7 +189,6 @@
 
 <script src="{{ URL::asset('/assets/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/dataTables.bootstrap5.min.js') }}"></script>
-<script src="{{ URL::asset('/assets/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/fs_fonts.jss') }}"></script>
@@ -203,6 +206,7 @@
                     "processing" : true,
                     "serverSide" : true,
                     "order" : [],
+                    "scrollX": true,
                     "searching" : false,
                     "ajax" : {
                     url:"../members/getAllMembers",

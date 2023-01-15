@@ -84,17 +84,39 @@ class MembersController extends Controller
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
-            $sub_array[] = '
-            <div class="d-flex align-items-center">            
-                <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
-                </div>
-                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
-            </div>';
-            //$sub_array[] = $row->id;
-            $sub_array[] = $row->member_img;
+            if($row->service_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
+
+            if($row->plan_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
             $sub_array[] = $row->phone;
+            $sub_array[] = $row->cin;
+            $sub_array[] = $row->city;
+            $sub_array[] = $row->address;
             $sub_array[] = $row->DOB;
+            if($row->status == 1){
+                $sub_array[] = '<span class="badge text-bg-success">Active</span>';
+            }else{
+                $sub_array[] = '<span class="badge text-bg-dark">Inactive</span>';   
+            }
             $data[] = $sub_array;
         }
 

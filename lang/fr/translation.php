@@ -335,6 +335,8 @@ return [
     "cash"  => "en espèces",
     "payment_comment"  => "commentaire de paiement",
     "source"  => "la source",
+    "service"  => "service",
+    
 
 ];
 ?>
