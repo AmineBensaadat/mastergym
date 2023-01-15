@@ -335,14 +335,8 @@ return [
     "cash"  => "en espèces",
     "payment-comment"  => "commentaire de paiement",
     "source"  => "la source",
-<<<<<<< HEAD
     "service"  => "service",
-    
-=======
     "filter"  => "Filtre",
     "add" => "ajouter",
-
->>>>>>> 4c0f5f31d5776e5e5adb29561a05a77ca42a7d09
-
 ];
 ?>

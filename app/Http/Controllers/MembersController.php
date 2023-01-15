@@ -57,7 +57,8 @@ class MembersController extends Controller
     public function index()
     {
         $members = $this->membersRepository->all();
-        return view('members.list', compact('members'));
+        $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        return view('members.list', compact('members', 'gyms'));
     }
 
     public function getAllMembers(Request $request)

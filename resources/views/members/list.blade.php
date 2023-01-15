@@ -141,7 +141,6 @@
                         <tr>
                             <th >@lang('translation.member')</th>
                             <th >@lang('translation.gym')</th>
-<<<<<<< HEAD
                             <th >@lang('translation.service')</th>
                             <th >@lang('translation.plan')</th>
                             <th >@lang('translation.phone')</th>
@@ -150,12 +149,6 @@
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.DOB')</th>
                             <th >@lang('translation.status')</th>
-=======
-                            <th >@lang('translation.Service')</th>
-                            <th >@lang('translation.address')</th>
-                            <th >@lang('translation.CNIE')</th>
-                            <th >@lang('translation.Status')</th>
->>>>>>> 4c0f5f31d5776e5e5adb29561a05a77ca42a7d09
                         </tr>
                     </thead>
                 </table>
@@ -171,8 +164,52 @@
                         <div class="mb-3">
                             <label for="customername-field" class="form-label">
                                 Firstname</label>
-                            <input type="text" id="filter_firstname"class="form-control filter_input" placeholder="Enter name"
+                            <input type="text" id="filter_firstname"class="form-control filter_input" placeholder="Enter Firstname"
                                 required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                Lastname</label>
+                            <input type="text" id="filter_lastname"class="form-control filter_input" placeholder="Enter Lastname" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                cin</label>
+                            <input type="text" id="filter_cin"class="form-control filter_input" placeholder="Enter cin" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                phone</label>
+                            <input type="text" id="filter_phone"class="form-control filter_input" placeholder="Enter phone"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                address</label>
+                            <input type="text" id="filter_address"class="form-control filter_input" placeholder="Enter address"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                city</label>
+                            <input type="text" id="filter_city"class="form-control filter_input" placeholder="Enter city"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gym" class="form-label">@lang('translation.gym')</label>
+                            <select id="filter_gym" class="form-select" aria-label=".form-select-sm example">
+                                <option value="0">@lang('translation.chose')@lang('translation.gym')</option>
+                                @foreach ($gyms as $gym)
+                                    <option value="{{ $gym->id }}">{{ $gym->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                service</label>
+                            <input type="text" id="filter_service"class="form-control filter_input" placeholder="Enter service"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                plan</label>
+                            <input type="text" id="filter_plan"class="form-control filter_input" placeholder="Enter plan"/>
                         </div>
                     </div>
                 </div>
@@ -207,8 +244,9 @@
 
     $(document).ready(function(){
         fill_datatable();
-        function fill_datatable(global_filter = '' ,filter_firstname = '' )
+        function fill_datatable(global_filter = '' ,filter_firstname = '',gymId = '' )
             {
+                console.log(gymId);
                 var dataTable = $('#members_dt').DataTable({
                     "processing" : true,
                     "serverSide" : true,
@@ -221,33 +259,32 @@
                     data:{
                         "_token": "{{ csrf_token() }}",
                         global_filter:global_filter,
-                        filter_firstname:filter_firstname
+                        filter_firstname:filter_firstname,
+                        gymId:gymId
                     }
                     }
                 });
             }
 
             $( ".search" ).keyup(function() {
-                $('#members_dt').DataTable().destroy();
                 var global_filter = $('.search').val();
+                $('#members_dt').DataTable().destroy();
                 fill_datatable(global_filter);
             });
 
         $('#filter-btn').click(function(){
             var filter_firstname = $('#filter_firstname').val();
-            if(filter_firstname != '')
-            {
+            var gymId = $( "#filter_gym option:selected" ).val();
+           
                 $('#members_dt').DataTable().destroy();
-                fill_datatable(global_filter ,filter_firstname);
+                fill_datatable('',filter_firstname, gymId);
                 $('#costum-filter').offcanvas('hide');
-            }
-            // else
-            // {
-            //     alert('Select Both filter option');
-            //     $('#members_dt').DataTable().destroy();
-            //     fill_datatable();
-            // }
         });
+        // $("#filter_gym").on("change",function(){
+            
+        //     $('#members_dt').DataTable().destroy();
+        //     fill_datatable(gymId);
+        // });
 
         $('#reset_fiter').click(function(){
             $('#costum-filter').offcanvas('hide');
