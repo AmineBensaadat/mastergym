@@ -21,11 +21,11 @@ return new class extends Migration
             $table->integer('subscription-price');
             $table->integer('amount_pending')->nullable();
             $table->integer('discount')->nullable();
-            $table->integer('discount_amount')->nullable();
-            $table->string('payment_mode');
-            $table->integer('additional_fees')->nullable();
+            $table->integer('discount-amount')->nullable();
+            $table->string('payment-mode');
+            $table->integer('additional-fees')->nullable();
             $table->string('status');
-            $table->longText('payment_comment')->nullable();
+            $table->longText('payment-comment')->nullable();
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();

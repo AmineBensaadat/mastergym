@@ -57,7 +57,7 @@
                             <th >@lang('translation.received')</th>
                             <th >@lang('translation.subscription-price')</th>
                             <th >@lang('translation.discount')</th>
-                            <th >@lang('translation.discount_amount')</th>
+                            <th >@lang('translation.discount-amount')</th>
                             <th >@lang('translation.rest')</th>
                             <th >@lang('translation.payment-mode')</th>
                             <th >@lang('translation.additional-fees')</th>
@@ -84,7 +84,7 @@
                                 <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount }} %</span></center></h4>
                             </td>
                             <td>
-                                <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount_amount }}</span></center></h4>
+                                <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount-amount }}</span></center></h4>
                             </td>
                             <td>
                                 <h4>
@@ -102,7 +102,7 @@
                             </td>
                             <td>
                                 <h4>
-                                    <center><span class="badge badge-soft-info badge-border">{{ $invoice->additional_fees }} @lang('translation.DH')</span></center>
+                                    <center><span class="badge badge-soft-info badge-border">{{ $invoice->additional-fees }} @lang('translation.DH')</span></center>
                                 </h4>
                             </td>
                             <td>
@@ -145,7 +145,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $invoice->payment_comment }}</td>
+                            <td>{{ $invoice->payment-comment }}</td>
                         </tr>
                         @endforeach
                     </tbody>
