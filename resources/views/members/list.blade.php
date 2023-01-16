@@ -19,16 +19,16 @@
         <div class="card">
             <div class="card-header border-0 rounded">
                 <div class="row g-2">
-                    <div class="col-xl-3">
+                    <div class="col-xl-3 col-sm-2">
                         <div class="search-box">
                             <input type="text" class="form-control search" placeholder="Search for members &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
                         </div>
                     </div>
                     <!--end col-->
-                    <div class="col-xxl-3 ms-auto">
+                    <div class="col-xxl-3 col-sm-2 ms-auto">
                     </div>
                     <!--end col-->
-                    <div class="col-lg-auto">
+                    <div class="col-lg-auto col-sm-2">
                         <div class="hstack gap-2">
                             <a class="btn btn-info add-btn" data-bs-toggle="offcanvas" href="#costum-filter" aria-controls="costum-filter"> <i class="ri-filter-2-line me-1 align-bottom"></i> @lang('translation.filter') </a>
                             <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> @lang('translation.add') @lang('translation.member')</a>
@@ -246,7 +246,6 @@
         fill_datatable();
         function fill_datatable(global_filter = '' ,filter_firstname = '',gymId = '' )
             {
-                console.log(gymId);
                 var dataTable = $('#members_dt').DataTable({
                     "processing" : true,
                     "serverSide" : true,
