@@ -201,15 +201,23 @@
                                 @endforeach
                             </select>
                         </div>
+                        @if ($services)
                         <div class="mb-3">
-                            <label for="customername-field" class="form-label">
-                                service</label>
-                            <input type="text" id="filter_service"class="form-control filter_input" placeholder="Enter service"/>
+                            <label for="service" class="form-label">@lang('translation.service')</label>
+                            <select id="filter_service" class="form-select" aria-label=".form-select-sm example">
+                                <option value="">@lang('translation.chose')@lang('translation.service')</option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        @endif
+
                         <div class="mb-3">
-                            <label for="customername-field" class="form-label">
-                                plan</label>
-                            <input type="text" id="filter_plan"class="form-control filter_input" placeholder="Enter plan"/>
+                            <label class="form-label" for="service-input">@lang('translation.plans')</label>
+                            <select id="filter_plans" class="form-select" aria-label=".form-select-sm example" required>
+                                <option value="">@lang('translation.chose')@lang('translation.plans')</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -244,7 +252,7 @@
 
     $(document).ready(function(){
         fill_datatable();
-        function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '' )
+        function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
             {
                 var dataTable = $('#members_dt').DataTable({
                     "processing" : true,
@@ -264,6 +272,8 @@
                         filter_phone:filter_phone, 
                         filter_address:filter_address, 
                         filter_city:filter_city,
+                        filter_service:filter_service,
+                        filter_plans:filter_plans,
                         gymId:gymId
                     }
                     }
@@ -284,25 +294,45 @@
             var filter_address = $('#filter_address').val();
             var filter_city = $('#filter_city').val();
             var gymId = $( "#filter_gym option:selected" ).val();
-
-            console.log(filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city);
+            var filter_service = $( "#filter_service option:selected" ).val();
+            var filter_plans = $( "#filter_plans option:selected" ).val();
            
                 $('#members_dt').DataTable().destroy();
-                fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city);
-                //$('#costum-filter').offcanvas('hide');
+                fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city, filter_service, filter_plans);
+                $('#costum-filter').offcanvas('hide');
         });
-        // $("#filter_gym").on("change",function(){
-            
-        //     $('#members_dt').DataTable().destroy();
-        //     fill_datatable(gymId);
-        // });
-
         $('#reset_fiter').click(function(){
             $('#costum-filter').offcanvas('hide');
             $('.filter_input').val('');
             $('#members_dt').DataTable().destroy();
             fill_datatable();
         });
+        var html = '';
+
+
+    $("#filter_service").on("change",function(){
+        html = '';
+        var serviceId = $(this).val();
+        $.ajax({
+            url :"/plans/allPlansByService",
+            type:"POST",
+            cache:false,
+            data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
+            success:function(data){
+                if((data.plans).length > 0){
+                    $.each(data.plans, function (key, val) {
+                        html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
+                        $("#filter_plans").html(html);
+                    });
+                }else{
+                    html = '<option value="">Select plans</option>';
+                    $("#filter_plans").html(html);
+                   
+
+                }
+            }
+        });
+    });
     });
 </script>
 @endsection

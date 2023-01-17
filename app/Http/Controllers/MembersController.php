@@ -54,16 +54,16 @@ class MembersController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $members = $this->membersRepository->all();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
-        return view('members.list', compact('members', 'gyms'));
+        $services =  $this->servicesRepository->renderAllServices();
+        return view('members.list', compact('members', 'gyms', 'services'));
     }
 
     public function getAllMembers(Request $request)
     {
-        
         $result = $this->membersRepository->getAllMembersByFilters($request);
         $recordsTotal = $this->membersRepository->countAllMembers();
         $url = url('/assets/images/');

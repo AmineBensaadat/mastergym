@@ -66,7 +66,17 @@ class MembersRepository
         {
         $query->where('members.gym_id',  '=', $request['gymId']);
         }
+        
+        if(isset($request['filter_service']) && $request['filter_service'] != '')
+        {
+        $query->where('services.id',  '=', $request['filter_service']);
+        }
 
+        if(isset($request['filter_plans']) && $request['filter_plans'] != '')
+        {
+        $query->where('plans.id',  '=', $request['filter_plans']);
+        }
+        
         if(isset($request['global_filter']) && $request['global_filter'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['global_filter'].'%');
