@@ -6,6 +6,7 @@ return [
     "add_gym" => "إضافة",
     "require_gym_name" => "name is require",
     "add_gym" => " أضف ",
+    "add" => " أضف ",
     "name" => " اسم ",
     "gym_address" => " العنوان ",
     "gym_phone" => " الهاتف ",
@@ -90,16 +91,17 @@ return [
     "save" => "حفظ",
     "Close" => "إغلاق",
     "city" => " المدينة ",
-    "gym" => "الصالة الرياضية",
+    "gym" => "صالة الرياضية",
     "Enter-details-of-the-invoice" => " أدخل تفاصيل الفاتورة ",
 
 
     // payment
     "price" => "السعر",
     "discount" => "تخفيض",
-    "discount_amount" => "مقدار الخصم",
+    "discount-amount" => "مقدار الخصم",
 
     // invoices
+    "invoices"=>"الفواتير",
     'N°' => "N°",
     "Amount-Received"  => "تم استلام المبلغ",
     "received"  => "الواردة",
@@ -113,12 +115,14 @@ return [
     "created-at"  => "أنشأ",
     "DH"  => "DH",
 
+
     "None"  => "لا شيء",
     "check"  => "شيك",
     "virement"  => "تحويل مصرفي",
     "cash"  => "دفع نقدا",
-    "payment_comment"  => " معلومات إضافية عن الدفع ",
+    "payment-comment"  => " معلومات إضافية عن الدفع ",
     "source"  => "المصدر",
+    "filter"  => "فلتر ",
 
 
 

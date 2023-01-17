@@ -57,7 +57,7 @@
                             <th >@lang('translation.received')</th>
                             <th >@lang('translation.subscription-price')</th>
                             <th >@lang('translation.discount')</th>
-                            <th >@lang('translation.discount_amount')</th>
+                            <th >@lang('translation.discount-amount')</th>
                             <th >@lang('translation.rest')</th>
                             <th >@lang('translation.payment-mode')</th>
                             <th >@lang('translation.additional-fees')</th>
@@ -72,13 +72,13 @@
                         <tr>
                             <td>{{ $invoice->id }}</td>
                             <td>
-                                <h4><center><span class="badge badge-outline-info">{{ $invoice->created-at }}</span></center></h4>
+                                <h4><center><span class="badge badge-outline-info">{{ $invoice->created_at }}</span></center></h4>
                             </td>
                             <td>
                                 <h4><center><span class="badge badge-soft-success badge-border">{{ $invoice->amount_received }}  @lang('translation.DH')</span></center></h4>
                             </td>
                             <td>
-                                <h4><center><span class="badge text-bg-secondary bg-dark">{{ $invoice->subscription-price }}  @lang('translation.DH')</span></center></h4>
+                                <h4><center><span class="badge text-bg-secondary bg-dark">{{ $invoice->subscription_price }}  @lang('translation.DH')</span></center></h4>
                             </td>
                             <td>
                                 <h4><center><span class="badge rounded-pill badge-soft-secondary">{{ $invoice->discount }} %</span></center></h4>
@@ -96,7 +96,7 @@
                             <td>
                                 <h4>
                                     <center>
-                                        <span class="badge badge-soft-info badge-border">{{ $invoice->payment-mode }}</span>
+                                        <span class="badge badge-soft-info badge-border">{{ $invoice->payment_mode }}</span>
                                     </center>
                                 </h4>
                             </td>

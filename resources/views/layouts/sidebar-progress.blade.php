@@ -52,7 +52,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ route('members_create') }}">
-                                     @lang('translation.add_member')
+                                     @lang('translation.add')@lang('translation.member')
                                 </a>
                             </li>
                         </ul>
@@ -72,7 +72,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ route('add_gym') }}">
-                                     @lang('translation.add_gym')
+                                     @lang('translation.add_gym')@lang('translation.gym')
                                 </a>
                             </li>
                         </ul>
@@ -87,12 +87,12 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ route('plans_list') }}">
-                                     @lang('translation.all_plans')
+                                     @lang('translation.plans')
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ route('plans_create') }}">
-                                     @lang('translation.add_plan')
+                                     @lang('translation.CREATE_PLAN')
                                 </a>
                             </li>
                         </ul>
@@ -128,7 +128,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ route('users_create') }}">
-                                     @lang('translation.add_users')
+                                     @lang('translation.Create-user')
                                 </a>
                             </li>
                         </ul>

@@ -1,11 +1,11 @@
 @extends('layouts.master')
-@section('title') @lang('translation.add-Subscription') @endsection
+@section('title') @lang('translation.add')@lang('translation.subscriptions') @endsection
 @section('css')
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Ecommerce @endslot
-@slot('title') @lang('translation.Add-Subscription') @endslot
+@slot('li_1') @lang('translation.subscriptions') @endslot
+@slot('title') @lang('translation.add')@lang('translation.subscriptions') @endslot
 @endcomponent
 
 <form id="createSubscription-form" method="POST" class="needs-validation"  action="{{ route('members_store') }}" novalidate enctype="multipart/form-data">
@@ -89,8 +89,8 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="choices-amount-received" class="form-label">@lang('translation.Amount Received')</label>
-                                    <input disabled type="number" class="form-control form-control-icon" name="amount-received" id="amount-received" value="{{ old('amount-received') }}"  placeholder="@lang('translation.entrer the') @lang('translation.Amount Received')">
+                                    <label for="choices-amount-received" class="form-label">@lang('translation.Amount-Received')</label>
+                                    <input disabled type="number" class="form-control form-control-icon" name="amount-received" id="amount-received" value="{{ old('amount-received') }}"  placeholder="@lang('translation.entrer the') @lang('translation.Amount-Received')">
                                     @error('amount-received')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
@@ -110,7 +110,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="amount-pending-input">@lang('translation.Amount Pending')</label>
+                                    <label class="form-label" for="amount-pending-input">@lang('translation.amount-pending')</label>
 
                                     <div class="form-icon">
                                         <input disabled type="number" class="form-control" name="amount-pending" id="amount-pending" value="{{ old('amount-pending') }}" placeholder="@lang('translation.entrer the') @lang('translation.amount-pending')" >
@@ -122,14 +122,14 @@
                               </div>
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="discount-amount-input">@lang('translation.discount amount')</label>
+                                    <label class="form-label" for="discount-amount-input">@lang('translation.discount-amount')</label>
                                     <input readonly type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
                                     @error('discount-amount')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="payment-mode-input">@lang('translation.payment_mode')</label>
+                                    <label class="form-label" for="payment-mode-input">@lang('translation.payment-mode')</label>
                                     <select disabled name="payment-mode" class="form-select" id="payment-mode">
                                         <option value="cash" selected>@lang('translation.cash')</option>
                                         <option value="virement">@lang('translation.virement')</option>
@@ -143,14 +143,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <label class="form-label" for="additional_fees">@lang('translation.additional_fees')</label>
-                                    <input disabled type="number" class="form-control" name="additional_fees" id="additional_fees" value="{{ old('additional_fees') }}" placeholder="@lang('translation.entrer the') @lang('translation.additional_fees')"  >
+                                    <label class="form-label" for="additional-fees">@lang('translation.additional-fees')</label>
+                                    <input disabled type="number" class="form-control" name="additional-fees" id="additional-fees" value="{{ old('additional-fees') }}" placeholder="@lang('translation.entrer the') @lang('translation.additional-fees')"  >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <label class="form-label" for="payment_comment">@lang('translation.payment_comment')</label>
-                                    <textarea disabled name="payment_comment" class="form-control" id="payment_comment" rows="3" placeholder="@lang('translation.Enter-payment_comment-her')"></textarea>
+                                    <label class="form-label" for="payment-comment">@lang('translation.payment-comment')</label>
+                                    <textarea disabled name="payment-comment" class="form-control" id="payment-comment" rows="3" placeholder="@lang('translation.entrer the')@lang('translation.payment-comment')"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -281,8 +281,8 @@ $(document).ready(function(){
                         $("#payment-mode").prop('disabled', false);
                         $("#amount-received").prop('disabled', false);
                         $("#amount-pending").prop('disabled', false);
-                        $("#additional_fees").prop('disabled', false);
-                        $("#payment_comment").prop('disabled', false);
+                        $("#additional-fees").prop('disabled', false);
+                        $("#payment-comment").prop('disabled', false);
                     });
                 }else{
                     html = '<option value="">Select plans</option>';
@@ -294,8 +294,8 @@ $(document).ready(function(){
                     $("#payment-mode").prop('disabled', true);
                     $("#amount-received").prop('disabled', true);
                     $("#amount-pending").prop('disabled', true);
-                    $("#additional_fees").prop('disabled', true);
-                    $("#payment_comment").prop('disabled', true);
+                    $("#additional-fees").prop('disabled', true);
+                    $("#payment-comment").prop('disabled', true);
 
                 }
             }

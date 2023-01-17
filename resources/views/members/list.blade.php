@@ -3,7 +3,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Pages @endslot
-@slot('title') Members @endslot
+@slot('title') @lang('translation.members') @endslot
 @endcomponent
 
 <!--datatable css-->
@@ -19,26 +19,19 @@
         <div class="card">
             <div class="card-header border-0 rounded">
                 <div class="row g-2">
-                    <div class="col-xl-3">
+                    <div class="col-xl-3 col-sm-2">
                         <div class="search-box">
-                            <input type="text" class="form-control search" placeholder="Search for sellers &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
+                            <input type="text" class="form-control search" placeholder="Search for members &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
                         </div>
                     </div>
                     <!--end col-->
-                    <div class="col-xxl-3 ms-auto">
-                        {{-- <div>
-                            <div class="choices" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div class="choices__inner"><select class="form-control choices__input" data-choices="" data-choices-search-false="" hidden="" tabindex="-1" data-choice="active"><option value="Computers &amp; Electronics" data-custom-properties="[object Object]">Computers &amp;amp; Electronics</option></select><div class="choices__list choices__list--single"><div class="choices__item choices__item--selectable" data-item="" data-id="4" data-value="Computers &amp; Electronics" data-custom-properties="[object Object]" aria-selected="true">Computers &amp; Electronics</div></div></div><div class="choices__list choices__list--dropdown" aria-expanded="false"><div class="choices__list" role="listbox"><div id="choices--5h0q-item-choice-7" class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted" role="option" data-choice="" data-id="7" data-value="" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Select Categories</div><div id="choices--5h0q-item-choice-1" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="1" data-value="All" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">All</div><div id="choices--5h0q-item-choice-2" class="choices__item choices__item--choice is-selected choices__item--selectable" role="option" data-choice="" data-id="2" data-value="Computers &amp; Electronics" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Computers &amp; Electronics</div><div id="choices--5h0q-item-choice-3" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="3" data-value="Food Service" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Food Service</div><div id="choices--5h0q-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="Health &amp; Medicine" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Health &amp; Medicine</div><div id="choices--5h0q-item-choice-5" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="5" data-value="Manufacturer" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Manufacturer</div><div id="choices--5h0q-item-choice-6" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="6" data-value="Retailer" data-select-text="Press to select" data-choice-selectable="">Retailer</div></div></div></div>
-                        </div> --}}
+                    <div class="col-xxl-3 col-sm-2 ms-auto">
                     </div>
                     <!--end col-->
-                    <div class="col-lg-auto">
+                    <div class="col-lg-auto col-sm-2">
                         <div class="hstack gap-2">
-                            <button type="button" class="btn btn-danger"><i class="ri-equalizer-fill me-1 align-bottom"></i> Filters</button>
-                            <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
-                            <button type="button" class="btn btn-success add-btn"
-                                    data-bs-toggle="modal" id="create-btn"
-                                    data-bs-target="#showModal"><i
-                                        class="ri-add-line align-bottom me-1"></i> Add Customer</button>
+                            <a class="btn btn-info add-btn" data-bs-toggle="offcanvas" href="#costum-filter" aria-controls="costum-filter"> <i class="ri-filter-2-line me-1 align-bottom"></i> @lang('translation.filter') </a>
+                            <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> @lang('translation.add') @lang('translation.member')</a>
                         </div>
                     </div>
                     <!--end col-->
@@ -50,38 +43,38 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-light p-3">
-                        <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">@lang('translation.filter')</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close" id="close-modal"></button>
                     </div>
                     <form action="#">
                         <div class="modal-body">
                             <input type="hidden" id="id-field" />
-    
+
                             <div class="mb-3" id="modal-id" style="display: none;">
                                 <label for="id-field1" class="form-label">ID</label>
                                 <input type="text" id="id-field1" class="form-control"
                                     placeholder="ID" readonly />
                             </div>
-    
-                            <div class="mb-3">
+
+                            {{-- <div class="mb-3">
                                 <label for="customername-field" class="form-label">
                                     Firstname</label>
                                 <input type="text" id="filter_firstname"
                                     class="form-control" placeholder="Enter name"
                                     required />
-                            </div>
-    
-                         
+                            </div> --}}
+
+
                         </div>
-                        <div class="modal-footer">
+                        {{-- <div class="modal-footer">
                             <div class="hstack gap-2 justify-content-end">
                                 <button type="button" class="btn btn-light"
                                     data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-success"
                                     id="filter-btn">Filter</button>
                             </div>
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
             </div>
@@ -147,16 +140,94 @@
                     <thead>
                         <tr>
                             <th >@lang('translation.member')</th>
+                            <th >@lang('translation.gym')</th>
+                            <th >@lang('translation.service')</th>
+                            <th >@lang('translation.plan')</th>
                             <th >@lang('translation.phone')</th>
-                            <th >@lang('translation.email')</th>
-                            <th >@lang('translation.address')</th>
                             <th >@lang('translation.cin')</th>
+                            <th >@lang('translation.city')</th>
+                            <th >@lang('translation.address')</th>
+                            <th >@lang('translation.DOB')</th>
                             <th >@lang('translation.status')</th>
                         </tr>
                     </thead>
                 </table>
 
             </div>
+             {{-- Custom Filtre Datatable --}}
+            <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="costum-filter">
+                <!--end offcanvas-header-->
+                <div class="offcanvas-body profile-offcanvas p-0">
+                    <!--end row-->
+                    <div class="p-3 border-top">
+                        <h5 class="fs-15 mb-4">Custom Filters</h5>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                Firstname</label>
+                            <input type="text" id="filter_firstname"class="form-control filter_input" placeholder="Enter Firstname"
+                                required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                Lastname</label>
+                            <input type="text" id="filter_lastname"class="form-control filter_input" placeholder="Enter Lastname" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                cin</label>
+                            <input type="text" id="filter_cin"class="form-control filter_input" placeholder="Enter cin" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                phone</label>
+                            <input type="text" id="filter_phone"class="form-control filter_input" placeholder="Enter phone"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                address</label>
+                            <input type="text" id="filter_address"class="form-control filter_input" placeholder="Enter address"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                city</label>
+                            <input type="text" id="filter_city"class="form-control filter_input" placeholder="Enter city"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gym" class="form-label">@lang('translation.gym')</label>
+                            <select id="filter_gym" class="form-select" aria-label=".form-select-sm example">
+                                <option value="">@lang('translation.chose')@lang('translation.gym')</option>
+                                @foreach ($gyms as $gym)
+                                    <option value="{{ $gym->id }}">{{ $gym->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @if ($services)
+                        <div class="mb-3">
+                            <label for="service" class="form-label">@lang('translation.service')</label>
+                            <select id="filter_service" class="form-select" aria-label=".form-select-sm example">
+                                <option value="">@lang('translation.chose')@lang('translation.service')</option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endif
+
+                        <div class="mb-3">
+                            <label class="form-label" for="service-input">@lang('translation.plans')</label>
+                            <select id="filter_plans" class="form-select" aria-label=".form-select-sm example" required>
+                                <option value="">@lang('translation.chose')@lang('translation.plans')</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--end offcanvas-body-->
+                <div class="offcanvas-foorter border p-3 hstack gap-3 text-center position-relative">
+                    <button  id="reset_fiter" class="btn btn-light w-100"><i class="ri-close-line align-bottom ms-1"></i>Clear All</button>
+                    <button  id="filter-btn" class="btn btn-primary w-100"><i class="ri-search-line search-icon align-bottom ms-1"></i> Search</button>
+                </div>
+            </div>
+            <!--end Filtre -->
         </div>
     </div>
     <!--end col-->
@@ -170,7 +241,6 @@
 
 <script src="{{ URL::asset('/assets/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/dataTables.bootstrap5.min.js') }}"></script>
-<script src="{{ URL::asset('/assets/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/fs_fonts.jss') }}"></script>
@@ -182,38 +252,87 @@
 
     $(document).ready(function(){
         fill_datatable();
-        function fill_datatable(filter_firstname = '')
+        function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
             {
                 var dataTable = $('#members_dt').DataTable({
                     "processing" : true,
                     "serverSide" : true,
                     "order" : [],
+                    "scrollX": true,
                     "searching" : false,
                     "ajax" : {
                     url:"../members/getAllMembers",
                     type:"POST",
                     data:{
                         "_token": "{{ csrf_token() }}",
-                        filter_firstname:filter_firstname
+                        global_filter:global_filter,
+                        filter_firstname:filter_firstname,
+                        filter_lastname:filter_lastname, 
+                        filter_cin:filter_cin, 
+                        filter_phone:filter_phone, 
+                        filter_address:filter_address, 
+                        filter_city:filter_city,
+                        filter_service:filter_service,
+                        filter_plans:filter_plans,
+                        gymId:gymId
                     }
                     }
                 });
             }
 
+            $( ".search" ).keyup(function() {
+                var global_filter = $('.search').val();
+                $('#members_dt').DataTable().destroy();
+                fill_datatable(global_filter);
+            });
+
         $('#filter-btn').click(function(){
             var filter_firstname = $('#filter_firstname').val();
-            if(filter_firstname != '')
-            {
+            var filter_lastname = $('#filter_lastname').val();
+            var filter_cin = $('#filter_cin').val();
+            var filter_phone = $('#filter_phone').val();
+            var filter_address = $('#filter_address').val();
+            var filter_city = $('#filter_city').val();
+            var gymId = $( "#filter_gym option:selected" ).val();
+            var filter_service = $( "#filter_service option:selected" ).val();
+            var filter_plans = $( "#filter_plans option:selected" ).val();
+           
                 $('#members_dt').DataTable().destroy();
-                fill_datatable(filter_firstname);
-            }
-            else
-            {
-                alert('Select Both filter option');
-                $('#members_dt').DataTable().destroy();
-                fill_datatable();
+                fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city, filter_service, filter_plans);
+                $('#costum-filter').offcanvas('hide');
+        });
+        $('#reset_fiter').click(function(){
+            $('#costum-filter').offcanvas('hide');
+            $('.filter_input').val('');
+            $('#members_dt').DataTable().destroy();
+            fill_datatable();
+        });
+        var html = '';
+
+
+    $("#filter_service").on("change",function(){
+        html = '';
+        var serviceId = $(this).val();
+        $.ajax({
+            url :"/plans/allPlansByService",
+            type:"POST",
+            cache:false,
+            data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
+            success:function(data){
+                if((data.plans).length > 0){
+                    $.each(data.plans, function (key, val) {
+                        html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
+                        $("#filter_plans").html(html);
+                    });
+                }else{
+                    html = '<option value="">Select plans</option>';
+                    $("#filter_plans").html(html);
+                   
+
+                }
             }
         });
+    });
     });
 </script>
 @endsection

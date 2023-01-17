@@ -20,10 +20,72 @@ class MembersRepository
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
-            ->select('files.name as img_name','members.*');
+            ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
+            ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
+            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->join('gyms', 'members.gym_id', '=', 'gyms.id')
+            ->select(
+                'files.name as member_img',
+                'members.*',
+                'gyms.name as gym_name',
+                'services.id as service_id',
+                'services.name as service_name',
+                'plans.id as plan_id',
+                'plans.plan_name as plan_name');
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
+        }
+
+        if(isset($request['filter_lastname']) && $request['filter_lastname'] != '')
+        {
+        $query->where('members.lastname',  'like', '%'.$request['filter_lastname'].'%');
+        }
+
+        if(isset($request['filter_cin']) && $request['filter_cin'] != '')
+        {
+        $query->where('members.cin',  'like', '%'.$request['filter_cin'].'%');
+        }
+
+        if(isset($request['filter_phone']) && $request['filter_phone'] != '')
+        {
+        $query->where('members.phone',  'like', '%'.$request['filter_phone'].'%');
+        }
+
+        if(isset($request['filter_address']) && $request['filter_address'] != '')
+        {
+        $query->where('members.address',  'like', '%'.$request['filter_address'].'%');
+        }
+
+        if(isset($request['filter_city']) && $request['filter_city'] != '')
+        {
+        $query->where('members.city',  'like', '%'.$request['filter_city'].'%');
+        }
+
+        if(isset($request['gymId']) && $request['gymId'] != '')
+        {
+        $query->where('members.gym_id',  '=', $request['gymId']);
+        }
+        
+        if(isset($request['filter_service']) && $request['filter_service'] != '')
+        {
+        $query->where('services.id',  '=', $request['filter_service']);
+        }
+
+        if(isset($request['filter_plans']) && $request['filter_plans'] != '')
+        {
+        $query->where('plans.id',  '=', $request['filter_plans']);
+        }
+        
+        if(isset($request['global_filter']) && $request['global_filter'] != '')
+        {
+        $query->where('firstname',  'like', '%'.$request['global_filter'].'%');
+        $query->orWhere('lastname', 'LIKE', '%'.$request['global_filter'].'%');
+        $query->orWhere('members.phone', 'LIKE', '%'.$request['global_filter'].'%');
+        $query->orWhere('members.cin', 'LIKE', '%'.$request['global_filter'].'%');
+        $query->orWhere('members.city', 'LIKE', '%'.$request['global_filter'].'%');
+        $query->orWhere('members.address', 'LIKE', '%'.$request['global_filter'].'%');
+        
         }
 
         if(isset($request['order']))

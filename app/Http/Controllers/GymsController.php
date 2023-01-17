@@ -139,7 +139,7 @@ class GymsController extends Controller{
         $gym = DB::table('gyms')
             ->join('users', 'gyms.created_by', '=', 'users.id')
             ->join('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created-at as gym_created-at', 'users.name as user_name')
+            ->select('files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
             ->where('gyms.id', $id)->first();
 
 

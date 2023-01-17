@@ -40,7 +40,7 @@ class MembersFactory extends Factory
             'health_issues' =>  $this->faker->asciify('no issue'),
             'source' =>  $this->faker->asciify('no one'),
             'cin' => Str::random(10),
-            'gym_id' => $this->faker->numberBetween(1, 3),
+            'gym_id' => $this->faker->numberBetween(3, 4),
             'created_by' => 1,
             'updated_by' => 1,
         ];
