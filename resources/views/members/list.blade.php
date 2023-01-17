@@ -195,7 +195,7 @@
                         <div class="mb-3">
                             <label for="gym" class="form-label">@lang('translation.gym')</label>
                             <select id="filter_gym" class="form-select" aria-label=".form-select-sm example">
-                                <option value="0">@lang('translation.chose')@lang('translation.gym')</option>
+                                <option value="">@lang('translation.chose')@lang('translation.gym')</option>
                                 @foreach ($gyms as $gym)
                                     <option value="{{ $gym->id }}">{{ $gym->name }}</option>
                                 @endforeach
@@ -244,7 +244,7 @@
 
     $(document).ready(function(){
         fill_datatable();
-        function fill_datatable(global_filter = '' ,filter_firstname = '',gymId = '' )
+        function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '' )
             {
                 var dataTable = $('#members_dt').DataTable({
                     "processing" : true,
@@ -259,6 +259,11 @@
                         "_token": "{{ csrf_token() }}",
                         global_filter:global_filter,
                         filter_firstname:filter_firstname,
+                        filter_lastname:filter_lastname, 
+                        filter_cin:filter_cin, 
+                        filter_phone:filter_phone, 
+                        filter_address:filter_address, 
+                        filter_city:filter_city,
                         gymId:gymId
                     }
                     }
@@ -273,11 +278,18 @@
 
         $('#filter-btn').click(function(){
             var filter_firstname = $('#filter_firstname').val();
+            var filter_lastname = $('#filter_lastname').val();
+            var filter_cin = $('#filter_cin').val();
+            var filter_phone = $('#filter_phone').val();
+            var filter_address = $('#filter_address').val();
+            var filter_city = $('#filter_city').val();
             var gymId = $( "#filter_gym option:selected" ).val();
+
+            console.log(filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city);
            
                 $('#members_dt').DataTable().destroy();
-                fill_datatable('',filter_firstname, gymId);
-                $('#costum-filter').offcanvas('hide');
+                fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city);
+                //$('#costum-filter').offcanvas('hide');
         });
         // $("#filter_gym").on("change",function(){
             

@@ -36,15 +36,46 @@ class MembersRepository
         {
         $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
         }
+
+        if(isset($request['filter_lastname']) && $request['filter_lastname'] != '')
+        {
+        $query->where('members.lastname',  'like', '%'.$request['filter_lastname'].'%');
+        }
+
+        if(isset($request['filter_cin']) && $request['filter_cin'] != '')
+        {
+        $query->where('members.cin',  'like', '%'.$request['filter_cin'].'%');
+        }
+
+        if(isset($request['filter_phone']) && $request['filter_phone'] != '')
+        {
+        $query->where('members.phone',  'like', '%'.$request['filter_phone'].'%');
+        }
+
+        if(isset($request['filter_address']) && $request['filter_address'] != '')
+        {
+        $query->where('members.address',  'like', '%'.$request['filter_address'].'%');
+        }
+
+        if(isset($request['filter_city']) && $request['filter_city'] != '')
+        {
+        $query->where('members.city',  'like', '%'.$request['filter_city'].'%');
+        }
+
         if(isset($request['gymId']) && $request['gymId'] != '')
         {
-        $query->where('gym_id',  '=', $request['gymId']);
+        $query->where('members.gym_id',  '=', $request['gymId']);
         }
 
         if(isset($request['global_filter']) && $request['global_filter'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['global_filter'].'%');
         $query->orWhere('lastname', 'LIKE', '%'.$request['global_filter'].'%');
+        $query->orWhere('members.phone', 'LIKE', '%'.$request['global_filter'].'%');
+        $query->orWhere('members.cin', 'LIKE', '%'.$request['global_filter'].'%');
+        $query->orWhere('members.city', 'LIKE', '%'.$request['global_filter'].'%');
+        $query->orWhere('members.address', 'LIKE', '%'.$request['global_filter'].'%');
+        
         }
 
         if(isset($request['order']))
