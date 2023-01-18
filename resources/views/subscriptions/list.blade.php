@@ -21,23 +21,23 @@
             <div class="card-header">
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <div class="flex-grow-1">
-                        <a href="{{ route('subscriptions_add') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Subscription </a>
+                        <a href="{{ route('subscriptions_add') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.Add-Subscription')</a>
                     </div>
                     <div class="flex-shrink-0">
                         <div class="hstack text-nowrap gap-2">
                             <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
                             <button class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#addmembers"><i
-                                    class="ri-filter-2-line me-1 align-bottom"></i> Filters</button>
-                            <button class="btn btn-soft-success">Import</button>
+                                    class="ri-filter-2-line me-1 align-bottom"></i> @lang('translation.filter')</button>
+                            <button class="btn btn-soft-success">@lang('translation.Import')</button>
                             <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
                                 aria-expanded="false" class="btn btn-soft-info"><i
                                     class="ri-more-2-fill"></i></button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                <li><a class="dropdown-item" href="#">All</a></li>
-                                <li><a class="dropdown-item" href="#">Last Week</a></li>
-                                <li><a class="dropdown-item" href="#">Last Month</a></li>
-                                <li><a class="dropdown-item" href="#">Last Year</a></li>
+                                <li><a class="dropdown-item" href="#">@lang('translation.All')</a></li>
+                                <li><a class="dropdown-item" href="#">@lang('translation.Last-Week')</a></li>
+                                <li><a class="dropdown-item" href="#">@lang('translation.Last-Month')</a></li>
+                                <li><a class="dropdown-item" href="#">@lang('translation.Last-Year')</a></li>
                             </ul>
                         </div>
                     </div>
@@ -53,10 +53,10 @@
                     <thead>
                         <tr>
                             <th>@lang('translation.member')</th>
-                            <th>@lang('translation.service')</th>
-                            <th>@lang('translation.plan')</th>
-                            <th>@lang('translation.date_start')</th>
-                            <th>@lang('translation.date_end')</th>
+                            <th>@lang('translation.services')</th>
+                            <th>@lang('translation.plans')</th>
+                            <th>@lang('translation.start-date')</th>
+                            <th>@lang('translation.end-date')</th>
                             <th>@lang('translation.rest')</th>
                         </tr>
                     </thead>
@@ -68,21 +68,21 @@
                                     <div class="flex-shrink-0">
                                         <div>
                                         @if ($subscription->member_img)
-                                            @if(file_exists('assets/images/members/'.$subscription->member_img)) 
+                                            @if(file_exists('assets/images/members/'.$subscription->member_img))
                                             <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$subscription->member_img )}}">
                                             @else
                                             <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
                                             @endif
                                         @else
                                         <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                        @endif 
+                                        @endif
                                         </div>
                                     </div>
                                     <div class="flex-grow-1 ms-2 name">
                                         <a href="../members/show/{{ $subscription->member_id }}">
                                             {{ $subscription->lastname." ".$subscription->firstname }}
-                                        
-                                        </a>    
+
+                                        </a>
                                     </div>
                                 </div>
                             </td>

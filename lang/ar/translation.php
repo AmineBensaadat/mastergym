@@ -54,11 +54,14 @@ return [
     "female" => " أنثى",
     "emergency_cont" => " خط الطوارئ ",
     "health_issues" => "مشاكل صحية",
+    "DOB" => " تاريخ الميلاد  ",
+
 
     "menu"=>"الأقسام",
     "dashboards"=>"لوحة المعلومات",
     "services" => "الخدمات",
     "subscriptions" => "الاشتراكات",
+    "Add-Subscription" => " إضافة اشتراك ",
     "settings"=>"إعدادات",
     "members" => "المنخرطون",
     "users" => "المستخدمين",
@@ -123,7 +126,12 @@ return [
     "payment-comment"  => " معلومات إضافية عن الدفع ",
     "source"  => "المصدر",
     "filter"  => "فلتر ",
+    "Import" => "استيراد",
 
+    "All" => "الجميع",
+    "Last-Week" => "الاسبوع الماضى ",
+    "Last-Month" => "الشهر الماضي",
+    "Last-Year" => "العام الماضي",
 
 
 

@@ -101,7 +101,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
-                                     @if ($member->img_name)
+                                    @if ($member->img_name)
                                         @if(file_exists('assets/images/members/'.$member->img_name))
                                         <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
                                         @else
@@ -141,26 +141,20 @@
                         <tr>
                             <th >@lang('translation.member')</th>
                             <th >@lang('translation.gym')</th>
-                            <th >@lang('translation.service')</th>
-                            <th >@lang('translation.plan')</th>
+                            <th >@lang('translation.plans')</th>
                             <th >@lang('translation.phone')</th>
-                            <th >@lang('translation.cin')</th>
+                            <th >@lang('translation.CNIE')</th>
                             <th >@lang('translation.city')</th>
-                            <th >@lang('translation.address')</th>
                             <th >@lang('translation.DOB')</th>
-                            <th >@lang('translation.status')</th>
-<<<<<<< HEAD
-                            <th >@lang('translation.Service')</th>
+                            <th >@lang('translation.services')</th>
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.CNIE')</th>
                             <th >@lang('translation.Status')</th>
-=======
->>>>>>> 2c9c0c8ec2ef5b84a4bb1f4c99a28aa2a489af99
                         </tr>
                     </thead>
                 </table>
             </div>
-             {{-- Custom Filtre Datatable --}}
+            {{-- Custom Filtre Datatable --}}
             <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="costum-filter">
                 <!--end offcanvas-header-->
                 <div class="offcanvas-body profile-offcanvas p-0">
@@ -273,10 +267,10 @@
                         "_token": "{{ csrf_token() }}",
                         global_filter:global_filter,
                         filter_firstname:filter_firstname,
-                        filter_lastname:filter_lastname, 
-                        filter_cin:filter_cin, 
-                        filter_phone:filter_phone, 
-                        filter_address:filter_address, 
+                        filter_lastname:filter_lastname,
+                        filter_cin:filter_cin,
+                        filter_phone:filter_phone,
+                        filter_address:filter_address,
                         filter_city:filter_city,
                         filter_service:filter_service,
                         filter_plans:filter_plans,
@@ -302,7 +296,7 @@
             var gymId = $( "#filter_gym option:selected" ).val();
             var filter_service = $( "#filter_service option:selected" ).val();
             var filter_plans = $( "#filter_plans option:selected" ).val();
-           
+
                 $('#members_dt').DataTable().destroy();
                 fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city, filter_service, filter_plans);
                 $('#costum-filter').offcanvas('hide');
@@ -333,7 +327,7 @@
                 }else{
                     html = '<option value="">Select plans</option>';
                     $("#filter_plans").html(html);
-                   
+
 
                 }
             }

@@ -21,7 +21,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <div class="flex-grow-1">
-                        <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> Add Member </a>
+                        <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.add')@lang('translation.member') </a>
                     </div>
                     <div class="flex-shrink-0">
                         <div class="hstack text-nowrap gap-2">
@@ -29,15 +29,15 @@
                             <button class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#addmembers"><i
                                     class="ri-filter-2-line me-1 align-bottom"></i> Filters</button>
-                            <button class="btn btn-soft-success">Import</button>
+                            <button class="btn btn-soft-success">@lang('translation.Import')</button>
                             <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
                                 aria-expanded="false" class="btn btn-soft-info"><i
                                     class="ri-more-2-fill"></i></button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                <li><a class="dropdown-item" href="#">All</a></li>
-                                <li><a class="dropdown-item" href="#">Last Week</a></li>
-                                <li><a class="dropdown-item" href="#">Last Month</a></li>
-                                <li><a class="dropdown-item" href="#">Last Year</a></li>
+                                <li><a class="dropdown-item" href="#">@lang('translation.All')</a></li>
+                                <li><a class="dropdown-item" href="#">@lang('translation.Last-Week')</a></li>
+                                <li><a class="dropdown-item" href="#">@lang('translation.Last-Month')</a></li>
+                                <li><a class="dropdown-item" href="#">@lang('translation.Last-Year')</a></li>
                             </ul>
                         </div>
                     </div>
