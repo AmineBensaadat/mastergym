@@ -141,7 +141,6 @@
                         <tr>
                             <th >@lang('translation.member')</th>
                             <th >@lang('translation.gym')</th>
-<<<<<<< HEAD
                             <th >@lang('translation.service')</th>
                             <th >@lang('translation.plan')</th>
                             <th >@lang('translation.phone')</th>
@@ -150,16 +149,13 @@
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.DOB')</th>
                             <th >@lang('translation.status')</th>
-=======
                             <th >@lang('translation.Service')</th>
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.CNIE')</th>
                             <th >@lang('translation.Status')</th>
->>>>>>> 4c0f5f31d5776e5e5adb29561a05a77ca42a7d09
                         </tr>
                     </thead>
                 </table>
-
             </div>
              {{-- Custom Filtre Datatable --}}
             <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="costum-filter">
