@@ -338,8 +338,11 @@ return [
     "service"  => "service",
     "filter"  => "Filtre",
     "add" => "ajouter",
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 2c9c0c8ec2ef5b84a4bb1f4c99a28aa2a489af99
 ];
 ?>

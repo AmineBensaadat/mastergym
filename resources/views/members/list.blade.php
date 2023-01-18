@@ -19,16 +19,16 @@
         <div class="card">
             <div class="card-header border-0 rounded">
                 <div class="row g-2">
-                    <div class="col-xl-3">
+                    <div class="col-xl-3 col-sm-2">
                         <div class="search-box">
                             <input type="text" class="form-control search" placeholder="Search for members &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
                         </div>
                     </div>
                     <!--end col-->
-                    <div class="col-xxl-3 ms-auto">
+                    <div class="col-xxl-3 col-sm-2 ms-auto">
                     </div>
                     <!--end col-->
-                    <div class="col-lg-auto">
+                    <div class="col-lg-auto col-sm-2">
                         <div class="hstack gap-2">
                             <a class="btn btn-info add-btn" data-bs-toggle="offcanvas" href="#costum-filter" aria-controls="costum-filter"> <i class="ri-filter-2-line me-1 align-bottom"></i> @lang('translation.filter') </a>
                             <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> @lang('translation.add') @lang('translation.member')</a>
@@ -149,10 +149,13 @@
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.DOB')</th>
                             <th >@lang('translation.status')</th>
+<<<<<<< HEAD
                             <th >@lang('translation.Service')</th>
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.CNIE')</th>
                             <th >@lang('translation.Status')</th>
+=======
+>>>>>>> 2c9c0c8ec2ef5b84a4bb1f4c99a28aa2a489af99
                         </tr>
                     </thead>
                 </table>
@@ -167,8 +170,60 @@
                         <div class="mb-3">
                             <label for="customername-field" class="form-label">
                                 Firstname</label>
-                            <input type="text" id="filter_firstname"class="form-control filter_input" placeholder="Enter name"
+                            <input type="text" id="filter_firstname"class="form-control filter_input" placeholder="Enter Firstname"
                                 required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                Lastname</label>
+                            <input type="text" id="filter_lastname"class="form-control filter_input" placeholder="Enter Lastname" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                cin</label>
+                            <input type="text" id="filter_cin"class="form-control filter_input" placeholder="Enter cin" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                phone</label>
+                            <input type="text" id="filter_phone"class="form-control filter_input" placeholder="Enter phone"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                address</label>
+                            <input type="text" id="filter_address"class="form-control filter_input" placeholder="Enter address"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customername-field" class="form-label">
+                                city</label>
+                            <input type="text" id="filter_city"class="form-control filter_input" placeholder="Enter city"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gym" class="form-label">@lang('translation.gym')</label>
+                            <select id="filter_gym" class="form-select" aria-label=".form-select-sm example">
+                                <option value="">@lang('translation.chose')@lang('translation.gym')</option>
+                                @foreach ($gyms as $gym)
+                                    <option value="{{ $gym->id }}">{{ $gym->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @if ($services)
+                        <div class="mb-3">
+                            <label for="service" class="form-label">@lang('translation.service')</label>
+                            <select id="filter_service" class="form-select" aria-label=".form-select-sm example">
+                                <option value="">@lang('translation.chose')@lang('translation.service')</option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endif
+
+                        <div class="mb-3">
+                            <label class="form-label" for="service-input">@lang('translation.plans')</label>
+                            <select id="filter_plans" class="form-select" aria-label=".form-select-sm example" required>
+                                <option value="">@lang('translation.chose')@lang('translation.plans')</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -203,7 +258,7 @@
 
     $(document).ready(function(){
         fill_datatable();
-        function fill_datatable(global_filter = '' ,filter_firstname = '' )
+        function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
             {
                 var dataTable = $('#members_dt').DataTable({
                     "processing" : true,
@@ -217,40 +272,73 @@
                     data:{
                         "_token": "{{ csrf_token() }}",
                         global_filter:global_filter,
-                        filter_firstname:filter_firstname
+                        filter_firstname:filter_firstname,
+                        filter_lastname:filter_lastname, 
+                        filter_cin:filter_cin, 
+                        filter_phone:filter_phone, 
+                        filter_address:filter_address, 
+                        filter_city:filter_city,
+                        filter_service:filter_service,
+                        filter_plans:filter_plans,
+                        gymId:gymId
                     }
                     }
                 });
             }
 
             $( ".search" ).keyup(function() {
-                $('#members_dt').DataTable().destroy();
                 var global_filter = $('.search').val();
+                $('#members_dt').DataTable().destroy();
                 fill_datatable(global_filter);
             });
 
         $('#filter-btn').click(function(){
             var filter_firstname = $('#filter_firstname').val();
-            if(filter_firstname != '')
-            {
+            var filter_lastname = $('#filter_lastname').val();
+            var filter_cin = $('#filter_cin').val();
+            var filter_phone = $('#filter_phone').val();
+            var filter_address = $('#filter_address').val();
+            var filter_city = $('#filter_city').val();
+            var gymId = $( "#filter_gym option:selected" ).val();
+            var filter_service = $( "#filter_service option:selected" ).val();
+            var filter_plans = $( "#filter_plans option:selected" ).val();
+           
                 $('#members_dt').DataTable().destroy();
-                fill_datatable(global_filter ,filter_firstname);
+                fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city, filter_service, filter_plans);
                 $('#costum-filter').offcanvas('hide');
-            }
-            // else
-            // {
-            //     alert('Select Both filter option');
-            //     $('#members_dt').DataTable().destroy();
-            //     fill_datatable();
-            // }
         });
-
         $('#reset_fiter').click(function(){
             $('#costum-filter').offcanvas('hide');
             $('.filter_input').val('');
             $('#members_dt').DataTable().destroy();
             fill_datatable();
         });
+        var html = '';
+
+
+    $("#filter_service").on("change",function(){
+        html = '';
+        var serviceId = $(this).val();
+        $.ajax({
+            url :"/plans/allPlansByService",
+            type:"POST",
+            cache:false,
+            data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
+            success:function(data){
+                if((data.plans).length > 0){
+                    $.each(data.plans, function (key, val) {
+                        html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
+                        $("#filter_plans").html(html);
+                    });
+                }else{
+                    html = '<option value="">Select plans</option>';
+                    $("#filter_plans").html(html);
+                   
+
+                }
+            }
+        });
+    });
     });
 </script>
 @endsection
