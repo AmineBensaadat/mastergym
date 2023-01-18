@@ -160,4 +160,14 @@ class MembersRepository
          }
        return $member;
     }
+
+    public function updateMember($request){
+        $user_id= auth()->user()->id;
+        Members::where('id', $request['member_id'])
+        ->update([
+            'firstname' => $request['firstname'],
+            'lastname' => $request['lastname'],
+            'updated_by' =>  $user_id,
+        ]);
+    }
 }

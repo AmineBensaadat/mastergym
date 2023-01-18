@@ -141,14 +141,13 @@
                         <tr>
                             <th >@lang('translation.member')</th>
                             <th >@lang('translation.gym')</th>
+                            <th >@lang('translation.services')</th>
                             <th >@lang('translation.plans')</th>
                             <th >@lang('translation.phone')</th>
                             <th >@lang('translation.CNIE')</th>
                             <th >@lang('translation.city')</th>
-                            <th >@lang('translation.DOB')</th>
-                            <th >@lang('translation.services')</th>
                             <th >@lang('translation.address')</th>
-                            <th >@lang('translation.CNIE')</th>
+                            <th >@lang('translation.DOB')</th>
                             <th >@lang('translation.Status')</th>
                         </tr>
                     </thead>
