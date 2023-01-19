@@ -163,11 +163,45 @@ class MembersRepository
 
     public function updateMember($request){
         $user_id= auth()->user()->id;
+        $destinationPath = public_path().'/assets/images/members/' ;
         Members::where('id', $request['member_id'])
         ->update([
             'firstname' => $request['firstname'],
             'lastname' => $request['lastname'],
             'updated_by' =>  $user_id,
         ]);
+
+         // save gym profile image
+         $file = $request->file('profile_image');
+         if($file = $request->hasFile('profile_image')) {
+            $file_exist = $this->checkIfexistFile($request['member_id'], 'profile');
+            // file data 
+            $file = $request->file('profile_image') ;
+            $fileName = "profile_image_".$request['member_id'];
+            $extension = $request->file('profile_image')->extension();
+
+            if(count($file_exist) == 0){ // insert
+                // insert gym image in file table
+                $files_table= new Files();
+                $files_table->name = $fileName;
+                $files_table->entity_name = 'member';
+                $files_table->ext = $extension;
+                $files_table->type = 'profile';
+                $files_table->entitiy_id = $request['member_id'];   
+                $files_table->save();
+
+            }
+ 
+             // move file in dericory
+             $file->move($destinationPath,$fileName);
+         }
+    }
+
+    public function checkIfexistFile($entitiy_id, $type){
+        $query = DB::table('files');
+        $query->where('entitiy_id',  '=', $entitiy_id);
+        $query->where('type',  '=', $type);
+        return $query->get();    
     }
 }
+
