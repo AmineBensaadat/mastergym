@@ -176,9 +176,10 @@ class MembersRepository
          if($file = $request->hasFile('profile_image')) {
             $file_exist = $this->checkIfexistFile($request['member_id'], 'profile');
             // file data 
-            $file = $request->file('profile_image') ;
-            $fileName = "profile_image_".$request['member_id'];
             $extension = $request->file('profile_image')->extension();
+            $file = $request->file('profile_image') ;
+            $fileName = "profile_image_".$request['member_id'].'.'.$extension;
+           
 
             if(count($file_exist) == 0){ // insert
                 // insert gym image in file table
