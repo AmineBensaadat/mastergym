@@ -218,6 +218,7 @@ return [
 
     "services" => "services",
     "subscriptions" => "Subscriptions",
+    "Add-Subscription" => "Add Subscription",
     "members" => "members",
     "users" => "users",
     "plans" => "plans",
@@ -297,6 +298,7 @@ return [
     "Close" => "Close",
     "city" => "City",
     "gym" => "Gym",
+    "DOB" => "Date of Birth",
     "Enter-details-of-the-invoice" => "Enter details of the invoice",
 
     // payment
@@ -327,20 +329,12 @@ return [
     "filter"  => "filter",
     "add" => "add",
     "member" => "member",
+    "Import" => "Import",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "All" => "All",
+    "Last-Week" => "Last Week",
+    "Last-Month" => "Last Month",
+    "Last-Year" => "Last Year",
 
 ];
 ?>

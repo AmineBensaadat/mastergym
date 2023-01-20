@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MembersImport;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class MembersController extends Controller
 {
@@ -74,9 +75,9 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.(file_exists('assets/images/members'.$row->member_img) &&  $row->member_img ? $row->member_img : 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$url.'//members/'.(file_exists('assets/images/members/'.$row->member_img) &&  $row->member_img ? $row->member_img : 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
                 </div>
-                <div class="flex-grow-1 ms-2 name">'.$row->lastname. ' '.$row->firstname.'</div>            
+                <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
@@ -130,6 +131,32 @@ class MembersController extends Controller
            );
 
         return json_encode($output) ;
+    }
+
+    public function import(){
+        $members = $this->membersRepository->all();
+        $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        $services =  $this->servicesRepository->renderAllServices();
+        return view('members.import', compact('members', 'gyms', 'services'));
+    }
+
+    public function storImportMembers(Request $request){
+         //validation form
+         $this->validate(
+            $request,
+                [
+                    'file'=> 'required|mimes:xlsx,csv,xls'
+                ],
+                [
+                    'file.required' => __('translation.require')
+                ],
+            );
+
+            $file = $request->file('file');
+         if($file = $request->hasFile('file')) {
+            Excel::import(new MembersImport,$request->file('file')->store('files'));
+            return redirect()->back();
+         }
     }
     
 
@@ -197,35 +224,62 @@ class MembersController extends Controller
             return redirect()->route('members_list');
     }
 
-    public function edit($id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function update(Request $request)
     {
-        $user = User::findOrFail($id);
+        //validation form
+        $this->validate(
+            $request,
+                [
+                    'lastname' => 'required',
+                    'firstname' => 'required',
+                    'cin' => 'unique:members',
+                    //'address' => 'required',
+                    'phone' => 'unique:members',
+                    //'dob' => 'required',
+                    'emergency_contact' => 'unique:members',
+                    //'gym' => new IsSelected,
+                ],
+                [
+                    'lastname.required' => __('translation.require'),
+                    'firstname.required' => __('translation.require'),
+                    'cin.unique' => __('translation.unique'),
+                    //'address.required' => __('translation.require'),
+                    'phone.unique' => __('translation.unique'),
+                    //'dob.required' => __('translation.require'),
+                    'emergency_contact.unique' => __('translation.unique'),
+                    //'gym.required' => __('require'),
+                ],
+            );
 
-        return view('users.edit', compact('user'));
+           
+            // update member in member table
+            $this->membersRepository->updateMember($request);
+            return redirect()->route('members_show', [
+                'id' => $request['member_id']
+            ]);
     }
 
-    public function update($id, Request $request)
+    public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $member = DB::table('members')
+            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
+            ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
+            ->select(
+                'files.name as img_name','members.*',
+                'subscriptions.id as subscription_id',
+                'subscriptions.start_date',
+                'subscriptions.start_date',
+                'subscriptions.end_date',
+            )
+            ->where('members.id', $id)->first();
+        $gyms =  $this->gymsRepository->renderAllGymByCretedById();
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-
-        if ($request->password != '') {
-            $user->password = bcrypt($request->password);
-        }
-
-        $user->status = $request->status;
-
-        $user->update();
-        $user->photo = \constFilePrefix::staffPhoto.$user->id.'.jpg';
-        $user->save();
-
-        \Utilities::uploadFile($request, \constFilePrefix::staffPhoto, $user->id, 'photo', \constPaths::staffPhoto);
-
-        flash()->success('User details was successfully updated');
-
-        return redirect('users');
+        return view('members.edit', compact('gyms','member'));
     }
 
     /**

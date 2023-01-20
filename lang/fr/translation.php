@@ -338,5 +338,17 @@ return [
     "service"  => "service",
     "filter"  => "Filtre",
     "add" => "ajouter",
+    "DOB" => "Date de naissance",
+    "Add-Subscription" => "Add Subscription",
+    "Import" => "Import",
+    "All" => "Tous",
+    "Last-Week" => "La semaine dernière",
+    "Last-Month" => "Le mois dernier",
+    "Last-Year" => "L'année dernière",
+
+
+
+
+
 ];
 ?>

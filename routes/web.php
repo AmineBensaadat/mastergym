@@ -57,9 +57,12 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/all', [MembersController::class, 'index'])->name('members_list');
     Route::get('/create', [MembersController::class, 'create'])->name('members_create');
     Route::get('/show/{id}', [MembersController::class, 'show'])->name('members_show');
-    
+    Route::get('/edit/{id}', [MembersController::class, 'edit'])->name('members_edit');
     Route::post('/getAllMembers', [MembersController::class, 'getAllMembers'])->name('members_list_json');
     Route::post('/store', [MembersController::class, 'store'])->name('members_store');
+    Route::post('/update', [MembersController::class, 'update'])->name('members_update');
+    Route::get('/import', [MembersController::class, 'import'])->name('members_import');
+    Route::post('/save_import', [MembersController::class, 'storImportMembers'])->name('import_member_store');
 });
 
 //Subscriptions
