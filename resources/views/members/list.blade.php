@@ -31,6 +31,7 @@
                     <div class="col-lg-auto col-sm-2">
                         <div class="hstack gap-2">
                             <a class="btn btn-info add-btn" data-bs-toggle="offcanvas" href="#costum-filter" aria-controls="costum-filter"> <i class="ri-filter-2-line me-1 align-bottom"></i> @lang('translation.filter') </a>
+                            <a href="{{ route('members_import') }}" class="btn btn-soft-success">@lang('translation.Import')</a>
                             <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> @lang('translation.add') @lang('translation.member')</a>
                         </div>
                     </div>

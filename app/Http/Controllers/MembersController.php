@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MembersImport;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class MembersController extends Controller
 {
@@ -130,6 +131,32 @@ class MembersController extends Controller
            );
 
         return json_encode($output) ;
+    }
+
+    public function import(){
+        $members = $this->membersRepository->all();
+        $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        $services =  $this->servicesRepository->renderAllServices();
+        return view('members.import', compact('members', 'gyms', 'services'));
+    }
+
+    public function storImportMembers(Request $request){
+         //validation form
+         $this->validate(
+            $request,
+                [
+                    'file'=> 'required|mimes:xlsx,csv,xls'
+                ],
+                [
+                    'file.required' => __('translation.require')
+                ],
+            );
+
+            $file = $request->file('file');
+         if($file = $request->hasFile('file')) {
+            Excel::import(new MembersImport,$request->file('file')->store('files'));
+            return redirect()->back();
+         }
     }
     
 
