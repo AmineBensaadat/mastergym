@@ -320,4 +320,11 @@ class MembersController extends Controller
         return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
     }
 
+    public function downloadExceCanva()
+    {
+        // return $file;
+        $myfile = public_path('assets/canvas/canva_member_import.xlsx');
+        return response()->download($myfile);
+    }
+
 }
