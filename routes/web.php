@@ -63,6 +63,8 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::post('/update', [MembersController::class, 'update'])->name('members_update');
     Route::get('/import', [MembersController::class, 'import'])->name('members_import');
     Route::post('/save_import', [MembersController::class, 'storImportMembers'])->name('import_member_store');
+    Route::get('/save_import', [MembersController::class, 'downloadExceCanva'])->name('download_canva');
+    Route::get('/{id}/subscription/add', [SubscriptionsController::class, 'add'])->name('member_subscription_add');
 });
 
 //Subscriptions

@@ -15,6 +15,21 @@
 
 
 <div class="row">
+    @if ($error)
+    <!-- Toast -->
+    <div class="toast fade show center" role="alert" aria-live="assertive" data-bs-autohide="false" aria-atomic="true" style="width: auto;">
+        <div class="toast-header">
+            <img src="{{ URL::asset('assets/images/logo_1.png')}}" class="rounded me-2" alt="..." height="20">
+            <span class="fw-semibold me-auto">Members</span>
+            <small>06 mins ago</small>
+            <button type="button" class="btn-close"
+                data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+           {{$error}}
+        </div>
+    </div>
+    @endif
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header border-0 rounded">
@@ -51,31 +66,12 @@
                     <form action="#">
                         <div class="modal-body">
                             <input type="hidden" id="id-field" />
-
                             <div class="mb-3" id="modal-id" style="display: none;">
                                 <label for="id-field1" class="form-label">ID</label>
                                 <input type="text" id="id-field1" class="form-control"
                                     placeholder="ID" readonly />
                             </div>
-
-                            {{-- <div class="mb-3">
-                                <label for="customername-field" class="form-label">
-                                    Firstname</label>
-                                <input type="text" id="filter_firstname"
-                                    class="form-control" placeholder="Enter name"
-                                    required />
-                            </div> --}}
-
-
                         </div>
-                        {{-- <div class="modal-footer">
-                            <div class="hstack gap-2 justify-content-end">
-                                <button type="button" class="btn btn-light"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success"
-                                    id="filter-btn">Filter</button>
-                            </div>
-                        </div> --}}
                     </form>
                 </div>
             </div>
@@ -85,58 +81,6 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                {{-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th >@lang('translation.member')</th>
-                            <th >@lang('translation.phone')</th>
-                            <th >@lang('translation.email')</th>
-                            <th >@lang('translation.address')</th>
-                            <th >@lang('translation.cin')</th>
-                            <th >@lang('translation.status')</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($members as $member)
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-shrink-0">
-                                    @if ($member->img_name)
-                                        @if(file_exists('assets/images/members/'.$member->img_name))
-                                        <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
-                                        @else
-                                        <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                        @endif
-                                    @else
-                                    <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                    @endif
-                                    </div>
-                                    <div class="flex-grow-1 ms-2 name">
-
-                                        <a href="../members/show/{{ $member->id }}">
-                                            {{ $member->lastname." ".$member->firstname }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>{{ $member->phone }}</td>
-                            <td>{{ $member->email }}</td>
-                            <td>{{ $member->address }}</td>
-                            <td>{{ $member->cin }}</td>
-                            <td>
-                                @if ($member->status == 1)
-                                    <span class="badge bg-success">active</span>
-                                @else
-                                    <span class="badge bg-danger">inactive</span>
-                                @endif
-                            </td>
-
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table> --}}
-
                 <table id="members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>

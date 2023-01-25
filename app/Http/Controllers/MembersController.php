@@ -60,7 +60,8 @@ class MembersController extends Controller
         $members = $this->membersRepository->all();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
-        return view('members.list', compact('members', 'gyms', 'services'));
+        $error = false;
+        return view('members.list', compact('members', 'gyms', 'services', 'error'));
     }
 
     public function getAllMembers(Request $request)
@@ -154,8 +155,22 @@ class MembersController extends Controller
 
             $file = $request->file('file');
          if($file = $request->hasFile('file')) {
-            Excel::import(new MembersImport,$request->file('file')->store('files'));
-            return redirect()->back();
+            try {
+                Excel::import(new MembersImport,$request->file('file')->store('files'));
+                
+            }catch(\Exception $ex){
+                $error = $ex->getMessage();
+                $members = $this->membersRepository->all();
+                $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+                $services =  $this->servicesRepository->renderAllServices();
+                return view('members.list', compact('members', 'gyms', 'services', 'error'));
+                
+            }
+            $error = false;
+            $members = $this->membersRepository->all();
+            $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+            $services =  $this->servicesRepository->renderAllServices();
+            return view('members.list', compact('members', 'gyms', 'services', 'error'));
          }
     }
     
@@ -303,6 +318,13 @@ class MembersController extends Controller
             )
             ->where('members.id', $member_id)->first();
         return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
+    }
+
+    public function downloadExceCanva()
+    {
+        // return $file;
+        $myfile = public_path('assets/canvas/canva_member_import.xlsx');
+        return response()->download($myfile);
     }
 
 }

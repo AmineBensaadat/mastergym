@@ -36,7 +36,7 @@ class HomeController extends Controller
 
     public function root()
     {
-        return view('index');
+        return view('dashboard/index');
     }
 
     /*Language Translation*/

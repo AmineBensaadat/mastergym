@@ -74,12 +74,14 @@
                                     class="d-none d-md-inline-block">Overview</span>
                             </a>
                         </li>
+                        @if($plan)
                         <li class="nav-item">
                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#plan" role="tab">
                                 <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span
                                     class="d-none d-md-inline-block">Plan</span>
                             </a>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#invoices" role="tab">
                                 <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span
@@ -88,9 +90,13 @@
                         </li>
                     </ul>
                     <div class="flex-shrink-0">
-                        <a href="{{ route('members_edit', ['id' => $member->id ]) }}" class="btn btn-success"><i
-                                class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
+                        <a href="{{ route('members_edit', ['id' => $member->id ]) }}" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
+                        @if(!$plan)
+                        <a href="{{ route('member_subscription_add', ['id' => $member->id ]) }}" class="btn btn-primary"><i class="ri-add-circle-line align-bottom"></i> Add subscription</a>
+                        @endif
                     </div>
+                    
+                    
                 </div>
                 <!-- Tab panes -->
                 <div class="tab-content pt-4 text-muted">
