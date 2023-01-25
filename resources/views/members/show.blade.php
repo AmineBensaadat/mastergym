@@ -1569,13 +1569,13 @@
                                                         <td>
                                                             <h4>
                                                                 <center>
-                                                                    <span class="badge badge-soft-info badge-border">{{ $invoice->payment-mode }}</span>
+                                                                    <span class="badge badge-soft-info badge-border">{{ $invoice->payment_mode }}</span>
                                                                 </center>
                                                             </h4>
                                                         </td>
                                                         <td>
                                                             <h4>
-                                                                <center><span class="badge badge-soft-info badge-border">{{ $invoice->additional-fees }} @lang('translation.DH')</span></center>
+                                                                <center><span class="badge badge-soft-info badge-border">{{ $invoice->additional_fees }} @lang('translation.DH')</span></center>
                                                             </h4>
                                                         </td>
                                                         <td>
@@ -1618,7 +1618,7 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>{{ $invoice->payment-comment }}</td>
+                                                        <td>{{ $invoice->payment_comment }}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

@@ -49,18 +49,45 @@ class SubscriptionsController extends Controller
 
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      *
      * @return Response
      */
-    public function add()
+    public function add($id)
     {
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
-        return view('subscriptions.create', compact('gyms','services'));
+        $member_id = $id;
+        return view('subscriptions.create', compact('gyms','services', 'member_id'));
+    }
+
+    public function store(Request $request)
+    {
+        //validation form
+        $this->validate(
+            $request,
+                [
+                    'start_date' => 'date|nullable',
+                    'end_date' => 'date|nullable|after:start_date',
+                    'amount-received' => 'required_unless:subscription-price.*,'
+                ],
+                [
+                    'start_date' => __('require'),
+                    'end_date' => __('require'),
+                ],
+            );
+             // save subscription
+            if($request['service'] != 0){
+                 // save subscription in subscription table
+                 $subscription = $this->subscriptionsRepository->addSubscription($request, $request->member_id);
+
+                 // save invoice in invoices table
+                 $invoice = $this->invoicesRepository->addInvoice($request, $request->member_id);
+            }
+
+            return redirect()->route('members_list');
+
     }
 
     /**
