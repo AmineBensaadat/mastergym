@@ -114,6 +114,13 @@ class MembersRepository
 
     }
 
+    public function countAllMembersByGym(){
+        $members = Members::where('members.gym_id',  '=', 1)->get();
+        $membersCount = $members->count();
+        return $membersCount;
+
+    }
+
     public function saveMember($request){
         $user_id = auth()->user()->id;
         $destinationPath = public_path().'/assets/images/members/' ;
