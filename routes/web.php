@@ -73,6 +73,7 @@ Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function (
     Route::get('/add', [SubscriptionsController::class, 'add'])->name('subscriptions_add');
     Route::get('/renwe/{subscription_id}/{member_id}', [SubscriptionsController::class, 'renwe'])->name('subscriptions_renwe');
     Route::post('/update', [SubscriptionsController::class, 'update'])->name('subscriptions_update');
+    Route::post('/store', [SubscriptionsController::class, 'store'])->name('subscriptions_store');
 });
 
 //Services

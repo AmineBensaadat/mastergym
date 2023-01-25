@@ -8,8 +8,10 @@
 @slot('title') @lang('translation.add')@lang('translation.subscriptions') @endslot
 @endcomponent
 
-<form id="createSubscription-form" method="POST" class="needs-validation"  action="{{ route('members_store') }}" novalidate enctype="multipart/form-data">
+<form id="createSubscription-form" method="POST" class="needs-validation"  action="{{ route('subscriptions_store') }}" novalidate enctype="multipart/form-data">
 @csrf
+    <input type="hidden" name="member_id" value="{{ $member_id }}">
+    <input type="hidden" name="status" value="1">
     <div class="row">
         <!-- start col -->
         <div class="col-lg-8">
