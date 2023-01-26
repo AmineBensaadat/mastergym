@@ -107,6 +107,30 @@ class MembersRepository
         return $data;
     }
 
+    public function renderMembersByStatus($status){
+        $data = array();
+        $query = DB::table('members')
+            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
+            ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
+            ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
+            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->join('gyms', 'members.gym_id', '=', 'gyms.id')
+            ->select(
+                'files.name as member_img',
+                'members.*',
+                'gyms.name as gym_name',
+                'services.id as service_id',
+                'services.name as service_name',
+                'plans.id as plan_id',
+                'plans.plan_name as plan_name');
+            if($status)
+            {
+            $query->where('subscriptions.status',  '=', $status);
+            }
+        $data = $query->get();
+        return $data;
+    }
+
     public function countAllMembers(){
         $members = Members::get();
         $membersCount = $members->count();

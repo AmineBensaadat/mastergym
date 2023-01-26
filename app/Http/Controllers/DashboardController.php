@@ -28,6 +28,7 @@ class DashboardController extends Controller
     {
         $curtentUser = $this->userRepository->getCurrentUser();
         $members = $this->membersRepository->countAllMembersByGym();
+        $expired_members =  $this->membersRepository->renderMembersByStatus(1);
         return view('dashboard.index', compact('curtentUser', 'members'));
     }
 
