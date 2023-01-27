@@ -336,5 +336,16 @@ return [
     "Last-Month" => "Last Month",
     "Last-Year" => "Last Year",
 
+    "Total-Members" => "Total Members",
+    "Total-Members-active" => "Total Members active",
+    "Monthly-Joinings" => "Monthly Joinings",
+    "Members-joines-per-month" => "Members joines per month",
+    "Pending-Payments" => "Pending Payments",
+    "Member-Pending-Payments" => "Member Pending Payments",
+    "Expired" => "Expired",
+    "Subscription-Expire" => "Subscription Expire",
+
+
+
 ];
 ?>

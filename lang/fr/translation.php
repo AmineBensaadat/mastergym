@@ -346,6 +346,15 @@ return [
     "Last-Month" => "Le mois dernier",
     "Last-Year" => "L'année dernière",
 
+    "Total-Members" => "total de membres",
+    "Total-Members-active" => "total de membres actifs",
+    "Monthly-Joinings" => "Inscriptions mensuelles",
+    "Members-joines-per-month" => "Membres rejoints par mois",
+    "Pending-Payments" => "Paiements en attente",
+    "Member-Pending-Payments" => "Paiements en attente des membres",
+    "Expired" => "Expiré",
+    "Subscription-Expire" => "Expiration de l'abonnement",
+
 
 
 
