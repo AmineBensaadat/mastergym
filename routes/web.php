@@ -93,7 +93,8 @@ Route::group(['prefix' => 'setting', 'middleware' => ['auth']], function () {
     Route::post('/storeLang', [SettingController::class, 'storeLang'])->name('storeLang');
 });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+Route::get('/', [App\Http\Controllers\LendingController::class, 'index'])->name('lending');
 
 //Update User Details
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
