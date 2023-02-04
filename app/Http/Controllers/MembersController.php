@@ -59,6 +59,7 @@ class MembersController extends Controller
     {
         $members = $this->membersRepository->all();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        $expired_members =  $this->membersRepository->renderMembersByStatus($status = NULL);
         $services =  $this->servicesRepository->renderAllServices();
         $error = false;
         return view('members.list', compact('members', 'gyms', 'services', 'error'));

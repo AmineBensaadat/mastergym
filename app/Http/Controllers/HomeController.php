@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repositories\MembersRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,13 +12,17 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
+    private $membersRepository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        MembersRepository $membersRepository,
+    )
     {
+        $this->membersRepository = $membersRepository;
         $this->middleware('auth');
     }
 
@@ -36,7 +41,8 @@ class HomeController extends Controller
 
     public function root()
     {
-        return view('dashboard/index');
+        $members = $this->membersRepository->countAllMembersByGym();
+        return view('dashboard.index', compact('members'));
     }
 
     /*Language Translation*/

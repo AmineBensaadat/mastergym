@@ -133,6 +133,15 @@ return [
     "Last-Month" => "الشهر الماضي",
     "Last-Year" => "العام الماضي",
 
+    "Total-Members" => " مجموع المنخرطون",
+    "Total-Members-active" => "إجمالي الأعضاء النشطين",
+    "Monthly-Joinings" => "عمليات الانضمام الشهرية",
+    "Members-joines-per-month" => "أعضاء ينضمون شهريا",
+    "Pending-Payments" => "دفعات المعلقة",
+    "Member-Pending-Payments" => "مدفوعات الأعضاء المعلقة",
+    "Expired" => "منتهية الصلاحية",
+    "Subscription-Expire" => "انتهاء الاشتراك",
+
 
 
 
