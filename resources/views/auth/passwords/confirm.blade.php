@@ -39,7 +39,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="mt-4 text-center">
-                                                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Borex   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Borex   . Crafted with <i class="mdi mdi-heart text-danger"></i> by CapSolutions</p>
                                                         </div>
                                                     </div>
                                                 </div>

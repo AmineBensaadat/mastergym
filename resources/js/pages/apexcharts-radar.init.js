@@ -1,8 +1,8 @@
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.comom
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.comom
 File: Radar Chart init js
 */
 

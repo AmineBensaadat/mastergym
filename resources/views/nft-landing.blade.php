@@ -813,7 +813,7 @@
                             </div>
                             <div class="mt-4">
                                 <p>Premium Multipurpose Admin & Dashboard Template</p>
-                                <p>You can build any type of web application like eCommerce, CRM, CMS, Project management apps, Admin Panels, etc using Velzon.</p>
+                                <p>You can build any type of web application like eCommerce, CRM, CMS, Project management apps, Admin Panels, etc using Gogym.</p>
                             </div>
                         </div>
                     </div>
@@ -862,7 +862,7 @@
 
                         <div>
                             <p class="copy-rights mb-0">
-                                <script> document.write(new Date().getFullYear()) </script> © Velzon - Themesbrand
+                                <script> document.write(new Date().getFullYear()) </script> © Gogym - CapSolutions
                             </p>
                         </div>
                     </div>

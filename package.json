@@ -2,7 +2,7 @@
     "private": true,
     "name": "velzon",
     "version": "1.0.0",
-    "author": "Themesbrand",
+    "author": "CapSolutions",
     "scripts": {
         "dev": "npm run development",
         "development": "mix",

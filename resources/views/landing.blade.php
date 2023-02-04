@@ -76,8 +76,8 @@
                         <div class="col-lg-8 col-sm-10">
                             <div class="text-center mt-lg-5 pt-5">
                                 <h1 class="display-6 fw-semibold mb-3 lh-base">The better way to manage your website with <span
-                                        class="text-success">Velzon </span></h1>
-                                <p class="lead text-muted lh-base">Velzon is a fully responsive, multipurpose and premium Bootstrap 5 Admin & Dashboard Template built in multiple frameworks.</p>
+                                        class="text-success">Gogym </span></h1>
+                                <p class="lead text-muted lh-base">Gogym is a fully responsive, multipurpose and premium Bootstrap 5 Admin & Dashboard Template built in multiple frameworks.</p>
 
                                 <div class="d-flex gap-2 justify-content-center mt-4">
                                     <a href="auth-signup-basic" class="btn btn-primary">Get Started <i class="ri-arrow-right-line align-middle ms-1"></i></a>
@@ -447,7 +447,7 @@
                     <div class="row align-items-center gy-4">
                         <div class="col-sm">
                             <div>
-                                <h4 class="text-white mb-0 fw-semibold">Build your web App/SaaS with Velzon dashboard</h4>
+                                <h4 class="text-white mb-0 fw-semibold">Build your web App/SaaS with Gogym dashboard</h4>
                             </div>
                         </div>
                         <!-- end col -->
@@ -1642,7 +1642,7 @@
                     <div class="row align-items-center gy-4">
                         <div class="col-sm">
                             <div>
-                                <h4 class="text-white mb-0 fw-semibold">Build your web App/SaaS with Velzon dashboard</h4>
+                                <h4 class="text-white mb-0 fw-semibold">Build your web App/SaaS with Gogym dashboard</h4>
                             </div>
                         </div>
                         <!-- end col -->
@@ -1671,7 +1671,7 @@
                                 <div class= mt-4 fs-13">
                                     <p>Premium Multipurpose Admin & Dashboard Template</p>
                                     <p class="ff-secondary">You can build any type of web application like eCommerce, CRM, CMS, Project
-                                        management apps, Admin Panels, etc using Velzon.</p>
+                                        management apps, Admin Panels, etc using Gogym.</p>
                                 </div>
                             </div>
                         </div>
@@ -1722,7 +1722,7 @@
                                 <p class="copy-rights mb-0">
                                     <script>
                                         document.write(new Date().getFullYear())
-                                    </script> © Velzon - Themesbrand
+                                    </script> © Gogym - CapSolutions
                                 </p>
                             </div>
                         </div>

@@ -1,8 +1,8 @@
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: Timeline Chart init js
 */
 
@@ -428,7 +428,7 @@ var chart = new ApexCharts(document.querySelector("#advanced_timeline"), options
 chart.render();
 }
 
-// Multiple series – Group rows
+// Multiple series ï¿½ Group rows
 var chartMultiSeriesGroupColors = getChartColorsArray("multi_series_group");
     if (chartMultiSeriesGroupColors) {
     var options = {

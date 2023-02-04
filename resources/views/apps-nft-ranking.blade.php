@@ -14,7 +14,7 @@
         <div class="card" id="contactList">
             <div class="card-header">
                 <div class="d-flex align-items center">
-                    <h5 class="card-title mb-0 flex-grow-1">The top NFTs ranking on Velzon</h5>
+                    <h5 class="card-title mb-0 flex-grow-1">The top NFTs ranking on Gogym</h5>
                     <p class="text-muted mb-0">Updated: 28 April, 2022 08:05:00</p>
                 </div>
             </div>

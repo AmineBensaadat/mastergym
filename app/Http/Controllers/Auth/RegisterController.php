@@ -54,11 +54,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'avatar' => ['required', 'image' ,'mimes:jpg,jpeg,png','max:1024'],
         ]);
     }
 
@@ -71,20 +71,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $account_id = $this->userRepository->countMaxAccountId();
-        // return request()->file('avatar');
-        if (request()->has('avatar')) {
-            $avatar = request()->file('avatar');
-            $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
-            $avatarPath = public_path('/images/');
-            $avatar->move($avatarPath, $avatarName);
-        }
-
+       
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'account_id' => $account_id + 1,
-            'avatar' =>  $avatarName,
+            'account_id' => $account_id + 1
         ]);
     }
 }

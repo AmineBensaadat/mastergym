@@ -45,7 +45,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-medium">Project Name</td>
-                                <td>Velzon - Admin Dashboard</td>
+                                <td>Gogym - Admin Dashboard</td>
                             </tr>
                             <tr>
                                 <td class="fw-medium">Priority</td>
@@ -189,7 +189,7 @@
                                 </div>
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="fs-13 mb-1"><a href="javascript:void(0);" class="text-body text-truncate d-block">Velzon admin.ppt</a></h5>
+                                <h5 class="fs-13 mb-1"><a href="javascript:void(0);" class="text-body text-truncate d-block">Gogym admin.ppt</a></h5>
                                 <div>2.4MB</div>
                             </div>
                             <div class="flex-shrink-0 ms-2">
@@ -450,7 +450,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="ms-3 flex-grow-1">
-                                                    <h6 class="fs-15 mb-0"><a href="javascript:void(0);">Velzon admin.ppt</a></h6>
+                                                    <h6 class="fs-15 mb-0"><a href="javascript:void(0);">Gogym admin.ppt</a></h6>
                                                 </div>
                                             </div>
                                         </td>

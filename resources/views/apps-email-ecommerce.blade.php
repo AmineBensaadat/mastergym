@@ -154,7 +154,7 @@
                             <a href="#" itemprop="url" style="font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: .8125rem; color: #FFF; text-decoration: none; font-weight: 400; text-align: center; cursor: pointer; display: inline-block; border-radius: .25rem; text-transform: capitalize; background-color: #0ab39c; margin: 0; border-color: #0ab39c; border-style: solid; border-width: 1px; padding: .5rem .9rem;">Back to Shop</a>
                         </div>
                         <div style="text-align: center; margin: 28px auto 0px auto;">
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by Themesbrand</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Gogym. Design & Develop by CapSolutions</p>
                         </div>
                     </div>
                 </td>
@@ -213,7 +213,7 @@
                             </tr>
                         </table>
                         <div style="text-align: center; margin: 28px auto 0px auto;">
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by Themesbrand</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Gogym. Design & Develop by CapSolutions</p>
                         </div>
                     </div>
                 </td>
@@ -302,7 +302,7 @@
                             </tr>
                         </table>
                         <div style="text-align: center; margin: 28px auto 0px auto;">
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by Themesbrand</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Gogym. Design & Develop by CapSolutions</p>
                         </div>
                     </div>
                 </td>

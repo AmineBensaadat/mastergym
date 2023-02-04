@@ -192,7 +192,7 @@
                             <div class="d-flex mb-2">
                                 <div class="flex-grow-1">
                                             <h6 class="fs-15 mb-0 text-truncate task-title">
-                                                <a href="apps-tasks-details" class="d-block">Velzon - Admin Layout Design</a></h6>
+                                                <a href="apps-tasks-details" class="d-block">Gogym - Admin Layout Design</a></h6>
                                 </div>
                                 <div class="flex-shrink-0">
                                     <a href="javascript:void(0);" class="text-muted"

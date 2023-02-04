@@ -4,10 +4,10 @@ var __webpack_exports__ = {};
   !*** ./resources/js/pages/vector-maps.init.js ***!
   \************************************************/
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: Vector Maps init Js File
 */
 // get colors array from the string

@@ -6,7 +6,7 @@
     <title>@yield('title')| Master Gym</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="CapSolutions" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('assets/images/logo_1.png')}}">
     @include('layouts.head-css')

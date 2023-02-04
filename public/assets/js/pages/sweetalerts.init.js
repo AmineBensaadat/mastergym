@@ -6,10 +6,10 @@ var __webpack_exports__ = {};
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: Sweatalerts init js
 */
 //Basic
@@ -177,7 +177,7 @@ if (document.getElementById("custom-html-alert")) document.getElementById("custo
   Swal.fire(_defineProperty({
     title: '<i>HTML</i> <u>example</u>',
     icon: 'info',
-    html: 'You can use <b>bold text</b>, ' + '<a href="//Themesbrand.in/">links</a> ' + 'and other HTML tags',
+    html: 'You can use <b>bold text</b>, ' + '<a href="//CapSolutions.in/">links</a> ' + 'and other HTML tags',
     showCloseButton: true,
     showCancelButton: true,
     confirmButtonClass: 'btn btn-success me-2',
@@ -318,7 +318,7 @@ if (document.getElementById("custom-sa-community")) document.getElementById("cus
 
   Swal.fire((_Swal$fire2 = {
     title: 'Join Our Community',
-    html: 'You can use <b>bold text</b>, ' + '<a href="//Themesbrand.in/">links</a> ' + 'and other HTML tags'
+    html: 'You can use <b>bold text</b>, ' + '<a href="//CapSolutions.in/">links</a> ' + 'and other HTML tags'
   }, _defineProperty(_Swal$fire2, "html", '<div class="mt-3 text-start">' + '<label for="input-email" class="form-label fs-13">Email</label>' + '<input type="email" class="form-control" id="input-email" placeholder="Enter Email Address">' + '</div>'), _defineProperty(_Swal$fire2, "imageUrl", 'assets/images/logo-sm.png'), _defineProperty(_Swal$fire2, "footer", '<p class="fs-13 text-muted mb-0">Already have an account ? <a href="#" class="fw-semibold text-decoration-underline"> Signin </a> </p>'), _defineProperty(_Swal$fire2, "imageHeight", 40), _defineProperty(_Swal$fire2, "confirmButtonClass", 'btn btn-primary w-xs mb-2'), _defineProperty(_Swal$fire2, "confirmButtonText", 'Register <i class="ri-arrow-right-line ms-1 align-bottom"></i>'), _defineProperty(_Swal$fire2, "buttonsStyling", false), _defineProperty(_Swal$fire2, "showCloseButton", true), _Swal$fire2));
 }); //Custom Email varification
 

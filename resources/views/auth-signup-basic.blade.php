@@ -72,7 +72,7 @@
                                             </div>
 
                                             <div class="mb-4">
-                                                <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Velzon <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
+                                                <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Gogym <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
                                             </div>
 
                                             <div id="password-contain" class="p-3 bg-light mb-2 rounded">
@@ -125,7 +125,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center">
-                                <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> Gogym. Crafted with <i class="mdi mdi-heart text-danger"></i> by CapSolutions</p>
                             </div>
                         </div>
                     </div>

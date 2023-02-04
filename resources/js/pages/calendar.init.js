@@ -1,8 +1,8 @@
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: Calendar init js
 */
 
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             id: 456,
-            title: 'Velzon Project Discussion with Team',
+            title: 'Gogym Project Discussion with Team',
             start: new Date(y, m, d + 23, 20, 0),
             end: new Date(y, m, d + 24, 16, 0),
             allDay: true,

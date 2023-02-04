@@ -234,7 +234,7 @@
                                     <div class="mb-2">
                                         <i class="ri-folder-2-fill align-bottom text-warning display-5"></i>
                                     </div>
-                                    <h6 class="fs-15 folder-name">Velzon v1.7.0</h6>
+                                    <h6 class="fs-15 folder-name">Gogym v1.7.0</h6>
                                 </div>
                                 <div class="hstack mt-4 text-muted">
                                     <span class="me-auto"><b>180</b> Files</span>

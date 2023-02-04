@@ -32,7 +32,7 @@
                                     <div class="toast-header">
                                         <img src="{{ URL::asset('assets/images/logo-sm.png') }}" class="rounded me-2"
                                             alt="..." height="20">
-                                        <span class="fw-semibold me-auto">Velzon</span>
+                                        <span class="fw-semibold me-auto">Gogym</span>
                                         <small>06 mins ago</small>
                                         <button type="button" class="btn-close"
                                             data-bs-dismiss="toast" aria-label="Close"></button>
@@ -54,7 +54,7 @@
                                             <div class="toast-header">
                                                 <img src="{{ URL::asset('assets/images/logo-sm.png') }}" class="rounded me-2"
                                                     alt="..." height="20">
-                                                <span class="fw-semibold me-auto">Velzon</span>
+                                                <span class="fw-semibold me-auto">Gogym</span>
                                                 <small>11 mins ago</small>
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="toast" aria-label="Close"></button>
@@ -82,7 +82,7 @@
                                             <div class="toast-header">
                                                 <img src="{{ URL::asset('assets/images/logo-sm.png') }}" class="rounded me-2"
                                                     alt="..." height="20">
-                                                <span class="fw-semibold me-auto">Velzon</span>
+                                                <span class="fw-semibold me-auto">Gogym</span>
                                                 <small>Just now</small>
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="toast" aria-label="Close"></button>
@@ -97,7 +97,7 @@
                                             <div class="toast-header">
                                                 <img src="{{ URL::asset('assets/images/logo-sm.png') }}" class="rounded me-2"
                                                     alt="..." height="20">
-                                                <span class="fw-semibold me-auto">Velzon</span>
+                                                <span class="fw-semibold me-auto">Gogym</span>
                                                 <small>2 seconds ago</small>
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="toast" aria-label="Close"></button>
@@ -135,7 +135,7 @@
                                                 <div class="toast-header">
                                                     <img src="{{ URL::asset('assets/images/logo-sm.png') }}"
                                                         class="rounded me-2" alt="..." height="20">
-                                                    <span class="fw-semibold me-auto">Velzon</span>
+                                                    <span class="fw-semibold me-auto">Gogym</span>
                                                     <small>06 mins ago</small>
                                                     <button type="button" class="btn-close"
                                                         data-bs-dismiss="toast" aria-label="Close"></button>
@@ -165,7 +165,7 @@
                                                 <div class="toast-header">
                                                     <img src="{{ URL::asset('assets/images/logo-sm.png') }}"
                                                         class="rounded me-2" alt="..." height="20">
-                                                    <span class="fw-semibold me-auto">Velzon</span>
+                                                    <span class="fw-semibold me-auto">Gogym</span>
                                                     <small>11 mins ago</small>
                                                     <button type="button" class="btn-close"
                                                         data-bs-dismiss="toast" aria-label="Close"></button>
@@ -191,7 +191,7 @@ data-bs-autohide=&quot;false&quot; aria-atomic=&quot;true&quot;&gt;
 &lt;div class=&quot;toast-header&quot;&gt;
 &lt;img src=&quot;assets/images/logo-sm.png&quot; class=&quot;rounded me-2&quot;
 alt=&quot;...&quot; height=&quot;20&quot;&gt;
-&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Velzon&lt;/span&gt;
+&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Gogym&lt;/span&gt;
 &lt;small&gt;06 mins ago&lt;/small&gt;
 &lt;button type=&quot;button&quot; class=&quot;btn-close&quot;
 data-bs-dismiss=&quot;toast&quot; aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
@@ -208,7 +208,7 @@ data-bs-autohide=&quot;false&quot; aria-atomic=&quot;true&quot;&gt;
 &lt;div class=&quot;toast-header&quot;&gt;
 &lt;img src=&quot;assets/images/logo-sm.png&quot; class=&quot;rounded me-2&quot;
 alt=&quot;...&quot; height=&quot;20&quot;&gt;
-&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Velzon&lt;/span&gt;
+&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Gogym&lt;/span&gt;
 &lt;small&gt;11 mins ago&lt;/small&gt;
 &lt;button type=&quot;button&quot; class=&quot;btn-close&quot;
 data-bs-dismiss=&quot;toast&quot; aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
@@ -225,7 +225,7 @@ data-bs-autohide=&quot;false&quot; aria-atomic=&quot;true&quot;&gt;
 &lt;div class=&quot;toast-header&quot;&gt;
 &lt;img src=&quot;assets/images/logo-sm.png&quot; class=&quot;rounded me-2&quot;
 alt=&quot;...&quot; height=&quot;20&quot;&gt;
-&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Velzon&lt;/span&gt;
+&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Gogym&lt;/span&gt;
 &lt;small&gt;Just now&lt;/small&gt;
 &lt;button type=&quot;button&quot; class=&quot;btn-close&quot;
 data-bs-dismiss=&quot;toast&quot; aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
@@ -244,7 +244,7 @@ style=&quot;position: absolute; top: 16px; right: 16px;&quot;&gt;
 &lt;div class=&quot;toast-header&quot;&gt;
 &lt;img src=&quot;assets/images/logo-sm.png&quot;
 class=&quot;rounded me-2&quot; alt=&quot;...&quot; height=&quot;20&quot;&gt;
-&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Velzon&lt;/span&gt;
+&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Gogym&lt;/span&gt;
 &lt;small&gt;06 mins ago&lt;/small&gt;
 &lt;button type=&quot;button&quot; class=&quot;btn-close&quot;
 data-bs-dismiss=&quot;toast&quot; aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
@@ -264,7 +264,7 @@ data-bs-autohide=&quot;false&quot; aria-atomic=&quot;true&quot;&gt;
 &lt;div class=&quot;toast-header&quot;&gt;
 &lt;img src=&quot;assets/images/logo-sm.png&quot;
 class=&quot;rounded me-2&quot; alt=&quot;...&quot; height=&quot;20&quot;&gt;
-&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Velzon&lt;/span&gt;
+&lt;span class=&quot;fw-semibold me-auto&quot;&gt;Gogym&lt;/span&gt;
 &lt;small&gt;11 mins ago&lt;/small&gt;
 &lt;button type=&quot;button&quot; class=&quot;btn-close&quot;
 data-bs-dismiss=&quot;toast&quot; aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
@@ -323,7 +323,7 @@ Hello, world! This is a toast message.
                                     <div class="toast-header">
                                         <img src="{{ URL::asset('assets/images/logo-sm.png') }}" class="rounded me-2"
                                             alt="..." height="20">
-                                        <strong class="me-auto">Velzon</strong>
+                                        <strong class="me-auto">Gogym</strong>
                                         <small>11 mins ago</small>
                                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                                     </div>
@@ -360,7 +360,7 @@ Hello, world! This is a toast message.
 &lt;div class=&quot;toast-header&quot;&gt;
 &lt;img src=&quot;assets/images/logo-sm.png&quot; class=&quot;rounded me-2&quot;
     alt=&quot;...&quot; height=&quot;20&quot;&gt;
-&lt;strong class=&quot;me-auto&quot;&gt;Velzon&lt;/strong&gt;
+&lt;strong class=&quot;me-auto&quot;&gt;Gogym&lt;/strong&gt;
 &lt;small&gt;11 mins ago&lt;/small&gt;
 &lt;button type=&quot;button&quot; class=&quot;btn-close&quot; data-bs-dismiss=&quot;toast&quot; aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
 &lt;/div&gt;
