@@ -307,5 +307,5 @@
     <script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
     <script src="{{ URL::asset('/assets/js/pages/dashboard-projects.init.js') }}"></script>
-    <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+    <script src="{{ URL::asset('/assets/js/app.js') }}"></script>
 @endsection

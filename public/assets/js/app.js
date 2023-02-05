@@ -1670,7 +1670,6 @@ File: Main Js File
 	}
 
 	function setDefaultAttribute() {
-		alert(99)
 		if (!sessionStorage.getItem("defaultAttribute")) {
 			var attributesValue = document.documentElement.attributes;
 			var isLayoutAttributes = {};
@@ -1685,8 +1684,8 @@ File: Main Js File
 			layoutSwitch(isLayoutAttributes);
 
 			// open right sidebar on first time load
-			var offCanvas = document.querySelector('.btn[data-bs-target="#theme-settings-offcanvas"]');
-			offCanvas ? offCanvas.click() : "";
+			//var offCanvas = document.querySelector('.btn[data-bs-target="#theme-settings-offcanvas"]');
+			//offCanvas ? offCanvas.click() : "";
 		} else {
 			var isLayoutAttributes = {};
 			isLayoutAttributes["data-layout"] = sessionStorage.getItem("data-layout");
