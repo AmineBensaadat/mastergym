@@ -345,6 +345,16 @@ return [
     "Expired" => "Expired",
     "Subscription-Expire" => "Subscription Expire",
 
+    "Export" => "Export",
+    "Joined-at" => "Joined at",
+    "day-left" => "day left",
+    "expired-at" => "expired at",
+    "expired-days" => "expired days",
+    "Brand-Logo-Design" => "Brand Logo Design",
+    "Showing" => "Showing",
+    "Results" => "Results",
+    "of" => "of",
+
 
 
 ];

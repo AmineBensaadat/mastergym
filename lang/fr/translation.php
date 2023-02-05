@@ -355,6 +355,16 @@ return [
     "Expired" => "Expiré",
     "Subscription-Expire" => "Expiration de l'abonnement",
 
+    "Export" => "Exporter",
+    "Joined-at" => "JInscrit à",
+    "day-left" => "jour restant",
+    "expired-at" => "expiré à",
+    "expired-days" => "jours expirés",
+    "Showing" => "Montrant",
+    "Results" => "Résultats",
+    "of" => "de",
+
+
 
 
 

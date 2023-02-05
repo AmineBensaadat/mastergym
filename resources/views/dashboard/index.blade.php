@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title') @lang('translation.dashboard') @endsection
+@section('title') @lang('translation.dashboards') @endsection
 @section('content')
 
     @component('components.breadcrumb')
-        @slot('li_1') Dashboards @endslot
-        @slot('title') Dashboards @endslot
+        @slot('li_1') @lang('translation.dashboards') @endslot
+        @slot('title') @lang('translation.dashboards') @endslot
     @endcomponent
             <div class="row">
                 <div class="col-xl-3">
@@ -118,9 +118,9 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
-                    <h4 class="card-title flex-grow-1 mb-0">MONTHLY JOININGS</h4>
+                    <h4 class="card-title flex-grow-1 mb-0">@lang('translation.Monthly-Joinings')</h4>
                     <div class="flex-shrink-0">
-                        <a href="javascript:void(0);" class="btn btn-soft-info btn-sm">Export</a>
+                        <a href="javascript:void(0);" class="btn btn-soft-info btn-sm">@lang('translation.Export')</a>
                     </div>
                 </div><!-- end cardheader -->
                 <div class="card-body">
@@ -128,11 +128,11 @@
                         <table class="table table-nowrap table-centered align-middle table-success">
                             <thead class="bg-light text-muted">
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Service</th>
-                                    <th scope="col">plan</th>
-                                    <th scope="col">Joined at</th>
-                                    <th scope="col">day left</th>
+                                    <th scope="col">@lang('translation.name')</th>
+                                    <th scope="col">@lang('translation.Service')</th>
+                                    <th scope="col">@lang('translation.plans')</th>
+                                    <th scope="col">@lang('translation.Joined-at')</th>
+                                    <th scope="col">@lang('translation.day-left')</th>
                                 </tr><!-- end tr -->
                             </thead><!-- thead -->
 
@@ -188,8 +188,8 @@
 
                     <div class="align-items-center mt-xl-3 mt-4 justify-content-between d-flex">
                         <div class="flex-shrink-0">
-                            <div class="text-muted">Showing <span class="fw-semibold">5</span> of <span
-                                    class="fw-semibold">25</span> Results
+                            <div class="text-muted">@lang('translation.Showing') <span class="fw-semibold">5</span> @lang('translation.of') <span
+                                    class="fw-semibold">25</span> @lang('translation.Results')
                             </div>
                         </div>
                         <ul class="pagination pagination-separated pagination-sm mb-0">
@@ -220,9 +220,9 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
-                    <h4 class="card-title flex-grow-1 mb-0">Expired Members</h4>
+                    <h4 class="card-title flex-grow-1 mb-0">@lang('translation.Expired') @lang('translation.members')</h4>
                     <div class="flex-shrink-0">
-                        <a href="javascript:void(0);" class="btn btn-soft-info btn-sm">Export</a>
+                        <a href="javascript:void(0);" class="btn btn-soft-info btn-sm">@lang('translation.Export')</a>
                     </div>
                 </div><!-- end cardheader -->
                 <div class="card-body">
@@ -230,11 +230,11 @@
                         <table class="table table-nowrap table-centered align-middle table-danger">
                             <thead class="bg-light text-muted">
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Service</th>
-                                    <th scope="col">plan</th>
-                                    <th scope="col">expired at</th>
-                                    <th scope="col">expired days</th>
+                                    <th scope="col">@lang('translation.name')</th>
+                                    <th scope="col">@lang('translation.Service')</th>
+                                    <th scope="col">@lang('translation.plans')</th>
+                                    <th scope="col">@lang('translation.expired-at')</th>
+                                    <th scope="col">@lang('translation.expired-days')</th>
                                 </tr><!-- end tr -->
                             </thead><!-- thead -->
 
@@ -270,8 +270,8 @@
 
                     <div class="align-items-center mt-xl-3 mt-4 justify-content-between d-flex">
                         <div class="flex-shrink-0">
-                            <div class="text-muted">Showing <span class="fw-semibold">5</span> of <span
-                                    class="fw-semibold">25</span> Results
+                            <div class="text-muted">@lang('translation.Showing') <span class="fw-semibold">5</span> @lang('translation.of') <span
+                                    class="fw-semibold">25</span> @lang('translation.Results')
                             </div>
                         </div>
                         <ul class="pagination pagination-separated pagination-sm mb-0">
