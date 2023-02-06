@@ -79,7 +79,8 @@ class GymsController extends Controller{
         $gym->address = $request['gym_address'];
         $gym->desc = $request['gym_desc'];
         $gym->is_main = $request['is_main'];
-        $gym->created_by = $user_id;
+        $gym->is_main = $request['is_main'];
+        $gym->account_id = auth()->user()->account_id;
         $gym->save();
 
         // save gym profile image
