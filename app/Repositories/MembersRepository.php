@@ -90,7 +90,8 @@ class MembersRepository
         $query->orWhere('members.address', 'LIKE', '%'.$request['global_filter'].'%');
         
         }
-
+        $query->whereMonth('members.created_at',  '=',  now()->format('m') );
+        $query->whereYear('members.created_at',  '=',  now()->format('Y'));
         if(isset($request['order']))
         {
             $query->orderBy($column[$request['order']['0']['column']], $request['order']['0']['dir']);
