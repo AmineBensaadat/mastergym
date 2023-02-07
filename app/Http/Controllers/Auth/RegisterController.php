@@ -71,7 +71,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $account_id = $this->userRepository->countMaxAccountId();
-       
+       //dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
