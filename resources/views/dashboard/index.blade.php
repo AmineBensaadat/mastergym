@@ -8,8 +8,12 @@
     @endcomponent
 
 <!--datatable css-->
+@section('css')
+<link href="{{ URL::asset('assets/libs/jsvectormap/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/libs/swiper/swiper.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/dataTables.bootstrap5.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/buttons.dataTables.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+@endsection
             <div class="row">
                 <div class="col-xl-3">
                     <div class="card card-animate">
@@ -119,7 +123,7 @@
 
     <div class="row">
         <!-- start col -->
-        <div class="col-xl-6">
+        <div class="col-xl-8">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
                     <h4 class="card-title flex-grow-1 mb-0">@lang('translation.Monthly-Joinings')</h4>
@@ -195,12 +199,7 @@
                                     <th >@lang('translation.gym')</th>
                                     <th >@lang('translation.services')</th>
                                     <th >@lang('translation.plans')</th>
-                                    <th >@lang('translation.phone')</th>
-                                    <th >@lang('translation.CNIE')</th>
-                                    <th >@lang('translation.city')</th>
-                                    <th >@lang('translation.address')</th>
-                                    <th >@lang('translation.DOB')</th>
-                                    <th >@lang('translation.Status')</th>
+                                    <th >@lang('translation.Joined-at')</th>
                                 </tr>
                             </thead>
                         </table>
@@ -212,7 +211,7 @@
         <!-- end col -->
 
         <!-- start col -->
-        <div class="col-xl-6">
+        {{-- <div class="col-xl-6">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
                     <h4 class="card-title flex-grow-1 mb-0">@lang('translation.Expired') @lang('translation.members')</h4>
@@ -290,7 +289,30 @@
 
                 </div><!-- end card body -->
             </div><!-- end card -->
-        </div>
+        </div> --}}
+        <div class="col-xl-4">
+            <div class="card card-height-100">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Statistiques</h4>
+                    <div class="flex-shrink-0">
+                        <div class="dropdown card-header-dropdown">
+                            <a class="text-reset dropdown-btn" href="#"
+                                data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span class="text-muted">Report<i
+                                        class="mdi mdi-chevron-down ms-1"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div><!-- end card header -->
+
+                <div class="card-body">
+                    <div id="store-visits-source"
+                        data-colors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]'
+                        class="apex-charts" dir="ltr"></div>
+                </div>
+            </div> <!-- .card-->
+        </div> 
         <!-- end col -->
 
 
@@ -312,6 +334,12 @@
 
     {{-- <script src="{{ URL::asset('/assets/js/pages/dashboard-projects.init.js') }}"></script> --}}
     <script src="{{ URL::asset('/assets/js/app.js') }}"></script>
+    <!-- apexcharts -->
+    <script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ URL::asset('/assets/libs/jsvectormap/jsvectormap.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/libs/swiper/swiper.min.js')}}"></script>
+    <!-- dashboard init -->
+    <script src="{{ URL::asset('/assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
     <script>
 
         $(document).ready(function(){
@@ -399,4 +427,5 @@
         });
         });
     </script>
+
 @endsection

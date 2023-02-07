@@ -88,7 +88,7 @@ class UsersController extends Controller
                     'email' => $request['user_email'],
                     'password' => Hash::make($request['user_password'])
                 ]);
-            }
+            
 
              // save users_gyms table
               $usersgym = new UsersGym();
