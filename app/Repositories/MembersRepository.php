@@ -16,6 +16,7 @@ class MembersRepository
     }
 
     public function getAllMembersByFilters($request){
+        $user = auth()->user();
         $data = array();
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
@@ -31,7 +32,9 @@ class MembersRepository
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
-                'plans.plan_name as plan_name');
+                'plans.plan_name as plan_name')
+                ->where('members.account_id',  '=', $user->account_id);
+
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
@@ -87,7 +90,8 @@ class MembersRepository
         $query->orWhere('members.address', 'LIKE', '%'.$request['global_filter'].'%');
         
         }
-
+        $query->whereMonth('members.created_at',  '=',  now()->format('m') );
+        $query->whereYear('members.created_at',  '=',  now()->format('Y'));
         if(isset($request['order']))
         {
             $query->orderBy($column[$request['order']['0']['column']], $request['order']['0']['dir']);
@@ -166,6 +170,7 @@ class MembersRepository
             'created_by' =>  $user_id,
             'updated_by' =>  $user_id,
             'source' =>  $request['source'],
+            'account_id' => auth()->user()->account_id
         ]);
 
          // save gym profile image

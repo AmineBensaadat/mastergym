@@ -6,6 +6,7 @@ use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\User;
 use App\Models\UsersGym;
+use App\Repositories\GymsRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,9 +16,11 @@ class UsersController extends Controller
 {
     
     private $userRepository;
-    public function __construct(UserRepository $userRepository)
+    private $gymsRepository;
+    public function __construct(UserRepository $userRepository, GymsRepository $gymsRepository)
     {
         $this->userRepository = $userRepository;
+        $this->gymsRepository = $gymsRepository;
         $this->middleware('auth');
     }
     /**
@@ -51,7 +54,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $gyms = Gyms::all();
+       $gyms = $this->gymsRepository->getAllGymByCretedById();
         return view('users.user_create', compact('gyms'));
     }
 

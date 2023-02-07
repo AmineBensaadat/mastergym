@@ -14,7 +14,7 @@ class GymsRepository
             ->leftJoin('files', 'gyms.id', '=', 'files.entitiy_id')
             ->select('files.name as img_name','gyms.*')
             //->where('gyms.created_by', $user->id)
-            ->where('users.account_id', $user->account_id)
+            ->where('gyms.account_id', $user->account_id)
             ->get();
         return $gyms;
     }
@@ -25,7 +25,7 @@ class GymsRepository
             ->join('users', 'gyms.created_by', '=', 'users.id')
             ->select('gyms.*')
             ->where('gyms.created_by', $user->id)
-            ->where('users.account_id', $user->account_id)
+            ->where('gyms.account_id', $user->account_id)
             ->get();
         return $gyms;
     }
