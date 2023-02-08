@@ -30,7 +30,7 @@
                                     @lang('translation.Total-Members')</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
-                                                data-target="{{ $members }}">0</span></h4>
+                                                data-target="{{ $allMembers }}">0</span></h4>
                                         <span class="badge badge-soft-danger fs-12"><i
                                                 class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>5.02
                                             %</span>
@@ -56,7 +56,7 @@
                                     <p class="text-uppercase fw-medium text-muted mb-3">@lang('translation.Monthly-Joinings')</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
-                                                data-target="7522">0</span></h4>
+                                                data-target="{{ $monthlyJoined }}">0</span></h4>
                                         <span class="badge badge-soft-success fs-12"><i
                                                 class="ri-arrow-up-s-line fs-13 align-middle me-1"></i>3.58
                                             %</span>
@@ -82,7 +82,7 @@
                                     @lang('translation.Pending-Payments')</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
-                                            data-target="777">0</span></h4>
+                                            data-target="{{ $pending_paiment }}">0</span></h4>
                                         <span class="badge badge-soft-danger fs-12"><i
                                                 class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>10.35
                                             %</span>
@@ -108,7 +108,7 @@
                                     @lang('translation.Expired')</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
-                                            data-target="777">0</span></h4>
+                                            data-target="{{ $expired_members }}">0</span></h4>
                                         <span class="badge badge-soft-danger fs-12"><i
                                                 class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>10.35
                                             %</span>

@@ -119,6 +119,7 @@ class MembersRepository
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('invoices', 'members.id', '=', 'invoices.member_id')
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
                 'files.name as member_img',
@@ -133,7 +134,7 @@ class MembersRepository
                         $query->where('subscriptions.end_date',  '<', date('Y-m-d'));
                         break;
                     case 'pending_paiment':
-                        $query->where('subscriptions.end_date',  '<', date('Y-m-d'));
+                        $query->where('invoices.amount_pending',  '>', 0);
                         break;
                     case 'monthlyJoined':
                         $query->whereMonth('members.created_at',  '=',  now()->format('m') );
@@ -143,7 +144,8 @@ class MembersRepository
             $query->where('members.account_id',  '=', $user->account_id);
             if($request->session()->has('selected_gym')){
                 $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-            }else{
+            }
+            if($user->default_gym_id){
                 $query->where('members.gym_id',  '=', $user->default_gym_id);
             }
             
