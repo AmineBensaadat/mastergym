@@ -111,8 +111,9 @@ class MembersRepository
         return $data;
     }
 
-    public function renderMembersByStatus($status){
+    public function countMembersByStatus($status, $request){
         $data = array();
+        $user = auth()->user();
         $query = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
@@ -127,12 +128,27 @@ class MembersRepository
                 'services.name as service_name',
                 'plans.id as plan_id',
                 'plans.plan_name as plan_name');
-            if($status)
-            {
-            $query->where('subscriptions.status',  '=', $status);
+            switch ($status) {
+                    case 'expired':
+                        $query->where('subscriptions.end_date',  '<', date('Y-m-d'));
+                        break;
+                    case 'pending_paiment':
+                        $query->where('subscriptions.end_date',  '<', date('Y-m-d'));
+                        break;
+                    case 'monthlyJoined':
+                        $query->whereMonth('members.created_at',  '=',  now()->format('m') );
+                        $query->whereYear('members.created_at',  '=',  now()->format('Y'));
+                        break;
+                }
+            $query->where('members.account_id',  '=', $user->account_id);
+            if($request->session()->has('selected_gym')){
+                $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
+            }else{
+                $query->where('members.gym_id',  '=', $user->default_gym_id);
             }
+            
         $data = $query->get();
-        return $data;
+        return $data->count();
     }
 
     public function countAllMembers(){

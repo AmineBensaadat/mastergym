@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('gyms', function (Blueprint $table) {
-            $table->integer('account_id')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('default_gym_id')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('gyms', function (Blueprint $table) {
-            $table->dropColumn('account_id');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('default_gym_id');
         });
     }
 };

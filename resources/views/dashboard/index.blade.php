@@ -325,7 +325,7 @@
                         "scrollX": true,
                         "searching" : false,
                         "ajax" : {
-                        url:"../members/getAllMembers",
+                        url:"../members/getMonthlyJoiningsMembers",
                         type:"POST",
                         data:{
                             "_token": "{{ csrf_token() }}",
