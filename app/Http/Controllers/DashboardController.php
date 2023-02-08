@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\MembersRepository;
 use App\Repositories\UserRepository;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
