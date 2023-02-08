@@ -111,11 +111,7 @@ class MembersController extends Controller
             }else{
                 $sub_array[] = '';   
             }
-            $sub_array[] = $row->phone;
-            $sub_array[] = $row->cin;
-            $sub_array[] = $row->city;
-            $sub_array[] = $row->address;
-            $sub_array[] = $row->DOB;
+            $sub_array[] = $row->created_at;
             if($row->status == 1){
                 $sub_array[] = '<span class="badge text-bg-success">Active</span>';
             }else{

@@ -58,10 +58,10 @@
                                         @csrf
 
                                            <div class="mb-3">
-                                                <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-                                                <input name="name" type="text" class="form-control" id="username" placeholder="Enter username" required>
+                                                <label for="username" class="form-label">Nom Complet <span class="text-danger">*</span></label>
+                                                <input name="name" type="text" class="form-control" id="username" placeholder="Veuillez entrer le nom complet" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter username
+                                                    Veuillez entrer le nom complet
                                                 </div>
                                             </div>
                                         <div class="mb-3">
@@ -69,14 +69,14 @@
                                                     class="text-danger">*</span></label>
                                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                                 name="email" value="{{ old('email') }}" id="useremail"
-                                                placeholder="Enter email address" required>
+                                                placeholder="Veuillez entrer l'email" required>
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                             <div class="invalid-feedback">
-                                                Please enter email
+                                                Veuillez entrer l'email
                                             </div>
 
                                         <div class="mb-2">
@@ -84,14 +84,14 @@
                                                     class="text-danger">*</span></label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
-                                                id="userpassword" placeholder="Enter password" required>
+                                                id="userpassword" placeholder="entrer le mot de passe" required>
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                             <div class="invalid-feedback">
-                                                Please enter password
+                                                Veuillez entrer le mot de passe
                                             </div>
                                         </div>
                                         <div class=" mb-4">
@@ -99,7 +99,7 @@
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
                                                 name="password_confirmation" id="input-password"
-                                                placeholder="Enter Confirm Password" required>
+                                                placeholder="Confirmez le mot de passe" required>
 
                                             <div class="form-floating-icon">
                                                 <i data-feather="lock"></i>
