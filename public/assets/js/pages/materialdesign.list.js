@@ -4,8 +4,8 @@ var __webpack_exports__ = {};
   !*** ./resources/js/pages/materialdesign.list.js ***!
   \***************************************************/
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
 Website: https://themesbrand.com/
 Contact: themesbrand@gmail.com
 File: Material design Init Js File

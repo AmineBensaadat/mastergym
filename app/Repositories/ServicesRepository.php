@@ -13,7 +13,7 @@ class ServicesRepository
      *
      * @return void
      */
-    public function __construct(subscriptionsRepository $servicesRepository)
+    public function __construct()
     {
         
     }

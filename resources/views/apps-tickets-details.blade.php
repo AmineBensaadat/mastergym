@@ -20,7 +20,7 @@
                                 <div class="col-md">
                                     <h4 class="fw-semibold" id="ticket-title" >#VLZ135 - Create an Excellent UI for a Dashboard</h4>
                                     <div class="hstack gap-3 flex-wrap">
-                                        <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client">Themesbrand</span></div>
+                                        <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client">CapSolutions</span></div>
                                         <div class="vr"></div>
                                         <div class="text-muted">Create Date : <span class="fw-medium " id="create-date">20 Dec, 2021</span></div>
                                         <div class="vr"></div>
@@ -184,11 +184,11 @@ userIdx: {}
                             </tr>
                             <tr>
                                 <td class="fw-medium">Client</td>
-                                <td id="t-client">Themesbrand</td>
+                                <td id="t-client">CapSolutions</td>
                             </tr>
                             <tr>
                                 <td class="fw-medium">Project</td>
-                                <td>Velzon - Admin Dashboard</td>
+                                <td>Gogym - Admin Dashboard</td>
                             </tr>
                             <tr>
                                 <td class="fw-medium">Assigned To:</td>
@@ -269,7 +269,7 @@ userIdx: {}
                         </div>
                     </div>
                     <div class="flex-grow-1 ms-3">
-                        <h6 class="mb-1"><a href="javascript:void(0);">Velzon-admin.zip</a></h6>
+                        <h6 class="mb-1"><a href="javascript:void(0);">Gogym-admin.zip</a></h6>
                         <small class="text-muted">3.2 MB</small>
                     </div>
                     <div class="hstack gap-3 fs-16">
@@ -284,7 +284,7 @@ userIdx: {}
                         </div>
                     </div>
                     <div class="flex-grow-1 ms-3">
-                        <h6 class="mb-1"><a href="javascript:void(0);">Velzon-admin.ppt</a></h6>
+                        <h6 class="mb-1"><a href="javascript:void(0);">Gogym-admin.ppt</a></h6>
                         <small class="text-muted">4.5 MB</small>
                     </div>
                     <div class="hstack gap-3 fs-16">

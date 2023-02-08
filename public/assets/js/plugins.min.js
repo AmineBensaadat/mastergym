@@ -1,9 +1,9 @@
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
 Version: 1.2.0
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: Common Plugins Js File
 */
 

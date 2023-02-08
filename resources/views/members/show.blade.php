@@ -659,7 +659,7 @@
                                                                                 </div>
                                                                                 <div class="flex-grow-1 ms-3">
                                                                                     <h6 class="fs-14 mb-1">
-                                                                                        Velzon admin
+                                                                                        Gogym admin
                                                                                         dashboard
                                                                                         templates layout
                                                                                         upload</h6>

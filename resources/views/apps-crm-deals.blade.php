@@ -866,7 +866,7 @@
                     </div>
                     <div class="collapse border-top border-top-dashed" id="needsIdentified4">
                         <div class="card-body">
-                            <h6 class="fs-14 mb-1">Themesbrand <small class="badge badge-soft-danger">3
+                            <h6 class="fs-14 mb-1">CapSolutions <small class="badge badge-soft-danger">3
                                     Month</small></h6>
                             <p class="text-muted">As a company grows however, you find it's not as easy
                                 to shout across</p>
@@ -925,14 +925,14 @@
                                 <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt="" class="avatar-xs rounded-circle" />
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h6 class="fs-14 mb-1">Velzon - Admin Dashboard</h6>
+                                <h6 class="fs-14 mb-1">Gogym - Admin Dashboard</h6>
                                 <p class="text-muted mb-0">$126.7k - 30 Dec, 2021</p>
                             </div>
                         </a>
                     </div>
                     <div class="collapse border-top border-top-dashed" id="needsIdentified5">
                         <div class="card-body">
-                            <h6 class="fs-14 mb-1">Themesbrand <small class="badge badge-soft-danger">3
+                            <h6 class="fs-14 mb-1">CapSolutions <small class="badge badge-soft-danger">3
                                     Days</small></h6>
                             <p class="text-muted">As a company grows however, you find it's not as easy
                                 to shout across</p>

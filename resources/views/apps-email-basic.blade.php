@@ -82,7 +82,7 @@
                                     <a href="#" style="color: #495057;">Account</a>
                                 </li>
                             </ul>
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by Themesbrand</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Gogym. Design & Develop by CapSolutions</p>
                         </div>
                     </div>
                 </td>
@@ -155,7 +155,7 @@
                                     <a href="#" style="color: #495057;">Account</a>
                                 </li>
                             </ul>
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by Themesbrand</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Gogym. Design & Develop by CapSolutions</p>
                         </div>
                     </div>
                 </td>
@@ -221,7 +221,7 @@
                         <div style="text-align: center; margin: 25px auto 0px auto;font-family: 'Roboto', sans-serif;">
                             <h4 style="font-weight: 500; line-height: 1.5;font-family: 'Roboto', sans-serif;">Need Help ?</h4>
                             <p style="color: #878a99; line-height: 1.5;">Please send and feedback or bug info to <a href="" style="font-weight: 500;">info@velzon.com</a></p>
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by Themesbrand</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Gogym. Design & Develop by CapSolutions</p>
                         </div>
                     </div>
                 </td>
@@ -299,7 +299,7 @@
                         <div style="text-align: center; margin: 28px auto 0px auto;">
                             <h4>Need Help ?</h4>
                             <p style="color: #878a99;">Please send and feedback or bug info to <a href="" style="font-weight: 500px;">info@velzon.com</a></p>
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by Themesbrand</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Gogym. Design & Develop by CapSolutions</p>
                         </div>
                     </div>
                 </td>

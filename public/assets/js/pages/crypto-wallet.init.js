@@ -4,10 +4,10 @@ var __webpack_exports__ = {};
   !*** ./resources/js/pages/crypto-wallet.init.js ***!
   \**************************************************/
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: Crypto-wallet-init init js
 */
 // get colors array from the string

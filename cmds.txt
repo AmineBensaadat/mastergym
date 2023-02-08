@@ -25,5 +25,5 @@ php artisan serve
 
 
 
-@lang('translation.text')
+@lang('translation.Results')
 

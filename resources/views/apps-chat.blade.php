@@ -464,7 +464,7 @@
                                 </div>
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="fs-13 mb-1"><a href="#" class="text-body text-truncate d-block">Velzon admin.ppt</a></h5>
+                                <h5 class="fs-13 mb-1"><a href="#" class="text-body text-truncate d-block">Gogym admin.ppt</a></h5>
                                 <div class="text-muted">2.4MB</div>
                             </div>
                             <div class="flex-shrink-0 ms-2">
@@ -696,7 +696,7 @@
                                 </div>
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="fs-15 mb-1"><a href="#" class="text-body text-truncate d-block">Velzon admin.ppt</a></h5>
+                                <h5 class="fs-15 mb-1"><a href="#" class="text-body text-truncate d-block">Gogym admin.ppt</a></h5>
                                 <div class="text-muted">2.4MB</div>
                             </div>
                             <div class="flex-shrink-0 ms-2">

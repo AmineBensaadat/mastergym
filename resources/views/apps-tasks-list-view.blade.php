@@ -205,7 +205,7 @@
                                     <td class="id"><a href="apps-tasks-details"
                                             class="fw-medium link-primary">#VLZ501</a></td>
                                     <td class="project_name"><a href="apps-projects-overview"
-                                            class="fw-medium link-primary">Velzon - v1.0.0</a></td>
+                                            class="fw-medium link-primary">Gogym - v1.0.0</a></td>
                                     <td>
                                         <div class="d-flex">
                                             <div class="flex-grow-1 tasks_name">Profile Page Satructure</div>

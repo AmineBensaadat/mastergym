@@ -4,10 +4,10 @@ var __webpack_exports__ = {};
   !*** ./resources/js/pages/apps-nft-auction.init.js ***!
   \*****************************************************/
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: apps-nft-auction init js
 */
 try {

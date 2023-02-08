@@ -18,7 +18,7 @@
             <div class="px-4 mx-n4" data-simplebar style="height: calc(100vh - 468px);">
                 <ul class="to-do-menu list-unstyled" id="projectlist-data">
                     <li>
-                        <a data-bs-toggle="collapse" href="#velzonAdmin" class="nav-link fs-13 active">Velzon Admin & Dashboard</a>
+                        <a data-bs-toggle="collapse" href="#velzonAdmin" class="nav-link fs-13 active">Gogym Admin & Dashboard</a>
                         <div class="collapse show" id="velzonAdmin">
                             <ul class="mb-0 sub-menu list-unstyled ps-3 vstack gap-2 mb-2">
                                 <li>
@@ -99,7 +99,7 @@
     <!--end side content-->
     <div class="file-manager-content w-100 p-4 pb-0">
         <div class="hstack mb-4">
-            <h5 class="fw-semibold flex-grow-1 mb-0">Velzon Admin & Dashboard <span class="badge bg-primary align-bottom ms-2">v1.7.0</span></h5>
+            <h5 class="fw-semibold flex-grow-1 mb-0">Gogym Admin & Dashboard <span class="badge bg-primary align-bottom ms-2">v1.7.0</span></h5>
             <div class="hstack gap-2">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button class="btn btn-icon fw-semibold btn-soft-danger"><i class="ri-arrow-go-back-line"></i></button>

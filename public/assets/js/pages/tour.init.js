@@ -4,10 +4,10 @@ var __webpack_exports__ = {};
   !*** ./resources/js/pages/tour.init.js ***!
   \*****************************************/
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: tour init js
 */
 var tour = new Shepherd.Tour({
@@ -41,7 +41,7 @@ if (document.querySelector('#logo-tour')) tour.addStep({
 
 if (document.querySelector('#register-tour')) tour.addStep({
   title: 'Register your account',
-  text: 'Get your Free Velzon account now.',
+  text: 'Get your Free Gogym account now.',
   attachTo: {
     element: '#register-tour',
     on: 'bottom'
@@ -59,7 +59,7 @@ if (document.querySelector('#register-tour')) tour.addStep({
 
 if (document.querySelector('#login-tour')) tour.addStep({
   title: 'Login your account',
-  text: 'Sign in to continue to Velzon.',
+  text: 'Sign in to continue to Gogym.',
   attachTo: {
     element: '#login-tour',
     on: 'bottom'
@@ -77,7 +77,7 @@ if (document.querySelector('#login-tour')) tour.addStep({
 
 if (document.querySelector('#getproduct-tour')) tour.addStep({
   title: 'Get yout Product',
-  text: 'Sign in to continue to Velzon.',
+  text: 'Sign in to continue to Gogym.',
   attachTo: {
     element: '#getproduct-tour',
     on: 'bottom'
@@ -95,7 +95,7 @@ if (document.querySelector('#getproduct-tour')) tour.addStep({
 
 if (document.querySelector('#thankyou-tour')) tour.addStep({
   title: 'Thank you !',
-  text: 'Sign in to continue to Velzon.',
+  text: 'Sign in to continue to Gogym.',
   attachTo: {
     element: '#thankyou-tour',
     on: 'bottom'

@@ -16,6 +16,7 @@ class MembersRepository
     }
 
     public function getAllMembersByFilters($request){
+        $user = auth()->user();
         $data = array();
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
@@ -31,7 +32,9 @@ class MembersRepository
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
-                'plans.plan_name as plan_name');
+                'plans.plan_name as plan_name')
+                ->where('members.account_id',  '=', $user->account_id);
+
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
@@ -87,7 +90,8 @@ class MembersRepository
         $query->orWhere('members.address', 'LIKE', '%'.$request['global_filter'].'%');
         
         }
-
+        $query->whereMonth('members.created_at',  '=',  now()->format('m') );
+        $query->whereYear('members.created_at',  '=',  now()->format('Y'));
         if(isset($request['order']))
         {
             $query->orderBy($column[$request['order']['0']['column']], $request['order']['0']['dir']);
@@ -107,13 +111,15 @@ class MembersRepository
         return $data;
     }
 
-    public function renderMembersByStatus($status){
+    public function countMembersByStatus($status, $request){
         $data = array();
+        $user = auth()->user();
         $query = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('invoices', 'members.id', '=', 'invoices.member_id')
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
                 'files.name as member_img',
@@ -123,12 +129,28 @@ class MembersRepository
                 'services.name as service_name',
                 'plans.id as plan_id',
                 'plans.plan_name as plan_name');
-            if($status)
-            {
-            $query->where('subscriptions.status',  '=', $status);
+            switch ($status) {
+                    case 'expired':
+                        $query->where('subscriptions.end_date',  '<', date('Y-m-d'));
+                        break;
+                    case 'pending_paiment':
+                        $query->where('invoices.amount_pending',  '>', 0);
+                        break;
+                    case 'monthlyJoined':
+                        $query->whereMonth('members.created_at',  '=',  now()->format('m') );
+                        $query->whereYear('members.created_at',  '=',  now()->format('Y'));
+                        break;
+                }
+            $query->where('members.account_id',  '=', $user->account_id);
+            if($request->session()->has('selected_gym')){
+                $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
             }
+            if($user->default_gym_id){
+                $query->where('members.gym_id',  '=', $user->default_gym_id);
+            }
+            
         $data = $query->get();
-        return $data;
+        return $data->count();
     }
 
     public function countAllMembers(){
@@ -166,6 +188,7 @@ class MembersRepository
             'created_by' =>  $user_id,
             'updated_by' =>  $user_id,
             'source' =>  $request['source'],
+            'account_id' => auth()->user()->account_id
         ]);
 
          // save gym profile image

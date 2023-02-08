@@ -6,6 +6,7 @@ use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\User;
 use App\Models\UsersGym;
+use App\Repositories\GymsRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,9 +16,11 @@ class UsersController extends Controller
 {
     
     private $userRepository;
-    public function __construct(UserRepository $userRepository)
+    private $gymsRepository;
+    public function __construct(UserRepository $userRepository, GymsRepository $gymsRepository)
     {
         $this->userRepository = $userRepository;
+        $this->gymsRepository = $gymsRepository;
         $this->middleware('auth');
     }
     /**
@@ -51,7 +54,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $gyms = Gyms::all();
+       $gyms = $this->gymsRepository->getAllGymByCretedById();
         return view('users.user_create', compact('gyms'));
     }
 
@@ -79,26 +82,13 @@ class UsersController extends Controller
                 ],
             );
             $usersgym = UsersGym::all();
-            if (request()->has('profile_image')) {
-                $avatar = request()->file('profile_image');
-                $fileName = time().rand(100,999).preg_replace('/\s+/', '', $avatar->getClientOriginalName());
-                $avatarPath = public_path('/images/users');
-                $avatar->move($avatarPath, $fileName);
-                
-                User::create([
-                    'name' => $request['user_name'],
-                    'email' => $request['user_email'],
-                    'password' => Hash::make($request['user_password']),
-                    'avatar' =>  $fileName,
-                ]);
-            }else{
+  
                 $user = User::create([
                     'name' => $request['user_name'],
                     'email' => $request['user_email'],
-                    'password' => Hash::make($request['user_password']),
-                    'avatar' =>  'default_user_profile_img.jpg',
+                    'password' => Hash::make($request['user_password'])
                 ]);
-            }
+            
 
              // save users_gyms table
               $usersgym = new UsersGym();

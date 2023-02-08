@@ -142,6 +142,16 @@ return [
     "Expired" => "منتهية الصلاحية",
     "Subscription-Expire" => "انتهاء الاشتراك",
 
+    "Export" => "تصدير ",
+    "Joined-at" => "انضم في",
+    "day-left" => "بقي يوم",
+    "expired-at" => "منتهية الصلاحية في",
+    "expired-days" => "أيام منتهية الصلاحية",
+    "Showing" => "عرض",
+    "Results" => "نتائج",
+    "of" => "من",
+
+
 
 
 

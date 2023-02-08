@@ -118,7 +118,7 @@
                           <i class="icon ri-user-smile-line"></i>
                           <div class="date">10 Feb 2021</div>
                           <div class="content">
-                              <h5>Velzon admin dashboard templates layout upload</h5>
+                              <h5>Gogym admin dashboard templates layout upload</h5>
                               <p class="text-muted">Powerful, clean & modern responsive bootstrap 5 admin template. The maximum file size for uploads in this demo :</p>
                               <div class="row border border-dashed rounded gx-2 p-2">
                                   <div class="col-3">
@@ -229,7 +229,7 @@
                               <div class="col-12">
                                   <div class="timeline-box">
                                       <div class="timeline-text">
-                                          <h5>Velzon - Project Discussion</h5>
+                                          <h5>Gogym - Project Discussion</h5>
                                           <p class="text-muted mb-0">The purpose of the discussion is to interpret and describe the significance of your findings in light of what was already known about the research problem being investigated, and to explain any new understanding or fresh insights about the problem after you've taken the findings into consideration.</p>
                                       </div>
                                   </div>

@@ -59,6 +59,7 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/show/{id}', [MembersController::class, 'show'])->name('members_show');
     Route::get('/edit/{id}', [MembersController::class, 'edit'])->name('members_edit');
     Route::post('/getAllMembers', [MembersController::class, 'getAllMembers'])->name('members_list_json');
+    Route::post('/getMonthlyJoiningsMembers', [MembersController::class, 'getMonthlyJoiningsMembers'])->name('MonthlyJoiningsMembers_list_json');
     Route::post('/store', [MembersController::class, 'store'])->name('members_store');
     Route::post('/update', [MembersController::class, 'update'])->name('members_update');
     Route::get('/import', [MembersController::class, 'import'])->name('members_import');
@@ -93,7 +94,8 @@ Route::group(['prefix' => 'setting', 'middleware' => ['auth']], function () {
     Route::post('/storeLang', [SettingController::class, 'storeLang'])->name('storeLang');
 });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+Route::get('/', [App\Http\Controllers\LendingController::class, 'index'])->name('lending');
 
 //Update User Details
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');

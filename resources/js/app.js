@@ -1,9 +1,9 @@
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
+Template Name: Gogym - Admin & Dashboard Template
+Author: CapSolutions
 Version: 2.0.0
-Website: https://Themesbrand.com/
-Contact: Themesbrand@gmail.com
+Website: https://CapSolutions.com/
+Contact: CapSolutions@gmail.com
 File: Main Js File
 */
 
@@ -1670,6 +1670,7 @@ File: Main Js File
 	}
 
 	function setDefaultAttribute() {
+		alert(99)
 		if (!sessionStorage.getItem("defaultAttribute")) {
 			var attributesValue = document.documentElement.attributes;
 			var isLayoutAttributes = {};

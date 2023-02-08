@@ -28,7 +28,7 @@
                         <div class="me-2"><i
                                 class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i>California,
                             United States</div>
-                        <div><i class="ri-building-line me-1 text-white-75 fs-16 align-middle"></i>Themesbrand
+                        <div><i class="ri-building-line me-1 text-white-75 fs-16 align-middle"></i>CapSolutions
                         </div>
                     </div>
                 </div>
@@ -802,7 +802,7 @@
                                                                                 </div>
                                                                                 <div class="flex-grow-1 ms-3">
                                                                                     <h6 class="fs-14 mb-1">
-                                                                                        Velzon admin
+                                                                                        Gogym admin
                                                                                         dashboard
                                                                                         templates layout
                                                                                         upload</h6>
@@ -1917,7 +1917,7 @@
                                                 <div class="d-flex">
                                                     <div class="flex-grow-1 text-muted overflow-hidden">
                                                         <h5 class="fs-14 text-truncate"><a href="#"
-                                                                class="text-dark">Velzon Project</a>
+                                                                class="text-dark">Gogym Project</a>
                                                         </h5>
                                                         <p class="text-muted text-truncate mb-0">Last
                                                             Update : <span class="fw-semibold text-dark">11 hr
@@ -2672,7 +2672,7 @@
                                                                 </div>
                                                                 <div class="ms-3 flex-grow-1">
                                                                     <h6 class="fs-15 mb-0"><a
-                                                                            href="javascript:void(0);">Velzon-logo.png</a>
+                                                                            href="javascript:void(0);">Gogym-logo.png</a>
                                                                     </h6>
                                                                 </div>
                                                             </div>
