@@ -419,60 +419,9 @@
                         }
                     });
                 }
-    
-                $( ".search" ).keyup(function() {
-                    var global_filter = $('.search').val();
-                    $('#members_dt').DataTable().destroy();
-                    fill_datatable(global_filter);
-                });
-    
-            $('#filter-btn').click(function(){
-                var filter_firstname = $('#filter_firstname').val();
-                var filter_lastname = $('#filter_lastname').val();
-                var filter_cin = $('#filter_cin').val();
-                var filter_phone = $('#filter_phone').val();
-                var filter_address = $('#filter_address').val();
-                var filter_city = $('#filter_city').val();
-                var gymId = $( "#filter_gym option:selected" ).val();
-                var filter_service = $( "#filter_service option:selected" ).val();
-                var filter_plans = $( "#filter_plans option:selected" ).val();
-    
-                    $('#members_dt').DataTable().destroy();
-                    fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city, filter_service, filter_plans);
-                    $('#costum-filter').offcanvas('hide');
-            });
-            $('#reset_fiter').click(function(){
-                $('#costum-filter').offcanvas('hide');
-                $('.filter_input').val('');
-                $('#members_dt').DataTable().destroy();
-                fill_datatable();
-            });
             var html = '';
     
     
-        $("#filter_service").on("change",function(){
-            html = '';
-            var serviceId = $(this).val();
-            $.ajax({
-                url :"/plans/allPlansByService",
-                type:"POST",
-                cache:false,
-                data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
-                success:function(data){
-                    if((data.plans).length > 0){
-                        $.each(data.plans, function (key, val) {
-                            html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
-                            $("#filter_plans").html(html);
-                        });
-                    }else{
-                        html = '<option value="">Select plans</option>';
-                        $("#filter_plans").html(html);
-    
-    
-                    }
-                }
-            });
-        });
         });
     </script>
 
