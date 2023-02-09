@@ -60,14 +60,12 @@ class InvoicesRepository
             ->join('members', 'invoices.member_id', '=', 'members.id')
             ->join('plans', 'invoices.plan_id', '=', 'plans.id')
             ->join('services', 'invoices.service_id', '=', 'services.id')
-            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->select(
                 'invoices.*',
                 'members.id as member_id',
                 'members.firstname',
                 'members.lastname',
                 'services.id as service_id',
-                'files.name as member_img',
                 'plans.id as plan_id',
                 'plan_name',
                 'services.name as service_name')
@@ -77,6 +75,37 @@ class InvoicesRepository
             // ->orWhere('description', 'like', '%'. $query .'%')
             ->paginate(10);
         return $invoices;
+    }
+
+    public function getInvoiceById($id){
+        $user = auth()->user();
+        $query = DB::table('invoices')
+        ->join('users', 'invoices.created_by', '=', 'users.id')
+        ->join('members', 'invoices.member_id', '=', 'members.id')
+        ->join('plans', 'invoices.plan_id', '=', 'plans.id')
+        ->join('services', 'invoices.service_id', '=', 'services.id')
+        ->join('gyms', 'members.gym_id', '=', 'gyms.id')
+        ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
+        ->select(
+            'invoices.*',
+            'members.id as member_id',
+            'members.firstname',
+            'members.lastname',
+            'services.id as service_id',
+            'files.name as member_img',
+            'plans.id as plan_id',
+            'plan_name',
+            'gyms.name as gym_name',
+            'gyms.id as gym_id',
+            'services.name as service_name');
+            $query->where('members.account_id',  '=', $user->account_id);
+            $query->where('invoices.id',  '=', $id);
+           
+            
+        $data = $query->get()->first();
+        return $data;
+
+
     }
 
 }

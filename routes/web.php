@@ -86,6 +86,7 @@ Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
 //Invoices
 Route::group(['prefix' => 'Invoices', 'middleware' => ['auth']], function () {
     Route::get('/all', [InvoicesController::class, 'index'])->name('invioces_list');
+    Route::get('/download/{id}', [InvoicesController::class, 'downloadInvoice'])->name('invoices_download');
 });
 
 //setting
