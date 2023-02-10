@@ -11,6 +11,7 @@ use App\Repositories\MembersRepository;
 use App\Repositories\SubscriptionsRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
 class InvoicesController extends Controller
@@ -47,10 +48,14 @@ class InvoicesController extends Controller
                 'gym_img' => $gym_img,
                 'date' => date('m/d/Y')
             ];
-            //dd($data);   
-            $pdf = Pdf::loadView('invoices.invoice', $data);
+            // $pdf = Pdf::loadView('invoices.invoice', $data);
          
-            return $pdf->download($file_name);
+            // return $pdf->download($file_name);
+
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadView('invoices.payment_receipt', $data)->setPaper('A5', 'landscape')->setWarnings(false);
+            return $pdf->stream();
+    
         }else{
             dd("no data");
         }

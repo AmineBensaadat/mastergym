@@ -91,13 +91,17 @@ class InvoicesRepository
             'members.id as member_id',
             'members.firstname',
             'members.lastname',
+            'members.email as member_email',
+            'members.lastname',
             'services.id as service_id',
             'files.name as member_img',
             'plans.id as plan_id',
             'plan_name',
             'gyms.name as gym_name',
             'gyms.id as gym_id',
-            'services.name as service_name');
+            'gyms.address as  gym_address',
+            'services.name as service_name',
+            'gyms.phone as gyms_phone');
             $query->where('members.account_id',  '=', $user->account_id);
             $query->where('invoices.id',  '=', $id);
            
