@@ -53,7 +53,7 @@ class InvoicesController extends Controller
             // return $pdf->download($file_name);
 
             $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('invoices.payment_receipt', $data)->setPaper('A5', 'landscape')->setWarnings(false);
+            $pdf->loadView('invoices.payment_receipt', $data)->setPaper('A5', 'portrait')->setWarnings(false);
             return $pdf->stream();
     
         }else{

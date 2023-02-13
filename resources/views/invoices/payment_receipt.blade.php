@@ -62,8 +62,8 @@
       }
 
       #signature_gym {
-        margin-top: -20px;
-        margin-left: 10px;
+        margin-top: -70px;
+        margin-left: 150px;
         float: left;
         text-align: left;
       }
@@ -75,6 +75,10 @@
         font-weight: normal;
         margin: 0  0 10px 0;
       }
+           
+      #invoice h4 {
+       padding-top: -200px;
+      }
       
       #invoice .date {
         margin-top: -20px;
@@ -85,7 +89,7 @@
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
-        margin-top: 170px;
+        margin-top: 70px;
         padding-left: 3%;
         padding-right: 3%;
       }
@@ -108,13 +112,13 @@
       }
       
       table td h3{
-        color: #57B223;
+        color: #0087C3;
         font-weight: normal;
       }
       
       table .no {
         color: #FFFFFF;
-        background: #57B223;
+        background: #0087C3;
       }
       
       table .desc {
@@ -129,7 +133,7 @@
       }
       
       table .total {
-        background: #57B223;
+        background: #0087C3;
         color: #FFFFFF;
       }
       
@@ -142,7 +146,7 @@
         border: none;
       }
       table tfoot {
-        padding-top: 50px;
+        padding-top: 30px;
       }
       table tfoot td {
         padding: 10px 20px;
@@ -223,26 +227,32 @@
       </div>
     </div>
     <table border="0" cellspacing="0" cellpadding="0">
-      <thead>
-        <tr>
-          <th class="desc">DESCRIPTION</th>
-          <th class="unit">Reçu</th>
-          <th class="unit">Reste</th>
-          <th class="">Frais supplémentaires</th>
-          <th class="total">TOTAL</th>
-        </tr>
-      </thead>
+  
       <tbody>
         <tr>
           <td class="desc">
-           Paiement par {{ $invoices->payment_mode }} | Service {{ $invoices->service_name }} | Plan : {{ $invoices->plan_name }}<br>
-           Prix d'abonnement {{ $invoices->subscription_price }} DH <br>
-           Date de début : {{ $invoices->subscription_start_date }} | Date de fin :  {{ $invoices->subscription_end_date }}
+            Reçu
           </td>
-          <td class="unit">{{ $invoices->amount_received}}</td>
-          <td class="unit">{{ $invoices->amount_pending}}</td>
-          <td class="">{{ $invoices->additional_fees}}</td>
+          <td class="total">{{ $invoices->amount_received}} DH</td>
+        </tr>
+        <tr>
+          <td class="desc">
+            Reste
+          </td>
           <td class="total">{{ $invoices->amount_pending}} DH</td>
+        </tr>
+        <tr>
+          <td class="desc">
+            Date de début 
+          </td>
+          <td class="total">{{ $invoices->subscription_start_date}}</td>
+        </tr>
+
+        <tr>
+          <td class="desc">
+           Date de fin
+          </td>
+          <td class="total">{{ $invoices->subscription_end_date}}</td>
         </tr>
  
       </tbody>
@@ -251,10 +261,7 @@
 
     <div id="details">
       <div id="signature_gym">
-        <h4>Signature du {{ $invoices->gym_name }}</h4>
-      </div>
-      <div id="invoice">
-       <h4>Signature du client</h4>
+        <h5>Signature :</h5>
       </div>
     </div>
 </main>
