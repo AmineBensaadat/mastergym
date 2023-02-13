@@ -168,8 +168,8 @@ var chartDonutBasicColors = getChartColorsArray("store-visits-source");
 
 if (chartDonutBasicColors) {
   var options = {
-    series: [44, 55, 41, 17, 15],
-    labels: ["Direct", "Social", "Email", "Other", "Referrals"],
+    series: [44, 0, 60, 0, 0],
+    labels: ["Directss", "Social", "Email", "Other", "Referrals"],
     chart: {
       height: 333,
       type: "donut"

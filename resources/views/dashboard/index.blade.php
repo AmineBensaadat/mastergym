@@ -375,9 +375,7 @@
     <script src="{{ URL::asset('/assets/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ URL::asset('/assets/js/fs_fonts.jss') }}"></script>
     
-    <script src="{{ URL::asset('assets/js/pages/datatables.init.js') }}"></script>
     
 
     {{-- <script src="{{ URL::asset('/assets/js/pages/dashboard-projects.init.js') }}"></script> --}}
@@ -387,9 +385,8 @@
     <script src="{{ URL::asset('/assets/libs/jsvectormap/jsvectormap.min.js') }}"></script>
     <script src="{{ URL::asset('assets/libs/swiper/swiper.min.js')}}"></script>
     <!-- dashboard init -->
-    <script src="{{ URL::asset('/assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
+    {{-- <script src="{{ URL::asset('/assets/js/pages/dashboard-ecommerce.init.js') }}"></script> --}}
     <script>
-
         $(document).ready(function(){
             fill_datatable();
             function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
@@ -419,10 +416,78 @@
                         }
                     });
                 }
-            var html = '';
-    
-    
+   
+            // get colors array from the string
+function getChartColorsArray(chartId) {
+    if (document.getElementById(chartId) !== null) {
+      var colors = document.getElementById(chartId).getAttribute("data-colors");
+  
+      if (colors) {
+        colors = JSON.parse(colors);
+        return colors.map(function (value) {
+          var newValue = value.replace(" ", "");
+  
+          if (newValue.indexOf(",") === -1) {
+            var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
+            if (color) return color;else return newValue;
+            ;
+          } else {
+            var val = value.split(',');
+  
+            if (val.length == 2) {
+              var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
+              rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
+              return rgbaColor;
+            } else {
+              return newValue;
+            }
+          }
+        });
+      } else {
+        console.warn('data-colors atributes not found on', chartId);
+      }
+    }
+  } // world map with line & markers
+var chartDonutBasicColors = getChartColorsArray("store-visits-source");
+
+if (chartDonutBasicColors) {
+  $.ajax({
+    type:'POST',
+    url:'../members/getStatisticData',
+    data: {'_token' : '{{ csrf_token() }}'},
+    dataType: 'json',
+    success:function(result) {
+        //$("#msg").html(data.msg);
+        $( "#all_members" ).attr( "data-target", 129);
+        console.log(result);
+        var options = {
+    series: [result.monthlyJoined, result.pending_paiment, result.expired_members],
+    labels: ["MONTHLY JOININGS", "PENDING PAYMENTS", "EXPIRED"],
+    chart: {
+      height: 333,
+      type: "donut"
+    },
+    legend: {
+      position: "bottom"
+    },
+    stroke: {
+      show: false
+    },
+    dataLabels: {
+      dropShadow: {
+        enabled: false
+      }
+    },
+    colors: chartDonutBasicColors
+  };
+  var chart = new ApexCharts(document.querySelector("#store-visits-source"), options);
+  chart.render();
+    }
+    });
+
+} // world map with markers
         });
     </script>
+
 
 @endsection
