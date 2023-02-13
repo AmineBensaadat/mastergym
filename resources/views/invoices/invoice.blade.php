@@ -20,12 +20,11 @@
       body {
         position: relative;
         /* width: 21cm;   */
-        height: 29.7cm; 
         margin: 0 auto; 
         color: #555555;
         background: #FFFFFF; 
         font-family: Arial, sans-serif; 
-        font-size: 14px; 
+        
         font-family: SourceSansPro;
       }
       
@@ -92,15 +91,12 @@
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
-        margin-bottom: 20px;
       }
       
       table th,
       table td {
-        padding: 20px;
         background: #EEEEEE;
         text-align: center;
-        border-bottom: 1px solid #FFFFFF;
       }
       
       table th {
@@ -114,14 +110,12 @@
       
       table td h3{
         color: #57B223;
-        font-size: 1.2em;
+      
         font-weight: normal;
-        margin: 0 0 0.2em 0;
       }
       
       table .no {
         color: #FFFFFF;
-        font-size: 1.6em;
         background: #57B223;
       }
       
@@ -144,7 +138,6 @@
       table td.unit,
       table td.qty,
       table td.total {
-        font-size: 1.2em;
       }
       
       table tbody tr:last-child td {
@@ -152,10 +145,8 @@
       }
       
       table tfoot td {
-        padding: 10px 20px;
         background: #FFFFFF;
         border-bottom: none;
-        font-size: 1.2em;
         white-space: nowrap; 
         border-top: 1px solid #AAAAAA; 
       }
@@ -166,7 +157,6 @@
       
       table tfoot tr:last-child td {
         color: #57B223;
-        font-size: 1.4em;
         border-top: 1px solid #57B223; 
       
       }
@@ -175,20 +165,7 @@
         border: none;
       }
       
-      #thanks{
-        font-size: 2em;
-        margin-bottom: 50px;
-      }
-      
-      #notices{
-        padding-left: 6px;
-        border-left: 6px solid #0087C3;  
-      }
-      
-      #notices .notice {
-        font-size: 1.2em;
-      }
-      
+     
       footer {
         color: #777777;
         width: 100%;
@@ -203,7 +180,6 @@
       
   <head>
     <meta charset="utf-8">
-    <title>Example 2</title>
     <link rel="stylesheet" href="style.css" media="all" />
   </head>
   <body>

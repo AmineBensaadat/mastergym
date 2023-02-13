@@ -356,7 +356,7 @@
 
                 <div class="card-body">
                     <div id="store-visits-source"
-                        data-colors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]'
+                        data-colors='["--vz-success", "--vz-primary", "--vz-danger", "--vz-danger", "--vz-info"]'
                         class="apex-charts" dir="ltr"></div>
                 </div>
             </div> <!-- .card-->

@@ -84,6 +84,7 @@ class InvoicesRepository
         ->join('members', 'invoices.member_id', '=', 'members.id')
         ->join('plans', 'invoices.plan_id', '=', 'plans.id')
         ->join('services', 'invoices.service_id', '=', 'services.id')
+        ->join('subscriptions', 'invoices.member_id', '=', 'subscriptions.member_id')
         ->join('gyms', 'members.gym_id', '=', 'gyms.id')
         ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
         ->select(
@@ -101,7 +102,9 @@ class InvoicesRepository
             'gyms.id as gym_id',
             'gyms.address as  gym_address',
             'services.name as service_name',
-            'gyms.phone as gyms_phone');
+            'gyms.phone as gyms_phone',
+            'subscriptions.start_date as subscription_start_date' ,
+            'subscriptions.end_date as subscription_end_date');
             $query->where('members.account_id',  '=', $user->account_id);
             $query->where('invoices.id',  '=', $id);
            
