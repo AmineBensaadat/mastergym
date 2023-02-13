@@ -125,218 +125,79 @@
         <!-- start col -->
         <div class="col-xl-8">
             <div class="card">
-                <div class="card-header d-flex align-items-center">
-                    <h4 class="card-title flex-grow-1 mb-0">@lang('translation.Monthly-Joinings')</h4>
-                    <div class="flex-shrink-0">
-                        <a href="javascript:void(0);" class="btn btn-soft-info btn-sm">@lang('translation.Export')</a>
-                    </div>
-                </div><!-- end cardheader -->
                 <div class="card-body">
-                    {{-- <div>
-                        <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active All py-3" data-bs-toggle="tab" id="All"
-                                    href="#home1" role="tab" aria-selected="true">
-                                    <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Delivered" data-bs-toggle="tab" id="Delivered"
-                                    href="#delivered" role="tab" aria-selected="false">
-                                    <i class="ri-checkbox-circle-line me-1 align-bottom"></i> Delivered
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Pickups" data-bs-toggle="tab" id="Pickups"
-                                    href="#pickups" role="tab" aria-selected="false">
-                                    <i class="ri-truck-line me-1 align-bottom"></i> Pickups <span
-                                        class="badge bg-danger align-middle ms-1">2</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Returns" data-bs-toggle="tab" id="Returns"
-                                    href="#returns" role="tab" aria-selected="false">
-                                    <i class="ri-arrow-left-right-fill me-1 align-bottom"></i> Returns
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Cancelled" data-bs-toggle="tab" id="Cancelled"
-                                    href="#cancelled" role="tab" aria-selected="false">
-                                    <i class="ri-close-circle-line me-1 align-bottom"></i> Cancelled
-                                </a>
-                            </li>
-                        </ul>
-    
-                        <div class="table-responsive table-card mb-1">
-                            <table class="table table-nowrap align-middle" id="orderTable">
-                                <thead class="text-muted table-light">
-                                    <tr class="text-uppercase">
-                                        <th scope="col" style="width: 25px;">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="checkAll" value="option">
-                                            </div>
-                                        </th>
-                                        <th class="sort" data-sort="id">Order ID</th>
-                                        <th class="sort" data-sort="customer_name">Customer</th>
-                                        <th class="sort" data-sort="product_name">Product</th>
-                                        <th class="sort" data-sort="date">Order Date</th>
-                                        <th class="sort" data-sort="amount">Amount</th>
-                                        <th class="sort" data-sort="payment">Payment Method</th>
-                                        <th class="sort" data-sort="status">Delivery Status</th>
-                                        <th class="sort" data-sort="city">Action</th>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs nav-justified mb-3" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#nav-badge-home" role="tab" aria-selected="false" tabindex="-1">
+                                Inscriptions mensuelles
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-profile" role="tab" aria-selected="false" tabindex="-1">
+                                PAIEMENTS EN ATTENTE <span class="badge bg-success">Done</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link align-middle active" data-bs-toggle="tab" href="#nav-badge-messages" role="tab" aria-selected="true">
+                                EXPIRÉ <span class="badge bg-danger rounded-circle">5</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Nav tabs -->
+                    <div class="tab-content text-muted">
+                        <div class="tab-pane" id="nav-badge-home" role="tabpanel">
+                            <table id="members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th >@lang('translation.member')</th>
+                                        <th >@lang('translation.gym')</th>
+                                        <th >@lang('translation.services')</th>
+                                        <th >@lang('translation.plans')</th>
+                                        <th >@lang('translation.Joined-at')</th>
                                     </tr>
                                 </thead>
-                                <tbody class="list form-check-all">
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox"
-                                                    name="checkAll" value="option1">
-                                            </div>
-                                        </th>
-                                        <td class="id"><a href="apps-ecommerce-order-details"
-                                                class="fw-medium link-primary">#VZ2101</a></td>
-                                        <td class="customer_name">Frank Hook</td>
-                                        <td class="product_name">Puma Tshirt</td>
-                                        <td class="date">20 Dec, 2021, <small class="text-muted">02:21
-                                                AM</small></td>
-                                        <td class="amount">$654</td>
-                                        <td class="payment">Mastercard</td>
-                                        <td class="status"><span
-                                                class="badge badge-soft-warning text-uppercase">Pending</span>
-                                        </td>
-                                        <td>
-                                            <ul class="list-inline hstack gap-2 mb-0">
-                                                <li class="list-inline-item" data-bs-toggle="tooltip"
-                                                    data-bs-trigger="hover" data-bs-placement="top"
-                                                    title="View">
-                                                    <a href="apps-ecommerce-order-details"
-                                                        class="text-primary d-inline-block">
-                                                        <i class="ri-eye-fill fs-16"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item edit"
-                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                    data-bs-placement="top" title="Edit">
-                                                    <a href="#showModal" data-bs-toggle="modal"
-                                                        class="text-primary d-inline-block edit-item-btn">
-                                                        <i class="ri-pencil-fill fs-16"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item" data-bs-toggle="tooltip"
-                                                    data-bs-trigger="hover" data-bs-placement="top"
-                                                    title="Remove">
-                                                    <a class="text-danger d-inline-block remove-item-btn"
-                                                        data-bs-toggle="modal" href="#deleteOrder">
-                                                        <i class="ri-delete-bin-5-fill fs-16"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
-                            <div class="noresult" style="display: none">
-                                <div class="text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json"
-                                        trigger="loop" colors="primary:#405189,secondary:#0ab39c"
-                                        style="width:75px;height:75px">
-                                    </lord-icon>
-                                    <h5 class="mt-2">Sorry! No Result Found</h5>
-                                    <p class="text-muted">We've searched more than 150+ Orders We did
-                                        not find any
-                                        orders for you search.</p>
+                        </div>
+                        <div class="tab-pane" id="nav-badge-profile" role="tabpanel">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="ri-checkbox-circle-fill text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    In some designs, you might adjust your tracking to create a certain artistic effect. It can also help you fix fonts that are poorly spaced to begin with.
+                                </div>
+                            </div>
+                            <div class="d-flex mt-2">
+                                <div class="flex-shrink-0">
+                                    <i class="ri-checkbox-circle-fill text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="pagination-wrap hstack gap-2">
-                                <a class="page-item pagination-prev disabled" href="#">
-                                    Previous
-                                </a>
-                                <ul class="pagination listjs-pagination mb-0"></ul>
-                                <a class="page-item pagination-next" href="#">
-                                    Next
-                                </a>
+                        <div class="tab-pane active show" id="nav-badge-messages" role="tabpanel">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="ri-checkbox-circle-fill text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    Each design is a new, unique piece of art birthed into this world, and while you have the opportunity to be creative and make your own style choices.
+                                </div>
+                            </div>
+                            <div class="d-flex mt-2">
+                                <div class="flex-shrink-0">
+                                    <i class="ri-checkbox-circle-fill text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    For that very reason, I went on a quest and spoke to many different professional graphic designers and asked them what graphic design tips they live.
+                                </div>
                             </div>
                         </div>
-                    </div> --}}
-                    <div class="table-responsive table-card">
-                        {{-- <table class="table table-nowrap table-centered align-middle table-success">
-                            <thead class="bg-light text-muted">
-                                <tr>
-                                    <th scope="col">@lang('translation.name')</th>
-                                    <th scope="col">@lang('translation.Service')</th>
-                                    <th scope="col">@lang('translation.plans')</th>
-                                    <th scope="col">@lang('translation.Joined-at')</th>
-                                    <th scope="col">@lang('translation.day-left')</th>
-                                </tr><!-- end tr -->
-                            </thead><!-- thead -->
-
-                            <tbody>
-                                <tr>
-                                    <td class="fw-medium">Brand Logo Design</td>
-                                    <td>
-                                        <img src="{{ URL::asset('assets/images/users/avatar-1.jpg') }}"
-                                            class="avatar-xxs rounded-circle me-1" alt="">
-                                        <a href="javascript: void(0);" class="text-reset">Donald
-                                            Risher</a>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0 me-1 text-muted fs-13">53%</div>
-                                            <div class="progress progress-sm  flex-grow-1"
-                                                style="width: 68%;">
-                                                <div class="progress-bar bg-primary rounded"
-                                                    role="progressbar" style="width: 53%"
-                                                    aria-valuenow="53" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="avatar-group flex-nowrap">
-                                            <div class="avatar-group-item">
-                                                <a href="javascript: void(0);" class="d-inline-block">
-                                                    <img src="{{ URL::asset('assets/images/users/avatar-1.jpg') }}" alt=""
-                                                        class="rounded-circle avatar-xxs">
-                                                </a>
-                                            </div>
-                                            <div class="avatar-group-item">
-                                                <a href="javascript: void(0);" class="d-inline-block">
-                                                    <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt=""
-                                                        class="rounded-circle avatar-xxs">
-                                                </a>
-                                            </div>
-                                            <div class="avatar-group-item">
-                                                <a href="javascript: void(0);" class="d-inline-block">
-                                                    <img src="{{ URL::asset('assets/images/users/avatar-3.jpg') }}" alt=""
-                                                        class="rounded-circle avatar-xxs">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-soft-warning">Inprogress</span></td>
-                                </tr>
-                                <!-- end tr -->
-                            </tbody><!-- end tbody -->
-                        </table><!-- end table --> --}}
-                        <table id="members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th >@lang('translation.member')</th>
-                                    <th >@lang('translation.gym')</th>
-                                    <th >@lang('translation.services')</th>
-                                    <th >@lang('translation.plans')</th>
-                                    <th >@lang('translation.Joined-at')</th>
-                                </tr>
-                            </thead>
-                        </table>
                     </div>
-
-                </div><!-- end card body -->
-            </div><!-- end card -->
+                </div><!-- end card-body -->
+            </div>
         </div>
         <!-- end col -->
         <div class="col-xl-4">
