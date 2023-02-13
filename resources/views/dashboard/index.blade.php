@@ -9,6 +9,11 @@
 
 <!--datatable css-->
 @section('css')
+<style>
+.table>thead {
+    width: 100% !important;
+}
+</style>
 <link href="{{ URL::asset('assets/libs/jsvectormap/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/libs/swiper/swiper.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/dataTables.bootstrap5.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -129,24 +134,24 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-justified mb-3" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#nav-badge-home" role="tab" aria-selected="false" tabindex="-1">
-                                Inscriptions mensuelles
+                            <a class="nav-link active" data-bs-toggle="tab" href="#nav-badge-home" role="tab" aria-selected="true" tabindex="-1">
+                                Inscriptions mensuelles <span class="badge bg-success">{{ $monthlyJoined }}</span>
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-profile" role="tab" aria-selected="false" tabindex="-1">
-                                PAIEMENTS EN ATTENTE <span class="badge bg-success">Done</span>
+                                PAIEMENTS EN ATTENTE <span class="badge bg-warning">{{ $pending_paiment }}</span>
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link align-middle active" data-bs-toggle="tab" href="#nav-badge-messages" role="tab" aria-selected="true">
-                                EXPIRÉ <span class="badge bg-danger rounded-circle">5</span>
+                            <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-messages" role="tab" aria-selected="false">
+                                EXPIRÉ <span class="badge bg-danger rounded-circle">{{ $expired_members }}</span>
                             </a>
                         </li>
                     </ul>
                     <!-- Nav tabs -->
                     <div class="tab-content text-muted">
-                        <div class="tab-pane" id="nav-badge-home" role="tabpanel">
+                        <div class="tab-pane active show" id="nav-badge-home" role="tabpanel">
                             <table id="members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                                 <thead>
                                     <tr>
@@ -177,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane active show" id="nav-badge-messages" role="tabpanel">
+                        <div class="tab-pane" id="nav-badge-messages" role="tabpanel">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
                                     <i class="ri-checkbox-circle-fill text-success"></i>
@@ -254,8 +259,11 @@
                 {
                     var dataTable = $('#members_dt').DataTable({
                         "processing" : true,
+                        "fixedHeader":true,
+                        "bLengthChange": false,
                         "serverSide" : true,
                         "order" : [],
+                        "autoWidth":true,
                         "scrollX": true,
                         "searching" : false,
                         "ajax" : {
@@ -348,6 +356,11 @@ if (chartDonutBasicColors) {
 
 } // world map with markers
         });
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+   $($.fn.dataTable.tables(true)).DataTable()
+      .columns.adjust();
+});
     </script>
 
 
