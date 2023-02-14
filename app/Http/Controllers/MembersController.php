@@ -137,7 +137,7 @@ class MembersController extends Controller
     public function getMonthlyJoiningsMembers(Request $request)
     {
         $result = $this->membersRepository->getAllMembersByFilters($request);
-        $recordsTotal = $this->membersRepository->countAllMembers();
+        $recordsTotal = $this->membersRepository->countAllMembers($request);
         $url = url('/assets/images/');
         $data = array();
         foreach($result["all_result"] as $row)
