@@ -67,7 +67,7 @@ class MembersController extends Controller
     public function getAllMembers(Request $request)
     {
         $result = $this->membersRepository->getAllMembersByFilters($request);
-        $recordsTotal = $this->membersRepository->countAllMembers();
+        $recordsTotal = $this->membersRepository->countAllMembers($request);
         $url = url('/assets/images/');
         $data = array();
         foreach($result["all_result"] as $row)
@@ -110,7 +110,11 @@ class MembersController extends Controller
             }else{
                 $sub_array[] = '';   
             }
-            $sub_array[] = $row->created_at;
+            $sub_array[] = $row->phone;
+            $sub_array[] = $row->cin;
+            $sub_array[] = $row->city;
+            $sub_array[] = $row->address;
+            $sub_array[] = $row->DOB;
             if($row->status == 1){
                 $sub_array[] = '<span class="badge text-bg-success">Active</span>';
             }else{

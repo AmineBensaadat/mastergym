@@ -34,6 +34,12 @@ class MembersRepository
                 'plans.id as plan_id',
                 'plans.plan_name as plan_name')
                 ->where('members.account_id',  '=', $user->account_id);
+        
+        if($request->session()->has('selected_gym')){
+            $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
+        }elseif($user->default_gym_id){
+            $query->where('members.gym_id',  '=', $user->default_gym_id);
+        }
 
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
         {
@@ -82,16 +88,17 @@ class MembersRepository
         
         if(isset($request['global_filter']) && $request['global_filter'] != '')
         {
-        $query->where('firstname',  'like', '%'.$request['global_filter'].'%');
-        $query->orWhere('lastname', 'LIKE', '%'.$request['global_filter'].'%');
-        $query->orWhere('members.phone', 'LIKE', '%'.$request['global_filter'].'%');
-        $query->orWhere('members.cin', 'LIKE', '%'.$request['global_filter'].'%');
-        $query->orWhere('members.city', 'LIKE', '%'.$request['global_filter'].'%');
-        $query->orWhere('members.address', 'LIKE', '%'.$request['global_filter'].'%');
+            $query->where(function($q) use ($request) {
+                $q->orWhere('firstname',  'like', '%'.$request['global_filter'].'%');
+                $q->orWhere('lastname', 'LIKE', '%'.$request['global_filter'].'%');
+                $q->orWhere('members.phone', 'LIKE', '%'.$request['global_filter'].'%');
+                $q->orWhere('members.cin', 'LIKE', '%'.$request['global_filter'].'%');
+                $q->orWhere('members.city', 'LIKE', '%'.$request['global_filter'].'%');
+                $q->orWhere('members.address', 'LIKE', '%'.$request['global_filter'].'%');
+            });
+        
         
         }
-        $query->whereMonth('members.created_at',  '=',  now()->format('m') );
-        $query->whereYear('members.created_at',  '=',  now()->format('Y'));
         if(isset($request['order']))
         {
             $query->orderBy($column[$request['order']['0']['column']], $request['order']['0']['dir']);
@@ -100,6 +107,8 @@ class MembersRepository
         {
             $query->orderBy($column[0], "DESC");
         }
+
+        
 
         $data[ "result"]  = $query->get();
         if($_POST["length"] != -1)
@@ -153,10 +162,22 @@ class MembersRepository
         return $data->count();
     }
 
-    public function countAllMembers(){
-        $members = Members::get();
-        $membersCount = $members->count();
-        return $membersCount;
+    public function countAllMembers($request){
+        $data = array();
+        $user = auth()->user();
+        $query = DB::table('members')
+            ->select('members.*');
+
+            $query->where('members.account_id',  '=', $user->account_id);
+            if($request->session()->has('selected_gym')){
+                $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
+            }
+            if($user->default_gym_id){
+                $query->where('members.gym_id',  '=', $user->default_gym_id);
+            }
+            
+        $data = $query->get();
+        return $data->count();
 
     }
 
