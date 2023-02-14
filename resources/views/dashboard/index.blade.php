@@ -134,24 +134,24 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-justified mb-3" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#nav-badge-home" role="tab" aria-selected="true" tabindex="-1">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#nav-badge-monthlyJoined" role="tab" aria-selected="true" tabindex="-1">
                                 Inscriptions mensuelles <span class="badge bg-success">{{ $monthlyJoined }}</span>
                             </a>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-profile" role="tab" aria-selected="false" tabindex="-1">
+                        <li class="nav-item" role="presentation" id="pending_paiment_tab">
+                            <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-pending-paiment" role="tab" aria-selected="false" tabindex="-1">
                                 PAIEMENTS EN ATTENTE <span class="badge bg-warning">{{ $pending_paiment }}</span>
                             </a>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-messages" role="tab" aria-selected="false">
+                        <li class="nav-item" role="presentation" id="expire_members_tab">
+                            <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-expire" role="tab" aria-selected="false">
                                 EXPIRÉ <span class="badge bg-danger rounded-circle">{{ $expired_members }}</span>
                             </a>
                         </li>
                     </ul>
                     <!-- Nav tabs -->
                     <div class="tab-content text-muted">
-                        <div class="tab-pane active show" id="nav-badge-home" role="tabpanel">
+                        <div class="tab-pane active show" id="nav-badge-monthlyJoined" role="tabpanel">
                             <table id="members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                                 <thead>
                                     <tr>
@@ -164,41 +164,31 @@
                                 </thead>
                             </table>
                         </div>
-                        <div class="tab-pane" id="nav-badge-profile" role="tabpanel">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <i class="ri-checkbox-circle-fill text-success"></i>
-                                </div>
-                                <div class="flex-grow-1 ms-2">
-                                    In some designs, you might adjust your tracking to create a certain artistic effect. It can also help you fix fonts that are poorly spaced to begin with.
-                                </div>
-                            </div>
-                            <div class="d-flex mt-2">
-                                <div class="flex-shrink-0">
-                                    <i class="ri-checkbox-circle-fill text-success"></i>
-                                </div>
-                                <div class="flex-grow-1 ms-2">
-                                    A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
-                                </div>
-                            </div>
+                        <div class="tab-pane" id="nav-badge-pending-paiment" role="tabpanel">
+                            <table id="pending_paiment_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th >@lang('translation.member')</th>
+                                        <th >@lang('translation.gym')</th>
+                                        <th >@lang('translation.services')</th>
+                                        <th >@lang('translation.plans')</th>
+                                        <th >@lang('translation.Joined-at')</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
-                        <div class="tab-pane" id="nav-badge-messages" role="tabpanel">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <i class="ri-checkbox-circle-fill text-success"></i>
-                                </div>
-                                <div class="flex-grow-1 ms-2">
-                                    Each design is a new, unique piece of art birthed into this world, and while you have the opportunity to be creative and make your own style choices.
-                                </div>
-                            </div>
-                            <div class="d-flex mt-2">
-                                <div class="flex-shrink-0">
-                                    <i class="ri-checkbox-circle-fill text-success"></i>
-                                </div>
-                                <div class="flex-grow-1 ms-2">
-                                    For that very reason, I went on a quest and spoke to many different professional graphic designers and asked them what graphic design tips they live.
-                                </div>
-                            </div>
+                        <div class="tab-pane" id="nav-badge-expire" role="tabpanel">
+                            <table id="expire_members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th >@lang('translation.member')</th>
+                                        <th >@lang('translation.gym')</th>
+                                        <th >@lang('translation.services')</th>
+                                        <th >@lang('translation.plans')</th>
+                                        <th >@lang('translation.Joined-at')</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div><!-- end card-body -->
@@ -257,7 +247,7 @@
             fill_datatable();
             function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
                 {
-                    var dataTable = $('#members_dt').DataTable({
+                    var dataTableMonthlyJoiningsMembers = $('#members_dt').DataTable({
                         "processing" : true,
                         "fixedHeader":true,
                         "bLengthChange": false,
@@ -287,80 +277,142 @@
                 }
    
             // get colors array from the string
-function getChartColorsArray(chartId) {
-    if (document.getElementById(chartId) !== null) {
-      var colors = document.getElementById(chartId).getAttribute("data-colors");
-  
-      if (colors) {
-        colors = JSON.parse(colors);
-        return colors.map(function (value) {
-          var newValue = value.replace(" ", "");
-  
-          if (newValue.indexOf(",") === -1) {
-            var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
-            if (color) return color;else return newValue;
-            ;
-          } else {
-            var val = value.split(',');
-  
-            if (val.length == 2) {
-              var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
-              rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
-              return rgbaColor;
-            } else {
-              return newValue;
-            }
-          }
+            function getChartColorsArray(chartId) {
+                if (document.getElementById(chartId) !== null) {
+                var colors = document.getElementById(chartId).getAttribute("data-colors");
+            
+                if (colors) {
+                    colors = JSON.parse(colors);
+                    return colors.map(function (value) {
+                    var newValue = value.replace(" ", "");
+            
+                    if (newValue.indexOf(",") === -1) {
+                        var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
+                        if (color) return color;else return newValue;
+                        ;
+                    } else {
+                        var val = value.split(',');
+            
+                        if (val.length == 2) {
+                        var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
+                        rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
+                        return rgbaColor;
+                        } else {
+                        return newValue;
+                        }
+                    }
+                    });
+                } else {
+                    console.warn('data-colors atributes not found on', chartId);
+                }
+                }
+            } // world map with line & markers
+            var chartDonutBasicColors = getChartColorsArray("store-visits-source");
+
+            if (chartDonutBasicColors) {
+            $.ajax({
+                type:'POST',
+                url:'../members/getStatisticData',
+                data: {'_token' : '{{ csrf_token() }}'},
+                dataType: 'json',
+                success:function(result) {
+                    //$("#msg").html(data.msg);
+                    $( "#all_members" ).attr( "data-target", 129);
+                    console.log(result);
+                    var options = {
+                series: [result.monthlyJoined, result.pending_paiment, result.expired_members],
+                labels: ["MONTHLY JOININGS", "PENDING PAYMENTS", "EXPIRED"],
+                chart: {
+                height: 333,
+                type: "donut"
+                },
+                legend: {
+                position: "bottom"
+                },
+                stroke: {
+                show: false
+                },
+                dataLabels: {
+                dropShadow: {
+                    enabled: false
+                }
+                },
+                colors: chartDonutBasicColors
+            };
+            var chart = new ApexCharts(document.querySelector("#store-visits-source"), options);
+            chart.render();
+                }
+                });
+
+            } // world map with markers
+
+            $( "#pending_paiment_tab" ).click(function() {
+                if (!$.fn.DataTable.isDataTable( '#pending_paiment_dt' ) ) {
+                    var dataTablePendingPaimentMembers = $('#pending_paiment_dt').DataTable({
+                        "processing" : true,
+                        "fixedHeader":true,
+                        "bLengthChange": false,
+                        "serverSide" : true,
+                        "order" : [],
+                        "autoWidth":true,
+                        "scrollX": true,
+                        "searching" : false,
+                        "ajax" : {
+                        url:"../members/getPendingPaimentMembers",
+                        type:"POST",
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                            global_filter:'',
+                            filter_firstname:'',
+                            filter_lastname:'',
+                            filter_cin:'',
+                            filter_phone:'',
+                            filter_address:'',
+                            filter_city:'',
+                            filter_service:'',
+                            filter_plans:'',
+                            gymId:''
+                        }
+                        }
+                    });
+                }
+                
+            });
+            //expire_members_dt
+            $( "#expire_members_tab" ).click(function() {
+                if (!$.fn.DataTable.isDataTable( '#expire_members_dt' ) ) {
+                    var dataTablePendingPaimentMembers = $('#expire_members_dt').DataTable({
+                        "processing" : true,
+                        "fixedHeader":true,
+                        "bLengthChange": false,
+                        "serverSide" : true,
+                        "order" : [],
+                        "autoWidth":true,
+                        "scrollX": true,
+                        "searching" : false,
+                        "ajax" : {
+                        url:"../members/getExpireMembers",
+                        type:"POST",
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                            global_filter:'',
+                            filter_firstname:'',
+                            filter_lastname:'',
+                            filter_cin:'',
+                            filter_phone:'',
+                            filter_address:'',
+                            filter_city:'',
+                            filter_service:'',
+                            filter_plans:'',
+                            gymId:''
+                        }
+                        }
+                    });
+                }
+                
+            });
         });
-      } else {
-        console.warn('data-colors atributes not found on', chartId);
-      }
-    }
-  } // world map with line & markers
-var chartDonutBasicColors = getChartColorsArray("store-visits-source");
 
-if (chartDonutBasicColors) {
-  $.ajax({
-    type:'POST',
-    url:'../members/getStatisticData',
-    data: {'_token' : '{{ csrf_token() }}'},
-    dataType: 'json',
-    success:function(result) {
-        //$("#msg").html(data.msg);
-        $( "#all_members" ).attr( "data-target", 129);
-        console.log(result);
-        var options = {
-    series: [result.monthlyJoined, result.pending_paiment, result.expired_members],
-    labels: ["MONTHLY JOININGS", "PENDING PAYMENTS", "EXPIRED"],
-    chart: {
-      height: 333,
-      type: "donut"
-    },
-    legend: {
-      position: "bottom"
-    },
-    stroke: {
-      show: false
-    },
-    dataLabels: {
-      dropShadow: {
-        enabled: false
-      }
-    },
-    colors: chartDonutBasicColors
-  };
-  var chart = new ApexCharts(document.querySelector("#store-visits-source"), options);
-  chart.render();
-    }
-    });
-
-} // world map with markers
-        });
-
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-   $($.fn.dataTable.tables(true)).DataTable()
-      .columns.adjust();
-});
     </script>
 
 
