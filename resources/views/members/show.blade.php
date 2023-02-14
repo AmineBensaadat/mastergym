@@ -1583,7 +1583,7 @@
                                                                 <div class="flex-shrink-0">
                                                                 @if ($member->img_name)
                                                                     @if(file_exists('assets/images/members/'.$member->img_name))
-                                                                    <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$invoice->member_img )}}">
+                                                                    <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$member->img_name )}}">
                                                                     @else
                                                                     <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
                                                                     @endif
