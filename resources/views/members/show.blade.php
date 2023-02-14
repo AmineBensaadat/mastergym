@@ -1581,8 +1581,8 @@
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="flex-shrink-0">
-                                                                @if ($invoice->member_img)
-                                                                    @if(file_exists('assets/images/members/'.$invoice->member_img))
+                                                                @if ($member->img_name)
+                                                                    @if(file_exists('assets/images/members/'.$member->img_name))
                                                                     <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$invoice->member_img )}}">
                                                                     @else
                                                                     <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
