@@ -536,7 +536,8 @@ class MembersRepository
     }
 
     public function saveMember($request){
-        $user_id = auth()->user()->id;
+        
+        $user = auth()->user();
         $destinationPath = public_path().'/assets/images/members/' ;
         // save in member table
         $member = Members::create([
@@ -550,13 +551,13 @@ class MembersRepository
             'phone' => $request['phone'],
             'emergency_contact' => $request['emergency_contact'],
             'gender' => $request['gender'],
-            'gender' => $request['gym'],
+            'gym_id' => $request['gym'],
             'health_issues' =>  $request['health_issues'],
             'cin' => $request['cin'],
-            'created_by' =>  $user_id,
-            'updated_by' =>  $user_id,
+            'created_by' =>  $user->id,
+            'updated_by' =>  $user->id,
             'source' =>  $request['source'],
-            'account_id' => auth()->user()->account_id
+            'account_id' => $user->account_id
         ]);
 
          // save gym profile image

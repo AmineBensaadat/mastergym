@@ -22,7 +22,9 @@ class Members extends Model
         'source',  
         'created_by',  
         'updated_by',
-        'cin'
+        'cin',
+        'account_id',
+        'gym_id'
     ];
     
     protected $table = 'members';

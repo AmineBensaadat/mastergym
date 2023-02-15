@@ -514,6 +514,7 @@ class MembersController extends Controller
      */
     public function show($member_id)
     {
+        $user = auth()->user();
         $invoices = $this->invoicesRepository->getMemberInvoices($member_id);
         $plan = $this->plansRepository->getMemberPlan($member_id);
         $member = DB::table('members')
@@ -526,7 +527,9 @@ class MembersController extends Controller
                 'subscriptions.start_date',
                 'subscriptions.end_date',
             )
-            ->where('members.id', $member_id)->first();
+            ->where('members.id', $member_id)
+            ->where('members.account_id',  '=', $user->account_id)->first();
+            // check if member exist ...
         return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
     }
 
