@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class UsersGym extends Model
 {
+    protected $fillable  = 
+    [
+        'gym_id',
+        'user_id'
+    ];
+    protected $table = 'users_gyms';
     use HasFactory;
 }
