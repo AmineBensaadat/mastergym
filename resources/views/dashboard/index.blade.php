@@ -9,6 +9,11 @@
 
 <!--datatable css-->
 @section('css')
+<style>
+.table>thead {
+    width: 100% !important;
+}
+</style>
 <link href="{{ URL::asset('assets/libs/jsvectormap/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/libs/swiper/swiper.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/dataTables.bootstrap5.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -125,218 +130,69 @@
         <!-- start col -->
         <div class="col-xl-8">
             <div class="card">
-                <div class="card-header d-flex align-items-center">
-                    <h4 class="card-title flex-grow-1 mb-0">@lang('translation.Monthly-Joinings')</h4>
-                    <div class="flex-shrink-0">
-                        <a href="javascript:void(0);" class="btn btn-soft-info btn-sm">@lang('translation.Export')</a>
-                    </div>
-                </div><!-- end cardheader -->
                 <div class="card-body">
-                    {{-- <div>
-                        <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active All py-3" data-bs-toggle="tab" id="All"
-                                    href="#home1" role="tab" aria-selected="true">
-                                    <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Delivered" data-bs-toggle="tab" id="Delivered"
-                                    href="#delivered" role="tab" aria-selected="false">
-                                    <i class="ri-checkbox-circle-line me-1 align-bottom"></i> Delivered
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Pickups" data-bs-toggle="tab" id="Pickups"
-                                    href="#pickups" role="tab" aria-selected="false">
-                                    <i class="ri-truck-line me-1 align-bottom"></i> Pickups <span
-                                        class="badge bg-danger align-middle ms-1">2</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Returns" data-bs-toggle="tab" id="Returns"
-                                    href="#returns" role="tab" aria-selected="false">
-                                    <i class="ri-arrow-left-right-fill me-1 align-bottom"></i> Returns
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Cancelled" data-bs-toggle="tab" id="Cancelled"
-                                    href="#cancelled" role="tab" aria-selected="false">
-                                    <i class="ri-close-circle-line me-1 align-bottom"></i> Cancelled
-                                </a>
-                            </li>
-                        </ul>
-    
-                        <div class="table-responsive table-card mb-1">
-                            <table class="table table-nowrap align-middle" id="orderTable">
-                                <thead class="text-muted table-light">
-                                    <tr class="text-uppercase">
-                                        <th scope="col" style="width: 25px;">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="checkAll" value="option">
-                                            </div>
-                                        </th>
-                                        <th class="sort" data-sort="id">Order ID</th>
-                                        <th class="sort" data-sort="customer_name">Customer</th>
-                                        <th class="sort" data-sort="product_name">Product</th>
-                                        <th class="sort" data-sort="date">Order Date</th>
-                                        <th class="sort" data-sort="amount">Amount</th>
-                                        <th class="sort" data-sort="payment">Payment Method</th>
-                                        <th class="sort" data-sort="status">Delivery Status</th>
-                                        <th class="sort" data-sort="city">Action</th>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs nav-justified mb-3" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#nav-badge-monthlyJoined" role="tab" aria-selected="true" tabindex="-1">
+                                Inscriptions mensuelles <span class="badge bg-success">{{ $monthlyJoined }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation" id="pending_paiment_tab">
+                            <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-pending-paiment" role="tab" aria-selected="false" tabindex="-1">
+                                PAIEMENTS EN ATTENTE <span class="badge bg-warning">{{ $pending_paiment }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation" id="expire_members_tab">
+                            <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-expire" role="tab" aria-selected="false">
+                                EXPIRÉ <span class="badge bg-danger rounded-circle">{{ $expired_members }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Nav tabs -->
+                    <div class="tab-content text-muted">
+                        <div class="tab-pane active show" id="nav-badge-monthlyJoined" role="tabpanel">
+                            <table id="members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th >@lang('translation.member')</th>
+                                        <th >@lang('translation.gym')</th>
+                                        <th >@lang('translation.services')</th>
+                                        <th >@lang('translation.plans')</th>
+                                        <th >@lang('translation.Joined-at')</th>
                                     </tr>
                                 </thead>
-                                <tbody class="list form-check-all">
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox"
-                                                    name="checkAll" value="option1">
-                                            </div>
-                                        </th>
-                                        <td class="id"><a href="apps-ecommerce-order-details"
-                                                class="fw-medium link-primary">#VZ2101</a></td>
-                                        <td class="customer_name">Frank Hook</td>
-                                        <td class="product_name">Puma Tshirt</td>
-                                        <td class="date">20 Dec, 2021, <small class="text-muted">02:21
-                                                AM</small></td>
-                                        <td class="amount">$654</td>
-                                        <td class="payment">Mastercard</td>
-                                        <td class="status"><span
-                                                class="badge badge-soft-warning text-uppercase">Pending</span>
-                                        </td>
-                                        <td>
-                                            <ul class="list-inline hstack gap-2 mb-0">
-                                                <li class="list-inline-item" data-bs-toggle="tooltip"
-                                                    data-bs-trigger="hover" data-bs-placement="top"
-                                                    title="View">
-                                                    <a href="apps-ecommerce-order-details"
-                                                        class="text-primary d-inline-block">
-                                                        <i class="ri-eye-fill fs-16"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item edit"
-                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                    data-bs-placement="top" title="Edit">
-                                                    <a href="#showModal" data-bs-toggle="modal"
-                                                        class="text-primary d-inline-block edit-item-btn">
-                                                        <i class="ri-pencil-fill fs-16"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item" data-bs-toggle="tooltip"
-                                                    data-bs-trigger="hover" data-bs-placement="top"
-                                                    title="Remove">
-                                                    <a class="text-danger d-inline-block remove-item-btn"
-                                                        data-bs-toggle="modal" href="#deleteOrder">
-                                                        <i class="ri-delete-bin-5-fill fs-16"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
-                            <div class="noresult" style="display: none">
-                                <div class="text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json"
-                                        trigger="loop" colors="primary:#405189,secondary:#0ab39c"
-                                        style="width:75px;height:75px">
-                                    </lord-icon>
-                                    <h5 class="mt-2">Sorry! No Result Found</h5>
-                                    <p class="text-muted">We've searched more than 150+ Orders We did
-                                        not find any
-                                        orders for you search.</p>
-                                </div>
-                            </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="pagination-wrap hstack gap-2">
-                                <a class="page-item pagination-prev disabled" href="#">
-                                    Previous
-                                </a>
-                                <ul class="pagination listjs-pagination mb-0"></ul>
-                                <a class="page-item pagination-next" href="#">
-                                    Next
-                                </a>
-                            </div>
+                        <div class="tab-pane" id="nav-badge-pending-paiment" role="tabpanel">
+                            <table id="pending_paiment_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th >@lang('translation.member')</th>
+                                        <th >@lang('translation.gym')</th>
+                                        <th >@lang('translation.services')</th>
+                                        <th >@lang('translation.plans')</th>
+                                        <th >@lang('translation.Joined-at')</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
-                    </div> --}}
-                    <div class="table-responsive table-card">
-                        {{-- <table class="table table-nowrap table-centered align-middle table-success">
-                            <thead class="bg-light text-muted">
-                                <tr>
-                                    <th scope="col">@lang('translation.name')</th>
-                                    <th scope="col">@lang('translation.Service')</th>
-                                    <th scope="col">@lang('translation.plans')</th>
-                                    <th scope="col">@lang('translation.Joined-at')</th>
-                                    <th scope="col">@lang('translation.day-left')</th>
-                                </tr><!-- end tr -->
-                            </thead><!-- thead -->
-
-                            <tbody>
-                                <tr>
-                                    <td class="fw-medium">Brand Logo Design</td>
-                                    <td>
-                                        <img src="{{ URL::asset('assets/images/users/avatar-1.jpg') }}"
-                                            class="avatar-xxs rounded-circle me-1" alt="">
-                                        <a href="javascript: void(0);" class="text-reset">Donald
-                                            Risher</a>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0 me-1 text-muted fs-13">53%</div>
-                                            <div class="progress progress-sm  flex-grow-1"
-                                                style="width: 68%;">
-                                                <div class="progress-bar bg-primary rounded"
-                                                    role="progressbar" style="width: 53%"
-                                                    aria-valuenow="53" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="avatar-group flex-nowrap">
-                                            <div class="avatar-group-item">
-                                                <a href="javascript: void(0);" class="d-inline-block">
-                                                    <img src="{{ URL::asset('assets/images/users/avatar-1.jpg') }}" alt=""
-                                                        class="rounded-circle avatar-xxs">
-                                                </a>
-                                            </div>
-                                            <div class="avatar-group-item">
-                                                <a href="javascript: void(0);" class="d-inline-block">
-                                                    <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt=""
-                                                        class="rounded-circle avatar-xxs">
-                                                </a>
-                                            </div>
-                                            <div class="avatar-group-item">
-                                                <a href="javascript: void(0);" class="d-inline-block">
-                                                    <img src="{{ URL::asset('assets/images/users/avatar-3.jpg') }}" alt=""
-                                                        class="rounded-circle avatar-xxs">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-soft-warning">Inprogress</span></td>
-                                </tr>
-                                <!-- end tr -->
-                            </tbody><!-- end tbody -->
-                        </table><!-- end table --> --}}
-                        <table id="members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th >@lang('translation.member')</th>
-                                    <th >@lang('translation.gym')</th>
-                                    <th >@lang('translation.services')</th>
-                                    <th >@lang('translation.plans')</th>
-                                    <th >@lang('translation.Joined-at')</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="tab-pane" id="nav-badge-expire" role="tabpanel">
+                            <table id="expire_members_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th >@lang('translation.member')</th>
+                                        <th >@lang('translation.gym')</th>
+                                        <th >@lang('translation.services')</th>
+                                        <th >@lang('translation.plans')</th>
+                                        <th >@lang('translation.Joined-at')</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
-
-                </div><!-- end card body -->
-            </div><!-- end card -->
+                </div><!-- end card-body -->
+            </div>
         </div>
         <!-- end col -->
         <div class="col-xl-4">
@@ -356,7 +212,7 @@
 
                 <div class="card-body">
                     <div id="store-visits-source"
-                        data-colors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]'
+                        data-colors='["--vz-success", "--vz-primary", "--vz-danger", "--vz-danger", "--vz-info"]'
                         class="apex-charts" dir="ltr"></div>
                 </div>
             </div> <!-- .card-->
@@ -375,9 +231,7 @@
     <script src="{{ URL::asset('/assets/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ URL::asset('/assets/js/fs_fonts.jss') }}"></script>
     
-    <script src="{{ URL::asset('assets/js/pages/datatables.init.js') }}"></script>
     
 
     {{-- <script src="{{ URL::asset('/assets/js/pages/dashboard-projects.init.js') }}"></script> --}}
@@ -387,17 +241,19 @@
     <script src="{{ URL::asset('/assets/libs/jsvectormap/jsvectormap.min.js') }}"></script>
     <script src="{{ URL::asset('assets/libs/swiper/swiper.min.js')}}"></script>
     <!-- dashboard init -->
-    <script src="{{ URL::asset('/assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
+    {{-- <script src="{{ URL::asset('/assets/js/pages/dashboard-ecommerce.init.js') }}"></script> --}}
     <script>
-
         $(document).ready(function(){
             fill_datatable();
             function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
                 {
-                    var dataTable = $('#members_dt').DataTable({
+                    var dataTableMonthlyJoiningsMembers = $('#members_dt').DataTable({
                         "processing" : true,
+                        "fixedHeader":true,
+                        "bLengthChange": false,
                         "serverSide" : true,
                         "order" : [],
+                        "autoWidth":true,
                         "scrollX": true,
                         "searching" : false,
                         "ajax" : {
@@ -419,10 +275,145 @@
                         }
                     });
                 }
-            var html = '';
-    
-    
+   
+            // get colors array from the string
+            function getChartColorsArray(chartId) {
+                if (document.getElementById(chartId) !== null) {
+                var colors = document.getElementById(chartId).getAttribute("data-colors");
+            
+                if (colors) {
+                    colors = JSON.parse(colors);
+                    return colors.map(function (value) {
+                    var newValue = value.replace(" ", "");
+            
+                    if (newValue.indexOf(",") === -1) {
+                        var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
+                        if (color) return color;else return newValue;
+                        ;
+                    } else {
+                        var val = value.split(',');
+            
+                        if (val.length == 2) {
+                        var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
+                        rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
+                        return rgbaColor;
+                        } else {
+                        return newValue;
+                        }
+                    }
+                    });
+                } else {
+                    console.warn('data-colors atributes not found on', chartId);
+                }
+                }
+            } // world map with line & markers
+            var chartDonutBasicColors = getChartColorsArray("store-visits-source");
+
+            if (chartDonutBasicColors) {
+            $.ajax({
+                type:'POST',
+                url:'../members/getStatisticData',
+                data: {'_token' : '{{ csrf_token() }}'},
+                dataType: 'json',
+                success:function(result) {
+                    //$("#msg").html(data.msg);
+                    $( "#all_members" ).attr( "data-target", 129);
+                    console.log(result);
+                    var options = {
+                series: [result.monthlyJoined, result.pending_paiment, result.expired_members],
+                labels: ["MONTHLY JOININGS", "PENDING PAYMENTS", "EXPIRED"],
+                chart: {
+                height: 333,
+                type: "donut"
+                },
+                legend: {
+                position: "bottom"
+                },
+                stroke: {
+                show: false
+                },
+                dataLabels: {
+                dropShadow: {
+                    enabled: false
+                }
+                },
+                colors: chartDonutBasicColors
+            };
+            var chart = new ApexCharts(document.querySelector("#store-visits-source"), options);
+            chart.render();
+                }
+                });
+
+            } // world map with markers
+
+            $( "#pending_paiment_tab" ).click(function() {
+                if (!$.fn.DataTable.isDataTable( '#pending_paiment_dt' ) ) {
+                    var dataTablePendingPaimentMembers = $('#pending_paiment_dt').DataTable({
+                        "processing" : true,
+                        "fixedHeader":true,
+                        "bLengthChange": false,
+                        "serverSide" : true,
+                        "order" : [],
+                        "autoWidth":true,
+                        "scrollX": true,
+                        "searching" : false,
+                        "ajax" : {
+                        url:"../members/getPendingPaimentMembers",
+                        type:"POST",
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                            global_filter:'',
+                            filter_firstname:'',
+                            filter_lastname:'',
+                            filter_cin:'',
+                            filter_phone:'',
+                            filter_address:'',
+                            filter_city:'',
+                            filter_service:'',
+                            filter_plans:'',
+                            gymId:''
+                        }
+                        }
+                    });
+                }
+                
+            });
+            //expire_members_dt
+            $( "#expire_members_tab" ).click(function() {
+                if (!$.fn.DataTable.isDataTable( '#expire_members_dt' ) ) {
+                    var dataTablePendingPaimentMembers = $('#expire_members_dt').DataTable({
+                        "processing" : true,
+                        "fixedHeader":true,
+                        "bLengthChange": false,
+                        "serverSide" : true,
+                        "order" : [],
+                        "autoWidth":true,
+                        "scrollX": true,
+                        "searching" : false,
+                        "ajax" : {
+                        url:"../members/getExpireMembers",
+                        type:"POST",
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                            global_filter:'',
+                            filter_firstname:'',
+                            filter_lastname:'',
+                            filter_cin:'',
+                            filter_phone:'',
+                            filter_address:'',
+                            filter_city:'',
+                            filter_service:'',
+                            filter_plans:'',
+                            gymId:''
+                        }
+                        }
+                    });
+                }
+                
+            });
         });
+
     </script>
+
 
 @endsection

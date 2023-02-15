@@ -59,13 +59,17 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/show/{id}', [MembersController::class, 'show'])->name('members_show');
     Route::get('/edit/{id}', [MembersController::class, 'edit'])->name('members_edit');
     Route::post('/getAllMembers', [MembersController::class, 'getAllMembers'])->name('members_list_json');
-    Route::post('/getMonthlyJoiningsMembers', [MembersController::class, 'getMonthlyJoiningsMembers'])->name('MonthlyJoiningsMembers_list_json');
+    Route::post('/getMonthlyJoiningsMembers', [MembersController::class, 'getMonthlyJoiningsMembers'])->name('Monthly_JoiningsMembers_list_json');
+    Route::post('/getPendingPaimentMembers', [MembersController::class, 'getPendingPaimentMembers'])->name('Pending_PaimentMembers_list_json');
+    Route::post('/getExpireMembers', [MembersController::class, 'getExpireMembers'])->name('Expire_Members_list_json');
     Route::post('/store', [MembersController::class, 'store'])->name('members_store');
     Route::post('/update', [MembersController::class, 'update'])->name('members_update');
     Route::get('/import', [MembersController::class, 'import'])->name('members_import');
     Route::post('/save_import', [MembersController::class, 'storImportMembers'])->name('import_member_store');
     Route::get('/save_import', [MembersController::class, 'downloadExceCanva'])->name('download_canva');
     Route::get('/{id}/subscription/add', [SubscriptionsController::class, 'add'])->name('member_subscription_add');
+    Route::post('/getStatisticData', [DashboardController::class, 'getStatisticData'])->name('countMembersByStatus');
+    
 });
 
 //Subscriptions

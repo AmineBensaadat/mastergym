@@ -59,7 +59,6 @@ class MembersController extends Controller
     {
         $members = $this->membersRepository->all();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
-        $expired_members =  $this->membersRepository->renderMembersByStatus($status = NULL);
         $services =  $this->servicesRepository->renderAllServices();
         $error = false;
         return view('members.list', compact('members', 'gyms', 'services', 'error'));
@@ -68,7 +67,147 @@ class MembersController extends Controller
     public function getAllMembers(Request $request)
     {
         $result = $this->membersRepository->getAllMembersByFilters($request);
-        $recordsTotal = $this->membersRepository->countAllMembers();
+        $recordsTotal = $this->membersRepository->countAllMembers($request);
+        $url = url('/assets/images/');
+        $data = array();
+        foreach($result["all_result"] as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0">
+                    <img src="'.$url.'//members/'.(file_exists($this->filesRepository->getFileByEntityId($row->id, "members")) ? $this->filesRepository->getFileByEntityId($row->id, "members"): 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                </div>
+                <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
+            </div>';
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0 ">
+                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
+                </div>
+                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
+            </div>';
+            if($row->service_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
+
+            if($row->plan_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
+            $sub_array[] = $row->phone;
+            $sub_array[] = $row->cin;
+            $sub_array[] = $row->city;
+            $sub_array[] = $row->address;
+            $sub_array[] = $row->DOB;
+            if($row->status == 1){
+                $sub_array[] = '<span class="badge text-bg-success">Active</span>';
+            }else{
+                $sub_array[] = '<span class="badge text-bg-dark">Inactive</span>';   
+            }
+            $data[] = $sub_array;
+        }
+
+        $number_filter_row = count($result["result"]);
+        $output = array(
+            "draw"       =>  intval($request["draw"]),
+            "recordsTotal"   =>  $recordsTotal ,
+            "recordsFiltered"  => $number_filter_row,
+            "data"       =>  $data
+           );
+
+        return json_encode($output) ;
+    }
+
+    public function getMonthlyJoiningsMembers(Request $request)
+    {
+        $result = $this->membersRepository->getMonthlyJoiningsMembers($request);
+        $recordsTotal = $this->membersRepository->countMonthlyJoiningsMembers($request);
+        $url = url('/assets/images/');
+        $data = array();
+        foreach($result["all_result"] as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0">
+                    <img src="'.$url.'//members/'.(file_exists($this->filesRepository->getFileByEntityId($row->id, "members")) ? $this->filesRepository->getFileByEntityId($row->id, "members"): 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                </div>
+                <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
+            </div>';
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0 ">
+                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
+                </div>
+                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
+            </div>';
+            if($row->service_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
+
+            if($row->plan_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
+            $sub_array[] = $row->phone;
+            $sub_array[] = $row->cin;
+            $sub_array[] = $row->city;
+            $sub_array[] = $row->address;
+            $sub_array[] = $row->DOB;
+            if($row->status == 1){
+                $sub_array[] = '<span class="badge text-bg-success">Active</span>';
+            }else{
+                $sub_array[] = '<span class="badge text-bg-dark">Inactive</span>';   
+            }
+            $data[] = $sub_array;
+        }
+
+        $number_filter_row = count($result["result"]);
+        $output = array(
+            "draw"       =>  intval($request["draw"]),
+            "recordsTotal"   =>  $recordsTotal ,
+            "recordsFiltered"  => $number_filter_row,
+            "data"       =>  $data
+           );
+
+        return json_encode($output) ;
+    }
+
+    public function getPendingPaimentMembers(Request $request)
+    {
+        $result = $this->membersRepository->getPendingPaimentMembers($request);
+        $recordsTotal = $this->membersRepository->countMembersByStatus('pending_paiment', $request);
         $url = url('/assets/images/');
         $data = array();
         foreach($result["all_result"] as $row)
@@ -111,7 +250,11 @@ class MembersController extends Controller
             }else{
                 $sub_array[] = '';   
             }
-            $sub_array[] = $row->created_at;
+            $sub_array[] = $row->phone;
+            $sub_array[] = $row->cin;
+            $sub_array[] = $row->city;
+            $sub_array[] = $row->address;
+            $sub_array[] = $row->DOB;
             if($row->status == 1){
                 $sub_array[] = '<span class="badge text-bg-success">Active</span>';
             }else{
@@ -131,10 +274,10 @@ class MembersController extends Controller
         return json_encode($output) ;
     }
 
-    public function getMonthlyJoiningsMembers(Request $request)
+    public function getExpireMembers(Request $request)
     {
-        $result = $this->membersRepository->getAllMembersByFilters($request);
-        $recordsTotal = $this->membersRepository->countAllMembers();
+        $result = $this->membersRepository->getExpireMembers($request);
+        $recordsTotal = $this->membersRepository->countMembersByStatus('expired', $request);
         $url = url('/assets/images/');
         $data = array();
         foreach($result["all_result"] as $row)
@@ -268,24 +411,24 @@ class MembersController extends Controller
                 [
                     'lastname' => 'required',
                     'firstname' => 'required',
-                    'cin' => 'unique:members',
-                    'address' => 'required',
-                    'phone' => 'unique:members',
-                    'dob' => 'required',
-                    'emergency_contact' => 'unique:members',
+                    //'cin' => 'unique:members',
+                    //'address' => 'required',
+                    //'phone' => 'unique:members',
+                    //'dob' => 'required',
+                    //'emergency_contact' => 'unique:members',
                     'gym' => new IsSelected,
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
-                    'amount-received' => 'required_unless:subscription-price.*,'
+                    //'amount-received' => 'required_unless:subscription-price.*,'
                 ],
                 [
                     'lastname.required' => __('translation.require'),
                     'firstname.required' => __('translation.require'),
-                    'cin.unique' => __('translation.unique'),
-                    'address.required' => __('translation.require'),
-                    'phone.unique' => __('translation.unique'),
-                    'dob.required' => __('translation.require'),
-                    'emergency_contact.unique' => __('translation.unique'),
+                    //'cin.unique' => __('translation.unique'),
+                    //'address.required' => __('translation.require'),
+                    //'phone.unique' => __('translation.unique'),
+                    //'dob.required' => __('translation.require'),
+                    //'emergency_contact.unique' => __('translation.unique'),
                     'gym.required' => __('require'),
                     'start_date' => __('require'),
                     'end_date' => __('require'),
@@ -371,6 +514,7 @@ class MembersController extends Controller
      */
     public function show($member_id)
     {
+        $user = auth()->user();
         $invoices = $this->invoicesRepository->getMemberInvoices($member_id);
         $plan = $this->plansRepository->getMemberPlan($member_id);
         $member = DB::table('members')
@@ -383,7 +527,9 @@ class MembersController extends Controller
                 'subscriptions.start_date',
                 'subscriptions.end_date',
             )
-            ->where('members.id', $member_id)->first();
+            ->where('members.id', $member_id)
+            ->where('members.account_id',  '=', $user->account_id)->first();
+            // check if member exist ...
         return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
     }
 

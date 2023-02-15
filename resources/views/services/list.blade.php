@@ -75,7 +75,7 @@
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="team-profile-img">
-                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset('assets/images/services/'.(file_exists($service->img_name) ? $service->img_name : 'default.png')  )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
+                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
                                                     <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $service->name}}</h5> </a>
                                                     <p class="text-muted member-designation mb-0">{{ $service->description}}</p>
@@ -85,7 +85,7 @@
                                         <div class="col-lg-4 col">
                                             <div class="row text-muted text-center">
                                                 <div class="col-6 border-end border-end-dashed">
-                                                    <h5 class="mb-1 projects-num">345</h5>
+                                                    <h5 class="mb-1 projects-num">{{ $total_membes }}</h5>
                                                     <p class="text-muted mb-0">Members</p>
                                                 </div>
                                                 <div class="col-6">

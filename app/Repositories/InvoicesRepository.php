@@ -12,13 +12,13 @@ class InvoicesRepository
             'member_id'  => $memberId,
             'service_id' => $request['service'],
             'plan_id' => $request['plans'],
-            'amount_received' => $request['amount-received'],
-            'subscription_price' => $request['subscription-price'],
-            'amount_pending' => $request['amount-pending'],
-            'discount' => $request['discount'],
-            'discount_amount' => $request['discount-amount'],
+            'amount_received' => $request['amount-received'] ? $request['amount-received'] : 0 ,
+            'subscription_price' => $request['subscription-price'] ? $request['subscription-price'] : 0,
+            'amount_pending' => $request['amount-pending'] ? $request['amount-pending'] : 0,
+            'discount' => $request['discount']  ? $request['discount'] : 0,
+            'discount_amount' => $request['discount-amount'] ? $request['discount-amount'] : 0 ,
             'payment_mode' => $request['payment-mode'],
-            'additional_fees' => $request['additional-fees'],
+            'additional_fees' => $request['additional-fees'] ? $request['additional-fees'] : 0 ,
             'payment_comment' => $request['payment-comment'],
             'status' => $request['status'],
             'created_by' =>  $user_id,
@@ -84,6 +84,7 @@ class InvoicesRepository
         ->join('members', 'invoices.member_id', '=', 'members.id')
         ->join('plans', 'invoices.plan_id', '=', 'plans.id')
         ->join('services', 'invoices.service_id', '=', 'services.id')
+        ->join('subscriptions', 'invoices.member_id', '=', 'subscriptions.member_id')
         ->join('gyms', 'members.gym_id', '=', 'gyms.id')
         ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
         ->select(
@@ -101,7 +102,9 @@ class InvoicesRepository
             'gyms.id as gym_id',
             'gyms.address as  gym_address',
             'services.name as service_name',
-            'gyms.phone as gyms_phone');
+            'gyms.phone as gyms_phone',
+            'subscriptions.start_date as subscription_start_date' ,
+            'subscriptions.end_date as subscription_end_date');
             $query->where('members.account_id',  '=', $user->account_id);
             $query->where('invoices.id',  '=', $id);
            

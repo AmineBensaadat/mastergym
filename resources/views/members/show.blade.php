@@ -1522,7 +1522,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="table-responsive">
-                                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%;">
                                                 <thead>
                                                     <tr>
                                                         <th >@lang('translation.N°')</th>
@@ -1534,10 +1534,10 @@
                                                         <th >@lang('translation.rest')</th>
                                                         <th >@lang('translation.payment-mode')</th>
                                                         <th >@lang('translation.additional-fees')</th>
-                                                        <th >@lang('translation.member')</th>
                                                         <th >@lang('translation.service')</th>
                                                         <th >@lang('translation.plan')</th>
                                                         <th >@lang('translation.comment')</th>
+                                                        <th >@lang('translation.action')</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -1578,28 +1578,6 @@
                                                                 <center><span class="badge badge-soft-info badge-border">{{ $invoice->additional_fees }} @lang('translation.DH')</span></center>
                                                             </h4>
                                                         </td>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="flex-shrink-0">
-                                                                @if ($invoice->member_img)
-                                                                    @if(file_exists('assets/images/members/'.$invoice->member_img))
-                                                                    <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$invoice->member_img )}}">
-                                                                    @else
-                                                                    <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                                                    @endif
-                                                                @else
-                                                                <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                                                @endif
-                                                                </div>
-                                                                <div class="flex-grow-1 ms-2 name">
-
-                                                                    <a href="../members/show/{{ $invoice->member_id }}">
-                                                                        {{ $invoice->lastname." ".$invoice->firstname }}
-
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
                                                         <td><div class="d-flex align-items-center">
                                                             <div class="avatar-sm bg-light rounded p-1 me-2">
                                                                 <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($invoice->service_id, "services") )}}">
@@ -1619,16 +1597,23 @@
                                                             </div>
                                                         </td>
                                                         <td>{{ $invoice->payment_comment }}</td>
+                                                        <td>
+                                                            <ul class="list-inline hstack gap-2 mb-0">
+                                                                <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove">
+                                                                    <a class="text-primary d-inline-block remove-item-btn" data-bs-toggle="modal" href="../../Invoices/download/{{$invoice->id }}" target="_blank">
+                                                                        <i class="ri-printer-fill fs-16"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                                
+                                                        </td>
                                                     </tr>
+                                                   
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
-                                        {{-- <div class="text-center mt-3">
-                                            <a href="javascript:void(0);" class="text-success "><i
-                                                    class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i>
-                                                Load more </a>
-                                        </div> --}}
+                                        
                                     </div>
                                 </div>
                             </div>

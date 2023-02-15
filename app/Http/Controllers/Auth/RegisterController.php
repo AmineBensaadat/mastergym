@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gyms;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UsersGym;
 use App\Repositories\UserRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -71,12 +73,32 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $account_id = $this->userRepository->countMaxAccountId();
-       //dd($data);
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'account_id' => $account_id + 1
         ]);
+
+        $gym = Gyms::create([
+            'name' => 'default_gym',
+            'desc' => 'the default gym',
+            'created_by' => $user->id,
+            'updated_by' => $user->id,
+            'is_main' => true,
+            'account_id' => $user->account_id
+        ]);
+
+        User::where('id', $user->id)
+       ->update([
+           'default_gym_id' => $gym->id
+        ]);
+
+        $users_gyms = UsersGym::create([
+            'gym_id' => $gym->id,
+            'user_id' => $user->id
+        ]);
+        
+        return $user;
     }
 }

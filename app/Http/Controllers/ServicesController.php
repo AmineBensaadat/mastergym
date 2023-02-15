@@ -28,8 +28,9 @@ class ServicesController extends Controller
     public function index(Request $request){
     
         $services = $this->servicesRepository->getAllServices($request);
+        $total_membes = $this->servicesRepository->countAllMembersByService();
         $count = 15;
-        return view('services.list' , compact('services', 'count'));
+        return view('services.list' , compact('services', 'count', 'total_membes'));
     }
 
     
@@ -39,7 +40,7 @@ class ServicesController extends Controller
          $services= new Services();
          $files_table= new Files();
          $destinationPath = public_path().'/assets/images/services/' ;
-         $user_id = auth()->user()->id;
+         $user = auth()->user();
 
         //validation form 
         $this->validate(
@@ -59,8 +60,9 @@ class ServicesController extends Controller
         // save service in service table
         $services->name = $request['serviceName'];
         $services->description = $request['description'];
-        $services->created_by = $user_id;
-        $services->updated_by = $user_id;
+        $services->created_by = $user->id;
+        $services->updated_by = $user->id;
+        $services->account_id = $user->account_id;
         $services->save();
 
         // save gym profile image
