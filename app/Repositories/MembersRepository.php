@@ -20,13 +20,11 @@ class MembersRepository
         $data = array();
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
-            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
-                'files.name as member_img',
                 'members.*',
                 'gyms.name as gym_name',
                 'services.id as service_id',
@@ -125,13 +123,11 @@ class MembersRepository
         $data = array();
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
-            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
-                'files.name as member_img',
                 'members.*',
                 'gyms.name as gym_name',
                 'services.id as service_id',
@@ -262,7 +258,6 @@ class MembersRepository
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->join('invoices', 'members.id', '=', 'invoices.member_id')
             ->select(
-                'files.name as member_img',
                 'members.*',
                 'gyms.name as gym_name',
                 'services.id as service_id',
@@ -362,14 +357,12 @@ class MembersRepository
         $data = array();
         $column = array('firstname', 'lastname', 'address', 'email', 'phone', 'DOB');
         $query = DB::table('members')
-            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->join('invoices', 'members.id', '=', 'invoices.member_id')
             ->select(
-                'files.name as member_img',
                 'members.*',
                 'gyms.name as gym_name',
                 'services.id as service_id',
@@ -464,19 +457,18 @@ class MembersRepository
         return $data;
     }
 
+    
 
     public function countMembersByStatus($status, $request){
         $data = array();
         $user = auth()->user();
         $query = DB::table('members')
-            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
             ->leftJoin('invoices', 'members.id', '=', 'invoices.member_id')
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
-                'files.name as member_img',
                 'members.*',
                 'gyms.name as gym_name',
                 'services.id as service_id',
@@ -532,7 +524,6 @@ class MembersRepository
         $members = Members::where('members.gym_id',  '=', 1)->get();
         $membersCount = $members->count();
         return $membersCount;
-
     }
 
     public function saveMember($request){

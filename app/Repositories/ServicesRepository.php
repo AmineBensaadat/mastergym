@@ -28,6 +28,17 @@ class ServicesRepository
         return $services;
     }
 
+    public function countAllMembersByService(){
+
+        $data = array();
+        $user = auth()->user();
+        $query = DB::table('members')->select('members.*')
+        ->join('invoices', 'members.id', '=', 'invoices.member_id');
+        $query->where('members.account_id',  '=', $user->account_id);
+            $data = $query->get();
+            return $data->count();
+    }
+
     public function getAllServices($request){
         $user= auth()->user();
         $query = $request['query'];

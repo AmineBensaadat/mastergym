@@ -85,7 +85,7 @@
                                         <div class="col-lg-4 col">
                                             <div class="row text-muted text-center">
                                                 <div class="col-6 border-end border-end-dashed">
-                                                    <h5 class="mb-1 projects-num">345</h5>
+                                                    <h5 class="mb-1 projects-num">{{ $total_membes }}</h5>
                                                     <p class="text-muted mb-0">Members</p>
                                                 </div>
                                                 <div class="col-6">
