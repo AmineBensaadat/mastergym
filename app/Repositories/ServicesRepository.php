@@ -31,12 +31,10 @@ class ServicesRepository
     public function getAllServices($request){
         $user= auth()->user();
         $query = $request['query'];
-        $services = DB::table('services')
-            ->join('users', 'services.created_by', '=', 'users.id')  
-            ->leftJoin('files', 'services.id', '=', 'files.entitiy_id')
-            ->select('services.*', 'files.name as img_name')
+        $services = DB::table('services') 
+            ->select('services.*')
             ->where('services.created_by', $user->id)
-            ->where('users.account_id', $user->account_id)
+            ->where('services.account_id', $user->account_id)
             ->where('services.name','LIKE','%'.$query.'%')
             ->orWhere('description', 'like', '%'. $query .'%')
             ->paginate(10); 
