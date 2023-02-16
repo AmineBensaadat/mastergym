@@ -445,8 +445,7 @@ class MembersController extends Controller
                 // save invoice in invoices table
                 $invoice = $this->invoicesRepository->addInvoice($request, $member->id);
             }
-
-            return redirect()->route('members_list');
+            return redirect()->route('members_show', array('id' => $member->id));
     }
 
     /**

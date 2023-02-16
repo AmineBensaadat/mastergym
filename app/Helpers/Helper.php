@@ -38,4 +38,26 @@ class Helper
             }
             return "default.png";
     }
+
+    public static function countAllMembersByService($service_id){
+        $data = array();
+        $user = auth()->user();
+        $query = DB::table('members')->select('members.*')
+        ->join('subscriptions', 'members.id', '=', 'subscriptions.member_id');
+        $query->where('members.account_id',  '=', $user->account_id);
+        $query->where('subscriptions.service_id',  '=', $service_id);
+            $data = $query->get();
+            return $data->count();
+    }
+
+    public static function countAllPlansByService($service_id){
+
+        $data = array();
+      $user = auth()->user();
+      $query = DB::table('plans')->select('plans.*');
+      $query->where('plans.service_id',  '=', $service_id);
+      $query->where('plans.account_id',  '=', $user->account_id);
+          $data = $query->get();
+          return $data->count();
+  }
 }

@@ -46,8 +46,7 @@ class PlansController extends Controller{
     {
         if($request->isMethod('get')){
             $query = $request['query'];
-            $plans = Plans::select('plans.id','plan_name', 'plan_details','files.name as plan_img')
-                ->leftJoin('files', 'plans.id', '=', 'files.entitiy_id')
+            $plans = Plans::select('plans.id','plan_name', 'plan_details')
                 ->where('plan_name','LIKE','%'.$query.'%')
                 ->orWhere('plan_details', 'like', '%'. $query .'%')
                 ->paginate(10);
@@ -79,7 +78,7 @@ class PlansController extends Controller{
          $palns= new Plans();
          $files_table= new Files();
          $destinationPath = public_path().'/assets/images/plans/' ;
-         $user_id = auth()->user()->id;
+         $user = auth()->user();
 
         //validation form 
         $this->validate(
@@ -105,8 +104,9 @@ class PlansController extends Controller{
         $palns->days = $request['plan_day'];
         $palns->amount = $request['plan_amount'];
         $palns->status = $request['status'];
-        $palns->created_by = $user_id;
-        $palns->updated_by = $user_id;
+        $palns->created_by = $user->id;
+        $palns->updated_by = $user->id;
+        $palns->account_id = $user->account_id;
         $palns->save();
 
         // save plan profile image
@@ -132,7 +132,30 @@ class PlansController extends Controller{
 
         }
 
+        return redirect()->route('members_show', array('id' => $palns->id));
+    }
 
-        return redirect()->route('list');
+
+     /**
+     * Show all gym.
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        dd($id);
+        $gym = DB::table('plans')
+            ->join('users', 'gyms.created_by', '=', 'users.id')
+            ->join('files', 'gyms.id', '=', 'files.entitiy_id')
+            ->select('files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
+            ->where('gyms.id', $id)->first();
+
+
+        return view('gym.show',
+            array(
+            "gym_name"  => $gym->gym_name,
+            "gym_img" => $gym->gym_img,
+            "ext" => $gym->ext
+       ));
     }
 }

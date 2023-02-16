@@ -28,9 +28,8 @@ class ServicesController extends Controller
     public function index(Request $request){
     
         $services = $this->servicesRepository->getAllServices($request);
-        $total_membes = $this->servicesRepository->countAllMembersByService();
         $count = 15;
-        return view('services.list' , compact('services', 'count', 'total_membes'));
+        return view('services.list' , compact('services', 'count'));
     }
 
     
