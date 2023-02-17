@@ -6,6 +6,7 @@ use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
 use App\Repositories\FilesRepository;
+use App\Repositories\GymsRepository;
 use App\Repositories\InvoicesRepository;
 use App\Repositories\MembersRepository;
 use App\Repositories\SubscriptionsRepository;
@@ -18,11 +19,13 @@ class InvoicesController extends Controller
 {
     private $invoicesRepository;
     private $filesRepository;
+    private $gymsRepository;
 
-    public function __construct(InvoicesRepository $invoicesRepository, FilesRepository $filesRepository)
+    public function __construct(InvoicesRepository $invoicesRepository, FilesRepository $filesRepository, GymsRepository $gymsRepository)
     {
         $this->invoicesRepository = $invoicesRepository;
         $this->filesRepository = $filesRepository;
+        $this->gymsRepository = $gymsRepository;
         $this->middleware('auth');
     }
     /**

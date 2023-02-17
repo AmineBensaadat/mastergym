@@ -32,7 +32,9 @@ class ServicesRepository
         $user= auth()->user();
         $query = $request['query'];
         $services = DB::table('services') 
-            ->select('services.*')
+            ->join('services_gyms', 'services.id', '=', 'services_gyms.service_id')  
+            ->join('gyms', 'services_gyms.gym_id', '=', 'gyms.id')  
+            ->select('services.*', 'gyms.name as gym_name')
             ->where('services.created_by', $user->id)
             ->where('services.account_id', $user->account_id)
             ->where('services.name','LIKE','%'.$query.'%')
