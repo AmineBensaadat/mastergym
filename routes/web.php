@@ -86,6 +86,7 @@ Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function (
 Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
     Route::get('/all', [ServicesController::class, 'index'])->name('services_list');
     Route::post('/add', [ServicesController::class, 'add'])->name('services_add');
+    Route::post('/update', [ServicesController::class, 'update'])->name('services_update');
 });
 
 //Invoices

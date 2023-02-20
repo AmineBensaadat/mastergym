@@ -80,6 +80,7 @@ class GymsController extends Controller{
         $gym->desc = $request['gym_desc'];
         $gym->is_main = $request['is_main'];
         $gym->is_main = $request['is_main'];
+        $gym->created_by = $user_id;
         $gym->account_id = auth()->user()->account_id;
         $gym->save();
 
@@ -94,9 +95,10 @@ class GymsController extends Controller{
 
             // save gym image in file table
             $files_table= new Files();
-            $files_table->img_name = $fileName;
+            $files_table->name = $fileName;
             $files_table->ext = $extension;
             $files_table->type = 'profile';
+            $files_table->entity_name = 'gyms';
             $files_table->entitiy_id = $gym->id;
             $files_table->save();
 
