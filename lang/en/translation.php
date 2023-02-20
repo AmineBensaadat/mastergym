@@ -328,7 +328,7 @@ return [
     "source"  => "source",
     "filter"  => "filter",
     "add" => "add",
-    "member" => "member",
+    "member" => " member",
     "Import" => "Import",
 
     "All" => "All",

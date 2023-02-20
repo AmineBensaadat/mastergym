@@ -135,17 +135,17 @@
                     <ul class="nav nav-tabs nav-justified mb-3" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" data-bs-toggle="tab" href="#nav-badge-monthlyJoined" role="tab" aria-selected="true" tabindex="-1">
-                                Inscriptions mensuelles <span class="badge bg-success">{{ $monthlyJoined }}</span>
+                            @lang('translation.Monthly-Joinings') <span class="badge bg-success">{{ $monthlyJoined }}</span>
                             </a>
                         </li>
                         <li class="nav-item" role="presentation" id="pending_paiment_tab">
                             <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-pending-paiment" role="tab" aria-selected="false" tabindex="-1">
-                                PAIEMENTS EN ATTENTE <span class="badge bg-warning">{{ $pending_paiment }}</span>
+                            @lang('translation.Pending-Payments') <span class="badge bg-warning">{{ $pending_paiment }}</span>
                             </a>
                         </li>
                         <li class="nav-item" role="presentation" id="expire_members_tab">
                             <a class="nav-link align-middle" data-bs-toggle="tab" href="#nav-badge-expire" role="tab" aria-selected="false">
-                                EXPIRÉ <span class="badge bg-danger rounded-circle">{{ $expired_members }}</span>
+                            @lang('translation.Expired') <span class="badge bg-danger rounded-circle">{{ $expired_members }}</span>
                             </a>
                         </li>
                     </ul>
@@ -216,7 +216,7 @@
                         class="apex-charts" dir="ltr"></div>
                 </div>
             </div> <!-- .card-->
-        </div> 
+        </div>
         <!-- end col -->
 
 
@@ -231,8 +231,8 @@
     <script src="{{ URL::asset('/assets/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
-    
-    
+
+
 
     {{-- <script src="{{ URL::asset('/assets/js/pages/dashboard-projects.init.js') }}"></script> --}}
     <script src="{{ URL::asset('/assets/js/app.js') }}"></script>
@@ -275,24 +275,24 @@
                         }
                     });
                 }
-   
+
             // get colors array from the string
             function getChartColorsArray(chartId) {
                 if (document.getElementById(chartId) !== null) {
                 var colors = document.getElementById(chartId).getAttribute("data-colors");
-            
+
                 if (colors) {
                     colors = JSON.parse(colors);
                     return colors.map(function (value) {
                     var newValue = value.replace(" ", "");
-            
+
                     if (newValue.indexOf(",") === -1) {
                         var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
                         if (color) return color;else return newValue;
                         ;
                     } else {
                         var val = value.split(',');
-            
+
                         if (val.length == 2) {
                         var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
                         rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
@@ -376,7 +376,7 @@
                         }
                     });
                 }
-                
+
             });
             //expire_members_dt
             $( "#expire_members_tab" ).click(function() {
@@ -409,7 +409,7 @@
                         }
                     });
                 }
-                
+
             });
         });
 

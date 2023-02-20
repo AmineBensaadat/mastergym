@@ -68,7 +68,7 @@ return [
     "plans" => "الخطط",
 
     "pages"=>"صفحة",
-    "member" => "منخرط",
+    "member" => " منخرط ",
     "team"=>"الفريق",
     "Add-Plan" => " أضف خطة ",
     "Search-for-name-or-designation" => "البحث عن اسم أو إحالة ...",
