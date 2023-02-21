@@ -11,8 +11,7 @@ class GymsRepository
         $user = auth()->user();
         $gyms = DB::table('gyms')
             ->join('users', 'gyms.created_by', '=', 'users.id')
-            ->leftJoin('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('files.name as img_name','gyms.*')
+            ->select('gyms.*')
             //->where('gyms.created_by', $user->id)
             ->where('gyms.account_id', $user->account_id)
             ->get();

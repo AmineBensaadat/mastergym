@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Members;
 use App\Repositories\FilesRepository;
 use App\Repositories\ServicesRepository;
 use DateTime;
@@ -60,4 +61,14 @@ class Helper
           $data = $query->get();
           return $data->count();
   }
+
+  public static function countAllMembersByGym($gym_id){
+    $user = auth()->user();
+    $members = Members::where([
+            ['members.gym_id',  '=', $gym_id],
+            ['members.account_id',  '=', $user->account_id]
+        ])->get();
+    $membersCount = $members->count();
+    return $membersCount;
+}
 }

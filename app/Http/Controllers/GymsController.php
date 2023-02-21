@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Repositories\GymsRepository;
+use App\Repositories\MembersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,9 +16,12 @@ class GymsController extends Controller{
      * @return void
      */
     private $gymsRepository;
-    public function __construct(GymsRepository $gymsRepository)
+    private $membersRepository;
+
+    public function __construct(GymsRepository $gymsRepository, MembersRepository $membersRepository)
     {
         $this->gymsRepository = $gymsRepository;
+        $this->membersRepository = $membersRepository;
         $this->middleware('auth');
     }
 
@@ -29,7 +33,6 @@ class GymsController extends Controller{
     public function index()
     {
         $gyms = $this->gymsRepository->getAllGymByCretedById();
-
         return view('gym.lists', compact('gyms'));
 
     }
