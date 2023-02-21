@@ -187,12 +187,12 @@ class GymsController extends Controller{
                 $request,
                     [
                         'gym_name' => 'required',
-                        'gym_address' => 'required',
+                        //'gym_address' => 'required',
                         'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
                     ],
                     [
                         'gym_name.required' => __('translation.require_gym_name'),
-                        'gym_address.required' => __('translation.require_gym_address'),
+                        //'gym_address.required' => __('translation.require_gym_address'),
                         'profile_image' =>   __('translation.file_not_autorized')
                     ],
                 );

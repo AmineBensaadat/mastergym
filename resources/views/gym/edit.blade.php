@@ -27,7 +27,7 @@
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label class="form-label" for="product-title-input">@lang('translation.gym_address')</label>
-                                <input type="text" class="form-control" name="gym_address" id="gym-address-input" value="{{ $gym->address }}" placeholder="@lang('translation.Enter-address-of-your-gym')" required>
+                                <input type="text" class="form-control" name="gym_address" id="gym-address-input" value="{{ $gym->address }}" placeholder="@lang('translation.Enter-address-of-your-gym')">
                                 @error('gym_address')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
