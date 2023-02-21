@@ -34,7 +34,7 @@
                         </div>
                         <div class="card-body ">
                             <h5 class="mb-1"><a href="apps-nft-item-details">{{ $gym->name }}</a></h5>
-                            <p class="text-muted mb-0">Main</p>
+                            {{-- <p class="text-muted mb-0">Main</p> --}}
                         </div>
                         <div class="card-footer border-top border-top-dashed">
                             <div class="d-flex align-items-center">

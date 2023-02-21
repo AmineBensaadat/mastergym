@@ -34,6 +34,8 @@ Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
     Route::get('/create', [GymsController::class, 'create'])->name('add_gym');
     Route::get('/show/{id}', [GymsController::class, 'show'])->name('show_gym');
     Route::post('/store',[GymsController::class, 'store'])->name('store_gym');
+    Route::get('/edit/{id}', [GymsController::class, 'edit'])->name('edit_gym');
+    Route::post('/update', [GymsController::class, 'update'])->name('update_gym');
 });
 
 //Plans
