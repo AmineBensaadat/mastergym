@@ -363,6 +363,8 @@ return [
     "Showing" => "Montrant",
     "Results" => "Résultats",
     "of" => "de",
+    "Statistiques" => "statistiques",
+    "Report" => "Rapport",
 
 
 

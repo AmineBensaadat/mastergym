@@ -354,6 +354,7 @@ return [
     "Showing" => "Showing",
     "Results" => "Results",
     "of" => "of",
+    "Statistiques" => "Statistiques",
 
 
 

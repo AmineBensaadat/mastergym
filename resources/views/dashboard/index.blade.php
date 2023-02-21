@@ -198,13 +198,13 @@
         <div class="col-xl-4">
             <div class="card card-height-100">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Statistiques</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">@lang('translation.Statistiques')</h4>
                     <div class="flex-shrink-0">
                         <div class="dropdown card-header-dropdown">
                             <a class="text-reset dropdown-btn" href="#"
                                 data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                <span class="text-muted">Report<i class="mdi mdi-chevron-down ms-1"></i></span>
+                                <span class="text-muted">@lang('translation.Report')<i class="mdi mdi-chevron-down ms-1"></i></span>
                             </a>
                         </div>
                     </div>

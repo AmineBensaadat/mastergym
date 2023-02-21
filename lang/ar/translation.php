@@ -150,6 +150,8 @@ return [
     "Showing" => "عرض",
     "Results" => "نتائج",
     "of" => "من",
+    "Statistiques" => " إحصائيات ",
+    "Report" => " تقرير ",
 
 
 
