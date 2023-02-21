@@ -45,6 +45,7 @@ Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
     Route::post('/getPlansDays', [PlansController::class, 'getPlansDays'])->name('getPlansDays');
     Route::post('/store', [PlansController::class, 'store'])->name('plans_store');
     Route::get('/show/{id}', [PlansController::class, 'show'])->name('show_plan');
+    Route::get('/edit/{id}', [PlansController::class, 'edit'])->name('edit_plan');
     Route::get('/create', [PlansController::class, 'create'])->name('plans_create');
 });
 

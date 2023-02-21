@@ -51,6 +51,18 @@ class Helper
             return $data->count();
     }
 
+    public static function countAllMembersByPlan($plan_id){
+        $data = array();
+        $user = auth()->user();
+        $query = DB::table('members')->select('members.*')
+        ->join('subscriptions', 'members.id', '=', 'subscriptions.member_id');
+        $query->where('members.account_id',  '=', $user->account_id);
+        $query->where('subscriptions.plan_id',  '=', $plan_id);
+            $data = $query->get();
+            return $data->count();
+    }
+    
+
     public static function countAllPlansByService($service_id){
 
         $data = array();
@@ -61,14 +73,5 @@ class Helper
           $data = $query->get();
           return $data->count();
   }
+}
 
-  public static function countAllMembersByGym($gym_id){
-    $user = auth()->user();
-    $members = Members::where([
-            ['members.gym_id',  '=', $gym_id],
-            ['members.account_id',  '=', $user->account_id]
-        ])->get();
-    $membersCount = $members->count();
-    return $membersCount;
-}
-}

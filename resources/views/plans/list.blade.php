@@ -64,7 +64,7 @@
                                                     <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"> <i class="ri-more-fill fs-17"></i> </a>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
+                                                            <a class="dropdown-item edit-list" href="{{ route('edit_plan', ['id' => $plan->id ]) }}" ><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="4"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a>
@@ -77,7 +77,7 @@
                                             <div class="team-profile-img">
                                                 <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
-                                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $plan->plan_name}}</h5> </a>
+                                                    <a class="member-name member-overview"  data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" > <h5 class="fs-16 mb-1" >{{ $plan->plan_name}}</h5> </a>
                                                     <p class="text-muted member-designation mb-0">{{ $plan->plan_details}}</p>
                                                 </div>
                                             </div>
@@ -85,17 +85,17 @@
                                         <div class="col-lg-4 col">
                                             <div class="row text-muted text-center">
                                                 <div class="col-6 border-end border-end-dashed">
-                                                    <h5 class="mb-1 projects-num">345</h5>
+                                                    <h5 class="mb-1 projects-num">{{ Helper::countAllMembersByPlan($plan->id)  }}</h5>
                                                     <p class="text-muted mb-0">Members</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <h5 class="mb-1 tasks-num">298</h5>
-                                                    <p class="text-muted mb-0">Plans</p>
+                                                    <h5 class="mb-1 tasks-num">{{ Helper::countAllPlansByService($plan->service_id)  }}</h5>
+                                                    <p class="text-muted mb-0">Service</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col">
-                                            <div class="text-end"><a href="pages-profile.html" class="btn btn-light view-btn">View</a></div>
+                                            <div class="text-end"><a  href="#member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" aria-controls="member-overview" data-bs-toggle="offcanvas" class="btn btn-light view-btn member-overview">View</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +178,7 @@
                                         <div class="mb-3">
                                             <label for="planName" class="form-label">Name</label>
                                             <input type="text" name="planName" class="form-control" id="planName" placeholder="Enter name" required>
-                                            @error('service_name')
+                                            @error('plan_name')
                                                 <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -215,24 +215,12 @@
                     <div class="p-3">
                         <div class="team-settings">
                             <div class="row">
-                                <div class="col">
-                                    <div class="bookmark-icon flex-shrink-0 me-2">
-                                        <input type="checkbox" id="favourite13" class="bookmark-input bookmark-hide">
-                                        <label for="favourite13" class="btn-star">
-                                            <svg width="20" height="20">
-                                                <use xlink:href="#icon-star" />
-                                            </svg>
-                                        </label>
-                                    </div>
-                                </div>
                                 <div class="col text-end dropdown">
                                     <a href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="ri-more-fill fs-17"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink14">
-                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-eye-line me-2 align-middle"></i>View</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-star-line me-2 align-middle"></i>Favorites</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('edit_plan', ['id' => $plan->id ]) }}"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -240,130 +228,32 @@
                         <!--end col-->
                     </div>
                     <div class="p-3 text-center">
-                        <img src="{{URL::asset('assets/images/users/avatar-2.jpg')}}" alt="" class="avatar-lg img-thumbnail rounded-circle mx-auto profile-img">
+                        <img id="view_plan_img" src="" alt="" class="avatar-lg img-thumbnail rounded-circle mx-auto profile-img">
                         <div class="mt-3">
-                            <h5 class="fs-15 profile-name">Nancy Martino</h5>
-                            <p class="text-muted profile-designation">Team Leader & HR</p>
+                            <h5 class="fs-15 profile-name"><span id="plan_name"></span></h5>
+                            <p class="text-muted profile-designation" id="view_description"></p>
                         </div>
                         <div class="hstack gap-2 justify-content-center mt-4">
-                            <div class="avatar-xs">
-                                <a href="javascript:void(0);" class="avatar-title bg-soft-secondary text-secondary rounded fs-16">
-                                    <i class="ri-facebook-fill"></i>
-                                </a>
-                            </div>
-                            <div class="avatar-xs">
-                                <a href="javascript:void(0);" class="avatar-title bg-soft-success text-success rounded fs-16">
-                                    <i class="ri-slack-fill"></i>
-                                </a>
-                            </div>
-                            <div class="avatar-xs">
-                                <a href="javascript:void(0);" class="avatar-title bg-soft-info text-info rounded fs-16">
-                                    <i class="ri-linkedin-fill"></i>
-                                </a>
-                            </div>
-                            <div class="avatar-xs">
-                                <a href="javascript:void(0);" class="avatar-title bg-soft-danger text-danger rounded fs-16">
-                                    <i class="ri-dribbble-fill"></i>
-                                </a>
-                            </div>
+              
                         </div>
                     </div>
                     <div class="row g-0 text-center">
                         <div class="col-6">
                             <div class="p-3 border border-dashed border-start-0">
-                                <h5 class="mb-1 profile-project">124</h5>
-                                <p class="text-muted mb-0">Projects</p>
+                                <h5 class="mb-1 profile-project member_count"></h5>
+                                <p class="text-muted mb-0">Members</p>
                             </div>
                         </div>
                         <!--end col-->
                         <div class="col-6">
                             <div class="p-3 border border-dashed border-start-0">
-                                <h5 class="mb-1 profile-task">81</h5>
-                                <p class="text-muted mb-0">Tasks</p>
+                                <h5 class="mb-1 profile-task service_count"></h5>
+                                <p class="text-muted mb-0">Service</p>
                             </div>
                         </div>
                         <!--end col-->
                     </div>
                     <!--end row-->
-                    <div class="p-3">
-                        <h5 class="fs-15 mb-3">Personal Details</h5>
-                        <div class="mb-3">
-                            <p class="text-muted text-uppercase fw-semibold fs-12 mb-2">Number</p>
-                            <h6>+(256) 2451 8974</h6>
-                        </div>
-                        <div class="mb-3">
-                            <p class="text-muted text-uppercase fw-semibold fs-12 mb-2">Email</p>
-                            <h6>nancymartino@email.com</h6>
-                        </div>
-                        <div>
-                            <p class="text-muted text-uppercase fw-semibold fs-12 mb-2">Location</p>
-                            <h6 class="mb-0">Carson City - USA</h6>
-                        </div>
-                    </div>
-                    <div class="p-3 border-top">
-                        <h5 class="fs-15 mb-4">File Manager</h5>
-                        <div class="d-flex mb-3">
-                            <div class="flex-shrink-0 avatar-xs">
-                                <div class="avatar-title bg-soft-danger text-danger rounded fs-16">
-                                    <i class="ri-image-2-line"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1"><a href="javascript:void(0);">Images</a></h6>
-                                <p class="text-muted mb-0">4469 Files</p>
-                            </div>
-                            <div class="text-muted">
-                                12 GB
-                            </div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <div class="flex-shrink-0 avatar-xs">
-                                <div class="avatar-title bg-soft-secondary text-secondary rounded fs-16">
-                                    <i class="ri-file-zip-line"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1"><a href="javascript:void(0);">Documents</a></h6>
-                                <p class="text-muted mb-0">46 Files</p>
-                            </div>
-                            <div class="text-muted">
-                                3.46 GB
-                            </div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <div class="flex-shrink-0 avatar-xs">
-                                <div class="avatar-title bg-soft-success text-success rounded fs-16">
-                                    <i class="ri-live-line"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1"><a href="javascript:void(0);">Media</a></h6>
-                                <p class="text-muted mb-0">124 Files</p>
-                            </div>
-                            <div class="text-muted">
-                                4.3 GB
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 avatar-xs">
-                                <div class="avatar-title bg-soft-primary text-primary rounded fs-16">
-                                    <i class="ri-error-warning-line"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1"><a href="javascript:void(0);">Others</a></h6>
-                                <p class="text-muted mb-0">18 Files</p>
-                            </div>
-                            <div class="text-muted">
-                                846 MB
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end offcanvas-body-->
-                <div class="offcanvas-foorter border p-3 hstack gap-3 text-center position-relative">
-                    <button class="btn btn-light w-100"><i class="ri-question-answer-fill align-bottom ms-1"></i> Send Message</button>
-                    <a href="pages-profile" class="btn btn-primary w-100"><i class="ri-user-3-fill align-bottom ms-1"></i> View Profile</a>
                 </div>
             </div>
             <!--end offcanvas-->
@@ -374,9 +264,24 @@
 
 @endsection
 @section('script')
-<!-- <script src="{{ URL::asset('assets/js/pages/team.init.js') }}"></script> -->
+<script src="{{ URL::asset('/assets/js/jquery-3.6.0.min.js') }}" crossorigin="anonymous"></script>
 
 <script>
+    $('.member-overview').click(function(){
+   
+        var plan_name = $(this).attr("name");
+        var plan_description = $(this).attr("description");
+        var plan_img = $(this).attr("plan_img");
+        var members_plan =  $(this).attr('members_plan');
+        var plan_services = $(this).attr('plan_services');
+
+        $('#plan_name').text(plan_name);
+        $('#view_description').text(plan_description);
+        $('#view_plan_img').attr("src", plan_img);
+        $('.member_count').text(members_plan);
+        $('.service_count').text(plan_services);
+    });
+
     var list = document.querySelectorAll(".team-list");
     if (list) {
         var buttonGroups = document.querySelectorAll('.filter-button');

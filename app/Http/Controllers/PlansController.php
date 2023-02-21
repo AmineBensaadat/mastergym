@@ -46,7 +46,7 @@ class PlansController extends Controller{
     {
         if($request->isMethod('get')){
             $query = $request['query'];
-            $plans = Plans::select('plans.id','plan_name', 'plan_details')
+            $plans = Plans::select('plans.id','plan_name', 'plan_details', 'plans.service_id')
                 ->where('plan_name','LIKE','%'.$query.'%')
                 ->orWhere('plan_details', 'like', '%'. $query .'%')
                 ->paginate(10);
@@ -70,6 +70,18 @@ class PlansController extends Controller{
     {
         $services = Services::all();
         return view('plans.plans_create', compact('services'));
+    }
+
+       /**
+     * Show create plan.
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $services = Services::all();
+        $plan = Plans::findOrFail($id);
+        return view('plans.edit', compact('services', 'plan'));
     }
 
     public function store(Request $request)
@@ -143,7 +155,6 @@ class PlansController extends Controller{
      */
     public function show($id)
     {
-        dd($id);
         $gym = DB::table('plans')
             ->join('users', 'gyms.created_by', '=', 'users.id')
             ->join('files', 'gyms.id', '=', 'files.entitiy_id')
