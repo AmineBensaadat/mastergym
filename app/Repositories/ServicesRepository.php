@@ -34,7 +34,7 @@ class ServicesRepository
         $services = DB::table('services') 
             ->join('services_gyms', 'services.id', '=', 'services_gyms.service_id')  
             ->join('gyms', 'services_gyms.gym_id', '=', 'gyms.id')  
-            ->select('services.*', 'gyms.name as gym_name')
+            ->select('services.*', 'gyms.name as gym_name', 'services_gyms.gym_id', 'services_gyms.id as service_gym_id')
             ->where('services.created_by', $user->id)
             ->where('services.account_id', $user->account_id)
             ->where('services.name','LIKE','%'.$query.'%')

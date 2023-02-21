@@ -59,7 +59,7 @@
                                                     <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"> <i class="ri-more-fill fs-17"></i> </a>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
+                                                            <a service_gym_id="{{ $service->service_gym_id}}" description="{{ $service->description}}" name="{{ $service->name}}" service_img="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services") )}}" service_gym="{{ $service->gym_id }}" class="dropdown-item edit-list update_service" service_id="{{ $service->id }}" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
                                                         </li>
                                                         {{-- <li>
                                                             <a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="4"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a>
@@ -216,6 +216,113 @@
             </div>
             <!--end modal-->
 
+            <!-- Modal -->
+            <div class="modal fade" id="updateSeviceModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0">
+
+                        <div class="modal-body">
+                            <form  method="POST" id="service-update-form" class="needs-validation" action="{{ route('services_update') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="hidden" name="service_id" id="service_id_hidden_input" class="form-control" value="">
+                                        <input type="hidden" name="service_gym_id" id="service_gym_id_hidden_input" class="form-control" value="">
+                                        <div class="px-1 pt-1">
+                                            <div class="modal-team-cover position-relative mb-0 mt-n4 mx-n4 rounded-top overflow-hidden">
+                                                <img src="{{URL::asset('assets/images/small/img-9.jpg')}}" alt="" id="cover-img" class="img-fluid">
+
+                                                <div class="d-flex position-absolute start-0 end-0 top-0 p-3">
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="modal-title text-white" id="createMemberLabel">@lang('translation.Update-Service')</h5>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <div class="d-flex gap-3 align-items-center">
+                                                            {{-- <div>
+                                                                <label for="cover-image-input" class="mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Select Cover Image">
+                                                                    <div class="avatar-xs">
+                                                                        <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
+                                                                            <i class="ri-image-fill"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </label>
+                                                                <input class="form-control d-none" value="" id="cover-image-input" type="file" accept="image/png, image/gif, image/jpeg">
+                                                            </div> --}}
+                                                            <button type="button" class="btn-close btn-close-white" id="createMemberBtn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mb-4 mt-n5 pt-2">
+                                            <div class="position-relative d-inline-block">
+                                                <div class="position-absolute bottom-0 end-0">
+                                                    <label for="member-image-input-update" class="mb-0" data-bs-toggle="tooltip" data-bs-placement="right" title="Select Member Image">
+                                                        <div class="avatar-xs">
+                                                            <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
+                                                                <i class="ri-image-fill"></i>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input class="form-control d-none" name="service_image_update" id="member-image-input-update" type="file" accept="image/png, image/gif, image/jpeg"
+                                                    onchange="document.getElementById('single-img-update').src = window.URL.createObjectURL(this.files[0])">
+                                                </div>
+                                                <div class="avatar-lg">
+                                                    <div class="avatar-title bg-light rounded-circle">
+                                                        <img src="{{URL::asset('assets/images/users/user-dummy-img.jpg')}}" id="single-img-update" class="avatar-md rounded-circle h-auto service_img_update" />
+                                                    </div>
+                                                    @error('service_image')
+                                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="serviceNameUpdate" class="form-label">@lang('translation.name')</label>
+                                            <input type="text" name="serviceNameUpdate" class="form-control serviceNameUpdate" placeholder="@lang('translation.Enter-name')" required>
+                                            @error('service_name')
+                                                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="gymUpdate" class="form-label">@lang('translation.gym')</label>
+                                            <select name="gymUpdate" class="form-select serviceGymUpdate" aria-label=".form-select-sm example" required>
+                                                <option value="0">@lang('translation.chose')@lang('translation.gym')</option>
+                                                @foreach ($gyms as $gym)
+                                                    <option {{ old('gym') == $gym->id ? "selected" : "" }} value="{{ $gym->id }}">{{ $gym->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('gym')
+                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                    
+                                        
+
+                                        <div class="mb-4">
+                                            <label for="descriptionUpdate" class="form-label">@lang('translation.description')</label>
+                                            <input type="text" name="descriptionUpdate" class="form-control description_update" placeholder="@lang('translation.entrer the')@lang('translation.description')" required>
+                                            @error('service_description')
+                                                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">@lang('translation.Close')</button>
+                                            <button type="submit" class="btn btn-success" id="addNewMember">@lang('translation.save')</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--end modal-content-->
+                </div>
+                <!--end modal-dialog-->
+            </div>
+            <!--end modal-->
+
             <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="member-overview">
                 <!--end offcanvas-header-->
                 <div class="offcanvas-body profile-offcanvas p-0">
@@ -317,12 +424,35 @@
         var member_count = $('#member_count').text();
         var plan_count = $('#plan_count').text();
 
-        console.log(plan_count);
            $('#service_name').text(service_name);
            $('#view_description').text(service_description);
            $('#view_service_img').attr("src", service_img);
            $('.member_count').text(member_count);
            $('.plan_count').text(plan_count);
         });
+
+        $('.update_service').click(function(){
+            var service_id = $(this).attr("service_id");
+            var service_gym_id = $(this).attr("service_gym_id");
+            
+            var service_name = $(this).attr("name");
+            $('.serviceNameUpdate').attr("value", service_name);
+
+            var service_description = $(this).attr("description");
+            $('.description_update').attr("value", service_description);
+
+            var service_gym = $(this).attr("service_gym");
+            $(".serviceGymUpdate").val(service_gym).change();
+
+            var service_img = $(this).attr("service_img");
+            $('.service_img_update').attr("src", service_img);
+            
+            
+            
+            $('#service_id_hidden_input').attr("value", service_id);
+            $('#service_gym_id_hidden_input').attr("value", service_gym_id);
+            
+        });
+       
 </script>
 @endsection

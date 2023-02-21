@@ -29,12 +29,11 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
         $curtentUser = $this->userRepository->getCurrentUser();
-        $members = $this->membersRepository->countAllMembersByGym();
         $expired_members =  $this->membersRepository->countMembersByStatus('expired', $request);
         $pending_paiment =  $this->membersRepository->countMembersByStatus('pending_paiment', $request);
         $monthlyJoined =  $this->membersRepository->countMembersByStatus('monthlyJoined', $request);
         $allMembers =  $this->membersRepository->countMembersByStatus('', $request);
-        return view('dashboard.index', compact('curtentUser', 'members', 'expired_members',  'pending_paiment', 'monthlyJoined', 'allMembers'));
+        return view('dashboard.index', compact('curtentUser', 'expired_members',  'pending_paiment', 'monthlyJoined', 'allMembers'));
     }
 
     public function getStatisticData(Request $request){

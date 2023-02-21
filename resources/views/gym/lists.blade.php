@@ -26,7 +26,7 @@
                             <button type="button" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></button>
                         </div>
                         <div class="explore-place-bid-img">
-                            <img src="{{URL::asset('assets/images/gyms/'.(file_exists($gym->img_name) ? $gym->img_name : 'default.png')  )}}" alt="" class="card-img-top explore-img" />
+                            <img src="{{URL::asset('assets/images/gyms/'.Helper::getImageByEntityId($gym->id, "gyms") )}}" alt="" class="card-img-top explore-img" />
                             <div class="bg-overlay"></div>
                             <div class="place-bid-btn">
                                 <a href="../gym/show/{{ $gym->id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i>@lang('translation.View_')</a>
@@ -34,14 +34,14 @@
                         </div>
                         <div class="card-body ">
                             <h5 class="mb-1"><a href="apps-nft-item-details">{{ $gym->name }}</a></h5>
-                            <p class="text-muted mb-0">Main</p>
+                            {{-- <p class="text-muted mb-0">Main</p> --}}
                         </div>
                         <div class="card-footer border-top border-top-dashed">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1 fs-14">
                                     <i class="ri-price-tag-3-fill text-warning align-bottom me-1"></i> Tottale Membres:
                                 </div>
-                                <h5 class="flex-shrink-0 fs-14 text-primary mb-0">3500</h5>
+                                <h5 class="flex-shrink-0 fs-14 text-primary mb-0">{{ Helper::countAllMembersByGym($gym->id) }}</h5>
                             </div>
                         </div>
                     </div>

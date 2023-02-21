@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Members;
 use App\Repositories\FilesRepository;
 use App\Repositories\ServicesRepository;
 use DateTime;
@@ -50,6 +51,18 @@ class Helper
             return $data->count();
     }
 
+    public static function countAllMembersByPlan($plan_id){
+        $data = array();
+        $user = auth()->user();
+        $query = DB::table('members')->select('members.*')
+        ->join('subscriptions', 'members.id', '=', 'subscriptions.member_id');
+        $query->where('members.account_id',  '=', $user->account_id);
+        $query->where('subscriptions.plan_id',  '=', $plan_id);
+            $data = $query->get();
+            return $data->count();
+    }
+    
+
     public static function countAllPlansByService($service_id){
 
         $data = array();
@@ -61,3 +74,4 @@ class Helper
           return $data->count();
   }
 }
+
