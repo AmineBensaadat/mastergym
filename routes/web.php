@@ -34,6 +34,8 @@ Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
     Route::get('/create', [GymsController::class, 'create'])->name('add_gym');
     Route::get('/show/{id}', [GymsController::class, 'show'])->name('show_gym');
     Route::post('/store',[GymsController::class, 'store'])->name('store_gym');
+    Route::get('/edit/{id}', [GymsController::class, 'edit'])->name('edit_gym');
+    Route::post('/update', [GymsController::class, 'update'])->name('update_gym');
 });
 
 //Plans
@@ -42,6 +44,7 @@ Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
     Route::post('/allPlansByService', [PlansController::class, 'getPlansBySrvice'])->name('allPlansByService');
     Route::post('/getPlansDays', [PlansController::class, 'getPlansDays'])->name('getPlansDays');
     Route::post('/store', [PlansController::class, 'store'])->name('plans_store');
+    Route::get('/show/{id}', [PlansController::class, 'show'])->name('show_plan');
     Route::get('/create', [PlansController::class, 'create'])->name('plans_create');
 });
 
@@ -85,6 +88,7 @@ Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function (
 Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
     Route::get('/all', [ServicesController::class, 'index'])->name('services_list');
     Route::post('/add', [ServicesController::class, 'add'])->name('services_add');
+    Route::post('/update', [ServicesController::class, 'update'])->name('services_update');
 });
 
 //Invoices

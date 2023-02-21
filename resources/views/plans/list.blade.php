@@ -75,7 +75,7 @@
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="team-profile-img">
-                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset('assets/images/plans/'.(file_exists($plan->plan_img) ? $gym->plan_img : 'default.png')  )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
+                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
                                                     <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $plan->plan_name}}</h5> </a>
                                                     <p class="text-muted member-designation mb-0">{{ $plan->plan_details}}</p>

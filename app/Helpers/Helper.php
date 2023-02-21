@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Members;
 use App\Repositories\FilesRepository;
 use App\Repositories\ServicesRepository;
 use DateTime;
@@ -38,4 +39,36 @@ class Helper
             }
             return "default.png";
     }
+
+    public static function countAllMembersByService($service_id){
+        $data = array();
+        $user = auth()->user();
+        $query = DB::table('members')->select('members.*')
+        ->join('subscriptions', 'members.id', '=', 'subscriptions.member_id');
+        $query->where('members.account_id',  '=', $user->account_id);
+        $query->where('subscriptions.service_id',  '=', $service_id);
+            $data = $query->get();
+            return $data->count();
+    }
+
+    public static function countAllPlansByService($service_id){
+
+        $data = array();
+      $user = auth()->user();
+      $query = DB::table('plans')->select('plans.*');
+      $query->where('plans.service_id',  '=', $service_id);
+      $query->where('plans.account_id',  '=', $user->account_id);
+          $data = $query->get();
+          return $data->count();
+  }
+
+  public static function countAllMembersByGym($gym_id){
+    $user = auth()->user();
+    $members = Members::where([
+            ['members.gym_id',  '=', $gym_id],
+            ['members.account_id',  '=', $user->account_id]
+        ])->get();
+    $membersCount = $members->count();
+    return $membersCount;
+}
 }

@@ -19,5 +19,15 @@ class FilesRepository
       }
       return "default.png";
    }
+
+   public function checkFileByEntityId($entitiy_id, $entity_name, $entity_type){
+      $result = DB::table('files')
+      ->select('*')
+      ->where('files.entitiy_id', $entitiy_id)
+      ->where('files.entity_name', $entity_name)
+      ->where('files.type', $entity_type)
+      ->get();
+      return $result;
+   }
    
 }

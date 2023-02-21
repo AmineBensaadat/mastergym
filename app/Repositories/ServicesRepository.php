@@ -28,22 +28,13 @@ class ServicesRepository
         return $services;
     }
 
-    public function countAllMembersByService(){
-
-        $data = array();
-        $user = auth()->user();
-        $query = DB::table('members')->select('members.*')
-        ->join('invoices', 'members.id', '=', 'invoices.member_id');
-        $query->where('members.account_id',  '=', $user->account_id);
-            $data = $query->get();
-            return $data->count();
-    }
-
     public function getAllServices($request){
         $user= auth()->user();
         $query = $request['query'];
         $services = DB::table('services') 
-            ->select('services.*')
+            ->join('services_gyms', 'services.id', '=', 'services_gyms.service_id')  
+            ->join('gyms', 'services_gyms.gym_id', '=', 'gyms.id')  
+            ->select('services.*', 'gyms.name as gym_name', 'services_gyms.gym_id', 'services_gyms.id as service_gym_id')
             ->where('services.created_by', $user->id)
             ->where('services.account_id', $user->account_id)
             ->where('services.name','LIKE','%'.$query.'%')

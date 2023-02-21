@@ -520,8 +520,12 @@ class MembersRepository
 
     
 
-    public function countAllMembersByGym(){
-        $members = Members::where('members.gym_id',  '=', 1)->get();
+    public function countAllMembersByGym($gym_id){
+        $user = auth()->user();
+        $members = Members::where([
+                ['members.gym_id',  '=', $gym_id],
+                ['members.account_id',  '=', $user->account_id]
+            ])->get();
         $membersCount = $members->count();
         return $membersCount;
     }

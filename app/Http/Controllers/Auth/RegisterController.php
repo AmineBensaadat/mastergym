@@ -81,7 +81,7 @@ class RegisterController extends Controller
         ]);
 
         $gym = Gyms::create([
-            'name' => 'default_gym',
+            'name' => 'default gym',
             'desc' => 'the default gym',
             'created_by' => $user->id,
             'updated_by' => $user->id,
