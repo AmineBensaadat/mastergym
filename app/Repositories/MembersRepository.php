@@ -27,6 +27,7 @@ class MembersRepository
             ->select(
                 'members.*',
                 'gyms.name as gym_name',
+                'gyms.id as gym_id',
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
@@ -130,6 +131,7 @@ class MembersRepository
             ->select(
                 'members.*',
                 'gyms.name as gym_name',
+                'gyms.id as gym_id',
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
