@@ -4,10 +4,18 @@ namespace App\Repositories;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
+use App\Repositories\FilesRepository;
 use Illuminate\Support\Facades\DB;
 
 class GymsRepository 
 {
+    private $filesRepository;
+
+    public function __construct(FilesRepository $filesRepository)
+    {
+        $this->filesRepository = $filesRepository;
+    }
+
     public function getAllGymByCretedById(){
         $user = auth()->user();
         $gyms = DB::table('gyms')
@@ -31,7 +39,7 @@ class GymsRepository
     }
 
     public function updateGym($request){
-        $destinationPath = public_path().'/assets/images/gym/' ;
+        $destinationPath = public_path().'/assets/images/gyms/' ;
         Gyms::where('id', $request['gym_id'])
         ->update([
             'name' => $request['gym_name'],
@@ -45,27 +53,36 @@ class GymsRepository
          $file = $request->file('profile_image');
         
          if($file = $request->hasFile('profile_image')) {
-            $file_exist = $this->checkIfexistFile($request['gym_id'], 'profile','gyms');
-            // file data 
-            $extension = $request->file('profile_image')->extension();
+          
+            $fileExist = $this->filesRepository->checkFileByEntityId($request['gym_id'], 'gyms', 'profile');
             $file = $request->file('profile_image') ;
-            $fileName = "profile_image_gym_".$request['gym_id'].'.'.$extension;
-           
+            $extension = $request->file('profile_image')->extension();
+            $fileName = "profile_image_gyms_".$request['gym_id'].'.'.$extension;
+            
 
-            if(count($file_exist) == 0){ // insert
-                // insert gym image in file table
-                $files_table= new Files();
-                $files_table->name = $fileName;
-                $files_table->entity_name = 'gyms';
-                $files_table->ext = $extension;
-                $files_table->type = 'profile';
-                $files_table->entitiy_id = $request['gym_id'];   
-                $files_table->save();
+            if(count($fileExist) > 0){ // update
 
-            }
- 
-             // move file in dericory
-             $file->move($destinationPath,$fileName);
+                $old_files_table = Files::findOrFail($fileExist[0]->id);
+
+                // update service image in file table
+                $old_files_table->name = $fileName;
+                $old_files_table->ext = $extension;
+                $old_files_table->update();
+
+            }else{ // insert
+
+                    // insert gym image in file table
+                    $files_table= new Files();
+                    $files_table->name = $fileName;
+                    $files_table->entity_name = 'gyms';
+                    $files_table->ext = $extension;
+                    $files_table->type = 'profile';
+                    $files_table->entitiy_id = $request['gym_id'];   
+                    $files_table->save();
+                }
+
+            // move file in dericory
+            $file->move($destinationPath,$fileName);
          }
     }
 
