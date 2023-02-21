@@ -1,0 +1,9 @@
+.img-fluid, .img-thumbnail #service_img {
+    height: 54px !important;
+    width: 54px !important;
+}
+
+.avatar-lg .rounded-circle img{
+    width: 90px !important;
+    height: 90px !important;
+}
