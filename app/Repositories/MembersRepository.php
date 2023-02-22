@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class MembersRepository 
 {
+    private $filesRepository;
+    public function __construct(FilesRepository $filesRepository)
+    {
+        $this->filesRepository = $filesRepository;
+    }
+
     public function all(){
         $members = DB::table('members')
             ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
@@ -563,8 +569,8 @@ class MembersRepository
  
              // file data 
              $file = $request->file('profile_image') ;
-             $fileName = time().rand(100,999).preg_replace('/\s+/', '', $file->getClientOriginalName());
              $extension = $request->file('profile_image')->extension();
+             $fileName = "member_image_".$member->id.'.'.$extension;
  
              // save gym image in file table
              $files_table= new Files();
@@ -605,36 +611,41 @@ class MembersRepository
 
          // save gym profile image
          $file = $request->file('profile_image');
+         $fileExist = $this->filesRepository->checkFileByEntityId($request['member_id'], 'members', 'profile');
          if($file = $request->hasFile('profile_image')) {
-            $file_exist = $this->checkIfexistFile($request['member_id'], 'profile');
+            
             // file data 
-            $extension = $request->file('profile_image')->extension();
-            $file = $request->file('profile_image') ;
-            $fileName = "profile_image_".$request['member_id'].'.'.$extension;
-           
-
-            if(count($file_exist) == 0){ // insert
-                // insert gym image in file table
-                $files_table= new Files();
-                $files_table->name = $fileName;
-                $files_table->entity_name = 'member';
-                $files_table->ext = $extension;
-                $files_table->type = 'profile';
-                $files_table->entitiy_id = $request['member_id'];   
-                $files_table->save();
-
-            }
+             $file = $request->file('profile_image') ;
+             $extension = $request->file('profile_image')->extension();
+             $fileName = "member_image_".$request['member_id'].'.'.$extension;
+ 
+ 
+             if(count($fileExist) > 0){ // update
+ 
+                 $old_files_table = Files::findOrFail($fileExist[0]->id);
+ 
+                 // update service image in file table
+                 $old_files_table->name = $fileName;
+                 $old_files_table->ext = $extension;
+                 $old_files_table->update();
+ 
+             }else{ // insert
+ 
+             // save gym image in file table
+             $files_table= new Files();
+             $files_table->name = $fileName;
+             $files_table->entity_name = 'members';
+             $files_table->ext = $extension;
+             $files_table->type = 'profile';
+             $files_table->entitiy_id = $request['member_id'];   
+             $files_table->save();
+             }
  
              // move file in dericory
              $file->move($destinationPath,$fileName);
+ 
          }
     }
 
-    public function checkIfexistFile($entitiy_id, $type){
-        $query = DB::table('files');
-        $query->where('entitiy_id',  '=', $entitiy_id);
-        $query->where('type',  '=', $type);
-        return $query->get();    
-    }
 }
 

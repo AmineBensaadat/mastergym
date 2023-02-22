@@ -15,15 +15,7 @@
         <div class="row g-4">
             <div class="col-auto">
                 <div class="avatar-lg">
-                    @if ($member->img_name)
-                        @if(file_exists('assets/images/members/'.$member->img_name))
-                            <img style="height: inherit;" src="{{URL::asset('assets/images/members/'.$member->img_name)}}" alt="user-img" class="img-thumbnail rounded-circle" />
-                        @else
-                            <img style="height: inherit;" class="img-thumbnail rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                        @endif
-                    @else
-                        <img style="height: inherit;" class="img-thumbnail rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                    @endif
+                    <img style="height: inherit;" src="{{URL::asset('assets/images/members/'.Helper::getImageByEntityId($member->id, "members", "profile") )}}" alt="user-img" class="img-thumbnail rounded-circle" />
                 </div>
             </div>
             <!--end col-->
