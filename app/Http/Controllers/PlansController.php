@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Plans;
 use App\Models\Services;
+use App\Repositories\FilesRepository;
+use App\Repositories\ServicesRepository;
+use App\Rules\IsSelected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PlansController extends Controller{
 
+    private $servicesRepository;
+    private $filesRepository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ServicesRepository $servicesRepository, FilesRepository $filesRepository)
     {
         $this->middleware('auth');
+        $this->servicesRepository = $servicesRepository;
+        $this->filesRepository = $filesRepository;
     }
 
     public function getPlansBySrvice() {
@@ -145,6 +152,83 @@ class PlansController extends Controller{
         }
 
         return redirect()->route('members_show', array('id' => $palns->id));
+    }
+
+    public function update(Request $request)
+    {
+        // tables
+        $plan = Plans::findOrFail($request['plan_id']);
+       
+        $files_table= new Files();
+        $destinationPath = public_path().'/assets/images/plans/' ;
+        $user = auth()->user();
+
+        $fileExist = $this->filesRepository->checkFileByEntityId($request['plan_id'], 'plans', 'profile');
+       //validation form 
+       $this->validate(
+       $request, 
+            [
+                'plan_name' => 'required',
+                'plan_day' => 'required',
+                'plan_day' => 'required',
+                'service' => 'required',
+            ],
+            [
+                'plan_name.required' => __('translation.require_plan_name'),
+                'plan_day.required' => __('translation.this_filed_required'),
+                'profile_image' =>   __('translation.file_not_autorized'),
+                'service.required' =>   __('translation.service_required'),
+            ]
+       );
+
+       // update plan in plans table
+        $plan->plan_name = $request['plan_name'];
+        $plan->plan_details = $request['plan_desc'];
+        $plan->service_id = $request['service'];
+        $plan->days = $request['plan_day'];
+        $plan->amount = $request['plan_amount'];
+        $plan->status = $request['status'];
+        $plan->updated_by = $user->id;
+        $plan->update();
+
+
+       // save plan profile image
+   
+       $file = $request->file('profile_image');
+       if($file = $request->hasFile('profile_image')) {
+           $file = $request->file('profile_image') ;
+           $extension = $request->file('profile_image')->extension();
+           $fileName = "profile_image_plan_".$request['service_id'].'.'.$extension;
+
+
+           if(count($fileExist) > 0){ // update
+
+               $old_files_table = Files::findOrFail($fileExist[0]->id);
+
+               // update service image in file table
+               $old_files_table->name = $fileName;
+               $old_files_table->ext = $extension;
+               $old_files_table->update();
+
+           }else{ // insert
+
+           // save plan image in file table
+           $files_table->name = $fileName;
+           $files_table->ext = $extension;
+           $files_table->type = 'profile';
+           $files_table->entity_name = 'plans';
+           $files_table->entitiy_id = $plan->id;   
+           $files_table->save();
+           }
+
+           // move file in dericory
+           $file->move($destinationPath,$fileName);
+
+       }
+
+       return redirect()->route('edit_plan', [
+        'id' => $request['plan_id']
+    ]);
     }
 
 

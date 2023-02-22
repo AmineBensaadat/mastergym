@@ -15,7 +15,7 @@
         <div class="row g-4">
             <div class="col-auto">
                 <div class="avatar-lg">
-                    <img style="height: inherit;" src="{{URL::asset('assets/images/gyms/'.Helper::getImageByEntityId($gym->id, "gyms") )}}"
+                    <img style="height: inherit;" src="{{URL::asset('assets/images/gyms/'.Helper::getImageByEntityId($gym->id, "gyms", "profile") )}}"
                         alt="user-img" class="img-thumbnail rounded-circle" />
                 </div>
             </div>

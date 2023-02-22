@@ -89,7 +89,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="avatar-sm bg-light rounded p-1 me-2">
-                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($subscription->service_id, "services") )}}">
+                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($subscription->service_id, "services", "profile", "profile") )}}">
                                     </div>
                                     <div>
                                         <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $subscription->service_name }}</a></h5>
@@ -99,7 +99,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="avatar-sm bg-light rounded p-1 me-2">
-                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($subscription->plan_id, "plans") )}}">
+                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($subscription->plan_id, "plans", "profile", "profile") )}}">
                                     </div>
                                     <div>
                                         <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $subscription->plan_name }}</a></h5>
