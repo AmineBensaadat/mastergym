@@ -462,21 +462,21 @@ class MembersController extends Controller
                 [
                     'lastname' => 'required',
                     'firstname' => 'required',
-                    'cin' => 'unique:members',
+                    //'cin' => 'unique:members',
                     //'address' => 'required',
-                    'phone' => 'unique:members',
+                    //'phone' => 'unique:members',
                     //'dob' => 'required',
-                    'emergency_contact' => 'unique:members',
+                    //'emergency_contact' => 'unique:members',
                     //'gym' => new IsSelected,
                 ],
                 [
                     'lastname.required' => __('translation.require'),
                     'firstname.required' => __('translation.require'),
-                    'cin.unique' => __('translation.unique'),
+                    //'cin.unique' => __('translation.unique'),
                     //'address.required' => __('translation.require'),
-                    'phone.unique' => __('translation.unique'),
+                    //'phone.unique' => __('translation.unique'),
                     //'dob.required' => __('translation.require'),
-                    'emergency_contact.unique' => __('translation.unique'),
+                    //'emergency_contact.unique' => __('translation.unique'),
                     //'gym.required' => __('require'),
                 ],
             );
@@ -484,7 +484,7 @@ class MembersController extends Controller
            
             // update member in member table
             $this->membersRepository->updateMember($request);
-            return redirect()->route('members_show', [
+            return redirect()->route('members_edit', [
                 'id' => $request['member_id']
             ]);
     }

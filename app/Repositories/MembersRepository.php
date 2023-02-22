@@ -581,14 +581,26 @@ class MembersRepository
        return $member;
     }
 
-    public function updateMember($request){
-        $user_id= auth()->user()->id;
+    public function updateMember($request){ 
+        $user = auth()->user();
         $destinationPath = public_path().'/assets/images/members/' ;
         Members::where('id', $request['member_id'])
         ->update([
             'firstname' => $request['firstname'],
             'lastname' => $request['lastname'],
-            'updated_by' =>  $user_id,
+            'DOB' => $request['dob'],
+            'email' => $request['email'],
+            'city' => $request['city'],
+            'address' => $request['address'],
+            'status' => $request['status'],
+            'phone' => $request['phone'],
+            'emergency_contact' => $request['emergency_contact'],
+            'gender' => $request['gender'],
+            'gym_id' => $request['gym'],
+            'health_issues' =>  $request['health_issues'],
+            'cin' => $request['cin'],
+            'updated_by' =>  $user->id,
+            'source' =>  $request['source']
         ]);
 
          // save gym profile image

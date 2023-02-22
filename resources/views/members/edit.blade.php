@@ -30,8 +30,8 @@
                                 <div class="mb-3">
                                     <label for="choices-gender" class="form-label">@lang('translation.gender')</label>
                                     <select name="gender" class="form-select" id="choices-gender">
-                                        <option value="men" selected>@lang('translation.men')</option>
-                                        <option value="female">@lang('translation.female')</option>
+                                        <option value="men" {{ $member->gender === "men" ? "selected" : "" }}> @lang('translation.men')</option>
+                                        <option value="female" {{ $member->gender === "female" ? "selected" : "" }} >@lang('translation.female')</option>
                                     </select>
                                 </div>
 
@@ -40,7 +40,7 @@
                                         <label class="form-label" for="phone-input">@lang('translation.phone')</label>
 
                                         <div class="form-icon">
-                                            <input type="phone" class="form-control form-control-icon" name="phone" id="phone-input" value="{{ old('phone') }}" placeholder="@lang('translation.entrer the') @lang('translation.phone')">
+                                            <input type="phone" class="form-control form-control-icon" name="phone" id="phone-input" value="{{ old('phone') ? old('phone') : $member->phone }}" placeholder="@lang('translation.entrer the') @lang('translation.phone')">
                                             <i class="ri-phone-line"></i>
                                         </div>
 
@@ -54,7 +54,7 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="city-input">@lang('translation.city')</label>
-                                        <input type="text" class="form-control" name="city" id="firstname-input" value="{{ old('city') }}" placeholder="@lang('translation.entrer the') @lang('translation.city')" >
+                                        <input type="text" class="form-control" name="city" id="firstname-input" value="{{ old('city') ? old('city') : $member->city }}" placeholder="@lang('translation.entrer the') @lang('translation.city')" >
                                         @error('city')
                                             <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                         @enderror
@@ -65,7 +65,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label" for="cin-input">@lang('translation.CNIE')</label>
-                                    <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') }}" placeholder="@lang('translation.entrer the') @lang('translation.CNIE')" >
+                                    <input type="text" class="form-control" name="cin" id="firstname-input" value="{{ old('cin') ? old('cin') : $member->cin }}" placeholder="@lang('translation.entrer the') @lang('translation.CNIE')" >
                                     @error('cin')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
@@ -84,7 +84,7 @@
                                     <label class="form-label" for="dob-input">@lang('translation.day')</label>
 
                                     <div class="form-icon">
-                                        <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}" >
+                                        <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') ? old('dob') : $member->DOB }}" >
                                         <i class="ri-map-pin-time-line"></i>
                                     </div>
 
@@ -96,7 +96,7 @@
                                     <label class="form-label" for="emergency_contact-input">@lang('translation.emergency_cont')</label>
 
                                     <div class="form-icon">
-                                        <input type="text" class="form-control form-control-icon" name="emergency_contact" id="emergency_contact" value="{{ old('emergency_contact') }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_cont')"  >
+                                        <input type="text" class="form-control form-control-icon" name="emergency_contact" id="emergency_contact" value="{{ old('emergency_contact') ? old('emergency_contact') : $member->emergency_contact }}" placeholder="@lang('translation.entrer the') @lang('translation.emergency_cont')"  >
                                         <i class="ri-cellphone-line"></i>
                                     </div>
                                     @error('emergency_contact')
@@ -107,7 +107,7 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="address-input">@lang('translation.address')</label>
-                                        <input type="text" class="form-control" name="address" id="firstname-input" value="{{ old('address') }}" placeholder="@lang('translation.entrer the') @lang('translation.address')" >
+                                        <input type="text" class="form-control" name="address" id="firstname-input" value="{{ old('address') ? old('address') : $member->address }}" placeholder="@lang('translation.entrer the') @lang('translation.address')" >
                                         @error('address')
                                             <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                         @enderror
@@ -119,7 +119,7 @@
                                         <label class="form-label" for="phone-input">@lang('translation.email')</label>
 
                                         <div class="form-icon">
-                                            <input type="email" class="form-control form-control-icon" name="email" id="phone-input" value="{{ old('email') }}" placeholder="@lang('translation.entrer the') @lang('translation.email')">
+                                            <input type="email" class="form-control form-control-icon" name="email" id="phone-input" value="{{ old('email') ? old('email') : $member->email }}" placeholder="@lang('translation.entrer the') @lang('translation.email')">
                                             <i class=" ri-mail-line"></i>
                                         </div>
                                         {{-- @error('email')
@@ -182,7 +182,7 @@
                         <select name="gym" class="form-select" aria-label=".form-select-sm example" >
                             <option value="0">@lang('translation.chose')@lang('translation.gym')</option>
                             @foreach ($gyms as $gym)
-                                <option {{ old('gym') == $gym->id ? "selected" : "" }} value="{{ $gym->id }}">{{ $gym->name }}</option>
+                                <option {{ $gym->id === $member->gym_id ? "selected" : "" }} value="{{ $gym->id }}">{{ $gym->name }}</option>
                             @endforeach
                         </select>
                         @error('gym')
@@ -202,7 +202,7 @@
                         <label class="form-label" for="health_issues-input">@lang('translation.health_issues')</label>
 
                         <div class="form-icon">
-                            <input type="text" class="form-control form-control-icon" name="health_issues" id="phone-input" value="{{ old('health_issues') }}" placeholder="@lang('translation.entrer the') @lang('translation.health_issues')">
+                            <input type="text" class="form-control form-control-icon" name="health_issues" id="phone-input" value="{{ old('health_issues') ? old('health_issues') : $member->health_issues }}" placeholder="@lang('translation.entrer the') @lang('translation.health_issues')">
                             <i class="ri-sword-fill"></i>
                         </div>
 
@@ -215,7 +215,7 @@
                         <label class="form-label" for="source-input">@lang('translation.source')</label>
 
                         <div class="form-icon">
-                            <input type="text" class="form-control form-control-icon" name="source" id="source-input" value="{{ old('source') }}" placeholder="@lang('translation.entrer the') @lang('translation.source')">
+                            <input type="text" class="form-control form-control-icon" name="source" id="source-input" value="{{ old('source') ? old('source') : $member->health_issues }}" placeholder="@lang('translation.entrer the') @lang('translation.source')">
                             <i class="ri-sword-fill"></i>
                         </div>
 
