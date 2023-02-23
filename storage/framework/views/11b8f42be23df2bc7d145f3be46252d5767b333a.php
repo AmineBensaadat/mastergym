@@ -61,7 +61,7 @@
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
                         id="page-header-cart-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class='bx bx-shopping-bag fs-22'></i>
+                        <i class='bx bx-buildings fs-22'></i>
                         <span
                             class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-info">5</span>
                     </button>
