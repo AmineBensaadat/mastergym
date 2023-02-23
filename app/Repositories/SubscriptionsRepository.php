@@ -48,14 +48,12 @@ class SubscriptionsRepository
             ->join('members', 'subscriptions.member_id', '=', 'members.id')   
             ->join('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->join('services', 'plans.service_id', '=', 'services.id')      
-            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->select(
                 'subscriptions.*',
                 'members.id as member_id',
                 'members.firstname', 
                 'members.lastname', 
                 'services.id as service_id', 
-                'files.name as member_img', 
                 'plan_name', 
                 'services.name as service_name')
             ->where('users.account_id', $user->account_id)

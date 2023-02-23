@@ -67,15 +67,7 @@
                                 <div class="d-flex align-items-start">
                                     <div class="flex-shrink-0">
                                         <div>
-                                        @if ($subscription->member_img)
-                                            @if(file_exists('assets/images/members/'.$subscription->member_img))
-                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.$subscription->member_img )}}">
-                                            @else
-                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                            @endif
-                                        @else
-                                        <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                                        @endif
+                                            <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.Helper::getImageByEntityId($subscription->member_id, "members", "profile") ) }} ">
                                         </div>
                                     </div>
                                     <div class="flex-grow-1 ms-2 name">
