@@ -13,6 +13,7 @@ class SubscriptionsRepository
             'member_id' => $memberId,
             'invoice_id' => 1,
             'plan_id' => $request['plans'],
+            'service_id' => $request['service'],
             'start_date' => $request['start_date'],
             'end_date' => $request['end_date'],
             'status' => 1,
