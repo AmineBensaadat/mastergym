@@ -151,7 +151,7 @@ class PlansController extends Controller{
 
         }
 
-        return redirect()->route('members_show', array('id' => $palns->id));
+        return redirect()->route('plans_list');
     }
 
     public function update(Request $request)

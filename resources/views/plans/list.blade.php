@@ -219,9 +219,6 @@
                                     <a href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="ri-more-fill fs-17"></i>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink14">
-                                        <li><a class="dropdown-item" href="{{ route('edit_plan', ['id' => $plan->id ]) }}"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
