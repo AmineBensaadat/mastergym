@@ -73,7 +73,6 @@
                                     <div class="flex-grow-1 ms-2 name">
                                         <a href="../members/show/{{ $subscription->member_id }}">
                                             {{ $subscription->lastname." ".$subscription->firstname }}
-
                                         </a>
                                     </div>
                                 </div>

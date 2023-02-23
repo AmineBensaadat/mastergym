@@ -44,7 +44,7 @@ class InvoicesController extends Controller
         if($invoices){
             
             $file_name = $invoices->firstname.' '.$invoices->lastname.'_'.date("Y-m-d").'.pdf';
-            $gym_img = $this->filesRepository->getFileByEntityId($invoices->gym_id, "gyms");
+            $gym_img = $this->filesRepository->getFileByEntityId($invoices->gym_id, "gyms", "profile");
            
             $data = [
                 'invoices' => $invoices,
