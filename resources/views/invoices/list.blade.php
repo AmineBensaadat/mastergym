@@ -108,7 +108,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
-                                    <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($invoice->member_id, "members", "profile") )}}">
+                                    <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.Helper::getImageByEntityId($invoice->member_id, "members", "profile") )}}">
                                     
                                     </div>
                                     <div class="flex-grow-1 ms-2 name">
