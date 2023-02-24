@@ -85,5 +85,15 @@ class Helper
     return $membersCount;
 }
 
+public static function getAllGymByAccountId(){
+    $user = auth()->user();
+    $gyms = DB::table('gyms')
+        ->leftjoin('users', 'gyms.id', '=', 'users.default_gym_id')
+        ->select('gyms.*', 'users.default_gym_id' )
+        ->where('gyms.account_id', $user->account_id)
+        ->get();
+    return $gyms;
+}
+
 }
 
