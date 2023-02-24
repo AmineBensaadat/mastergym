@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-define('PAGINATION_COUNT', 10);
+//define('PAGINATION_COUNT', 10);
 Auth::routes();
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
