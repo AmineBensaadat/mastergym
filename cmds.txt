@@ -4,6 +4,8 @@ php artisan route:clear
 --- Laravel Add a new column to existing table in a migration---
 php artisan make:migration add_paid_to_users_table --table=users
 
+php artisan make:migration update_description_colomun --table=services
+
 --- run the migration ---
 php artisan migrate
 

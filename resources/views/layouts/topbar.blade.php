@@ -57,6 +57,71 @@
                     </div>
                 </div>
 
+                <div class="dropdown topbar-head-dropdown ms-1 header-item">
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+                        id="page-header-cart-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class='bx bx-buildings fs-22'></i>
+                        <span
+                            class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-info">{{ (Helper::getAllGymByAccountId())->count() }}</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end p-0 dropdown-menu-cart"
+                        aria-labelledby="page-header-cart-dropdown">
+                        <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="m-0 fs-16 fw-semibold"> My Gyms</h6>
+                                </div>
+                                <div class="col-auto">
+                                    <span class="badge badge-soft-warning fs-13"><span class="cartitem-badge">{{ (Helper::getAllGymByAccountId())->count() }}</span>
+                                        gyms</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-simplebar style="max-height: 300px;">
+                            <div class="p-2">
+                                @foreach (Helper::getAllGymByAccountId() as $gym)
+                                <div class="d-block dropdown-item dropdown-item-cart text-wrap px-3 py-2">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{URL::asset('assets/images/gyms/'.Helper::getImageByEntityId($gym->id, "gyms", "profile") )}}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
+                                        <div class="flex-1">
+                                            <h6 class="mt-0 mb-1 fs-14">
+                                                <a href="{{ route('show_gym', ['id' => $gym->id ]) }}" class="text-reset">{{ $gym->name }}</a>
+                                            </h6>
+                                            <p class="mb-0 fs-12 text-muted">
+                                                {{ $gym->desc }}
+                                            </p>
+                                        </div>
+                                        @if (session('selected_gym'))
+                                            <div class="ps-2">
+                                                @if ( $gym->id == Session::get('selected_gym'))
+                                                    <span class="badge badge-soft-success badge-border">Active</span>
+                                                @else
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input select_gym" gym_id="{{ $gym->id }}" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
+                                                    </div>
+                                                @endif
+                                               
+                                            </div>
+                                        @else
+                                                <div class="ps-2">
+                                                    @if ( $gym->id == $gym->default_gym_id)
+                                                        <span class="badge badge-soft-success badge-border">Active</span>
+                                                    @else
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input select_gym" gym_id="{{ $gym->id }}" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
+                                                        </div>
+                                                    @endif
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -153,6 +218,7 @@
                         </form>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

@@ -15,15 +15,7 @@
         <div class="row g-4">
             <div class="col-auto">
                 <div class="avatar-lg">
-                    @if ($member->img_name)
-                        @if(file_exists('assets/images/members/'.$member->img_name))
-                            <img style="height: inherit;" src="{{URL::asset('assets/images/members/'.$member->img_name)}}" alt="user-img" class="img-thumbnail rounded-circle" />
-                        @else
-                            <img style="height: inherit;" class="img-thumbnail rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                        @endif
-                    @else
-                        <img style="height: inherit;" class="img-thumbnail rounded-circle" alt="" src="{{URL::asset('assets/images/members/default.jpg' )}}">
-                    @endif
+                    <img style="height: inherit;" src="{{URL::asset('assets/images/members/'.Helper::getImageByEntityId($member->id, "members", "profile") )}}" alt="user-img" class="img-thumbnail rounded-circle" />
                 </div>
             </div>
             <!--end col-->
@@ -1580,7 +1572,7 @@
                                                         </td>
                                                         <td><div class="d-flex align-items-center">
                                                             <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($invoice->service_id, "services") )}}">
+                                                                <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($invoice->service_id, "services", "profile") )}}">
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $invoice->service_name }}</a></h5>
@@ -1589,7 +1581,7 @@
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($invoice->plan_id, "plans") )}}">
+                                                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($invoice->plan_id, "plans", "profile") )}}">
                                                                 </div>
                                                                 <div>
                                                                     <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $invoice->plan_name }}</a></h5>

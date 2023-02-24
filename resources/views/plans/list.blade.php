@@ -75,9 +75,9 @@
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="team-profile-img">
-                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
+                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
-                                                    <a class="member-name member-overview"  data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" > <h5 class="fs-16 mb-1" >{{ $plan->plan_name}}</h5> </a>
+                                                    <a class="member-name member-overview"  data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" > <h5 class="fs-16 mb-1" >{{ $plan->plan_name}}</h5> </a>
                                                     <p class="text-muted member-designation mb-0">{{ $plan->plan_details}}</p>
                                                 </div>
                                             </div>
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col">
-                                            <div class="text-end"><a  href="#member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" aria-controls="member-overview" data-bs-toggle="offcanvas" class="btn btn-light view-btn member-overview">View</a></div>
+                                            <div class="text-end"><a  href="#member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" aria-controls="member-overview" data-bs-toggle="offcanvas" class="btn btn-light view-btn member-overview">View</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -219,9 +219,6 @@
                                     <a href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="ri-more-fill fs-17"></i>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink14">
-                                        <li><a class="dropdown-item" href="{{ route('edit_plan', ['id' => $plan->id ]) }}"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>

@@ -86,7 +86,7 @@ class SubscriptionsController extends Controller
                  $invoice = $this->invoicesRepository->addInvoice($request, $request->member_id);
             }
 
-            return redirect()->route('members_list');
+            return redirect()->route('subscriptions_list');
 
     }
 

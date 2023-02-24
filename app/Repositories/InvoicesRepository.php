@@ -35,14 +35,12 @@ class InvoicesRepository
             ->join('members', 'invoices.member_id', '=', 'members.id')
             ->join('plans', 'invoices.plan_id', '=', 'plans.id')
             ->join('services', 'invoices.service_id', '=', 'services.id')
-            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->select(
                 'invoices.*',
                 'members.id as member_id',
                 'members.firstname',
                 'members.lastname',
                 'services.id as service_id',
-                'files.name as member_img',
                 'plans.id as plan_id',
                 'plan_name',
                 'services.name as service_name')

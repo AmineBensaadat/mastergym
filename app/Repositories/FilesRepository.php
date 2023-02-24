@@ -7,11 +7,12 @@ class FilesRepository
 {
 
     
-   public function getFileByEntityId($entitiy_id, $entity_name){
+   public function getFileByEntityId($entitiy_id, $entity_name, $entity_type){
       $result = DB::table('files')
       ->select('files.name as file_name')
       ->where('files.entitiy_id', $entitiy_id)
       ->where('files.entity_name', $entity_name)
+      ->where('files.type', $entity_type)
       ->get();
 
       if(count($result) > 0){

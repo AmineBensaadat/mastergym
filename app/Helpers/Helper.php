@@ -27,11 +27,12 @@ class Helper
         return round(abs(strtotime($date_start) - strtotime($date_end))/86400); 
     }
 
-    public static function getImageByEntityId($entitiy_id, $entity_name){
+    public static function getImageByEntityId($entitiy_id, $entity_name, $entity_type){
         $result = DB::table('files')
             ->select('files.name as file_name')
             ->where('files.entitiy_id', $entitiy_id)
             ->where('files.entity_name', $entity_name)
+            ->where('files.type', $entity_type)
             ->get();
 
             if(count($result) > 0){
@@ -73,5 +74,26 @@ class Helper
           $data = $query->get();
           return $data->count();
   }
+
+  public static function countAllMembersByGym($gym_id){
+    $user = auth()->user();
+    $members = Members::where([
+            ['members.gym_id',  '=', $gym_id],
+            ['members.account_id',  '=', $user->account_id]
+        ])->get();
+    $membersCount = $members->count();
+    return $membersCount;
+}
+
+public static function getAllGymByAccountId(){
+    $user = auth()->user();
+    $gyms = DB::table('gyms')
+        ->leftjoin('users', 'gyms.id', '=', 'users.default_gym_id')
+        ->select('gyms.*', 'users.default_gym_id' )
+        ->where('gyms.account_id', $user->account_id)
+        ->get();
+    return $gyms;
+}
+
 }
 

@@ -328,7 +328,7 @@ return [
     "source"  => "source",
     "filter"  => "filter",
     "add" => "add",
-    "member" => "member",
+    "member" => " member",
     "Import" => "Import",
 
     "All" => "All",
@@ -354,6 +354,7 @@ return [
     "Showing" => "Showing",
     "Results" => "Results",
     "of" => "of",
+    "Statistiques" => "Statistiques",
 
 
 

@@ -7,7 +7,7 @@
 @slot('li_1') Plan @endslot
 @slot('title') @lang('translation.EDIT_PLAN') @endslot
 @endcomponent
-<form id="createplan-form" method="POST" class="needs-validation"  action="{{ route('plans_store') }}" novalidate enctype="multipart/form-data">
+<form id="createplan-form" method="POST" class="needs-validation"  action="{{ route('update_plan') }}" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <div class="col-lg-8">
@@ -16,6 +16,7 @@
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label class="form-label" for="plan-name-input">@lang('translation.name')</label>
+                                <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                                 <input type="text" class="form-control" name="plan_name" id="plan-name-input" value="{{ $plan->plan_name }}" placeholder="@lang('translation.Enter-name')" required>
                                 @error('plan_name')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
@@ -38,7 +39,7 @@
                                             <select name="service" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
                                                 <option value="">@lang('translation.Select_the_service')</option>
                                                 @foreach ($services as $service)
-                                                    <option value="{{ $service['id'] }}">{{ $service['name'] }}</option>
+                                                    <option value="{{ $service['id'] }}" {{ $service['id'] === $plan->service_id ? "selected" : "" }}>{{ $service['name'] }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -109,7 +110,7 @@
                                 </div>
                                 <div class="avatar-lg">
                                     <div class="avatar-title bg-light rounded">
-                                        <img src="{{ URL::asset('assets/images/img_icon.png') }}" id="single-img" class="avatar-md" />
+                                        <img src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" id="single-img" class="avatar-md" />
                                     </div>
                                 </div>
                             </div>

@@ -19,6 +19,7 @@ class Subscriptions extends Model
         'start_date',
         'end_date',
         'status',
+        'service_id',
         'is_renewal',
         'created_by',
         'updated_by'

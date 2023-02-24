@@ -221,7 +221,7 @@ return [
     "cin" => "cin",
     "address" => "addresse",
     "phone"  => "téléphone",
-    "member"  => "member",
+    "member"  => " member",
     "status" => "status",
     "services" => "services",
     "plans" => "plans",
@@ -255,7 +255,7 @@ return [
     "Add_image" => "Ajouter une image",
     "Submit" => "sauvegarder",
 
-    "CREATE_PLAN" => "CRÉER UN PLAN",
+    "CREATE_PLAN" => "créer un plan ",
     "plan_descreption" => "description de plan",
     "Enter-plan-descreption-her" => "Entrez la description de plan",
     "Service" => "Service",
@@ -363,6 +363,8 @@ return [
     "Showing" => "Montrant",
     "Results" => "Résultats",
     "of" => "de",
+    "Statistiques" => "statistiques",
+    "Report" => "Rapport",
 
 
 

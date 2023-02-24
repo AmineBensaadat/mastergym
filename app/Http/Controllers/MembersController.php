@@ -57,11 +57,10 @@ class MembersController extends Controller
      */
     public function index(Request $request)
     {
-        $members = $this->membersRepository->all();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
         $error = false;
-        return view('members.list', compact('members', 'gyms', 'services', 'error'));
+        return view('members.list', compact('gyms', 'services', 'error'));
     }
 
     public function getAllMembers(Request $request)
@@ -76,14 +75,14 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.(file_exists($this->filesRepository->getFileByEntityId($row->id, "members")) ? $this->filesRepository->getFileByEntityId($row->id, "members"): 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
+                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms", "profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -91,7 +90,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -103,7 +102,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//plans/'.$this->filesRepository->getFileByEntityId($row->plan_id, "plans", "profile") .'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -137,6 +136,7 @@ class MembersController extends Controller
     public function getMonthlyJoiningsMembers(Request $request)
     {
         $result = $this->membersRepository->getMonthlyJoiningsMembers($request);
+        //dd($result);
         $recordsTotal = $this->membersRepository->countMonthlyJoiningsMembers($request);
         $url = url('/assets/images/');
         $data = array();
@@ -146,14 +146,14 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.(file_exists($this->filesRepository->getFileByEntityId($row->id, "members")) ? $this->filesRepository->getFileByEntityId($row->id, "members"): 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$url.'//members/'.(file_exists($this->filesRepository->getFileByEntityId($row->id, "members","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "members"): 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
+                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms","profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -161,7 +161,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "services","profile"): 'default.png').'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -173,7 +173,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "plans","profile"): 'default.png').'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -223,7 +223,7 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
+                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms","profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -231,7 +231,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "services","profile"): 'default.png').'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -243,7 +243,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "plans","profile"): 'default.png').'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -293,7 +293,7 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
+                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -301,7 +301,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services", "profile")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -313,7 +313,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans", "profile")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -461,21 +461,21 @@ class MembersController extends Controller
                 [
                     'lastname' => 'required',
                     'firstname' => 'required',
-                    'cin' => 'unique:members',
+                    //'cin' => 'unique:members',
                     //'address' => 'required',
-                    'phone' => 'unique:members',
+                    //'phone' => 'unique:members',
                     //'dob' => 'required',
-                    'emergency_contact' => 'unique:members',
+                    //'emergency_contact' => 'unique:members',
                     //'gym' => new IsSelected,
                 ],
                 [
                     'lastname.required' => __('translation.require'),
                     'firstname.required' => __('translation.require'),
-                    'cin.unique' => __('translation.unique'),
+                    //'cin.unique' => __('translation.unique'),
                     //'address.required' => __('translation.require'),
-                    'phone.unique' => __('translation.unique'),
+                    //'phone.unique' => __('translation.unique'),
                     //'dob.required' => __('translation.require'),
-                    'emergency_contact.unique' => __('translation.unique'),
+                    //'emergency_contact.unique' => __('translation.unique'),
                     //'gym.required' => __('require'),
                 ],
             );
@@ -483,7 +483,7 @@ class MembersController extends Controller
            
             // update member in member table
             $this->membersRepository->updateMember($request);
-            return redirect()->route('members_show', [
+            return redirect()->route('members_edit', [
                 'id' => $request['member_id']
             ]);
     }

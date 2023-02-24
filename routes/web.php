@@ -47,6 +47,7 @@ Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
     Route::get('/show/{id}', [PlansController::class, 'show'])->name('show_plan');
     Route::get('/edit/{id}', [PlansController::class, 'edit'])->name('edit_plan');
     Route::get('/create', [PlansController::class, 'create'])->name('plans_create');
+    Route::post('/update', [PlansController::class, 'update'])->name('update_plan');
 });
 
 //Users

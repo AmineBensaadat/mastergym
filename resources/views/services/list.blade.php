@@ -59,7 +59,7 @@
                                                     <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"> <i class="ri-more-fill fs-17"></i> </a>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a service_gym_id="{{ $service->service_gym_id}}" description="{{ $service->description}}" name="{{ $service->name}}" service_img="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services") )}}" service_gym="{{ $service->gym_id }}" class="dropdown-item edit-list update_service" service_id="{{ $service->id }}" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
+                                                            <a service_gym_id="{{ $service->service_gym_id}}" description="{{ $service->description}}" name="{{ $service->name}}" service_img="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services", "profile") )}}" service_gym="{{ $service->gym_id }}" class="dropdown-item edit-list update_service" service_id="{{ $service->id }}" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
                                                         </li>
                                                         {{-- <li>
                                                             <a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="4"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a>
@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="team-profile-img">
-                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img id="service_img" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
+                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img id="service_img" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services", "profile") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
                                                     <a class="member-name member-overview" description="{{ $service->description}}" name="{{ $service->name}}" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $service->name}}</h5> </a>
                                                     <p class="text-muted member-designation mb-0">{{ $service->gym_name }}</p>
