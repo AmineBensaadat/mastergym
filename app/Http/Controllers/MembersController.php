@@ -57,6 +57,7 @@ class MembersController extends Controller
      */
     public function index(Request $request)
     {
+        // all gym by user
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
         $error = false;
