@@ -34,7 +34,6 @@ class Helper
             ->where('files.entity_name', $entity_name)
             ->where('files.type', $entity_type)
             ->get();
-
             if(count($result) > 0){
                 return $result[0]->file_name;
             }
