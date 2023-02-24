@@ -99,7 +99,7 @@
                                                     <span class="badge badge-soft-success badge-border">Active</span>
                                                 <?php else: ?>
                                                     <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
+                                                        <input class="form-check-input select_gym" gym_id="<?php echo e($gym->id); ?>" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
                                                     </div>
                                                 <?php endif; ?>
                                                
@@ -110,7 +110,7 @@
                                                         <span class="badge badge-soft-success badge-border">Active</span>
                                                     <?php else: ?>
                                                         <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
+                                                            <input class="form-check-input select_gym" gym_id="<?php echo e($gym->id); ?>" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
                                                         </div>
                                                     <?php endif; ?>
                                             </div>

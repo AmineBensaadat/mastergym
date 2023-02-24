@@ -98,7 +98,7 @@
                                                     <span class="badge badge-soft-success badge-border">Active</span>
                                                 @else
                                                     <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
+                                                        <input class="form-check-input select_gym" gym_id="{{ $gym->id }}" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
                                                     </div>
                                                 @endif
                                                
@@ -109,7 +109,7 @@
                                                         <span class="badge badge-soft-success badge-border">Active</span>
                                                     @else
                                                         <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
+                                                            <input class="form-check-input select_gym" gym_id="{{ $gym->id }}" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
                                                         </div>
                                                     @endif
                                             </div>
