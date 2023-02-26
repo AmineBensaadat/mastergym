@@ -52,8 +52,8 @@
                                         <div class="mb-3">
                                             <select name="gym" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
                                                 <option value="">@lang('translation.Select_your_gym')</option>
-                                                @foreach ($gyms as $gym)
-                                                    <option value="{{ $gym['id'] }}">{{ $gym['name'] }}</option>
+                                                @foreach ( Helper::getAllGymByAccountId()  as $gym)
+                                                    <option value="{{ $gym->id }}">{{ $gym->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
