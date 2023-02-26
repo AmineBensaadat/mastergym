@@ -6,6 +6,13 @@
 @slot('title') Team @endslot
 @endcomponent
 
+<!--datatable css-->
+<link href="{{ URL::asset('assets/css/dataTables.bootstrap5.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<!--datatable responsive css-->
+<link href="{{ URL::asset('assets/css/responsive.bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/css/buttons.dataTables.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+
+
 <div class="row g-4 mb-4">
     <div class="col-sm-auto">
         <div>
@@ -15,7 +22,7 @@
     <div class="col-sm">
         <div class="d-md-flex justify-content-sm-end gap-2">
             <div class="search-box ms-md-2 flex-shrink-0 mb-3 mb-md-0">
-                <input type="text" class="form-control" id="searchJob" autocomplete="off" placeholder="Search for candidate name or designation..." />
+                <input type="text" class="form-control search" id="searchJob" autocomplete="off" placeholder="Search for candidate name or designation..." />
                 <i class="ri-search-line search-icon"></i>
             </div>
         </div>
@@ -26,29 +33,22 @@
     <div class="col-md-6 col-lg-12">
         <div class="card mb-0">
             <div class="card-body">
-                <div class="d-lg-flex align-items-center">
-                    <div class="flex-shrink-0">
-                        <div class="avatar-sm rounded"><img src="assets/images/users/avatar-10.jpg" alt="" class="member-img img-fluid d-block rounded" /></div>
-                    </div>
-                    <div class="ms-lg-3 my-3 my-lg-0">
-                        <a href="pages-profile.html"><h5 class="fs-16 mb-2">Tonya Noble</h5></a>
-                        <p class="text-muted mb-0">Web Designer</p>
-                    </div>
-                    <div class="d-flex gap-4 mt-0 text-muted mx-auto">
-                        <div><i class="ri-map-pin-2-line text-primary me-1 align-bottom"></i> Cullera, Spain</div>
-                        <div><i class="ri-time-line text-primary me-1 align-bottom"></i> <span class="badge badge-soft-danger">Part Time</span></div>
-                    </div>
-                    <div class="d-flex flex-wrap gap-2 align-items-center mx-auto my-3 my-lg-0">
-                        <div class="badge text-bg-success"><i class="mdi mdi-star me-1"></i>4.2</div>
-                        <div class="text-muted">2.2k Ratings</div>
-                    </div>
-                    <div>
-                        <a href="#!" class="btn btn-soft-success">View Details</a>
-                        <a href="#!" class="btn btn-ghost-danger btn-icon custom-toggle active" data-bs-toggle="button">
-                            <span class="icon-on"><i class="ri-bookmark-line align-bottom"></i></span> <span class="icon-off"><i class="ri-bookmark-3-fill align-bottom"></i></span>
-                        </a>
-                    </div>
-                </div>
+                <table id="users_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th >@lang('translation.member')</th>
+                            <th >@lang('translation.gym')</th>
+                            <th >@lang('translation.services')</th>
+                            <th >@lang('translation.plans')</th>
+                            <th >@lang('translation.phone')</th>
+                            <th >@lang('translation.CNIE')</th>
+                            <th >@lang('translation.city')</th>
+                            <th >@lang('translation.address')</th>
+                            <th >@lang('translation.DOB')</th>
+                            <th >@lang('translation.Status')</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -79,7 +79,60 @@
 
 @endsection
 @section('script')
+<script src="{{ URL::asset('/assets/js/jquery-3.6.0.min.js') }}" crossorigin="anonymous"></script>
+
+<script src="{{ URL::asset('/assets/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
+
+<script src="{{ URL::asset('assets/js/pages/datatables.init.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+
+<script>
+
+    $(document).ready(function(){
+        fill_datatable();
+        function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
+            {
+                var dataTable = $('#users_dt').DataTable({
+                    "processing" : true,
+                    "serverSide" : true,
+                    "order" : [],
+                    "scrollX": true,
+                    "searching" : false,
+                    "ajax" : {
+                    url:"../users/getAllUsers",
+                    type:"POST",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        global_filter:global_filter,
+                        filter_firstname:filter_firstname,
+                        filter_lastname:filter_lastname,
+                        filter_cin:filter_cin,
+                        filter_phone:filter_phone,
+                        filter_address:filter_address,
+                        filter_city:filter_city,
+                        filter_service:filter_service,
+                        filter_plans:filter_plans,
+                        gymId:gymId
+                    }
+                    }
+                });
+            }
+
+            $( ".search" ).keyup(function() {
+                var global_filter = $('.search').val();
+                $('#users_dt').DataTable().destroy();
+                fill_datatable(global_filter);
+            });
+
+  
+
+
+
+    });
+</script>
 
 @if (session('stored'))
     <script src="{{ URL::asset('/assets/js/custom/coustom_toastify.js') }}"></script>

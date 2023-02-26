@@ -187,7 +187,6 @@
 <script src="{{ URL::asset('/assets/js/dataTables.bootstrap5.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
-<script src="{{ URL::asset('/assets/js/fs_fonts.jss') }}"></script>
 
 <script src="{{ URL::asset('assets/js/pages/datatables.init.js') }}"></script>
 

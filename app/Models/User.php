@@ -22,7 +22,9 @@ class User extends Authenticatable
         'email',
         'password',
         'avatar',
-        'account_id'
+        'account_id',
+        'default_gym_id'
+        
     ];
 
     /**

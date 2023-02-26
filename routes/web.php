@@ -55,6 +55,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::get('/all', [UsersController::class, 'index'])->name('users_list');
     Route::post('/store', [UsersController::class, 'store'])->name('user_store');
     Route::get('/create', [UsersController::class, 'create'])->name('users_create');
+    Route::post('/getAllUsers', [UsersController::class, 'getAllUsers'])->name('users_list_json');
 });
 
 //Members

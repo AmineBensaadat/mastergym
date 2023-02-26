@@ -6,6 +6,7 @@ use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\User;
 use App\Models\UsersGym;
+use App\Repositories\FilesRepository;
 use App\Repositories\GymsRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -17,10 +18,12 @@ class UsersController extends Controller
     
     private $userRepository;
     private $gymsRepository;
-    public function __construct(UserRepository $userRepository, GymsRepository $gymsRepository)
+    private $filesRepository;
+    public function __construct(UserRepository $userRepository, GymsRepository $gymsRepository, FilesRepository $filesRepository)
     {
         $this->userRepository = $userRepository;
         $this->gymsRepository = $gymsRepository;
+        $this->filesRepository = $filesRepository;
         $this->middleware('auth');
     }
     /**
@@ -40,7 +43,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show()
+    public function show($id)
     {
         $user = User::findOrFail($id);
 
@@ -65,6 +68,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $user = auth()->user();
         //validation form 
         $this->validate(
             $request, 
@@ -81,20 +85,20 @@ class UsersController extends Controller
                     'gym.required' =>  __('translation.require_gym')
                 ],
             );
-            $usersgym = UsersGym::all();
   
-                $user = User::create([
+                $user_inserted = User::create([
                     'name' => $request['user_name'],
                     'email' => $request['user_email'],
-                    'password' => Hash::make($request['user_password'])
+                    'password' => Hash::make($request['user_password']),
+                    'account_id'  => $user->account_id,
+                    'default_gym_id'  => $request['gym'],
                 ]);
             
 
              // save users_gyms table
               $usersgym = new UsersGym();
-              $user_id = auth()->user()->id;
               $usersgym->gym_id = $request['gym'];
-              $usersgym->user_id = $user_id; 
+              $usersgym->user_id = $user_inserted->id; 
               $usersgym->save();
 
               session(['stored' => true]);
@@ -140,5 +144,44 @@ class UsersController extends Controller
         flash()->error('User was successfully deleted');
 
         return redirect('users');
+    }
+
+    public function getAllUsers(Request $request)
+    {
+
+        $result = $this->userRepository->getAllUsersByFilters($request);
+        $recordsTotal = $this->userRepository->countAllMembers($request);
+        $url = url('/assets/images/');
+        $data = array();
+        foreach($result["all_result"] as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0">
+                    <img src="'.$url.'//users/'.$this->filesRepository->getFileByEntityId($row->id, "users", "profile").'" alt="" class="avatar-xs rounded-circle">
+                </div>
+                <div class="flex-grow-1 ms-2 name"><a href="../users/show/'.$row->id. '">'.$row->name.'</a></div>            
+            </div>';
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0 ">
+                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms", "profile").'" alt="" class="avatar-xs">
+                </div>
+                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
+            </div>';
+    
+            $data[] = $sub_array;
+        }
+
+        $number_filter_row = count($result["result"]);
+        $output = array(
+            "draw"       =>  intval($request["draw"]),
+            "recordsTotal"   =>  $recordsTotal ,
+            "recordsFiltered"  => $number_filter_row,
+            "data"       =>  $data
+           );
+
+        return json_encode($output) ;
     }
 }
