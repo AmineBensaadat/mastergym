@@ -144,8 +144,7 @@ class GymsController extends Controller{
         $user = auth()->user();
         $gym = DB::table('gyms')
             ->join('users', 'gyms.created_by', '=', 'users.id')
-            ->join('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('gyms.*','files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
+            ->select('gyms.*','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
             ->where([
                     ['gyms.id', $id],
                     ['gyms.account_id', $user->account_id],
@@ -155,9 +154,7 @@ class GymsController extends Controller{
         return view('gym.show',
             array( 
             "gym" => $gym,
-            "gym_name"  => $gym->gym_name,
-            "gym_img" => $gym->gym_img,
-            "ext" => $gym->ext
+            "gym_name"  => $gym->gym_name
        ));
     }
 
