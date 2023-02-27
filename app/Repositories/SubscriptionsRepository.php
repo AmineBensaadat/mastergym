@@ -62,5 +62,19 @@ class SubscriptionsRepository
             ->paginate(10); 
         return $subscriptions;
     }
+
+    public function getSinglSubscription($member_id){
+
+        $user= auth()->user();
+        $subscriptions = DB::table('subscriptions')
+            ->join('users', 'subscriptions.created_by', '=', 'users.id')  
+            ->select('subscriptions.*')
+            ->where('users.account_id', $user->account_id)
+            ->where('subscriptions.member_id', $member_id)
+            ->get()->first();
+        return $subscriptions;
+
+    }
+
    
 }

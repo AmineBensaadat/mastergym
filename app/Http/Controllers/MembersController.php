@@ -517,11 +517,11 @@ class MembersController extends Controller
         $user = auth()->user();
         $invoices = $this->invoicesRepository->getMemberInvoices($member_id);
         $plan = $this->plansRepository->getMemberPlan($member_id);
+        $subscription = $this->subscriptionsRepository->getSinglSubscription($member_id);
+        //dd($subscription);
         $member = DB::table('members')
-            ->leftJoin('files', 'members.id', '=', 'files.entitiy_id')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
-            ->select(
-                'files.name as img_name','members.*',
+            ->select('members.*',
                 'subscriptions.id as subscription_id',
                 'subscriptions.start_date',
                 'subscriptions.start_date',
