@@ -7,3 +7,7 @@
     width: 90px !important;
     height: 90px !important;
 }
+
+.data-option-flag-img-name .flag-input{
+    background-repeat: no-repeat !important;
+}

@@ -291,7 +291,6 @@
                                                     </div>
                                                     <div class="ms-auto">
                                                         <h2 class="month mb-0" style="display: block;"><small class="fs-13 text-muted">{{ $subscription->amount }} DH/mois</small></h2>
-                                                        <h2 class="annual mb-0" style="display: none;"><small class="fs-16"><del>$468</del></small> $351 <small class="fs-13 text-muted">/Year</small></h2>
                                                     </div>
                                                 </div>
                                                 <p class="text-muted">{{ $subscription->plan_details }}</p>

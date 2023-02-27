@@ -144,7 +144,7 @@
                                                 <div class="mb-3">
                                                     <label for="jobTitle" class="form-label">Langue</label>
                                                     <div data-input-flag data-option-flag-img-name>
-                                                        <input type="text" name="lang" class="form-control rounded-end flag-input" style=" background-image: url(../assets/images/flags/{{ $curtentUser->lang ? $curtentUser->lang : 'fr' }}.svg);" readonly value="{{ __('translation.'.($curtentUser->lang ? $curtentUser->lang : 'fr')) }}" placeholder="Select country" data-bs-toggle="dropdown" aria-expanded="false" />
+                                                        <input type="text" name="lang" class="form-control rounded-end flag-input" style="background-repeat: no-repeat; background-image: url(../assets/images/flags/{{ $curtentUser->lang ? $curtentUser->lang : 'fr' }}.svg);" readonly value="{{ __('translation.'.($curtentUser->lang ? $curtentUser->lang : 'fr')) }}" placeholder="Select country" data-bs-toggle="dropdown" aria-expanded="false" />
                                                         <div class="dropdown-menu w-100">
                                                             <div class="p-2 px-3 pt-1 searchlist-input">
                                                                 <input type="text" class="form-control form-control-sm border search-countryList" placeholder="Search country name or country code..." />
