@@ -516,9 +516,7 @@ class MembersController extends Controller
     {
         $user = auth()->user();
         $invoices = $this->invoicesRepository->getMemberInvoices($member_id);
-        $plan = $this->plansRepository->getMemberPlan($member_id);
         $subscription = $this->subscriptionsRepository->getSinglSubscription($member_id);
-        //dd($subscription);
         $member = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->select('members.*',
@@ -530,7 +528,7 @@ class MembersController extends Controller
             ->where('members.id', $member_id)
             ->where('members.account_id',  '=', $user->account_id)->first();
             // check if member exist ...
-        return view('members.show', array("member"  => $member, "invoices" => $invoices, "plan" => $plan));
+        return view('members.show', array("member"  => $member, "invoices" => $invoices, "subscription" => $subscription));
     }
 
     public function downloadExceCanva()

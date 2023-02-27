@@ -67,8 +67,10 @@ class SubscriptionsRepository
 
         $user= auth()->user();
         $subscriptions = DB::table('subscriptions')
-            ->join('users', 'subscriptions.created_by', '=', 'users.id')  
-            ->select('subscriptions.*')
+            ->join('users', 'subscriptions.created_by', '=', 'users.id') 
+            ->join('plans', 'subscriptions.plan_id', '=', 'plans.id')
+            ->join('services', 'plans.service_id', '=', 'services.id')      
+            ->select('subscriptions.*', 'plans.plan_name', 'plans.days', 'plans.amount', 'plans.id as plan_id', 'plans.plan_details', 'plans.amount', 'services.name as service_name' )
             ->where('users.account_id', $user->account_id)
             ->where('subscriptions.member_id', $member_id)
             ->get()->first();

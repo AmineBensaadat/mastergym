@@ -66,7 +66,7 @@
                                     class="d-none d-md-inline-block">Overview</span>
                             </a>
                         </li>
-                        @if($plan)
+                        @if($subscription)
                         <li class="nav-item">
                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#plan" role="tab">
                                 <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span
@@ -83,7 +83,7 @@
                     </ul>
                     <div class="flex-shrink-0">
                         <a href="{{ route('members_edit', ['id' => $member->id ]) }}" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
-                        @if(!$plan)
+                        @if(!$subscription)
                         <a href="{{ route('member_subscription_add', ['id' => $member->id ]) }}" class="btn btn-primary"><i class="ri-add-circle-line align-bottom"></i> Add subscription</a>
                         @endif
                     </div>
@@ -141,7 +141,7 @@
                                 </div><!-- end card -->
 
                                 <!--end card-->
-                                @if($plan)
+                                @if($subscription)
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center mb-4">
@@ -152,12 +152,12 @@
                                         </div>
                                         <div class="d-flex mb-4">
                                             <div class="flex-shrink-0">
-                                                <img src="{{URL::asset('assets/images/plans/'.(file_exists($plan->plan_img) ? $plan->plan_img : 'default.png')  )}}" alt=""
+                                                <img src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($subscription->plan_id, "plans", "profile") )}}" alt=""
                                                     height="50" class="rounded" />
                                             </div>
                                             <div class="flex-grow-1 ms-3 overflow-hidden">
                                                 <a href="javascript:void(0);">
-                                                    <h6 class="text-truncate fs-14">{{ $plan->plan_name  }}</h6>
+                                                    <h6 class="text-truncate fs-14">{{ $subscription->plan_name  }}</h6>
                                                 </a>
                                                 {{-- <p class="text-muted mb-0">15 Dec 2021</p> --}}
                                             </div>
@@ -277,24 +277,24 @@
                     </div>
                     <!--end tab-pane-->
                     <div class="tab-pane fade" id="plan" role="tabpanel">
-                        @if($plan)
+                        @if($subscription)
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-xxl-3 col-lg-6">
                                         <div class="card pricing-box ribbon-box right">
                                             <div class="card-body bg-light m-2 p-4">
-                                                <div class="ribbon-two ribbon-two-danger"><span>Popular</span></div>
+                                                <div class="ribbon-two ribbon-two-danger"><span>{{ $subscription->plan_name }}</span></div>
                                                 <div class="d-flex align-items-center mb-3">
                                                     <div class="flex-grow-1">
-                                                        <h5 class="mb-0 fw-semibold">{{ $plan->plan_name }}</h5>
+                                                        <h5 class="mb-0 fw-semibold">{{ $subscription->plan_name }}</h5>
                                                     </div>
                                                     <div class="ms-auto">
-                                                        <h2 class="month mb-0" style="display: block;"><small class="fs-13 text-muted">{{ $plan->amount }} DH/mois</small></h2>
+                                                        <h2 class="month mb-0" style="display: block;"><small class="fs-13 text-muted">{{ $subscription->amount }} DH/mois</small></h2>
                                                         <h2 class="annual mb-0" style="display: none;"><small class="fs-16"><del>$468</del></small> $351 <small class="fs-13 text-muted">/Year</small></h2>
                                                     </div>
                                                 </div>
-                                                <p class="text-muted">{{ $plan->plan_details }}</p>
+                                                <p class="text-muted">{{ $subscription->plan_details }}</p>
                                                 <ul class="list-unstyled vstack gap-3">
                                                     <li>
                                                         <div class="d-flex">
@@ -302,7 +302,7 @@
                                                                 <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
                                                             </div>
                                                             <div class="flex-grow-1">
-                                                                <b>15</b> Projects
+                                                                <b>{{ $subscription->days }}</b> Days
                                                             </div>
                                                         </div>
                                                     </li>
@@ -312,7 +312,7 @@
                                                                 <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
                                                             </div>
                                                             <div class="flex-grow-1">
-                                                                <b>Unlimited</b> Customers
+                                                                <b>{!! Helper::dateDiff (date('Y-m-d'),$subscription->end_date) !!}</b> Day Left
                                                             </div>
                                                         </div>
                                                     </li>
@@ -322,7 +322,7 @@
                                                                 <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
                                                             </div>
                                                             <div class="flex-grow-1">
-                                                                Scalable Bandwidth
+                                                                Date end : {{ $subscription->end_date }}
                                                             </div>
                                                         </div>
                                                     </li>
@@ -332,37 +332,7 @@
                                                                 <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
                                                             </div>
                                                             <div class="flex-grow-1">
-                                                                <b>12</b> FTP Login
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="d-flex">
-                                                            <div class="flex-shrink-0 text-success me-1">
-                                                                <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <b>24/7</b> Support
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="d-flex">
-                                                            <div class="flex-shrink-0 text-success me-1">
-                                                                <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <b>35GB</b> Storage
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="d-flex">
-                                                            <div class="flex-shrink-0 text-danger me-1">
-                                                                <i class="ri-close-circle-fill fs-15 align-middle"></i>
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                Domain
+                                                                Service :  <b>{{ $subscription->service_name }}</b>
                                                             </div>
                                                         </div>
                                                     </li>
