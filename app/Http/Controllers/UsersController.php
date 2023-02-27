@@ -150,7 +150,7 @@ class UsersController extends Controller
     {
 
         $result = $this->userRepository->getAllUsersByFilters($request);
-        $recordsTotal = $this->userRepository->countAllMembers($request);
+        $recordsTotal = $this->userRepository->countAllUsers($request);
         $url = url('/assets/images/');
         $data = array();
         foreach($result["all_result"] as $row)
@@ -163,13 +163,8 @@ class UsersController extends Controller
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../users/show/'.$row->id. '">'.$row->name.'</a></div>            
             </div>';
-            $sub_array[] = '
-            <div class="d-flex align-items-center">            
-                <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms", "profile").'" alt="" class="avatar-xs">
-                </div>
-                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
-            </div>';
+            $sub_array[] = $row->email;
+   
     
             $data[] = $sub_array;
         }

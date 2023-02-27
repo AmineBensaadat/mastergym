@@ -83,68 +83,26 @@ class UserRepository
         $data = array();
         $column = array('name', 'email');
         $query = DB::table('users')
-            ->join('gyms', 'members.gym_id', '=', 'gyms.id')
-            ->select(
-                'users.*',
-                'gyms.name as gym_name',
-                'gyms.id as gym_id')
-                ->where('users.account_id',  '=', $user->account_id);
+            ->select('users.*')
+            ->where('users.account_id',  '=', $user->account_id)
+            ->where('users.id',  '!=', $user->id);
         
 
-        if(isset($request['name']) && $request['name'] != '')
+        if(isset($request['filter_name']) && $request['filter_name'] != '')
         {
-        $query->where('name',  'like', '%'.$request['name'].'%');
+        $query->where('name',  'like', '%'.$request['filter_name'].'%');
         }
 
-        if(isset($request['filter_lastname']) && $request['filter_lastname'] != '')
+        if(isset($request['filter_email']) && $request['filter_email'] != '')
         {
-        $query->where('members.lastname',  'like', '%'.$request['filter_lastname'].'%');
+        $query->where('users.email',  'like', '%'.$request['filter_email'].'%');
         }
 
-        if(isset($request['filter_cin']) && $request['filter_cin'] != '')
-        {
-        $query->where('members.cin',  'like', '%'.$request['filter_cin'].'%');
-        }
-
-        if(isset($request['filter_phone']) && $request['filter_phone'] != '')
-        {
-        $query->where('members.phone',  'like', '%'.$request['filter_phone'].'%');
-        }
-
-        if(isset($request['filter_address']) && $request['filter_address'] != '')
-        {
-        $query->where('members.address',  'like', '%'.$request['filter_address'].'%');
-        }
-
-        if(isset($request['filter_city']) && $request['filter_city'] != '')
-        {
-        $query->where('members.city',  'like', '%'.$request['filter_city'].'%');
-        }
-
-        if(isset($request['gymId']) && $request['gymId'] != '')
-        {
-        $query->where('members.gym_id',  '=', $request['gymId']);
-        }
-        
-        if(isset($request['filter_service']) && $request['filter_service'] != '')
-        {
-        $query->where('services.id',  '=', $request['filter_service']);
-        }
-
-        if(isset($request['filter_plans']) && $request['filter_plans'] != '')
-        {
-        $query->where('plans.id',  '=', $request['filter_plans']);
-        }
-        
         if(isset($request['global_filter']) && $request['global_filter'] != '')
         {
             $query->where(function($q) use ($request) {
-                $q->orWhere('firstname',  'like', '%'.$request['global_filter'].'%');
-                $q->orWhere('lastname', 'LIKE', '%'.$request['global_filter'].'%');
-                $q->orWhere('members.phone', 'LIKE', '%'.$request['global_filter'].'%');
-                $q->orWhere('members.cin', 'LIKE', '%'.$request['global_filter'].'%');
-                $q->orWhere('members.city', 'LIKE', '%'.$request['global_filter'].'%');
-                $q->orWhere('members.address', 'LIKE', '%'.$request['global_filter'].'%');
+                $q->orWhere('name',  'like', '%'.$request['global_filter'].'%');
+                $q->orWhere('email', 'LIKE', '%'.$request['global_filter'].'%');
             });
         
         
@@ -170,19 +128,14 @@ class UserRepository
         return $data;
     }
 
-    public function countAllMembers($request){
+    public function countAllUsers($request){
         $data = array();
         $user = auth()->user();
-        $query = DB::table('members')
-            ->select('members.*');
-
-            $query->where('members.account_id',  '=', $user->account_id);
-            if($request->session()->has('selected_gym')){
-                $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-            }
-            if($user->default_gym_id){
-                $query->where('members.gym_id',  '=', $user->default_gym_id);
-            }
+        $query = DB::table('users')
+            ->select('users.*')
+            ->where('users.account_id',  '=', $user->account_id)
+            ->where('users.id',  '!=', $user->id);
+           
             
         $data = $query->get();
         return $data->count();

@@ -36,16 +36,8 @@
                 <table id="users_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
-                            <th >@lang('translation.member')</th>
-                            <th >@lang('translation.gym')</th>
-                            <th >@lang('translation.services')</th>
-                            <th >@lang('translation.plans')</th>
-                            <th >@lang('translation.phone')</th>
-                            <th >@lang('translation.CNIE')</th>
-                            <th >@lang('translation.city')</th>
-                            <th >@lang('translation.address')</th>
-                            <th >@lang('translation.DOB')</th>
-                            <th >@lang('translation.Status')</th>
+                            <th >@lang('translation.user')</th>
+                            <th >@lang('translation.email')</th>
                         </tr>
                     </thead>
                 </table>
@@ -55,27 +47,6 @@
 </div>
 <!-- end row -->
 
-<!-- pagination -->
-<div class="row g-0 justify-content-end mb-4" id="pagination-element">
-    <!-- end col -->
-    <div class="col-sm-6">
-        <div class="pagination-block pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
-            <div class="page-item disabled">
-                <a href="javascript:void(0);" class="page-link" id="page-prev">Previous</a>
-            </div>
-            <span id="page-num" class="pagination">
-                <div class="page-item active"><a class="page-link clickPageNumber" href="javascript:void(0);">1</a></div>
-                <div class="page-item"><a class="page-link clickPageNumber" href="javascript:void(0);">2</a></div>
-                <div class="page-item"><a class="page-link clickPageNumber" href="javascript:void(0);">3</a></div>
-            </span>
-            <div class="page-item">
-                <a href="javascript:void(0);" class="page-link" id="page-next">Next</a>
-            </div>
-        </div>
-    </div>
-    <!-- end col -->
-</div>
-<!-- end pagination -->
 
 @endsection
 @section('script')
@@ -93,7 +64,7 @@
 
     $(document).ready(function(){
         fill_datatable();
-        function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
+        function fill_datatable(global_filter = '' ,filter_name = '', filter_email = '')
             {
                 var dataTable = $('#users_dt').DataTable({
                     "processing" : true,
@@ -107,15 +78,8 @@
                     data:{
                         "_token": "{{ csrf_token() }}",
                         global_filter:global_filter,
-                        filter_firstname:filter_firstname,
-                        filter_lastname:filter_lastname,
-                        filter_cin:filter_cin,
-                        filter_phone:filter_phone,
-                        filter_address:filter_address,
-                        filter_city:filter_city,
-                        filter_service:filter_service,
-                        filter_plans:filter_plans,
-                        gymId:gymId
+                        filter_name:filter_name,
+                        filter_email:filter_email
                     }
                     }
                 });
