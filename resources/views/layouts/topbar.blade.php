@@ -136,7 +136,7 @@
                                 height="20">
                         @break
                         @case('ar')
-                            <img src="{{ URL::asset('/assets/images/flags/ar.svg') }}" class="rounded" alt="Header Language"
+                            <img src="{{ URL::asset('/assets/images/flags/ma.svg') }}" class="rounded" alt="Header Language"
                                 height="20">
                         @break
                         @default
@@ -162,7 +162,7 @@
                           <!-- item-->
                           <a href="{{ url('index/ar') }}" class="dropdown-item notify-item language" data-lang="ar"
                             title="Arabic">
-                            <img src="{{ URL::asset('assets/images/flags/ar.svg') }}" alt="user-image" class="me-2 rounded" height="20">
+                            <img src="{{ URL::asset('assets/images/flags/ma.svg') }}" alt="user-image" class="me-2 rounded" height="20">
                             <span class="align-middle">arabic</span>
                         </a>
                     </div>
