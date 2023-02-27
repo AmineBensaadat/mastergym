@@ -232,7 +232,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "services","profile"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
