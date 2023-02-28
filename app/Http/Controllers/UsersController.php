@@ -47,6 +47,8 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
+        dd($user);
+
         return view('users.show', compact('user'));
     }
 
