@@ -25,7 +25,17 @@ php artisan serve
 4 - git commit -m "update 1 your text"
 5 - git push origin devlop          raf
 
+------------------------------------------------
+laravel deplpiment
 
+Autoloader Optimization
+composer install --optimize-autoloader --no-dev
 
-@lang('translation.Results')
+Optimizing Configuration Loading
+php artisan config:cache
 
+Optimizing Route Loading
+php artisan route:cache
+
+Optimizing View Loading
+php artisan view:cache
