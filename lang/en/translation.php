@@ -254,7 +254,7 @@ return [
     "Enter-plan-descreption-her" => "Enter plan descreption her",
     "Service" => "Service",
     "Select_the_service" => "Select the service",
-    "day" => "day",
+    "day" => "date of birth",
     "Enter-day" => "Enter day",
     "amount" => "amount",
     "Enter_amount" => "Enter amount",
@@ -355,6 +355,7 @@ return [
     "Results" => "Results",
     "of" => "of",
     "Statistiques" => "Statistiques",
+    "Report" => "Report",
 
 
 

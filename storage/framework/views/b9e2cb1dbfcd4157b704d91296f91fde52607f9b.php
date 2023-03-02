@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
 <?php echo app('translator')->get('translation.signin'); ?>
 <?php $__env->stopSection(); ?>
@@ -26,7 +25,7 @@
                                 <img src="<?php echo e(URL::asset('assets/images/logo-light.png')); ?>" alt="" height="20">
                             </a>
                         </div>
-                        <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                        <p class="mt-3 fs-15 fw-medium"> Salles de Sport GO GYM </p>
                     </div>
                 </div>
             </div>

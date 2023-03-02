@@ -260,7 +260,7 @@ return [
     "Enter-plan-descreption-her" => "Entrez la description de plan",
     "Service" => "Service",
     "Select_the_service" => "Sélectionnez la service",
-    "day" => "day",
+    "day" => "date de naissance",
     "Enter-day" => "Enter day",
     "amount" => "montante",
     "Enter_amount" => "Entrer le montant",
@@ -364,7 +364,8 @@ return [
     "Results" => "Résultats",
     "of" => "de",
     "Statistiques" => "statistiques",
-    "Report" => "Rapport",
+    "Report" => "Rapport
+    ",
 
 
 

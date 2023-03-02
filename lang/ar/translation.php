@@ -32,7 +32,7 @@ return [
     "Enter-plan-descreption-her" => "أدخل وصف الخطة ",
     "Service" => " خدمة ",
     "Select_the_service" => " اختر الخدمة ",
-    "day" => "التاريخ",
+    "day" => "تاريخ الميلاد",
     "Enter-day" => "أدخل التاريخ",
     "amount" => "المبلغ",
     "Enter_amount" => "أدخل المبلغ",
