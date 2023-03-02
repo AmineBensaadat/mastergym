@@ -73,7 +73,7 @@ class PlansController extends Controller{
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $services = Services::all();
         return view('plans.plans_create', compact('services'));

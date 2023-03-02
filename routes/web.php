@@ -103,7 +103,7 @@ Route::group(['prefix' => 'Invoices', 'middleware' => ['auth']], function () {
 
 //setting
 Route::group(['prefix' => 'setting', 'middleware' => ['auth']], function () {
-    Route::get('/index', [SettingController::class, 'index'])->name('setting');
+    Route::get('/', [SettingController::class, 'index'])->name('setting');
     Route::post('/storeLang', [SettingController::class, 'storeLang'])->name('storeLang');
 });
 
