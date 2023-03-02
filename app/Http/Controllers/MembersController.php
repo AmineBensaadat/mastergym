@@ -224,7 +224,7 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms","profile").'" alt="" class="avatar-xs">
+                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms","profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
