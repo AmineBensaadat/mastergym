@@ -94,5 +94,15 @@ public static function getAllGymByAccountId(){
     return $gyms;
 }
 
+public static function getGymServiceByServiceId($service_id){
+    $gym = DB::table('services_gyms')
+        ->join('gyms', 'gyms.id', '=', 'services_gyms.gym_id')
+        ->select('gyms.*')
+        ->where('services_gyms.service_id', $service_id)
+        ->get()->first();
+    return $gym;
+}
+
+
 }
 

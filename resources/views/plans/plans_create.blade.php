@@ -38,7 +38,7 @@
                                             <select name="service" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
                                                 <option value="">@lang('translation.Select_the_service')</option>
                                                 @foreach ($services as $service)
-                                                    <option value="{{ $service['id'] }}">{{ $service['name'] }}</option>
+                                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

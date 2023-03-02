@@ -26,7 +26,7 @@
                                 <img src="{{ URL::asset('assets/images/logo-light.png')}}" alt="" height="20">
                             </a>
                         </div>
-                        <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                        <p class="mt-3 fs-15 fw-medium">Gogym App</p>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
 
                         <div class="card-body p-4">
                             <div class="text-center mt-2">
-                                <h5 class="text-primary">Welcome Back !</h5>
+                                <h5 class="text-primary">Welcome</h5>
                                 <p class="text-muted">Sign in to continue to Gogym.</p>
                             </div>
                             <div class="p-2 mt-4">

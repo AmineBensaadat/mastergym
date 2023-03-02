@@ -111,10 +111,10 @@
                     <a href="javascript:void(0);" class="text-success"><i class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load More </a>
                 </div> -->
             </div>
-            <div class="py-4 mt-4 text-center" id="noresult" style =  "@if($count > 0) display: none @endif" >
+            {{-- <div class="py-4 mt-4 text-center" id="noresult" style =  "@if($count > 0) display: none @endif" >
                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:72px;height:72px"></lord-icon>
                 <h5 class="mt-4">@lang('translation.Sorry!-No-Result-Found')</h5>
-            </div>
+            </div> --}}
             <!-- Modal -->
             <div class="modal fade" id="addmemberModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
