@@ -39,9 +39,7 @@ class MembersRepository
                 'plans.plan_name as plan_name')
                 ->where('members.account_id',  '=', $user->account_id);
         
-        if($request->session()->has('selected_gym')){
-            $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-        }elseif($user->default_gym_id){
+        if($user->default_gym_id){
             $query->where('members.gym_id',  '=', $user->default_gym_id);
         }
 
@@ -146,9 +144,7 @@ class MembersRepository
                 $query->whereMonth('members.created_at',  '=',  now()->format('m') );
         $query->whereYear('members.created_at',  '=',  now()->format('Y'));
         
-        if($request->session()->has('selected_gym')){
-            $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-        }elseif($user->default_gym_id){
+        if($user->default_gym_id){
             $query->where('members.gym_id',  '=', $user->default_gym_id);
         }
 
@@ -238,9 +234,6 @@ class MembersRepository
             ->select('members.*');
 
             $query->where('members.account_id',  '=', $user->account_id);
-            if($request->session()->has('selected_gym')){
-                $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-            }
             if($user->default_gym_id){
                 $query->where('members.gym_id',  '=', $user->default_gym_id);
             }
@@ -266,6 +259,7 @@ class MembersRepository
             ->select(
                 'members.*',
                 'gyms.name as gym_name',
+                'gyms.id as gym_id',
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
@@ -273,9 +267,7 @@ class MembersRepository
                 ->where('members.account_id',  '=', $user->account_id);
                 $query->where('invoices.amount_pending',  '>', 0);
         
-        if($request->session()->has('selected_gym')){
-            $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-        }elseif($user->default_gym_id){
+        if($user->default_gym_id){
             $query->where('members.gym_id',  '=', $user->default_gym_id);
         }
 
@@ -378,12 +370,9 @@ class MembersRepository
                 ->where('members.account_id',  '=', $user->account_id);
                 $query->where('subscriptions.end_date',  '<', date('Y-m-d'));
         
-        if($request->session()->has('selected_gym')){
-            $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-        }elseif($user->default_gym_id){
+        if($user->default_gym_id){
             $query->where('members.gym_id',  '=', $user->default_gym_id);
         }
-
         if(isset($request['filter_firstname']) && $request['filter_firstname'] != '')
         {
         $query->where('firstname',  'like', '%'.$request['filter_firstname'].'%');
@@ -494,9 +483,6 @@ class MembersRepository
                         break;
                 }
             $query->where('members.account_id',  '=', $user->account_id);
-            if($request->session()->has('selected_gym')){
-                $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-            }
             if($user->default_gym_id){
                 $query->where('members.gym_id',  '=', $user->default_gym_id);
             }
@@ -512,9 +498,6 @@ class MembersRepository
             ->select('members.*');
 
             $query->where('members.account_id',  '=', $user->account_id);
-            if($request->session()->has('selected_gym')){
-                $query->where('members.gym_id',  '=', $request->session()->get('selected_gym'));
-            }
             if($user->default_gym_id){
                 $query->where('members.gym_id',  '=', $user->default_gym_id);
             }
@@ -573,7 +556,7 @@ class MembersRepository
              // save gym image in file table
              $files_table= new Files();
              $files_table->name = $fileName;
-             $files_table->entity_name = 'member';
+             $files_table->entity_name = 'members';
              $files_table->ext = $extension;
              $files_table->type = 'profile';
              $files_table->entitiy_id = $member->id;   
@@ -643,6 +626,11 @@ class MembersRepository
              $file->move($destinationPath,$fileName);
  
          }
+    }
+
+    public function deleteMember($member_id){
+        $deleted = Members::where('id', $member_id)->delete();
+        return $deleted;
     }
 
 }

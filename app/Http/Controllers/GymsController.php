@@ -47,6 +47,36 @@ class GymsController extends Controller{
         return view('gym.create');
     }
 
+       /**
+     * Switch gym.
+     *
+     * @return Response
+     */
+    public function switch(Request $request)
+    {
+        $user_id = auth()->user()->id;
+        $gym_id = $request['gym_id'];
+        $msg  = '';
+
+        try {
+            $this->gymsRepository->updateDefaultGym_id($gym_id, $user_id);
+            $msg  = 'Gym successfully changed';
+            $statu = true;
+           
+
+          } catch (\Exception $e) {
+            $msg  = 'sorry error occurred when changing the gym';
+            $statu = false;
+            //return $e->getMessage();
+          }
+          
+          $output = array(
+            "statu"       =>  $statu,
+            "msg"   =>  $msg
+           );
+          return $output;
+    }
+
     public function store(Request $request)
     {
         // tables

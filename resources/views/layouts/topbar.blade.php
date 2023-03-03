@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
@@ -92,28 +93,15 @@
                                                 {{ $gym->desc }}
                                             </p>
                                         </div>
-                                        @if (session('selected_gym'))
-                                            <div class="ps-2">
-                                                @if ( $gym->id == Session::get('selected_gym'))
-                                                    <span class="badge badge-soft-success badge-border">Active</span>
-                                                @else
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input select_gym" gym_id="{{ $gym->id }}" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
-                                                    </div>
-                                                @endif
-                                               
-                                            </div>
-                                        @else
                                                 <div class="ps-2">
-                                                    @if ( $gym->id == $gym->default_gym_id)
+                                                    @if ( $gym->id == Auth::user()->default_gym_id)
                                                         <span class="badge badge-soft-success badge-border">Active</span>
                                                     @else
                                                         <div class="form-check form-switch">
                                                             <input class="form-check-input select_gym" gym_id="{{ $gym->id }}" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
                                                         </div>
                                                     @endif
-                                            </div>
-                                        @endif
+                                                </div>
                                     </div>
                                 </div>
                                 @endforeach
@@ -196,7 +184,7 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">{{Auth::user()->name}}</h6>
-                        <a class="dropdown-item" href="pages-profile"><i
+                        <a class="dropdown-item" href="{{ route('setting') }}"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
                    

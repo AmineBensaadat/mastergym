@@ -120,6 +120,9 @@ class MembersController extends Controller
             }else{
                 $sub_array[] = '<span class="badge text-bg-dark">Inactive</span>';   
             }
+            $sub_array[] = '<div class="hstack gap-3 flex-wrap">
+            <center><a class="link-danger fs-15 delete_member" member_id="'.$row->id.'"><i class="ri-delete-bin-line"></i></a></center>
+        </div>';
             $data[] = $sub_array;
         }
 
@@ -147,7 +150,7 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.(file_exists($this->filesRepository->getFileByEntityId($row->id, "members","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "members"): 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members","profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
@@ -224,7 +227,7 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms","profile").'" alt="" class="avatar-xs">
+                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms","profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -261,6 +264,7 @@ class MembersController extends Controller
             }else{
                 $sub_array[] = '<span class="badge text-bg-dark">Inactive</span>';   
             }
+            
             $data[] = $sub_array;
         }
 
@@ -383,6 +387,27 @@ class MembersController extends Controller
             $services =  $this->servicesRepository->renderAllServices();
             return view('members.list', compact('members', 'gyms', 'services', 'error'));
          }
+    }
+
+    public function delete(Request $request){
+        $member_id = $request['member_id'];
+        $msg  = '';
+        try {
+            $this->membersRepository->deleteMember($member_id);
+            $msg  = 'Member deleted successfully';
+            $statu = true;
+           
+
+          } catch (\Exception $e) {
+            $msg  = 'sorry error occurred when deleting';
+            $statu = false;
+          }
+          
+          $output = array(
+            "statu"       =>  $statu,
+            "msg"   =>  $msg
+           );
+          return $output;
     }
     
 

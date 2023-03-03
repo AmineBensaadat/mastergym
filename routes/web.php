@@ -30,6 +30,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 
 //Gyms
 Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
+    Route::post('/switch', [GymsController::class, 'switch'])->name('gym_switch');
     Route::get('/all', [GymsController::class, 'index'])->name('gym_list');
     Route::get('/create', [GymsController::class, 'create'])->name('add_gym');
     Route::get('/show/{id}', [GymsController::class, 'show'])->name('show_gym');
@@ -53,6 +54,7 @@ Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
 //Users
 Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::get('/all', [UsersController::class, 'index'])->name('users_list');
+    Route::get('/show/{id}', [UsersController::class, 'index'])->name('user_show');
     Route::post('/store', [UsersController::class, 'store'])->name('user_store');
     Route::get('/create', [UsersController::class, 'create'])->name('users_create');
     Route::post('/getAllUsers', [UsersController::class, 'getAllUsers'])->name('users_list_json');
@@ -61,7 +63,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
 //Members
 Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/all', [MembersController::class, 'index'])->name('members_list');
-    Route::get('/create', [MembersController::class, 'create'])->name('members_create');
+    Route::get('/add', [MembersController::class, 'create'])->name('members_create');
     Route::get('/show/{id}', [MembersController::class, 'show'])->name('members_show');
     Route::get('/edit/{id}', [MembersController::class, 'edit'])->name('members_edit');
     Route::post('/getAllMembers', [MembersController::class, 'getAllMembers'])->name('members_list_json');
@@ -75,6 +77,7 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/save_import', [MembersController::class, 'downloadExceCanva'])->name('download_canva');
     Route::get('/{id}/subscription/add', [SubscriptionsController::class, 'add'])->name('member_subscription_add');
     Route::post('/getStatisticData', [DashboardController::class, 'getStatisticData'])->name('countMembersByStatus');
+    Route::post('/delete', [MembersController::class, 'delete'])->name('delete_member');
     
 });
 
@@ -102,7 +105,7 @@ Route::group(['prefix' => 'Invoices', 'middleware' => ['auth']], function () {
 
 //setting
 Route::group(['prefix' => 'setting', 'middleware' => ['auth']], function () {
-    Route::get('/index', [SettingController::class, 'index'])->name('setting');
+    Route::get('/', [SettingController::class, 'index'])->name('setting');
     Route::post('/storeLang', [SettingController::class, 'storeLang'])->name('storeLang');
 });
 

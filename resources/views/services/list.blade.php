@@ -59,7 +59,7 @@
                                                     <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"> <i class="ri-more-fill fs-17"></i> </a>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a service_gym_id="{{ $service->service_gym_id}}" description="{{ $service->description}}" name="{{ $service->name}}" service_img="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services", "profile") )}}" service_gym="{{ $service->gym_id }}" class="dropdown-item edit-list update_service" service_id="{{ $service->id }}" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
+                                                            <a service_gym_id="{{ Helper::getGymServiceByServiceId($service->id)->id }}" description="{{ $service->description}}" name="{{ $service->name}}" service_img="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services", "profile") )}}" service_gym="{{ Helper::getGymServiceByServiceId($service->id)->id }}" class="dropdown-item edit-list update_service" service_id="{{ $service->id }}" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
                                                         </li>
                                                         {{-- <li>
                                                             <a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="4"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a>
@@ -73,7 +73,7 @@
                                                 <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img id="service_img" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services", "profile") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
                                                     <a class="member-name member-overview" description="{{ $service->description}}" name="{{ $service->name}}" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $service->name}}</h5> </a>
-                                                    <p class="text-muted member-designation mb-0">{{ $service->gym_name }}</p>
+                                                    <p class="text-muted member-designation mb-0">{{ Helper::getGymServiceByServiceId($service->id)->name }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,10 +106,10 @@
                     <a href="javascript:void(0);" class="text-success"><i class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load More </a>
                 </div> -->
             </div>
-            <div class="py-4 mt-4 text-center" id="noresult" style =  "@if($count > 0) display: none @endif" >
+            {{-- <div class="py-4 mt-4 text-center" id="noresult" style =  "@if($count > 0) display: none @endif" >
                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:72px;height:72px"></lord-icon>
                 <h5 class="mt-4">Sorry! No Result Found</h5>
-            </div>
+            </div> --}}
             <!-- Modal -->
             <div class="modal fade" id="addmemberModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">

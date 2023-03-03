@@ -15,7 +15,19 @@ class PlansRepository
         ->where('subscriptions.member_id', $member_id)
         ->get()->first(); 
         return $plans;
-    }  
+    } 
+    
+    public function getAllSPlansByAccount($request){
+        $user= auth()->user();
+        $query = $request['query'];
+        $services = DB::table('plans')  
+            ->select('plans.*')
+            ->where('plans.account_id', $user->account_id)
+            ->where('plans.plan_name','LIKE','%'.$query.'%')
+            ->orWhere('plans.plan_details','LIKE','%'.$query.'%')
+            ->paginate(10); 
+        return $services;
+    }
     
  
 }

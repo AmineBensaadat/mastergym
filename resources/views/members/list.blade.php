@@ -94,6 +94,7 @@
                             <th >@lang('translation.address')</th>
                             <th >@lang('translation.DOB')</th>
                             <th >@lang('translation.Status')</th>
+                            <th >@lang('translation.action')</th>
                         </tr>
                     </thead>
                 </table>
@@ -188,94 +189,143 @@
 <script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
 
-<script src="{{ URL::asset('assets/js/pages/datatables.init.js') }}"></script>
-
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 <script>
-
     $(document).ready(function(){
-        fill_datatable();
-        function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
-            {
-                var dataTable = $('#members_dt').DataTable({
-                    "processing" : true,
-                    "serverSide" : true,
-                    "order" : [],
-                    "scrollX": true,
-                    "searching" : false,
-                    "ajax" : {
-                    url:"../members/getAllMembers",
-                    type:"POST",
-                    data:{
-                        "_token": "{{ csrf_token() }}",
-                        global_filter:global_filter,
-                        filter_firstname:filter_firstname,
-                        filter_lastname:filter_lastname,
-                        filter_cin:filter_cin,
-                        filter_phone:filter_phone,
-                        filter_address:filter_address,
-                        filter_city:filter_city,
-                        filter_service:filter_service,
-                        filter_plans:filter_plans,
-                        gymId:gymId
-                    }
-                    }
-                });
-            }
 
-            $( ".search" ).keyup(function() {
-                var global_filter = $('.search').val();
-                $('#members_dt').DataTable().destroy();
-                fill_datatable(global_filter);
-            });
-
-        $('#filter-btn').click(function(){
-            var filter_firstname = $('#filter_firstname').val();
-            var filter_lastname = $('#filter_lastname').val();
-            var filter_cin = $('#filter_cin').val();
-            var filter_phone = $('#filter_phone').val();
-            var filter_address = $('#filter_address').val();
-            var filter_city = $('#filter_city').val();
-            var gymId = $( "#filter_gym option:selected" ).val();
-            var filter_service = $( "#filter_service option:selected" ).val();
-            var filter_plans = $( "#filter_plans option:selected" ).val();
-
-                $('#members_dt').DataTable().destroy();
-                fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city, filter_service, filter_plans);
-                $('#costum-filter').offcanvas('hide');
-        });
-        $('#reset_fiter').click(function(){
-            $('#costum-filter').offcanvas('hide');
-            $('.filter_input').val('');
-            $('#members_dt').DataTable().destroy();
             fill_datatable();
-        });
-        var html = '';
-
-
-    $("#filter_service").on("change",function(){
-        html = '';
-        var serviceId = $(this).val();
-        $.ajax({
-            url :"/plans/allPlansByService",
-            type:"POST",
-            cache:false,
-            data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
-            success:function(data){
-                if((data.plans).length > 0){
-                    $.each(data.plans, function (key, val) {
-                        html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
-                        $("#filter_plans").html(html);
+            function fill_datatable(global_filter = '' ,filter_firstname = '', filter_lastname = '', gymId = '', filter_cin = '', filter_phone = '', filter_address = '', filter_city= '', filter_service ='', filter_plans = '' )
+                {
+                    var dataTable = $('#members_dt').DataTable({
+                        "processing" : true,
+                        "serverSide" : true,
+                        "order" : [],
+                        "scrollX": true,
+                        "searching" : false,
+                        "ajax" : {
+                        url:"../members/getAllMembers",
+                        type:"POST",
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                            global_filter:global_filter,
+                            filter_firstname:filter_firstname,
+                            filter_lastname:filter_lastname,
+                            filter_cin:filter_cin,
+                            filter_phone:filter_phone,
+                            filter_address:filter_address,
+                            filter_city:filter_city,
+                            filter_service:filter_service,
+                            filter_plans:filter_plans,
+                            gymId:gymId
+                        }
+                        }
                     });
-                }else{
-                    html = '<option value="">Select plans</option>';
-                    $("#filter_plans").html(html);
-
-
                 }
+
+                $( ".search" ).keyup(function() {
+                    var global_filter = $('.search').val();
+                    $('#members_dt').DataTable().destroy();
+                    fill_datatable(global_filter);
+                });
+
+            $('#filter-btn').click(function(){
+                var filter_firstname = $('#filter_firstname').val();
+                var filter_lastname = $('#filter_lastname').val();
+                var filter_cin = $('#filter_cin').val();
+                var filter_phone = $('#filter_phone').val();
+                var filter_address = $('#filter_address').val();
+                var filter_city = $('#filter_city').val();
+                var gymId = $( "#filter_gym option:selected" ).val();
+                var filter_service = $( "#filter_service option:selected" ).val();
+                var filter_plans = $( "#filter_plans option:selected" ).val();
+
+                    $('#members_dt').DataTable().destroy();
+                    fill_datatable($('.search').val(),filter_firstname, filter_lastname, gymId, filter_cin, filter_phone, filter_address, filter_city, filter_service, filter_plans);
+                    $('#costum-filter').offcanvas('hide');
+            });
+            $('#reset_fiter').click(function(){
+                $('#costum-filter').offcanvas('hide');
+                $('.filter_input').val('');
+                $('#members_dt').DataTable().destroy();
+                fill_datatable();
+            });
+            
+            var html = '';
+
+        $("#filter_service").on("change",function(){
+            html = '';
+            var serviceId = $(this).val();
+            $.ajax({
+                url :"/plans/allPlansByService",
+                type:"POST",
+                cache:false,
+                data:{serviceId:serviceId, _token: '{{csrf_token()}}'},
+                success:function(data){
+                    if((data.plans).length > 0){
+                        $.each(data.plans, function (key, val) {
+                            html += '<option value="'+val.id+'">'+val.plan_name+'</option>';
+                            $("#filter_plans").html(html);
+                        });
+                    }else{
+                        html = '<option value="">Select plans</option>';
+                        $("#filter_plans").html(html);
+
+
+                    }
+                }
+            });
+        });
+
+        $('#members_dt tbody').on('click', '.delete_member', function() {
+            var member_id = $(this).attr('member_id');
+
+            Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+            cancelButtonClass: 'btn btn-danger w-xs mt-2',
+            confirmButtonText: "Yes, delete it!",
+            buttonsStyling: false,
+            showCloseButton: true
+        }).then(function (result) {
+            if (result.value) {
+                $.ajax({
+                    url :"/members/delete",
+                    type:"POST",
+                    cache:false,
+                    data:{
+                        member_id:member_id, 
+                        _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success:function(data){
+                        if(data.statu){
+                            Swal.fire({
+                            title: 'Deleted!',
+                            text: 'Your member has been deleted.',
+                            icon: 'success',
+                            confirmButtonClass: 'btn btn-primary w-xs mt-2',
+                            buttonsStyling: false
+                            })
+
+                            $('#members_dt').DataTable().destroy();
+                            fill_datatable();
+                        }else{
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: data,
+                            })
+                        }
+                        
+                }
+            });
+                
             }
         });
+        });
     });
-    });
+
 </script>
 @endsection

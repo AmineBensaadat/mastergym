@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
@@ -93,28 +94,15 @@
 
                                             </p>
                                         </div>
-                                        <?php if(session('selected_gym')): ?>
-                                            <div class="ps-2">
-                                                <?php if( $gym->id == Session::get('selected_gym')): ?>
-                                                    <span class="badge badge-soft-success badge-border">Active</span>
-                                                <?php else: ?>
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input select_gym" gym_id="<?php echo e($gym->id); ?>" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
-                                                    </div>
-                                                <?php endif; ?>
-                                               
-                                            </div>
-                                        <?php else: ?>
                                                 <div class="ps-2">
-                                                    <?php if( $gym->id == $gym->default_gym_id): ?>
+                                                    <?php if( $gym->id == Auth::user()->default_gym_id): ?>
                                                         <span class="badge badge-soft-success badge-border">Active</span>
                                                     <?php else: ?>
                                                         <div class="form-check form-switch">
                                                             <input class="form-check-input select_gym" gym_id="<?php echo e($gym->id); ?>" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
                                                         </div>
                                                     <?php endif; ?>
-                                            </div>
-                                        <?php endif; ?>
+                                                </div>
                                     </div>
                                 </div>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -197,7 +185,7 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header"><?php echo e(Auth::user()->name); ?></h6>
-                        <a class="dropdown-item" href="pages-profile"><i
+                        <a class="dropdown-item" href="<?php echo e(route('setting')); ?>"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
                    

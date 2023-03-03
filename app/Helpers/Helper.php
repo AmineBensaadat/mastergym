@@ -87,12 +87,21 @@ class Helper
 public static function getAllGymByAccountId(){
     $user = auth()->user();
     $gyms = DB::table('gyms')
-        ->leftjoin('users', 'gyms.id', '=', 'users.default_gym_id')
-        ->select('gyms.*', 'users.default_gym_id' )
+        ->select('gyms.*')
         ->where('gyms.account_id', $user->account_id)
         ->get();
     return $gyms;
 }
+
+public static function getGymServiceByServiceId($service_id){
+    $gym = DB::table('services_gyms')
+        ->join('gyms', 'gyms.id', '=', 'services_gyms.gym_id')
+        ->select('gyms.*')
+        ->where('services_gyms.service_id', $service_id)
+        ->get()->first();
+    return $gym;
+}
+
 
 }
 
