@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
+use App\Models\User;
 use App\Repositories\FilesRepository;
 use Illuminate\Support\Facades\DB;
 
@@ -92,5 +93,15 @@ class GymsRepository
         $query->where('type',  '=', $type);
         $query->where('entity_name',  '=', $entity_name);
         return $query->get();    
+    }
+
+    public function updateDefaultGym_id($gym_id, $user_id){
+        User::where('id', $user_id)
+        ->update(
+            [
+                'default_gym_id' => $gym_id
+            ]
+    );
+
     }
 }

@@ -11,6 +11,8 @@
 <link href="<?php echo e(URL::asset('assets/css/app-rtl.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" />
 <!-- custom Css-->
 <link href="<?php echo e(URL::asset('assets/css/custom-rtl.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" />
+<!-- sweetalert2 Css-->
+<link href="<?php echo e(URL::asset('assets/libs/sweetalert2/sweetalert2.min.css')); ?>" rel="stylesheet" type="text/css" />
 <?php else: ?>
 
 <!-- Layout config Js -->
@@ -23,6 +25,8 @@
 <link href="<?php echo e(URL::asset('assets/css/app.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" />
 <!-- custom Css-->
 <link href="<?php echo e(URL::asset('assets/css/custom.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" />
+<!-- sweetalert2 Css-->
+<link href="<?php echo e(URL::asset('assets/libs/sweetalert2/sweetalert2.min.css')); ?>" rel="stylesheet" type="text/css" />
 
 <?php endif; ?>
 

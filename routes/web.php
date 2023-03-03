@@ -30,6 +30,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 
 //Gyms
 Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
+    Route::post('/switch', [GymsController::class, 'switch'])->name('gym_switch');
     Route::get('/all', [GymsController::class, 'index'])->name('gym_list');
     Route::get('/create', [GymsController::class, 'create'])->name('add_gym');
     Route::get('/show/{id}', [GymsController::class, 'show'])->name('show_gym');
