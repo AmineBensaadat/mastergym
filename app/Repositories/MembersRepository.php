@@ -628,5 +628,10 @@ class MembersRepository
          }
     }
 
+    public function deleteMember($member_id){
+        $deleted = Members::where('id', $member_id)->delete();
+        return $deleted;
+    }
+
 }
 
