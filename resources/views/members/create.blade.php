@@ -377,7 +377,7 @@
         </div>
 
         <div class="text-start mb-3">
-            <button type="submit" class="btn btn-success w-sm">@lang('translation.Submit')</button>
+            <button type="submit" class="btn btn-success w-sm save_member">@lang('translation.Submit')</button>
         </div>
     </div>
     <!-- end row -->
@@ -536,6 +536,32 @@ function countDiscountAmount(price, percentage){
     calcPrice = price - ((price / 100) * percentage);
     return calcPrice;
 }
+
+$('.save_member').click(function(){
+        var timerInterval;
+        Swal.fire({
+            title: 'Save Member',
+            html: 'Member will be save in <strong></strong> seconds.',
+            timer: 5000,
+            timerProgressBar: true,
+            showCloseButton: true,
+            didOpen: function () {
+                Swal.showLoading()
+                timerInterval = setInterval(function () {
+                    var content = Swal.getHtmlContainer()
+                    if (content) {
+                        var b = content.querySelector('b')
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                }, 100)
+            },
+            onClose: function () {
+                clearInterval(timerInterval)
+            }
+        })
+    });
 
 </script>
 
