@@ -25,7 +25,7 @@
                                 <img src="<?php echo e(URL::asset('assets/images/logo-light.png')); ?>" alt="" height="20">
                             </a>
                         </div>
-                        <p class="mt-3 fs-15 fw-medium large"> GO GYM </p>
+                        <p class="mt-3 fs-15 fw-medium "> GO GYM </p>
                     </div>
                 </div>
             </div>

@@ -357,6 +357,10 @@ return [
     "Statistiques" => "Statistiques",
     "Report" => "Report",
 
+    "renew" => "RENEW",
+    "action" => "action",
+
+
 
 
 ];
