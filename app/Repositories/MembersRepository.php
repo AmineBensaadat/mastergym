@@ -28,7 +28,7 @@ class MembersRepository
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
-            ->join('gyms', 'members.gym_id', '=', 'gyms.id')
+            ->join('gyms', 'members.gym_id', '=', 'gyms.id')->groupBy('members.id')
             ->select(
                 'members.*',
                 'gyms.name as gym_name',
@@ -130,7 +130,7 @@ class MembersRepository
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
-            ->join('gyms', 'members.gym_id', '=', 'gyms.id')
+            ->join('gyms', 'members.gym_id', '=', 'gyms.id')->groupBy('members.id')
             ->select(
                 'members.*',
                 'gyms.name as gym_name',
@@ -231,7 +231,7 @@ class MembersRepository
         $data = array();
         $user = auth()->user();
         $query = DB::table('members')
-            ->select('members.*');
+            ->select('members.*')->groupBy('members.id');
 
             $query->where('members.account_id',  '=', $user->account_id);
             if($user->default_gym_id){
@@ -239,7 +239,7 @@ class MembersRepository
             }
 
             $query->whereMonth('members.created_at',  '=',  now()->format('m') );
-        $query->whereYear('members.created_at',  '=',  now()->format('Y'));
+            $query->whereYear('members.created_at',  '=',  now()->format('Y'));
             
         $data = $query->get();
         return $data->count();
@@ -263,7 +263,7 @@ class MembersRepository
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
-                'plans.plan_name as plan_name')
+                'plans.plan_name as plan_name')->groupBy('members.id')
                 ->where('members.account_id',  '=', $user->account_id);
                 $query->where('invoices.amount_pending',  '>', 0);
         
@@ -338,8 +338,6 @@ class MembersRepository
             $query->orderBy($column[0], "DESC");
         }
 
-        
-
         $data[ "result"]  = $query->get();
         if($_POST["length"] != -1)
         {
@@ -359,7 +357,7 @@ class MembersRepository
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
             ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
-            ->join('invoices', 'members.id', '=', 'invoices.member_id')
+            ->join('invoices', 'members.id', '=', 'invoices.member_id')->groupBy('members.id')
             ->select(
                 'members.*',
                 'gyms.name as gym_name',
@@ -469,7 +467,7 @@ class MembersRepository
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
-                'plans.plan_name as plan_name');
+                'plans.plan_name as plan_name')->groupBy('members.id');
             switch ($status) {
                     case 'expired':
                         $query->where('subscriptions.end_date',  '<', date('Y-m-d'));
