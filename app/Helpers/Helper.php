@@ -58,8 +58,23 @@ class Helper
         ->join('subscriptions', 'members.id', '=', 'subscriptions.member_id');
         $query->where('members.account_id',  '=', $user->account_id);
         $query->where('subscriptions.plan_id',  '=', $plan_id);
-            $data = $query->get();
-            return $data->count();
+        $data = $query->get();
+        return $data->count();
+    }
+
+    public static function countSubscriptionsPendingPayment($member_id){
+        $data = array();
+        $query = DB::table('invoices')->select('invoices.*', DB::raw('SUM(amount_pending) AS sum_amount_pending'));
+        $query->where('invoices.member_id',  '=', $member_id);
+        $query->where('invoices.amount_pending',  '>', 0);
+
+       
+        $data = [
+            'total_subscription' => ($query->get())->count(),
+            'result' => $query->get()
+        ];
+
+        return $data;
     }
     
 

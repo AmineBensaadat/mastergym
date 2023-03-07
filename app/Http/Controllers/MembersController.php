@@ -509,7 +509,7 @@ class MembersController extends Controller
            
             // update member in member table
             $this->membersRepository->updateMember($request);
-            return redirect()->route('members_edit', [
+            return redirect()->route('members_show', [
                 'id' => $request['member_id']
             ]);
     }
