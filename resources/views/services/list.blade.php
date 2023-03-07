@@ -32,7 +32,7 @@
                             <li><a class="dropdown-item" href="#">Last Month</a></li>
                             <li><a class="dropdown-item" href="#">Last Year</a></li>
                         </ul>
-                        <button class="btn btn-success addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> Add Service</button>
+                        <button class="btn btn-success addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> @lang('translation.add') @lang('translation.Service')</button>
                     </div>
                 </div>
             <!--end col-->
@@ -190,8 +190,8 @@
                                             <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                             @enderror
                                         </div>
-                    
-                                        
+
+
 
                                         <div class="mb-4">
                                             <label for="description" class="form-label">@lang('translation.description')</label>
@@ -297,8 +297,8 @@
                                             <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                             @enderror
                                         </div>
-                    
-                                        
+
+
 
                                         <div class="mb-4">
                                             <label for="descriptionUpdate" class="form-label">@lang('translation.description')</label>
@@ -351,7 +351,7 @@
                             <p class="text-muted profile-designation" id="view_description"></p>
                         </div>
                         <div class="hstack gap-2 justify-content-center mt-4">
-              
+
                         </div>
                     </div>
                     <div class="row g-0 text-center">
@@ -434,7 +434,7 @@
         $('.update_service').click(function(){
             var service_id = $(this).attr("service_id");
             var service_gym_id = $(this).attr("service_gym_id");
-            
+
             var service_name = $(this).attr("name");
             $('.serviceNameUpdate').attr("value", service_name);
 
@@ -446,13 +446,13 @@
 
             var service_img = $(this).attr("service_img");
             $('.service_img_update').attr("src", service_img);
-            
-            
-            
+
+
+
             $('#service_id_hidden_input').attr("value", service_id);
             $('#service_gym_id_hidden_input').attr("value", service_gym_id);
-            
+
         });
-       
+
 </script>
 @endsection

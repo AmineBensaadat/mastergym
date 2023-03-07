@@ -2,8 +2,8 @@
 @section('title') @lang('translation.team') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
-@slot('title') Invoices @endslot
+@slot('li_1') @lang('translation.menu') @endslot
+@slot('title') @lang('translation.invoices') @endslot
 @endcomponent
 
 <!--datatable css-->
@@ -91,7 +91,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
                                     <img class="image avatar-xs rounded-circle" alt="" src="{{URL::asset('assets/images/members/'.Helper::getImageByEntityId($invoice->member_id, "members", "profile") )}}">
-                                    
+
                                     </div>
                                     <div class="flex-grow-1 ms-2 name">
 

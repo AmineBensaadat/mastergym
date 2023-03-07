@@ -364,8 +364,11 @@ return [
     "Results" => "Résultats",
     "of" => "de",
     "Statistiques" => "statistiques",
-    "Report" => "Rapport
-    ",
+    "Report" => "Rapport",
+
+    "renew" => "RENOUVELER",
+    "action" => "action",
+
 
 
 

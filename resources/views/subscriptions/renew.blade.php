@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Subscription @endslot
+@slot('li_1') @lang('translation.subscriptions')  @endslot
 @slot('title') @lang('translation.renew') @endslot
 @endcomponent
 
@@ -94,8 +94,8 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="choices-amount-received" class="form-label">@lang('translation.Amount Received')</label>
-                                <input disabled type="number" class="form-control form-control-icon" name="amount-received" id="amount-received" value="{{ old('amount-received') }}"  placeholder="@lang('translation.entrer the') @lang('translation.Amount Received')">
+                                <label for="choices-amount-received" class="form-label">@lang('translation.Amount-Received')</label>
+                                <input disabled type="number" class="form-control form-control-icon" name="amount-received" id="amount-received" value="{{ old('amount-received') }}"  placeholder="@lang('translation.entrer the') @lang('translation.Amount-Received')">
                                 @error('amount-received')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                 @enderror
@@ -115,7 +115,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="amount-pending-input">@lang('translation.Amount Pending')</label>
+                                <label class="form-label" for="amount-pending-input">@lang('translation.amount-pending')</label>
 
                                 <div class="form-icon">
                                     <input disabled type="number" class="form-control" name="amount-pending" id="amount-pending" value="{{ old('amount-pending') }}" placeholder="@lang('translation.entrer the') @lang('translation.amount-pending')" >
@@ -127,7 +127,7 @@
                           </div>
                           <div class="col-sm">
                             <div class="mb-3">
-                                <label class="form-label" for="discount-amount-input">@lang('translation.discount amount')</label>
+                                <label class="form-label" for="discount-amount-input">@lang('translation.discount-amount')</label>
                                 <input readonly type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
                                 @error('discount-amount')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
@@ -155,7 +155,7 @@
                         <div class="row">
                             <div class="col-sm">
                                 <label class="form-label" for="payment-comment">@lang('translation.payment-comment')</label>
-                                <textarea disabled name="payment-comment" class="form-control" id="payment-comment" rows="3" placeholder="@lang('translation.Enter-payment-comment-her')"></textarea>
+                                <textarea disabled name="payment-comment" class="form-control" id="payment-comment" rows="3" placeholder="@lang('translation.payment-comment')"></textarea>
                             </div>
                         </div>
                     </div>

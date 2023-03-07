@@ -27,10 +27,6 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        //$request->session()->put('selected_gym', '5');
-        //session(['selected_gym' => 2]);
-        //$request->session()->forget('selected_gym');
-
         $user = auth()->user();
         $curtentUser = $this->userRepository->getCurrentUser();
         $expired_members =  $this->membersRepository->countMembersByStatus('expired', $request);

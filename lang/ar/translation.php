@@ -153,6 +153,9 @@ return [
     "Statistiques" => " إحصائيات ",
     "Report" => " تقرير ",
 
+    "renew" => " تجديد ",
+    "action" => " حذف ",
+
 
 
 
