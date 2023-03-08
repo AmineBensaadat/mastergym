@@ -70,7 +70,8 @@ class SubscriptionsController extends Controller
                 [
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
-                    'amount-received' => 'required_unless:subscription-price.*,'
+                    'amount-received' => 'required_unless:subscription-price.*,',
+                    
                 ],
                 [
                     'start_date' => __('require'),
@@ -103,11 +104,14 @@ class SubscriptionsController extends Controller
                 [
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
-                    'amount-received' => 'required_unless:subscription-price.*,'
+                    'amount-received' => 'required_unless:subscription-price.*,',
+                    'amount-pending' => 'required',
                 ],
                 [
                     'start_date' => __('require'),
                     'end_date' => __('require'),
+                    'amount-pending' => __('require'),
+                    
                 ],
             );
              // save subscription

@@ -25,6 +25,7 @@
             <div class="col">
                 <div class="p-2">
                     <h3 class="text-white mb-1">{{ $member->lastname." ".$member->firstname }}</h3>
+                    <input id="member_id" type="hidden" class="form-control" value="{{ $member->id }}">
                     {{-- <p class="text-white-75">Owner & Founder</p> --}}
                     <div class="hstack text-white-50 gap-1">
                         <div class="me-2"><i
@@ -607,6 +608,7 @@
                     $('#pending_paiment_dt').DataTable().ajax.reload();
 
             });
+            var member_id = $("#member_id").val();
 
              var dataTablePendingPaimentMembers = $('#pending_paiment_dt').DataTable({
                         "processing" : true,
@@ -631,7 +633,8 @@
                             filter_city:'',
                             filter_service:'',
                             filter_plans:'',
-                            gymId:''
+                            gymId:'',
+                            member_id: member_id
                         }
                         }
                     });

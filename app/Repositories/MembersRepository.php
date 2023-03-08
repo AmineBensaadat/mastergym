@@ -400,6 +400,11 @@ class MembersRepository
         $query->where('members.address',  'like', '%'.$request['filter_address'].'%');
         }
 
+        if(isset($request['member_id']) && $request['member_id'] != '')
+        {
+        $query->where('members.id',  '=', $request['member_id']);
+        }
+
         if(isset($request['filter_city']) && $request['filter_city'] != '')
         {
         $query->where('members.city',  'like', '%'.$request['filter_city'].'%');
@@ -572,6 +577,11 @@ class MembersRepository
                 'services.name as service_name',
                 'plans.id as plan_id',
                 'plans.plan_name as plan_name');
+            
+            if(isset($request['member_id']) && $request['member_id'] != '')
+            {
+                $query->where('members.id',  '=', $request['member_id']);
+            }
                 
             switch ($status) {
                     case 'all_members':
@@ -582,6 +592,9 @@ class MembersRepository
                         $query->groupBy('members.id');
                         break;
                     case 'pending_paiment':
+                        $query->where('invoices.amount_pending',  '>', 0);
+                        break;
+                    case 'pending_paiment_of_user':
                         $query->where('invoices.amount_pending',  '>', 0);
                         break;
                     case 'monthlyJoined':

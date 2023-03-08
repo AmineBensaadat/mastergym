@@ -276,7 +276,7 @@ class MembersController extends Controller
     public function getPendingPaimentByMember(Request $request)
     {
         $result = $this->membersRepository->getPendingPaimentByMember($request);
-        $recordsTotal = $this->membersRepository->countMembersByStatus('pending_paiment', $request);
+        $recordsTotal = $this->membersRepository->countMembersByStatus('pending_paiment_of_user', $request);
         $url = url('/assets/images/');
         $data = array();
         foreach($result["all_result"] as $row)

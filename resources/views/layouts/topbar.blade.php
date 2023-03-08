@@ -90,7 +90,8 @@
                                                 <a href="{{ route('show_gym', ['id' => $gym->id ]) }}" class="text-reset">{{ $gym->name }}</a>
                                             </h6>
                                             <p class="mb-0 fs-12 text-muted">
-                                                {{ $gym->desc }}
+                                                {!! Str::words($gym->desc, 15, ' ...') !!}
+
                                             </p>
                                         </div>
                                                 <div class="ps-2">
