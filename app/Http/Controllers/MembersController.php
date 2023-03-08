@@ -273,6 +273,54 @@ class MembersController extends Controller
         return json_encode($output) ;
     }
 
+    public function getPendingPaimentByMember(Request $request)
+    {
+        $result = $this->membersRepository->getPendingPaimentByMember($request);
+        $recordsTotal = $this->membersRepository->countMembersByStatus('pending_paiment', $request);
+        $url = url('/assets/images/');
+        $data = array();
+        foreach($result["all_result"] as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0">
+                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
+                </div>
+                <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
+            </div>';
+            $sub_array[] = '
+            <center><h5 class="text-danger fs-14 mb-0"> <i class="ri-hand-coin-line fs-13 align-middle"></i> '.$row->amount_pending. ' DH </h5></center>';
+            if($row->service_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
+
+           
+                $sub_array[] = '<center><button type="button" class="btn btn-soft-success waves-effect waves-light pay_bill">Pay</button></center>';   
+         
+            
+            $data[] = $sub_array;
+        }
+
+        $number_filter_row = count($result["result"]);
+        $output = array(
+            "draw"       =>  intval($request["draw"]),
+            "recordsTotal"   =>  $recordsTotal ,
+            "recordsFiltered"  => $number_filter_row,
+            "data"       =>  $data
+           );
+
+        return json_encode($output) ;
+    }
+
     public function getExpireMembers(Request $request)
     {
         $result = $this->membersRepository->getExpireMembers($request);

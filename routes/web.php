@@ -69,6 +69,7 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::post('/getAllMembers', [MembersController::class, 'getAllMembers'])->name('members_list_json');
     Route::post('/getMonthlyJoiningsMembers', [MembersController::class, 'getMonthlyJoiningsMembers'])->name('Monthly_JoiningsMembers_list_json');
     Route::post('/getPendingPaimentMembers', [MembersController::class, 'getPendingPaimentMembers'])->name('Pending_PaimentMembers_list_json');
+    Route::post('/getPendingPaimentByMember', [MembersController::class, 'getPendingPaimentByMember'])->name('Pending_Paiment_by_Member_list_json');
     Route::post('/getExpireMembers', [MembersController::class, 'getExpireMembers'])->name('Expire_Members_list_json');
     Route::post('/store', [MembersController::class, 'store'])->name('members_store');
     Route::post('/update', [MembersController::class, 'update'])->name('members_update');

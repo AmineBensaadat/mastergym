@@ -3,6 +3,9 @@
     @lang('translation.member')
 @endsection
 @section('css')
+<link href="{{ URL::asset('assets/libs/jsvectormap/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/css/dataTables.bootstrap5.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/css/buttons.dataTables.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ URL::asset('assets/libs/swiper/swiper.min.css') }}">
 @endsection
 @section('content')
@@ -81,7 +84,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item pending_paiment_tab">
                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#Pending-Payments" role="tab">
                                 <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span
                                     class="d-none d-md-inline-block">@lang('translation.Pending-Payments')</span>
@@ -507,194 +510,33 @@
                             <div class="col-xl-8">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">My Currencies</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Top Sellers</h4>
                                         <div class="flex-shrink-0">
-                                            <button class="btn btn-soft-primary btn-sm">24H</button>
-                                        </div>
-                                        <div class="flex-shrink-0 ms-2">
                                             <div class="dropdown card-header-dropdown">
-                                                <a class="btn btn-soft-primary btn-sm" role="button" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Get Report<i class="mdi mdi-chevron-down align-middle ms-1"></i>
+                                                <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="text-muted">Report<i class="mdi mdi-chevron-down ms-1"></i></span>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-end">
+                                                <div class="dropdown-menu dropdown-menu-end" style="">
                                                     <a class="dropdown-item" href="#">Download Report</a>
                                                     <a class="dropdown-item" href="#">Export</a>
                                                     <a class="dropdown-item" href="#">Import</a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- end card header -->
+                                    </div>
                                     <div class="card-body">
-                                        <div class="table-responsive table-card">
-                                            <table class="table table-hover table-borderless table-centered align-middle table-nowrap mb-0">
-                                                <thead class="text-muted bg-soft-light">
-                                                    <tr>
-                                                        <th>Coin Name</th>
-                                                        <th>Price</th>
-                                                        <th>24h Change</th>
-                                                        <th>Total Balance</th>
-                                                        <th>Total Coin</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead><!-- end thead -->
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="me-2">
-                                                                    <img src="assets/images/svg/crypto-icons/btc.svg" alt="" class="avatar-xxs">
-                                                                </div>
-                                                                <div>
-                                                                    <h6 class="fs-14 mb-0">Bitcoin</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>$48,568.025</td>
-                                                        <td>
-                                                            <h6 class="text-success fs-13 mb-0"><i class="mdi mdi-trending-up align-middle me-1"></i>5.26 </h6>
-                                                        </td>
-                                                        <td>$53,914.025</td>
-                                                        <td>1.25634801</td>
-                                                        <td><a href="apps-crypto-buy-sell.html" class="btn btn-sm btn-soft-secondary">Trade</a></td>
-                                                    </tr><!-- end -->
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="me-2">
-                                                                    <img src="assets/images/svg/crypto-icons/ltc.svg" alt="" class="avatar-xxs">
-                                                                </div>
-                                                                <div>
-                                                                    <h6 class="fs-14 mb-0">Litecoin</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>$87,142.027</td>
-                                                        <td>
-                                                            <h6 class="text-danger fs-13 mb-0"><i class="mdi mdi-trending-down align-middle me-1"></i>3.07 </h6>
-                                                        </td>
-                                                        <td>$75,854.127</td>
-                                                        <td>2.85472161</td>
-                                                           <td><a href="apps-crypto-buy-sell.html" class="btn btn-sm btn-soft-secondary">Trade</a></td>
-                                                    </tr><!-- end -->
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="me-2">
-                                                                    <img src="assets/images/svg/crypto-icons/eth.svg" alt="" class="avatar-xxs">
-                                                                </div>
-                                                                <div>
-                                                                    <h6 class="fs-14 mb-0">Eathereum</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>$33,847.961</td>
-                                                        <td>
-                                                          <h6 class="text-success fs-13 mb-0"><i class="mdi mdi-trending-up align-middle me-1"></i>7.13 </h6>
-                                                        </td>
-                                                        <td>$44,152.185</td>
-                                                        <td>1.45612347</td>
-                                                          <td><a href="apps-crypto-buy-sell.html" class="btn btn-sm btn-soft-secondary">Trade</a></td>
-                                                    </tr><!-- end -->
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="me-2">
-                                                                    <img src="assets/images/svg/crypto-icons/bnb.svg" alt="" class="avatar-xxs">
-                                                                </div>
-                                                                <div>
-                                                                    <h6 class="fs-14 mb-0">Binance</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>$73,654.421</td>
-                                                        <td>
-                                                            <h6 class="text-success fs-13 mb-0"><i class="mdi mdi-trending-up align-middle me-1"></i>0.97</h6>
-                                                        </td>
-                                                        <td>$48,367.125</td>
-                                                        <td>0.35734601</td>
-                                                        <td><a href="apps-crypto-buy-sell.html" class="btn btn-sm btn-soft-secondary">Trade</a></td>
-                                                    </tr><!-- end -->
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="me-2">
-                                                                    <img src="assets/images/svg/crypto-icons/usdt.svg" alt="" class="avatar-xxs">
-                                                                </div>
-                                                                <div>
-                                                                    <h6 class="fs-14 mb-0">Tether</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>$66,742.077</td>
-                                                        <td>
-                                                            <h6 class="text-danger fs-13 mb-0"><i class="mdi mdi-trending-down align-middle me-1"></i>1.08 </h6>
-                                                        </td>
-                                                        <td>$53,487.083</td>
-                                                        <td>3.62912570</td>
-                                                        <td><a href="apps-crypto-buy-sell.html" class="btn btn-sm btn-soft-secondary">Trade</a></td>
-                                                    </tr><!-- end -->
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="me-2">
-                                                                    <img src="assets/images/svg/crypto-icons/dash.svg" alt="" class="avatar-xxs">
-                                                                </div>
-                                                                <div>
-                                                                    <h6 class="fs-14 mb-0">Dash</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>$34,736.209</td>
-                                                        <td>
-                                                            <h6 class="text-success fs-13 mb-0"><i class="mdi mdi-trending-up align-middle me-1"></i>4.52 </h6>
-                                                        </td>
-                                                        <td>$15,203.347</td>
-                                                        <td>1.85412740</td>
-                                                        <td><a href="apps-crypto-buy-sell.html" class="btn btn-sm btn-soft-secondary">Trade</a></td>
-                                                    </tr><!-- end -->
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="me-2">
-                                                                    <img src="assets/images/svg/crypto-icons/neo.svg" alt="" class="avatar-xxs">
-                                                                </div>
-                                                                <div>
-                                                                    <h6 class="fs-14 mb-0">Neo</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>$56,357.313</td>
-                                                        <td>
-                                                            <h6 class="text-danger fs-13 mb-0"><i class="mdi mdi-trending-down align-middle me-1"></i>2.87 </h6>
-                                                        </td>
-                                                        <td>$61,843.173</td>
-                                                        <td>1.87732061</td>
-                                                        <td><a href="apps-crypto-buy-sell.html" class="btn btn-sm btn-soft-secondary">Trade</a></td>
-                                                    </tr><!-- end -->
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="me-2">
-                                                                    <img src="assets/images/svg/crypto-icons/doge.svg" alt="" class="avatar-xxs">
-                                                                </div>
-                                                                <div>
-                                                                    <h6 class="fs-14 mb-0">Dogecoin</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>$62,357.649</td>
-                                                        <td>
-                                                            <h6 class="text-success fs-13 mb-0"><i class="mdi mdi-trending-up align-middle me-1"></i>3.45 </h6>
-                                                        </td>
-                                                        <td>$54,843.173</td>
-                                                        <td>0.95632087</td>
-                                                        <td><a href="apps-crypto-buy-sell.html" class="btn btn-sm btn-soft-secondary">Trade</a></td>
-                                                    </tr><!-- end -->
-                                                </tbody><!-- end tbody -->
-                                            </table><!-- end table -->
-                                        </div><!-- end tbody -->
-                                    </div><!-- end cardbody -->
-                                </div><!-- end card -->
+                                        <table id="pending_paiment_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th >@lang('translation.member')</th>
+                                                    <th >@lang('translation.Pending-Payments')</th>
+                                                    <th >@lang('translation.services')</th>
+                                                    <th >@lang('translation.action')</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
                             </div><!-- end col -->
     
                             <div class="col-xl-4">
@@ -748,8 +590,56 @@
     <!--end row-->
 @endsection
 @section('script')
+    <script src="{{ URL::asset('/assets/js/jquery-3.6.0.min.js') }}" crossorigin="anonymous"></script>
+
+    <script src="{{ URL::asset('/assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('/assets/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ URL::asset('/assets/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ URL::asset('/assets/js/buttons.html5.min.js') }}"></script>
     <script src="{{ URL::asset('assets/libs/swiper/swiper.min.js') }}"></script>
 
     <script src="{{ URL::asset('assets/js/pages/profile.init.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $( ".pending_paiment_tab" ).click(function() {
+                
+                    $('#pending_paiment_dt').DataTable().ajax.reload();
+
+            });
+
+             var dataTablePendingPaimentMembers = $('#pending_paiment_dt').DataTable({
+                        "processing" : true,
+                        "fixedHeader":true,
+                        "bLengthChange": false,
+                        "serverSide" : true,
+                        "order" : [],
+                        "autoWidth":true,
+                        "scrollX": true,
+                        "searching" : false,
+                        "ajax" : {
+                        url:"../../members/getPendingPaimentByMember",
+                        type:"POST",
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                            global_filter:'',
+                            filter_firstname:'',
+                            filter_lastname:'',
+                            filter_cin:'',
+                            filter_phone:'',
+                            filter_address:'',
+                            filter_city:'',
+                            filter_service:'',
+                            filter_plans:'',
+                            gymId:''
+                        }
+                        }
+                    });
+
+            $('#pending_paiment_dt tbody').on( 'click', '.pay_bill', function () {
+                    alert( "Handler for .click() called." );
+            } );
+
+        });
+    </script>
 @endsection
