@@ -479,7 +479,7 @@
                                             </div>
                                             <div class="flex-grow-1 ms-3">
                                                 <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> @lang('translation.subscriptions')  </p>
-                                                <h4 class=" mb-0"><span class="counter-value" data-target="{{ (Helper::countSubscriptionsPendingPayment($member->id))['total_subscription'] }}"></span></h4>
+                                                <h4 class=" mb-0"><span class="counter-value" data-target="{{ (Helper::countSubscriptionsPendingPayment($member->id)) }}"></span></h4>
                                             </div>
                                         </div>
                                     </div><!-- end card body -->
@@ -495,11 +495,8 @@
                                                 </span>
                                             </div>
                                             <div class="flex-grow-1 ms-3">
-                                                <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Change</p>
-                                                <h4 class=" mb-0">$<span class="counter-value" data-target="19523.25">19,523.25</span></h4>
-                                            </div>
-                                            <div class="flex-shrink-0 align-self-end">
-                                                <span class="badge badge-soft-success"><i class="ri-arrow-up-s-fill align-middle me-1"></i>3.67 %<span> </span></span>
+                                                <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> @lang('translation.total-amount-pending')</p>
+                                                <h4 class=" mb-0"><span class="counter-value" data-target="{{ (Helper::countTotalPendingPayment($member->id)) }}"></span> DH</h4>
                                             </div>
                                         </div>
                                     </div><!-- end card body -->

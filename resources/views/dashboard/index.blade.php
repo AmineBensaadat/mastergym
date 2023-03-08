@@ -157,10 +157,9 @@
                                 <thead>
                                     <tr>
                                         <th >@lang('translation.member')</th>
-                                        <th >@lang('translation.gym')</th>
+                                        <th >@lang('translation.Pending-Payments')</th>
                                         <th >@lang('translation.services')</th>
                                         <th >@lang('translation.plans')</th>
-                                        <th >@lang('translation.Joined-at')</th>
                                     </tr>
                                 </thead>
                             </table>

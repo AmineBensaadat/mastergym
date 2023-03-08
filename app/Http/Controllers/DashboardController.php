@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $expired_members =  $this->membersRepository->countMembersByStatus('expired', $request);
         $pending_paiment =  $this->membersRepository->countMembersByStatus('pending_paiment', $request);
         $monthlyJoined =  $this->membersRepository->countMembersByStatus('monthlyJoined', $request);
-        $allMembers =  $this->membersRepository->countMembersByStatus('', $request);
+        $allMembers =  $this->membersRepository->countMembersByStatus('all_members', $request);
         return view('dashboard.index', compact('curtentUser', 'expired_members',  'pending_paiment', 'monthlyJoined', 'allMembers'));
     }
 

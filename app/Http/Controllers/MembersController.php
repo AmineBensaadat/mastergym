@@ -225,12 +225,7 @@ class MembersController extends Controller
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
-            <div class="d-flex align-items-center">            
-                <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms","profile").'" alt="" class="avatar-xs">
-                </div>
-                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
-            </div>';
+            <center><h5 class="text-danger fs-14 mb-0"> <i class="ri-hand-coin-line fs-13 align-middle"></i> '.$row->amount_pending. ' DH </h5></center>';
             if($row->service_id){
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
@@ -258,7 +253,6 @@ class MembersController extends Controller
             $sub_array[] = $row->cin;
             $sub_array[] = $row->city;
             $sub_array[] = $row->address;
-            $sub_array[] = $row->DOB;
             if($row->status == 1){
                 $sub_array[] = '<span class="badge text-bg-success">Active</span>';
             }else{

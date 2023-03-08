@@ -263,7 +263,8 @@ class MembersRepository
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
-                'plans.plan_name as plan_name')->groupBy('members.id')
+                'plans.plan_name as plan_name',
+                'invoices.amount_pending')
                 ->where('members.account_id',  '=', $user->account_id);
                 $query->where('invoices.amount_pending',  '>', 0);
         
@@ -467,10 +468,15 @@ class MembersRepository
                 'services.id as service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
-                'plans.plan_name as plan_name')->groupBy('members.id');
+                'plans.plan_name as plan_name');
+                
             switch ($status) {
+                    case 'all_members':
+                        $query->groupBy('members.id');
+                        break;
                     case 'expired':
                         $query->where('subscriptions.end_date',  '<', date('Y-m-d'));
+                        $query->groupBy('members.id');
                         break;
                     case 'pending_paiment':
                         $query->where('invoices.amount_pending',  '>', 0);
@@ -478,6 +484,7 @@ class MembersRepository
                     case 'monthlyJoined':
                         $query->whereMonth('members.created_at',  '=',  now()->format('m') );
                         $query->whereYear('members.created_at',  '=',  now()->format('Y'));
+                        $query->groupBy('members.id');
                         break;
                 }
             $query->where('members.account_id',  '=', $user->account_id);

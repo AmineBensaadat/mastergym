@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Invoices;
 use App\Models\Members;
 use App\Repositories\FilesRepository;
 use App\Repositories\ServicesRepository;
@@ -63,24 +64,23 @@ class Helper
     }
 
     public static function countSubscriptionsPendingPayment($member_id){
-        $data = array();
-        $query = DB::table('invoices')->select('invoices.*', DB::raw('SUM(amount_pending) AS sum_amount_pending'));
+        $query = DB::table('invoices')->select('invoices.*');
         $query->where('invoices.member_id',  '=', $member_id);
         $query->where('invoices.amount_pending',  '>', 0);
 
-       
-        $data = [
-            'total_subscription' => ($query->get())->count(),
-            'result' => $query->get()
-        ];
+        return ($query->get())->count();
+    }
 
-        return $data;
+    public static function countTotalPendingPayment($member_id){
+        $amount = Invoices::where('member_id', $member_id)->sum('amount_pending');
+
+        return $amount;
     }
     
 
     public static function countAllPlansByService($service_id){
 
-        $data = array();
+      $data = array();
       $user = auth()->user();
       $query = DB::table('plans')->select('plans.*');
       $query->where('plans.service_id',  '=', $service_id);
