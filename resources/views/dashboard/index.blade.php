@@ -15,6 +15,7 @@
 }
 </style>
 <link href="{{ URL::asset('assets/libs/jsvectormap/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/libs/swiper/swiper.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/dataTables.bootstrap5.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/buttons.dataTables.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 @endsection
@@ -334,15 +335,40 @@
 
             $( "#pending_paiment_tab" ).click(function() {
                 if (!$.fn.DataTable.isDataTable( '#pending_paiment_dt' ) ) {
-                    $('#example').DataTable().ajax.reload();
-
+                    var dataTablePendingPaimentMembers = $('#pending_paiment_dt').DataTable({
+                        "processing" : true,
+                        "fixedHeader":true,
+                        "bLengthChange": false,
+                        "serverSide" : true,
+                        "order" : [],
+                        "autoWidth":true,
+                        "scrollX": true,
+                        "searching" : false,
+                        "ajax" : {
+                        url:"../members/getPendingPaimentMembers",
+                        type:"POST",
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                            global_filter:'',
+                            filter_firstname:'',
+                            filter_lastname:'',
+                            filter_cin:'',
+                            filter_phone:'',
+                            filter_address:'',
+                            filter_city:'',
+                            filter_service:'',
+                            filter_plans:'',
+                            gymId:''
+                        }
+                        }
+                    });
                 }
 
             });
             //expire_members_dt
             $( "#expire_members_tab" ).click(function() {
                 if (!$.fn.DataTable.isDataTable( '#expire_members_dt' ) ) {
-                    var dataTableexpireMembers = $('#expire_members_dt').DataTable({
+                    var dataTablePendingPaimentMembers = $('#expire_members_dt').DataTable({
                         "processing" : true,
                         "fixedHeader":true,
                         "bLengthChange": false,
