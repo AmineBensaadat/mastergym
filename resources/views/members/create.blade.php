@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="dob-input">@lang('translation.day')</label>
+                                    <label class="form-label" for="dob-input">@lang('translation.DOB')</label>
 
                                     <div class="form-icon">
                                         <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
