@@ -646,7 +646,7 @@
 
                 $("#amount_input").val(amount_pending);
 
-                console.log(member_id, amount_pending, invoice_id)
+                console.log(member_id, amount_pending, invoice_id);
                     //alert( "Handler for .click() called." );
             } );
 

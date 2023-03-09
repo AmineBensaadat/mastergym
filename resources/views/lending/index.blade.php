@@ -56,12 +56,12 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-sm-10">
                         <div class="text-center">
-                            <h1 class="display-4 fw-medium mb-4 lh-base text-white">Discover Digital Art & Collect <span class="text-success">Gogym</span></h1>
-                            <p class="lead text-white-50 lh-base mb-4 pb-2">Can artwork be NFT? NFTs (non-fungible tokens) are one-of-a-kind digital assets. Given they're digital in nature, can physical works of art be turned into NFTs?.</p>
+                            <h1 class="display-4 fw-medium mb-4 lh-base text-white"><span class="text-success">Gogym</span> Built to make your life easier </h1>
+                            <p class="lead text-white-50 lh-base mb-4 pb-2">Gogym gym management software is for gyms and health clubs of all sizes and stages. Helping you have happier members, healthy business growth, and more time for you to do the things that you love</p>
 
                             <div class="hstack gap-2 justify-content-center">
-                                <a href="apps-nft-create" class="btn btn-primary">Create Own <i class="ri-arrow-right-line align-middle ms-1"></i></a>
-                                <a href="apps-nft-explore" class="btn btn-danger">Explore Now <i class="ri-arrow-right-line align-middle ms-1"></i></a>
+                                <a href="/register" class="btn btn-primary">Create Own <i class="ri-arrow-right-line align-middle ms-1"></i></a>
+                                <a href="/login" class="btn btn-danger">Login<i class="ri-arrow-right-line align-middle ms-1"></i></a>
                             </div>
                         </div>
                     </div><!--end col-->
