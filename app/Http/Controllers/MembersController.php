@@ -369,7 +369,12 @@ class MembersController extends Controller
             }
 
            
-                $sub_array[] = '<center><button type="button" class="btn btn-soft-success waves-effect waves-light pay_bill">Pay</button></center>';   
+                $sub_array[] = '<center>
+                            <button type="button" 
+                            member_id="'.$row->id. '" 
+                            amount_pending="'.$row->amount_pending. '"
+                            invoice_id = "'.$row->invoice_id. '"
+                             class="btn btn-soft-success waves-effect waves-light pay_bill">Pay</button></center>';   
          
             
             $data[] = $sub_array;

@@ -367,7 +367,9 @@ class MembersRepository
                 'services.name as service_name',
                 'plans.id as plan_id',
                 'plans.plan_name as plan_name',
-                'invoices.amount_pending')
+                'invoices.amount_pending',
+                'invoices.id as invoice_id'
+                )
                 ->where('members.account_id',  '=', $user->account_id);
                 $query->where('invoices.amount_pending',  '>', 0);
         
