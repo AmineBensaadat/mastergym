@@ -65,6 +65,7 @@ return [
     "Add-Subscription" => " إضافة اشتراك ",
     "settings"=>"إعدادات",
     "members" => "المنخرطون",
+    "all-members" => "كل الأعضاء",
     "users" => "المستخدمين",
     "plans" => "الخطط",
 

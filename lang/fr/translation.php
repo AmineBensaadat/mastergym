@@ -228,6 +228,7 @@ return [
     "plan" => "plan",
     "users" => "utilisateurs",
     "members" => "members",
+    "all-members" =>  "tous les membres",
     "subscriptions" => "abonnements",
 
     // anass translation
@@ -353,7 +354,7 @@ return [
     "Members-joines-per-month" => "Membres rejoints par mois",
     "Pending-Payments" => "Paiements en attente",
     "Member-Pending-Payments" => "Paiements en attente des membres",
-    "Expired" => "Expiré",
+    "Expired" => "Expirés",
     "Subscription-Expire" => "Expiration de l'abonnement",
 
     "Export" => "Exporter",

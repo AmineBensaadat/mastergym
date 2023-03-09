@@ -220,6 +220,7 @@ return [
     "subscriptions" => "Subscriptions",
     "Add-Subscription" => "Add Subscription",
     "members" => "members",
+    "all-members" =>  "all members",
     "users" => "users",
     "plans" => "plans",
 

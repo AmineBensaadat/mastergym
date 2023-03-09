@@ -46,7 +46,13 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?php echo e(route('members_list')); ?>">
-                                     <?php echo app('translator')->get('translation.members'); ?>
+                                     <?php echo app('translator')->get('translation.all-members'); ?>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('members_expired')); ?>">
+                                    <span data-key="t-layouts"><?php echo app('translator')->get('translation.Expired'); ?></span> <span class="badge badge-pill bg-danger" data-key="t-hot"><?php echo e(Helper::countMembersByStatus('expired')); ?></span>
                                 </a>
                             </li>
 
