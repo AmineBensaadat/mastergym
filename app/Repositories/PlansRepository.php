@@ -24,7 +24,6 @@ class PlansRepository
             ->select('plans.*')
             ->where('plans.account_id', $user->account_id)
             ->where('plans.plan_name','LIKE','%'.$query.'%')
-            ->Where('plans.plan_details','LIKE','%'.$query.'%')
             ->paginate(10); 
         return $plans;
     }
