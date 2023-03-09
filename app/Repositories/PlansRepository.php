@@ -20,13 +20,13 @@ class PlansRepository
     public function getAllSPlansByAccount($request){
         $user= auth()->user();
         $query = $request['query'];
-        $services = DB::table('plans')  
+        $plans = DB::table('plans')  
             ->select('plans.*')
             ->where('plans.account_id', $user->account_id)
             ->where('plans.plan_name','LIKE','%'.$query.'%')
-            ->orWhere('plans.plan_details','LIKE','%'.$query.'%')
+            ->Where('plans.plan_details','LIKE','%'.$query.'%')
             ->paginate(10); 
-        return $services;
+        return $plans;
     }
     
  
