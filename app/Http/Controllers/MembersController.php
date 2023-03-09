@@ -184,11 +184,7 @@ class MembersController extends Controller
             }else{
                 $sub_array[] = '';   
             }
-            $sub_array[] = $row->phone;
-            $sub_array[] = $row->cin;
-            $sub_array[] = $row->city;
-            $sub_array[] = $row->address;
-            $sub_array[] = $row->DOB;
+            $sub_array[] = date('d-m-Y', strtotime($row->created_at));
             if($row->status == 1){
                 $sub_array[] = '<span class="badge text-bg-success">Active</span>';
             }else{
@@ -367,11 +363,7 @@ class MembersController extends Controller
             }else{
                 $sub_array[] = '';   
             }
-            $sub_array[] = $row->phone;
-            $sub_array[] = $row->cin;
-            $sub_array[] = $row->city;
-            $sub_array[] = $row->address;
-            $sub_array[] = $row->DOB;
+            $sub_array[] = '<span class="badge badge-soft-danger fs-11"><i class="ri-time-line align-bottom"></i> '.$row->expired_at.'</span>';
             if($row->status == 1){
                 $sub_array[] = '<span class="badge text-bg-success">Active</span>';
             }else{
@@ -603,6 +595,18 @@ class MembersController extends Controller
         // return $file;
         $myfile = public_path('assets/canvas/canva_member_import.xlsx');
         return response()->download($myfile);
+    }
+
+    public function getStatus($statu){
+        switch ($statu) {
+            case 'expired':
+                $result = '<span class="badge badge-soft-danger text-uppercase">Expired</span>';
+                break;
+            default:
+                $result = '';
+
+        }
+        return $result;
     }
 
 }

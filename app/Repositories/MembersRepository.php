@@ -469,6 +469,7 @@ class MembersRepository
             ->join('invoices', 'members.id', '=', 'invoices.member_id')->groupBy('members.id')
             ->select(
                 'members.*',
+                'subscriptions.end_date as expired_at',
                 'gyms.name as gym_name',
                 'services.id as service_id',
                 'services.name as service_name',
@@ -572,6 +573,7 @@ class MembersRepository
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
                 'members.*',
+                'subscriptions.end_date as expired_at',
                 'gyms.name as gym_name',
                 'services.id as service_id',
                 'services.name as service_name',

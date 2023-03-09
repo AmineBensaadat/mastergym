@@ -172,7 +172,7 @@
                                         <th >@lang('translation.gym')</th>
                                         <th >@lang('translation.services')</th>
                                         <th >@lang('translation.plans')</th>
-                                        <th >@lang('translation.Joined-at')</th>
+                                        <th >@lang('translation.expired-at')</th>
                                     </tr>
                                 </thead>
                             </table>
