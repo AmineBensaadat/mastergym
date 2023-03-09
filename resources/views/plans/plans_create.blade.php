@@ -53,7 +53,7 @@
 
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label class="form-label" for="plan-day-input">@lang('translation.day')</label>
+                                <label class="form-label" for="plan-day-input">@lang('translation.nbr-day')</label>
                                 <input type="number" class="form-control" name="plan_day" id="plan-day-input" value="" placeholder="@lang('translation.Enter-day')" required>
                                 @error('plan_day')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>

@@ -33,6 +33,7 @@ return [
     "Service" => " خدمة ",
     "Select_the_service" => " اختر الخدمة ",
     "day" => "تاريخ الميلاد",
+    "nbr-day" => "عدد الأيام",
     "Enter-day" => "أدخل التاريخ",
     "amount" => "المبلغ",
     "Enter_amount" => "أدخل المبلغ",
