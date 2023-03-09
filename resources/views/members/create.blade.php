@@ -235,7 +235,7 @@
                                     <label class="form-label" for="amount-pending-input">@lang('translation.amount-pending')</label>
 
                                     <div class="form-icon">
-                                        <input disabled type="number" class="form-control" name="amount-pending" id="amount-pending" value="{{ old('amount-pending') }}" placeholder="@lang('translation.entrer the') @lang('translation.amount-pending')" >
+                                        <input disabled type="number" class="form-control" name="amount-pending" id="amount-pending" value="{{ old('amount-pending') ? old('amount-pending') : 0 }}" placeholder="@lang('translation.entrer the') @lang('translation.amount-pending')" >
                                     </div>
                                     @error('amount-pending')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
