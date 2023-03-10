@@ -17,3 +17,6 @@
 .col-auto .avatar-lg .rounded-circle{
     width: 100%;
 }
+.nft-hero .bg-overlay {
+    opacity: 0 !important;
+}
