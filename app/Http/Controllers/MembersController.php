@@ -64,6 +64,14 @@ class MembersController extends Controller
         return view('members.list', compact('gyms', 'services', 'error'));
     }
 
+    public function expiredMembers(){
+         // all gym by user
+         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+         $services =  $this->servicesRepository->renderAllServices();
+         $error = false;
+         return view('members.expired', compact('gyms', 'services', 'error'));
+    }
+
     public function getAllMembers(Request $request)
     {
         $result = $this->membersRepository->getAllMembersByFilters($request);
@@ -137,6 +145,67 @@ class MembersController extends Controller
         return json_encode($output) ;
     }
 
+    public function getAllExpiredMembers(Request $request)
+    {
+        $result = $this->membersRepository->getExpireMembers($request);
+        $recordsTotal = $this->membersRepository->countMembersByStatus('expired', $request);
+        $url = url('/assets/images/');
+        $data = array();
+        foreach($result["all_result"] as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0">
+                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
+                </div>
+                <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
+            </div>';
+            $sub_array[] = '
+            <div class="d-flex align-items-center">            
+                <div class="flex-shrink-0 ">
+                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms", "profile").'" alt="" class="avatar-xs">
+                </div>
+                <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
+            </div>';
+            if($row->service_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
+
+            if($row->plan_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//plans/'.$this->filesRepository->getFileByEntityId($row->plan_id, "plans", "profile") .'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
+            $sub_array[] = '<span class="badge badge-soft-danger fs-11"><i class="ri-time-line align-bottom"></i> '.$row->expired_at.'</span>';
+            $data[] = $sub_array;
+        }
+
+        $number_filter_row = count($result["result"]);
+        $output = array(
+            "draw"       =>  intval($request["draw"]),
+            "recordsTotal"   =>  $recordsTotal ,
+            "recordsFiltered"  => $number_filter_row,
+            "data"       =>  $data
+           );
+
+        return json_encode($output) ;
+    }
+
     public function getMonthlyJoiningsMembers(Request $request)
     {
         $result = $this->membersRepository->getMonthlyJoiningsMembers($request);
@@ -184,11 +253,7 @@ class MembersController extends Controller
             }else{
                 $sub_array[] = '';   
             }
-            $sub_array[] = $row->phone;
-            $sub_array[] = $row->cin;
-            $sub_array[] = $row->city;
-            $sub_array[] = $row->address;
-            $sub_array[] = $row->DOB;
+            $sub_array[] = date('d-m-Y', strtotime($row->created_at));
             if($row->status == 1){
                 $sub_array[] = '<span class="badge text-bg-success">Active</span>';
             }else{
@@ -304,7 +369,12 @@ class MembersController extends Controller
             }
 
            
-                $sub_array[] = '<center><button type="button" class="btn btn-soft-success waves-effect waves-light pay_bill">Pay</button></center>';   
+                $sub_array[] = '<center>
+                            <button type="button" 
+                            member_id="'.$row->id. '" 
+                            amount_pending="'.$row->amount_pending. '"
+                            invoice_id = "'.$row->invoice_id. '"
+                             class="btn btn-soft-success waves-effect waves-light pay_bill">Pay</button></center>';   
          
             
             $data[] = $sub_array;
@@ -333,14 +403,14 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.(file_exists('assets/images/members/'.$row->member_img) &&  $row->member_img ? $row->member_img : 'default.jpg').'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.(file_exists('assets/images/gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "gyms"): 'default.png').'" alt="" class="avatar-xs">
+                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms", "profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -348,7 +418,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services", "profile")) ? $this->filesRepository->getFileByEntityId($row->id, "services"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->id, "services", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -360,18 +430,14 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans", "profile")) ? $this->filesRepository->getFileByEntityId($row->id, "plans"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$url.'//plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
             }else{
                 $sub_array[] = '';   
             }
-            $sub_array[] = $row->phone;
-            $sub_array[] = $row->cin;
-            $sub_array[] = $row->city;
-            $sub_array[] = $row->address;
-            $sub_array[] = $row->DOB;
+            $sub_array[] = '<span class="badge badge-soft-danger fs-11"><i class="ri-time-line align-bottom"></i> '.$row->expired_at.'</span>';
             if($row->status == 1){
                 $sub_array[] = '<span class="badge text-bg-success">Active</span>';
             }else{
@@ -603,6 +669,18 @@ class MembersController extends Controller
         // return $file;
         $myfile = public_path('assets/canvas/canva_member_import.xlsx');
         return response()->download($myfile);
+    }
+
+    public function getStatus($statu){
+        switch ($statu) {
+            case 'expired':
+                $result = '<span class="badge badge-soft-danger text-uppercase">Expired</span>';
+                break;
+            default:
+                $result = '';
+
+        }
+        return $result;
     }
 
 }

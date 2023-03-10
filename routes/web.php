@@ -63,10 +63,12 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
 //Members
 Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/all', [MembersController::class, 'index'])->name('members_list');
+    Route::get('/expired', [MembersController::class, 'expiredMembers'])->name('members_expired');
     Route::get('/add', [MembersController::class, 'create'])->name('members_create');
     Route::get('/show/{id}', [MembersController::class, 'show'])->name('members_show');
     Route::get('/edit/{id}', [MembersController::class, 'edit'])->name('members_edit');
     Route::post('/getAllMembers', [MembersController::class, 'getAllMembers'])->name('members_list_json');
+    Route::post('/getAllExpiredMembers', [MembersController::class, 'getAllExpiredMembers'])->name('expired_members_list_json');
     Route::post('/getMonthlyJoiningsMembers', [MembersController::class, 'getMonthlyJoiningsMembers'])->name('Monthly_JoiningsMembers_list_json');
     Route::post('/getPendingPaimentMembers', [MembersController::class, 'getPendingPaimentMembers'])->name('Pending_PaimentMembers_list_json');
     Route::post('/getPendingPaimentByMember', [MembersController::class, 'getPendingPaimentByMember'])->name('Pending_Paiment_by_Member_list_json');

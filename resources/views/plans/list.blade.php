@@ -84,14 +84,11 @@
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="row text-muted text-center">
-                                                <div class="col-6 border-end border-end-dashed">
+                                                <div class="col-12">
                                                     <h5 class="mb-1 projects-num">{{ Helper::countAllMembersByPlan($plan->id)  }}</h5>
                                                     <p class="text-muted mb-0">Members</p>
                                                 </div>
-                                                <div class="col-6">
-                                                    <h5 class="mb-1 tasks-num">{{ Helper::countAllPlansByService($plan->service_id)  }}</h5>
-                                                    <p class="text-muted mb-0">Service</p>
-                                                </div>
+                                            
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col">

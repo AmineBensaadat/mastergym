@@ -558,7 +558,7 @@
                                                     <div>
                                                         <div class="input-group mb-3">
                                                             <label class="input-group-text">Amount</label>
-                                                            <input type="text" class="form-control" placeholder="0">
+                                                            <input type="text" id="amount_input" class="form-control" placeholder="0">
                                                         </div>
                                                     </div>
                                                     <div class="mt-3 pt-2">
@@ -640,8 +640,26 @@
                     });
 
             $('#pending_paiment_dt tbody').on( 'click', '.pay_bill', function () {
-                    alert( "Handler for .click() called." );
+                var member_id = $(this).attr('member_id');
+                var amount_pending = $(this).attr('amount_pending');
+                var invoice_id = $(this).attr('invoice_id');
+
+                $("#amount_input").val(amount_pending);
+
+                console.log(member_id, amount_pending, invoice_id);
+                    //alert( "Handler for .click() called." );
             } );
+
+            $('#pending_paiment_dt tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                    $(this).removeClass('table-info');
+                } else {
+                    dataTablePendingPaimentMembers.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    $(this).addClass('table-info');
+                }
+            });
 
         });
     </script>

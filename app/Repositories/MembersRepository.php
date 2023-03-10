@@ -367,7 +367,9 @@ class MembersRepository
                 'services.name as service_name',
                 'plans.id as plan_id',
                 'plans.plan_name as plan_name',
-                'invoices.amount_pending')
+                'invoices.amount_pending',
+                'invoices.id as invoice_id'
+                )
                 ->where('members.account_id',  '=', $user->account_id);
                 $query->where('invoices.amount_pending',  '>', 0);
         
@@ -469,6 +471,7 @@ class MembersRepository
             ->join('invoices', 'members.id', '=', 'invoices.member_id')->groupBy('members.id')
             ->select(
                 'members.*',
+                'subscriptions.end_date as expired_at',
                 'gyms.name as gym_name',
                 'services.id as service_id',
                 'services.name as service_name',
@@ -572,6 +575,7 @@ class MembersRepository
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
                 'members.*',
+                'subscriptions.end_date as expired_at',
                 'gyms.name as gym_name',
                 'services.id as service_id',
                 'services.name as service_name',

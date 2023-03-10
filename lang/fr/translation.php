@@ -229,6 +229,7 @@ return [
     "plan" => "plan",
     "users" => "utilisateurs",
     "members" => "members",
+    "all-members" =>  "tous les membres",
     "subscriptions" => "abonnements",
 
     // anass translation
@@ -261,7 +262,8 @@ return [
     "Enter-plan-descreption-her" => "Entrez la description de plan",
     "Service" => "Service",
     "Select_the_service" => "Sélectionnez la service",
-    "day" => "date de naissance",
+    "day" => "jour",
+    "nbr-day" => "Nombre des jours",
     "Enter-day" => "Enter day",
     "amount" => "montante",
     "Enter_amount" => "Entrer le montant",
@@ -354,7 +356,7 @@ return [
     "Members-joines-per-month" => "Membres rejoints par mois",
     "Pending-Payments" => "Paiements en attente",
     "Member-Pending-Payments" => "Paiements en attente des membres",
-    "Expired" => "Expiré",
+    "Expired" => "Expirés",
     "Subscription-Expire" => "Expiration de l'abonnement",
 
     "Export" => "Exporter",
