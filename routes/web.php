@@ -81,6 +81,8 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/{id}/subscription/add', [SubscriptionsController::class, 'add'])->name('member_subscription_add');
     Route::post('/getStatisticData', [DashboardController::class, 'getStatisticData'])->name('countMembersByStatus');
     Route::post('/delete', [MembersController::class, 'delete'])->name('delete_member');
+    Route::post('/updatePendingPayment', [MembersController::class, 'updatePendingPayment'])->name('updatePendingPayment');
+    
     
 });
 

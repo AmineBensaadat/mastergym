@@ -338,6 +338,13 @@ class MembersController extends Controller
         return json_encode($output) ;
     }
 
+    public function updatePendingPayment(Request $request){
+        // update invoice tbale
+        $invoice = $this->invoicesRepository->updateInvoice($request);
+
+        return $invoice;
+    }
+
     public function getPendingPaimentByMember(Request $request)
     {
         $result = $this->membersRepository->getPendingPaimentByMember($request);
@@ -347,13 +354,8 @@ class MembersController extends Controller
         foreach($result["all_result"] as $row)
         {
             $sub_array = array();
-            $sub_array[] = '
-            <div class="d-flex align-items-center">            
-                <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
-                </div>
-                <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
-            </div>';
+            $sub_array[] = $row->invoice_id;  
+            $sub_array[] = $row->amount_pending;  
             $sub_array[] = '
             <center><h5 class="text-danger fs-14 mb-0"> <i class="ri-hand-coin-line fs-13 align-middle"></i> '.$row->amount_pending. ' DH </h5></center>';
             if($row->service_id){
@@ -368,14 +370,17 @@ class MembersController extends Controller
                 $sub_array[] = '';   
             }
 
-           
-                $sub_array[] = '<center>
-                            <button type="button" 
-                            member_id="'.$row->id. '" 
-                            amount_pending="'.$row->amount_pending. '"
-                            invoice_id = "'.$row->invoice_id. '"
-                             class="btn btn-soft-success waves-effect waves-light pay_bill">Pay</button></center>';   
-         
+            if($row->plan_id){
+                $sub_array[] = '
+                <div class="d-flex align-items-center">            
+                    <div class="flex-shrink-0 ">
+                        <img src="'.$url.'//plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans", "profile").'" alt="" class="avatar-xs">
+                    </div>
+                    <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
+                </div>';
+            }else{
+                $sub_array[] = '';   
+            }
             
             $data[] = $sub_array;
         }

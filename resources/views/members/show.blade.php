@@ -511,28 +511,17 @@
                             <div class="col-xl-8">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Top Sellers</h4>
-                                        <div class="flex-shrink-0">
-                                            <div class="dropdown card-header-dropdown">
-                                                <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted">Report<i class="mdi mdi-chevron-down ms-1"></i></span>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end" style="">
-                                                    <a class="dropdown-item" href="#">Download Report</a>
-                                                    <a class="dropdown-item" href="#">Export</a>
-                                                    <a class="dropdown-item" href="#">Import</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <h4 class="card-title mb-0 flex-grow-1"> @lang('translation.total-amount-pending')</h4>
                                     </div>
                                     <div class="card-body">
                                         <table id="pending_paiment_dt" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th >@lang('translation.member')</th>
+                                                    <th >invoice_id</th>
+                                                    <th>amount_pending</th>
                                                     <th >@lang('translation.Pending-Payments')</th>
                                                     <th >@lang('translation.services')</th>
-                                                    <th >@lang('translation.action')</th>
+                                                    <th >@lang('translation.plan')</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -550,7 +539,7 @@
                                             <div class="tab-pane active" id="buy-tab" role="tabpanel">
                                                 <div class="p-3 bg-soft-warning">
                                                     <div class="float-end ms-2">
-                                                        <h6> <span class="text-dark">12,426.07</span> </h6>
+                                                        <h6> <span class="text-dark total_ammount_pending"></span> </h6>
                                                     </div>
                                                     <h6 class="mb-0 text-danger">Total</h6>
                                                 </div>
@@ -558,21 +547,13 @@
                                                     <div>
                                                         <div class="input-group mb-3">
                                                             <label class="input-group-text">Amount</label>
-                                                            <input type="text" id="amount_input" class="form-control" placeholder="0">
+                                                            <input type="hidden" id="amount_input_hidden">
+                                                            <input type="hidden" id="invoice_id_hidden">
+                                                            <input type="number" id="amount_input" class="form-control" placeholder="0">
                                                         </div>
                                                     </div>
                                                     <div class="mt-3 pt-2">
-                                                        <div class="d-flex mb-2">
-                                                            <div class="flex-grow-1">
-                                                                <p class="fs-13 mb-0">Amount received</p>
-                                                            </div>
-                                                            <div class="flex-shrink-0">
-                                                                <h6 class="mb-0">0</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-3 pt-2">
-                                                        <button type="button" class="btn btn-primary w-100">Pay</button>
+                                                        <button type="button" disabled="disabled" id="pay_ammount_pending" class="btn btn-primary w-100">Pay</button>
                                                     </div>
                                                 </div>
                                             </div><!-- end tabpane -->
@@ -611,6 +592,13 @@
             var member_id = $("#member_id").val();
 
              var dataTablePendingPaimentMembers = $('#pending_paiment_dt').DataTable({
+                        'columnDefs' : 
+                            [
+                                { 
+                                    'visible': false, 
+                                    'targets': [0,1] 
+                                }
+                            ],
                         "processing" : true,
                         "fixedHeader":true,
                         "bLengthChange": false,
@@ -639,26 +627,79 @@
                         }
                     });
 
-            $('#pending_paiment_dt tbody').on( 'click', '.pay_bill', function () {
-                var member_id = $(this).attr('member_id');
-                var amount_pending = $(this).attr('amount_pending');
-                var invoice_id = $(this).attr('invoice_id');
-
-                $("#amount_input").val(amount_pending);
-
-                console.log(member_id, amount_pending, invoice_id);
-                    //alert( "Handler for .click() called." );
-            } );
 
             $('#pending_paiment_dt tbody').on('click', 'tr', function () {
+                colomun = dataTablePendingPaimentMembers.row( this ).data();
+                $('#pending_paiment_dt').removeClass("selected");
+                $('#pending_paiment_dt tbody tr').removeClass("table-info");
+                
+                var invoice_id = colomun[0];
+                var amount_pending = colomun[1];
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
                     $(this).removeClass('table-info');
+                    $("#amount_input").val('');
+                    $('#pay_ammount_pending').attr('disabled','disabled');
+                    $('.total_ammount_pending').html('');
+                    
+                    
                 } else {
                     dataTablePendingPaimentMembers.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
                     $(this).addClass('table-info');
+                    $("#amount_input").val(amount_pending);
+                    $("#amount_input_hidden").val(amount_pending);
+                    $("#invoice_id_hidden").val(invoice_id);
+                    $('.total_ammount_pending').html(amount_pending);
+                    $('#pay_ammount_pending').removeAttr('disabled');
                 }
+            });
+
+            $( "#pay_ammount_pending" ).click(function() {
+
+                    Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                    cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                    confirmButtonText: "Yes, update it!",
+                    buttonsStyling: false,
+                    showCloseButton: true
+                    }).then(function (result) {
+                        if (result.value) {
+                            $.ajax({
+                                url :"/members/updatePendingPayment",
+                                type:"POST",
+                                cache:false,
+                                data:{
+                                    member_id:member_id, 
+                                    amount_pending : $("#amount_input").val(),
+                                    invoice_id : $("#invoice_id_hidden").val(),
+                                    _token: $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success:function(data){
+                                    Swal.fire({
+                                        title: 'Updated!',
+                                        text: 'Your payment succfuly added',
+                                        icon: 'success',
+                                        confirmButtonClass: 'btn btn-primary w-xs mt-2',
+                                        buttonsStyling: false
+                                        })
+                                    $('#pending_paiment_dt').DataTable().ajax.reload();
+                                    $("#amount_input").val('');
+                                    $('#pay_ammount_pending').attr('disabled','disabled');
+                                    $('.total_ammount_pending').html('');
+                                    
+                            }
+                        });
+                        }
+                    });
+            });
+
+            $( "#amount_input" ).keyup(function() {
+                $('.total_ammount_pending').html($( this ).val());
             });
 
         });
