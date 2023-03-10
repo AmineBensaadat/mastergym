@@ -42,6 +42,7 @@ return [
     "ico-list"=>"ICO List",
     "kyc-application"=>"KYC Application",
     "invoices"=>"Invoices",
+    "invoice"=>"Invoice",
     "details"=>"Invoice Details",
     "create-invoice"=>"Create Invoice",
     "supprt-tickets"=>"Support Tickets",
@@ -222,7 +223,7 @@ return [
     "members" => "members",
     "users" => "users",
     "plans" => "plans",
-
+    "plan" => "plan",
 
 
 
@@ -268,8 +269,8 @@ return [
     "lastname" => " lastname",
     "entrer the" => " entrer the",
     "CNIE" => " CNIE",
-    "address" => " address ",
-    "phone" => " phone ",
+    "address" => " Address ",
+    "phone" => " Phone ",
     "gender" => " gender",
     "men" => " men",
     "female" => " female",
@@ -308,6 +309,7 @@ return [
 
     // invoices
     'N°' => "N°",
+    "invoice-subscription"=>"subscription invoice",
     "Amount-Received"  => "amount received",
     "received"  => "received",
     "amount-pending"  => "amount pending",
@@ -359,6 +361,8 @@ return [
 
     "renew" => "RENEW",
     "action" => "action",
+    "edit-Profile" => "Edit Profile",
+    "full-name"=>" Full Name",
 
 
 

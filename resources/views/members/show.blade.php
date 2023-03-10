@@ -67,21 +67,21 @@
                         <li class="nav-item">
                             <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
                                 <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span
-                                    class="d-none d-md-inline-block">Overview</span>
+                                    class="d-none d-md-inline-block">@lang('translation.overview')</span>
                             </a>
                         </li>
                         @if($subscription)
                         <li class="nav-item">
                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#plan" role="tab">
                                 <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span
-                                    class="d-none d-md-inline-block">Plan</span>
+                                    class="d-none d-md-inline-block">@lang('translation.plan')</span>
                             </a>
                         </li>
                         @endif
                         <li class="nav-item">
                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#invoices" role="tab">
                                 <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span
-                                    class="d-none d-md-inline-block">Subscription invoices </span>
+                                    class="d-none d-md-inline-block">@lang('translation.invoice-subscription') </span>
                             </a>
                         </li>
 
@@ -93,13 +93,13 @@
                         </li>
                     </ul>
                     <div class="flex-shrink-0">
-                        <a href="{{ route('members_edit', ['id' => $member->id ]) }}" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
+                        <a href="{{ route('members_edit', ['id' => $member->id ]) }}" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> @lang('translation.edit-Profile') </a>
                         @if(!$subscription)
                         <a href="{{ route('member_subscription_add', ['id' => $member->id ]) }}" class="btn btn-primary"><i class="ri-add-circle-line align-bottom"></i> Add subscription</a>
                         @endif
                     </div>
-                    
-                    
+
+
                 </div>
                 <!-- Tab panes -->
                 <div class="tab-content pt-4 text-muted">
@@ -125,24 +125,24 @@
                                             <table class="table table-borderless mb-0">
                                                 <tbody>
                                                     <tr>
-                                                        <th class="ps-0" scope="row">Full Name :</th>
+                                                        <th class="ps-0" scope="row"> @lang('translation.full-name') :</th>
                                                         <td class="text-muted">{{ $member->firstname. " ".$member->lastname }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="ps-0" scope="row">Mobile :</th>
+                                                        <th class="ps-0" scope="row">@lang('translation.phone') :</th>
                                                         <td class="text-muted">{{ $member->phone }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="ps-0" scope="row">E-mail :</th>
+                                                        <th class="ps-0" scope="row">@lang('translation.email') :</th>
                                                         <td class="text-muted">{{ $member->email }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="ps-0" scope="row">Location :</th>
+                                                        <th class="ps-0" scope="row">@lang('translation.address') :</th>
                                                         <td class="text-muted">{{ $member->city }}, {{ $member->address }}
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="ps-0" scope="row">Date od birth</th>
+                                                        <th class="ps-0" scope="row">@lang('translation.day') :</th>
                                                         <td class="text-muted">{{ $member->DOB }}</td>
                                                     </tr>
                                                 </tbody>
@@ -157,7 +157,7 @@
                                     <div class="card-body">
                                         <div class="d-flex align-items-center mb-4">
                                             <div class="flex-grow-1">
-                                                <h5 class="card-title mb-0">Plan</h5>
+                                                <h5 class="card-title mb-0">@lang('translation.plan')</h5>
                                             </div>
 
                                         </div>
@@ -196,7 +196,7 @@
                                                         <th >@lang('translation.rest')</th>
                                                         <th >@lang('translation.payment-mode')</th>
                                                         <th >@lang('translation.additional-fees')</th>
-                                                        <th >@lang('translation.service')</th>
+                                                        <th >@lang('translation.Service')</th>
                                                         <th >@lang('translation.plan')</th>
                                                         <th >@lang('translation.comment')</th>
                                                         <th >@lang('translation.action')</th>
@@ -267,10 +267,10 @@
                                                                     </a>
                                                                 </li>
                                                             </ul>
-                                                                
+
                                                         </td>
                                                     </tr>
-                                                   
+
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -366,7 +366,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4">
-                                    <h5 class="card-title flex-grow-1 mb-0">Invoices</h5>
+                                    <h5 class="card-title flex-grow-1 mb-0">@lang('translation.invoice') </h5>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -383,7 +383,7 @@
                                                         <th >@lang('translation.rest')</th>
                                                         <th >@lang('translation.payment-mode')</th>
                                                         <th >@lang('translation.additional-fees')</th>
-                                                        <th >@lang('translation.service')</th>
+                                                        <th >@lang('translation.Service')</th>
                                                         <th >@lang('translation.plan')</th>
                                                         <th >@lang('translation.comment')</th>
                                                         <th >@lang('translation.action')</th>
@@ -454,15 +454,15 @@
                                                                     </a>
                                                                 </li>
                                                             </ul>
-                                                                
+
                                                         </td>
                                                     </tr>
-                                                   
+
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -499,7 +499,7 @@
                                                 </span>
                                             </div>
                                             <div class="flex-grow-1 ms-3">
-                                                <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> @lang('translation.total-amount-pending')</p>
+                                                <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> @lang('translation.amount-pending')  :</p>
                                                 <h4 class=" mb-0"><span class="counter-value" data-target="{{ (Helper::countTotalPendingPayment($member->id)) }}"></span> DH</h4>
                                             </div>
                                         </div>
@@ -539,7 +539,7 @@
                                     </div>
                                 </div>
                             </div><!-- end col -->
-    
+
                             <div class="col-xl-4">
                                 <div class="card">
                                     <div class="card-header align-items-center border-0 d-flex">
@@ -604,7 +604,7 @@
     <script>
         $(document).ready(function(){
             $( ".pending_paiment_tab" ).click(function() {
-                
+
                     $('#pending_paiment_dt').DataTable().ajax.reload();
 
             });

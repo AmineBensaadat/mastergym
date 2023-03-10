@@ -39,6 +39,7 @@ return [
     "ico-list"=>"Liste des OIC",
     "kyc-application"=>"Demande de connaissance du client",
     "invoices"=>"Factures",
+    "invoice"=>"facture",
     "details"=>"Des détails",
     "create-invoice"=>"Créer une facture",
     "supprt-tickets"=>"Billets d'assistance",
@@ -317,6 +318,7 @@ return [
 
     // invoices
     'N°' => "N°",
+    "invoice-subscription"=>"facture d'abonnement",
     "Amount-Received"  => "Montant reçu",
     "received"  => "Reçu",
     "amount-pending"  => "Montant en attente",
@@ -368,6 +370,8 @@ return [
 
     "renew" => "RENOUVELER",
     "action" => "action",
+    "edit-Profile" => "Editer le profil",
+    "full-name"=>"Nom et Prénom",
 
 
 
