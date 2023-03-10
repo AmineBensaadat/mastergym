@@ -68,6 +68,7 @@ return [
     "all-members" => "كل الأعضاء",
     "users" => "المستخدمين",
     "plans" => "الخطط",
+    "plan" => "خطة",
 
     "pages"=>"صفحة",
     "member" => " منخرط ",
@@ -107,6 +108,8 @@ return [
 
     // invoices
     "invoices"=>"الفواتير",
+    "invoice"=>"الفاتورة",
+    "invoice-subscription"=>" فاتورة الاشتراك ",
     'N°' => "N°",
     "Amount-Received"  => "تم استلام المبلغ",
     "received"  => "الواردة",
@@ -157,6 +160,9 @@ return [
 
     "renew" => " تجديد ",
     "action" => " حذف ",
+    "overview"=>" ملخص ",
+    "edit-Profile" => " تعديل الملف الشخصي ",
+    "full-name"=>" الاسم الكامل ",
 
 
 
