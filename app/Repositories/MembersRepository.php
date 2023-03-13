@@ -15,7 +15,6 @@ class MembersRepository
 
     public function all(){
         $members = DB::table('members')
-            ->select('files.name as img_name','members.*')
             ->get();
         return $members;
     }

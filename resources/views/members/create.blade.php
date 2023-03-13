@@ -145,7 +145,7 @@
                             <div class="row">
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="service-input">@lang('translation.services')</label>
+                                    <label class="form-label" for="services">@lang('translation.services')</label>
                                     <select name="service" id="services" class="form-select" aria-label=".form-select-sm example" required>
                                         <option value="0">@lang('translation.chose')@lang('translation.Service')</option>
                                         @foreach ($services as $service)
@@ -164,7 +164,7 @@
                               </div>
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="service-input">@lang('translation.plans')</label>
+                                    <label class="form-label" for="plans">@lang('translation.plans')</label>
                                     <select name="plans" id="plans" class="form-select" aria-label=".form-select-sm example" required>
                                         <option selected="" value="0">@lang('translation.chose')@lang('translation.plans')</option>
                                     </select>
