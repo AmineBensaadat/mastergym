@@ -42,3 +42,4 @@ php artisan route:cache
 
 Optimizing View Loading
 php artisan view:cache
+------------------------------------
