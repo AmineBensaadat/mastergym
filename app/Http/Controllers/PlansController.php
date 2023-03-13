@@ -127,8 +127,8 @@ class PlansController extends Controller{
 
             // file data 
             $file = $request->file('profile_image') ;
-            $fileName = time().rand(100,999).preg_replace('/\s+/', '', $file->getClientOriginalName());
             $extension = $request->file('profile_image')->extension();
+            $fileName = "profile_image_plan_".$palns->id.'.'.$extension;
 
             // save plan image in file table
             $files_table= new Files();
@@ -191,7 +191,7 @@ class PlansController extends Controller{
        if($file = $request->hasFile('profile_image')) {
            $file = $request->file('profile_image') ;
            $extension = $request->file('profile_image')->extension();
-           $fileName = "profile_image_plan_".$request['service_id'].'.'.$extension;
+           $fileName = "profile_image_plan_".$request['plan_id'].'.'.$extension;
 
 
            if(count($fileExist) > 0){ // update
