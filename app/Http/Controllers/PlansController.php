@@ -219,9 +219,7 @@ class PlansController extends Controller{
 
        }
 
-       return redirect()->route('edit_plan', [
-        'id' => $request['plan_id']
-    ]);
+       return redirect()->route('plans_list');
     }
 
 
