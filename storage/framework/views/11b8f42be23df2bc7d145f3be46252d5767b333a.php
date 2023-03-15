@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
@@ -89,32 +90,20 @@
                                                 <a href="<?php echo e(route('show_gym', ['id' => $gym->id ])); ?>" class="text-reset"><?php echo e($gym->name); ?></a>
                                             </h6>
                                             <p class="mb-0 fs-12 text-muted">
-                                                <?php echo e($gym->desc); ?>
+                                                <?php echo Str::words($gym->desc, 15, ' ...'); ?>
+
 
                                             </p>
                                         </div>
-                                        <?php if(session('selected_gym')): ?>
-                                            <div class="ps-2">
-                                                <?php if( $gym->id == Session::get('selected_gym')): ?>
-                                                    <span class="badge badge-soft-success badge-border">Active</span>
-                                                <?php else: ?>
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input select_gym" gym_id="<?php echo e($gym->id); ?>" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
-                                                    </div>
-                                                <?php endif; ?>
-                                               
-                                            </div>
-                                        <?php else: ?>
                                                 <div class="ps-2">
-                                                    <?php if( $gym->id == $gym->default_gym_id): ?>
+                                                    <?php if( $gym->id == Auth::user()->default_gym_id): ?>
                                                         <span class="badge badge-soft-success badge-border">Active</span>
                                                     <?php else: ?>
                                                         <div class="form-check form-switch">
                                                             <input class="form-check-input select_gym" gym_id="<?php echo e($gym->id); ?>" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
                                                         </div>
                                                     <?php endif; ?>
-                                            </div>
-                                        <?php endif; ?>
+                                                </div>
                                     </div>
                                 </div>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -137,7 +126,7 @@
                                 height="20">
                         <?php break; ?>
                         <?php case ('ar'): ?>
-                            <img src="<?php echo e(URL::asset('/assets/images/flags/ar.svg')); ?>" class="rounded" alt="Header Language"
+                            <img src="<?php echo e(URL::asset('/assets/images/flags/ma.svg')); ?>" class="rounded" alt="Header Language"
                                 height="20">
                         <?php break; ?>
                         <?php default: ?>
@@ -163,7 +152,7 @@
                           <!-- item-->
                           <a href="<?php echo e(url('index/ar')); ?>" class="dropdown-item notify-item language" data-lang="ar"
                             title="Arabic">
-                            <img src="<?php echo e(URL::asset('assets/images/flags/ar.svg')); ?>" alt="user-image" class="me-2 rounded" height="20">
+                            <img src="<?php echo e(URL::asset('assets/images/flags/ma.svg')); ?>" alt="user-image" class="me-2 rounded" height="20">
                             <span class="align-middle">arabic</span>
                         </a>
                     </div>
@@ -186,7 +175,7 @@
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle header-profile-user" src="<?php if(Auth::user()->avatar != ''): ?><?php echo e(URL::asset('images/' . Auth::user()->avatar)); ?><?php else: ?><?php echo e(URL::asset('assets/images/users/avatar-1.jpg')); ?><?php endif; ?>"
+                            <img class="rounded-circle header-profile-user" src="<?php echo e(URL::asset('assets/images/users/'.Helper::getImageByEntityId(Auth::user()->id, "users", "profile") )); ?>"
                                 alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php echo e(Auth::user()->name); ?></span>
@@ -197,7 +186,7 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header"><?php echo e(Auth::user()->name); ?></h6>
-                        <a class="dropdown-item" href="pages-profile"><i
+                        <a class="dropdown-item" href="<?php echo e(route('setting')); ?>"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
                    

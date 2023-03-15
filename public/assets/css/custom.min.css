@@ -7,3 +7,16 @@
     width: 90px !important;
     height: 90px !important;
 }
+
+.data-option-flag-img-name .flag-input{
+    background-repeat: no-repeat !important;
+}
+.page-content{
+    padding: calc(50px + 1.5rem) 0.75rem 60px !important;
+}
+.col-auto .avatar-lg .rounded-circle{
+    width: 100%;
+}
+.nft-hero .bg-overlay {
+    opacity: 0 !important;
+}

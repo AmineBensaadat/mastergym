@@ -5,6 +5,7 @@ use App\Models\Files;
 use App\Models\Plans;
 use App\Models\Services;
 use App\Repositories\FilesRepository;
+use App\Repositories\PlansRepository;
 use App\Repositories\ServicesRepository;
 use App\Rules\IsSelected;
 use Illuminate\Http\Request;
@@ -14,16 +15,18 @@ class PlansController extends Controller{
 
     private $servicesRepository;
     private $filesRepository;
+    private $plansRepository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ServicesRepository $servicesRepository, FilesRepository $filesRepository)
+    public function __construct(ServicesRepository $servicesRepository, FilesRepository $filesRepository, PlansRepository $plansRepository)
     {
         $this->middleware('auth');
         $this->servicesRepository = $servicesRepository;
         $this->filesRepository = $filesRepository;
+        $this->plansRepository = $plansRepository;
     }
 
     public function getPlansBySrvice() {
@@ -51,21 +54,9 @@ class PlansController extends Controller{
      */
     public function index(Request $request)
     {
-        if($request->isMethod('get')){
-            $query = $request['query'];
-            $plans = Plans::select('plans.id','plan_name', 'plan_details', 'plans.service_id')
-                ->where('plan_name','LIKE','%'.$query.'%')
-                ->orWhere('plan_details', 'like', '%'. $query .'%')
-                ->paginate(10);
-            $count = $plans->count();
-            return view('plans.list' , compact('plans', 'count'));
-        }else{
-            $plans = Plans::paginate(10);
-            $count = $plans->count();
-            return redirect()->route('list');
-        }
+        $plans = $this->plansRepository->getAllSPlansByAccount($request);
 
-        return view('plans.list' , compact('plans', 'count'));
+        return view('plans.list' , compact('plans'));
     }
 
     /**
@@ -73,9 +64,9 @@ class PlansController extends Controller{
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $services = Services::all();
+        $services =$this->servicesRepository->getAllServicesByAccount_id();
         return view('plans.plans_create', compact('services'));
     }
 
@@ -107,12 +98,14 @@ class PlansController extends Controller{
                 'plan_day' => 'required',
                 'plan_day' => 'required',
                 'service' => 'required',
+                'plan_amount' => 'required',
             ],
             [
                 'plan_name.required' => __('translation.require_plan_name'),
                 'plan_day.required' => __('translation.this_filed_required'),
                 'profile_image' =>   __('translation.file_not_autorized'),
                 'service.required' =>   __('translation.service_required'),
+                'plan_amount.required' =>   __('translation.plan_amount'),
             ],
         );
 
@@ -134,8 +127,8 @@ class PlansController extends Controller{
 
             // file data 
             $file = $request->file('profile_image') ;
-            $fileName = time().rand(100,999).preg_replace('/\s+/', '', $file->getClientOriginalName());
             $extension = $request->file('profile_image')->extension();
+            $fileName = "profile_image_plan_".$palns->id.'.'.$extension;
 
             // save plan image in file table
             $files_table= new Files();
@@ -198,7 +191,7 @@ class PlansController extends Controller{
        if($file = $request->hasFile('profile_image')) {
            $file = $request->file('profile_image') ;
            $extension = $request->file('profile_image')->extension();
-           $fileName = "profile_image_plan_".$request['service_id'].'.'.$extension;
+           $fileName = "profile_image_plan_".$request['plan_id'].'.'.$extension;
 
 
            if(count($fileExist) > 0){ // update
@@ -226,9 +219,7 @@ class PlansController extends Controller{
 
        }
 
-       return redirect()->route('edit_plan', [
-        'id' => $request['plan_id']
-    ]);
+       return redirect()->route('plans_list');
     }
 
 

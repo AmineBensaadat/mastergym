@@ -39,6 +39,7 @@ return [
     "ico-list"=>"Liste des OIC",
     "kyc-application"=>"Demande de connaissance du client",
     "invoices"=>"Factures",
+    "invoice"=>"facture",
     "details"=>"Des détails",
     "create-invoice"=>"Créer une facture",
     "supprt-tickets"=>"Billets d'assistance",
@@ -228,6 +229,7 @@ return [
     "plan" => "plan",
     "users" => "utilisateurs",
     "members" => "members",
+    "all-members" =>  "tous les membres",
     "subscriptions" => "abonnements",
 
     // anass translation
@@ -260,7 +262,8 @@ return [
     "Enter-plan-descreption-her" => "Entrez la description de plan",
     "Service" => "Service",
     "Select_the_service" => "Sélectionnez la service",
-    "day" => "day",
+    "day" => "jour",
+    "nbr-day" => "Nombre des jours",
     "Enter-day" => "Enter day",
     "amount" => "montante",
     "Enter_amount" => "Entrer le montant",
@@ -317,6 +320,7 @@ return [
 
     // invoices
     'N°' => "N°",
+    "invoice-subscription"=>"facture d'abonnement",
     "Amount-Received"  => "Montant reçu",
     "received"  => "Reçu",
     "amount-pending"  => "Montant en attente",
@@ -352,7 +356,7 @@ return [
     "Members-joines-per-month" => "Membres rejoints par mois",
     "Pending-Payments" => "Paiements en attente",
     "Member-Pending-Payments" => "Paiements en attente des membres",
-    "Expired" => "Expiré",
+    "Expired" => "Expirés",
     "Subscription-Expire" => "Expiration de l'abonnement",
 
     "Export" => "Exporter",
@@ -365,6 +369,12 @@ return [
     "of" => "de",
     "Statistiques" => "statistiques",
     "Report" => "Rapport",
+
+    "renew" => "RENOUVELER",
+    "action" => "action",
+    "edit-Profile" => "Editer le profil",
+    "full-name"=>"Nom et Prénom",
+
 
 
 

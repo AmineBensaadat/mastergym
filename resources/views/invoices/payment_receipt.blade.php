@@ -26,6 +26,7 @@
         text-align: right;
       }
       #company h3 {
+        margin-top: 30px;
         margin-bottom: 0px;
       }
 
@@ -77,7 +78,7 @@
       }
            
       #invoice h4 {
-       padding-top: -200px;
+       padding-top: -150px;
       }
       
       #invoice .date {
@@ -211,7 +212,6 @@
     <div id="company">
         <h3 class="name">{{ $invoices->gym_name }}</h3>
         <div>{{ $invoices->gym_address }}</div>
-        <div>{{ $invoices->gyms_phone }}</div>
     </div>
     </div>
 </header>
@@ -223,7 +223,7 @@
       </div>
       <div id="invoice">
         <h4>Reçu N° {{ $invoices->id }}</h4>
-        <div class="date">Date de reçue: <b>01/06/2014<b></div>
+        <div class="date">Date de reçue: <b>{{ $invoices->created_at }}<b></div>
       </div>
     </div>
     <table border="0" cellspacing="0" cellpadding="0">

@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
@@ -89,31 +90,19 @@
                                                 <a href="{{ route('show_gym', ['id' => $gym->id ]) }}" class="text-reset">{{ $gym->name }}</a>
                                             </h6>
                                             <p class="mb-0 fs-12 text-muted">
-                                                {{ $gym->desc }}
+                                                {!! Str::words($gym->desc, 15, ' ...') !!}
+
                                             </p>
                                         </div>
-                                        @if (session('selected_gym'))
-                                            <div class="ps-2">
-                                                @if ( $gym->id == Session::get('selected_gym'))
-                                                    <span class="badge badge-soft-success badge-border">Active</span>
-                                                @else
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input select_gym" gym_id="{{ $gym->id }}" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
-                                                    </div>
-                                                @endif
-                                               
-                                            </div>
-                                        @else
                                                 <div class="ps-2">
-                                                    @if ( $gym->id == $gym->default_gym_id)
+                                                    @if ( $gym->id == Auth::user()->default_gym_id)
                                                         <span class="badge badge-soft-success badge-border">Active</span>
                                                     @else
                                                         <div class="form-check form-switch">
                                                             <input class="form-check-input select_gym" gym_id="{{ $gym->id }}" type="checkbox" role="switch" id="flexSwitchCheckDisabled" >
                                                         </div>
                                                     @endif
-                                            </div>
-                                        @endif
+                                                </div>
                                     </div>
                                 </div>
                                 @endforeach
@@ -136,7 +125,7 @@
                                 height="20">
                         @break
                         @case('ar')
-                            <img src="{{ URL::asset('/assets/images/flags/ar.svg') }}" class="rounded" alt="Header Language"
+                            <img src="{{ URL::asset('/assets/images/flags/ma.svg') }}" class="rounded" alt="Header Language"
                                 height="20">
                         @break
                         @default
@@ -162,7 +151,7 @@
                           <!-- item-->
                           <a href="{{ url('index/ar') }}" class="dropdown-item notify-item language" data-lang="ar"
                             title="Arabic">
-                            <img src="{{ URL::asset('assets/images/flags/ar.svg') }}" alt="user-image" class="me-2 rounded" height="20">
+                            <img src="{{ URL::asset('assets/images/flags/ma.svg') }}" alt="user-image" class="me-2 rounded" height="20">
                             <span class="align-middle">arabic</span>
                         </a>
                     </div>
@@ -185,7 +174,7 @@
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle header-profile-user" src="@if (Auth::user()->avatar != ''){{ URL::asset('images/' . Auth::user()->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }}@endif"
+                            <img class="rounded-circle header-profile-user" src="{{URL::asset('assets/images/users/'.Helper::getImageByEntityId(Auth::user()->id, "users", "profile") )}}"
                                 alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{Auth::user()->name}}</span>
@@ -196,7 +185,7 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">{{Auth::user()->name}}</h6>
-                        <a class="dropdown-item" href="pages-profile"><i
+                        <a class="dropdown-item" href="{{ route('setting') }}"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
                    

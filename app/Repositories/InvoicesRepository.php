@@ -113,4 +113,14 @@ class InvoicesRepository
 
     }
 
+    public function updateInvoice($request){
+        $invoice = $page = Invoices::find($request['invoice_id']);
+        $new_amount = $invoice->amount_pending - $request['amount_pending'];
+        Invoices::where('id', $request['invoice_id'])
+        ->update(
+            [
+                'amount_pending' => $new_amount
+            ]
+            );
+        }
 }

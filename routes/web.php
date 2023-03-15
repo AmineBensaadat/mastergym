@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-define('PAGINATION_COUNT', 10);
+//define('PAGINATION_COUNT', 10);
 Auth::routes();
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
@@ -30,6 +30,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 
 //Gyms
 Route::group(['prefix' => 'gym', 'middleware' => ['auth']], function () {
+    Route::post('/switch', [GymsController::class, 'switch'])->name('gym_switch');
     Route::get('/all', [GymsController::class, 'index'])->name('gym_list');
     Route::get('/create', [GymsController::class, 'create'])->name('add_gym');
     Route::get('/show/{id}', [GymsController::class, 'show'])->name('show_gym');
@@ -53,19 +54,24 @@ Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
 //Users
 Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::get('/all', [UsersController::class, 'index'])->name('users_list');
+    Route::get('/show/{id}', [UsersController::class, 'index'])->name('user_show');
     Route::post('/store', [UsersController::class, 'store'])->name('user_store');
     Route::get('/create', [UsersController::class, 'create'])->name('users_create');
+    Route::post('/getAllUsers', [UsersController::class, 'getAllUsers'])->name('users_list_json');
 });
 
 //Members
 Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/all', [MembersController::class, 'index'])->name('members_list');
-    Route::get('/create', [MembersController::class, 'create'])->name('members_create');
+    Route::get('/expired', [MembersController::class, 'expiredMembers'])->name('members_expired');
+    Route::get('/add', [MembersController::class, 'create'])->name('members_create');
     Route::get('/show/{id}', [MembersController::class, 'show'])->name('members_show');
     Route::get('/edit/{id}', [MembersController::class, 'edit'])->name('members_edit');
     Route::post('/getAllMembers', [MembersController::class, 'getAllMembers'])->name('members_list_json');
+    Route::post('/getAllExpiredMembers', [MembersController::class, 'getAllExpiredMembers'])->name('expired_members_list_json');
     Route::post('/getMonthlyJoiningsMembers', [MembersController::class, 'getMonthlyJoiningsMembers'])->name('Monthly_JoiningsMembers_list_json');
     Route::post('/getPendingPaimentMembers', [MembersController::class, 'getPendingPaimentMembers'])->name('Pending_PaimentMembers_list_json');
+    Route::post('/getPendingPaimentByMember', [MembersController::class, 'getPendingPaimentByMember'])->name('Pending_Paiment_by_Member_list_json');
     Route::post('/getExpireMembers', [MembersController::class, 'getExpireMembers'])->name('Expire_Members_list_json');
     Route::post('/store', [MembersController::class, 'store'])->name('members_store');
     Route::post('/update', [MembersController::class, 'update'])->name('members_update');
@@ -74,6 +80,9 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::get('/save_import', [MembersController::class, 'downloadExceCanva'])->name('download_canva');
     Route::get('/{id}/subscription/add', [SubscriptionsController::class, 'add'])->name('member_subscription_add');
     Route::post('/getStatisticData', [DashboardController::class, 'getStatisticData'])->name('countMembersByStatus');
+    Route::post('/delete', [MembersController::class, 'delete'])->name('delete_member');
+    Route::post('/updatePendingPayment', [MembersController::class, 'updatePendingPayment'])->name('updatePendingPayment');
+    
     
 });
 
@@ -101,7 +110,7 @@ Route::group(['prefix' => 'Invoices', 'middleware' => ['auth']], function () {
 
 //setting
 Route::group(['prefix' => 'setting', 'middleware' => ['auth']], function () {
-    Route::get('/index', [SettingController::class, 'index'])->name('setting');
+    Route::get('/', [SettingController::class, 'index'])->name('setting');
     Route::post('/storeLang', [SettingController::class, 'storeLang'])->name('storeLang');
 });
 

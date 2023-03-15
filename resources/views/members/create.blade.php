@@ -26,14 +26,15 @@
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
-                                    <label for="choices-gender" class="form-label">@lang('translation.gender')</label>
-                                    <select name="gender" class="form-select" id="choices-gender">
-                                        <option value="men" selected>@lang('translation.men')</option>
-                                        <option value="female">@lang('translation.female')</option>
-                                    </select>
-                                </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label" for="firstname-input">@lang('translation.name')</label>
+                                    <input type="text" class="form-control" name="firstname" id="firstname-input" value="{{ old('firstname') }}" placeholder="@lang('translation.entrer the') @lang('translation.name')" required>
+                                    @error('firstname')
+                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                             
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="phone-input">@lang('translation.phone')</label>
@@ -72,15 +73,15 @@
                               </div>
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="firstname-input">@lang('translation.name')</label>
-                                    <input type="text" class="form-control" name="firstname" id="firstname-input" value="{{ old('firstname') }}" placeholder="@lang('translation.entrer the') @lang('translation.name')" required>
-                                    @error('firstname')
-                                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                    @enderror
+                                    <label for="choices-gender" class="form-label">@lang('translation.gender')</label>
+                                    <select name="gender" class="form-select" id="choices-gender">
+                                        <option value="men" selected>@lang('translation.men')</option>
+                                        <option value="female">@lang('translation.female')</option>
+                                    </select>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="dob-input">@lang('translation.day')</label>
+                                    <label class="form-label" for="dob-input">@lang('translation.DOB')</label>
 
                                     <div class="form-icon">
                                         <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') }}"  required>
@@ -144,7 +145,7 @@
                             <div class="row">
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="service-input">@lang('translation.services')</label>
+                                    <label class="form-label" for="services">@lang('translation.services')</label>
                                     <select name="service" id="services" class="form-select" aria-label=".form-select-sm example" required>
                                         <option value="0">@lang('translation.chose')@lang('translation.Service')</option>
                                         @foreach ($services as $service)
@@ -163,7 +164,7 @@
                               </div>
                               <div class="col-sm">
                                 <div class="mb-3">
-                                    <label class="form-label" for="service-input">@lang('translation.plans')</label>
+                                    <label class="form-label" for="plans">@lang('translation.plans')</label>
                                     <select name="plans" id="plans" class="form-select" aria-label=".form-select-sm example" required>
                                         <option selected="" value="0">@lang('translation.chose')@lang('translation.plans')</option>
                                     </select>
@@ -234,7 +235,7 @@
                                     <label class="form-label" for="amount-pending-input">@lang('translation.amount-pending')</label>
 
                                     <div class="form-icon">
-                                        <input disabled type="number" class="form-control" name="amount-pending" id="amount-pending" value="{{ old('amount-pending') }}" placeholder="@lang('translation.entrer the') @lang('translation.amount-pending')" >
+                                        <input disabled type="number" class="form-control" name="amount-pending" id="amount-pending" value="{{ old('amount-pending') ? old('amount-pending') : 0 }}" placeholder="@lang('translation.entrer the') @lang('translation.amount-pending')" >
                                     </div>
                                     @error('amount-pending')
                                     <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
@@ -376,7 +377,7 @@
         </div>
 
         <div class="text-start mb-3">
-            <button type="submit" class="btn btn-success w-sm">@lang('translation.Submit')</button>
+            <button type="submit" class="btn btn-success w-sm save_member">@lang('translation.Submit')</button>
         </div>
     </div>
     <!-- end row -->
@@ -535,6 +536,32 @@ function countDiscountAmount(price, percentage){
     calcPrice = price - ((price / 100) * percentage);
     return calcPrice;
 }
+
+$('.save_member').click(function(){
+        var timerInterval;
+        Swal.fire({
+            title: 'Save Member',
+            html: 'Member will be save in <strong></strong> seconds.',
+            timer: 5000,
+            timerProgressBar: true,
+            showCloseButton: true,
+            didOpen: function () {
+                Swal.showLoading()
+                timerInterval = setInterval(function () {
+                    var content = Swal.getHtmlContainer()
+                    if (content) {
+                        var b = content.querySelector('b')
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                }, 100)
+            },
+            onClose: function () {
+                clearInterval(timerInterval)
+            }
+        })
+    });
 
 </script>
 

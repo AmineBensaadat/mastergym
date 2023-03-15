@@ -38,8 +38,8 @@ class ServicesController extends Controller
     
         $services = $this->servicesRepository->getAllServices($request);
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
-        $count = 15;
-        return view('services.list' , compact('services', 'count', 'gyms'));
+  
+        return view('services.list' , compact('services', 'gyms'));
     }
 
     

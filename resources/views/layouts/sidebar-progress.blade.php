@@ -46,7 +46,13 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ route('members_list') }}">
-                                     @lang('translation.members')
+                                     @lang('translation.all-members')
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('members_expired') }}">
+                                    <span data-key="t-layouts">@lang('translation.Expired')</span> <span class="badge badge-pill bg-danger" data-key="t-hot">{{ Helper::countMembersByStatus('expired')  }}</span>
                                 </a>
                             </li>
 

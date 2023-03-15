@@ -32,7 +32,8 @@ return [
     "Enter-plan-descreption-her" => "أدخل وصف الخطة ",
     "Service" => " خدمة ",
     "Select_the_service" => " اختر الخدمة ",
-    "day" => "التاريخ",
+    "day" => "تاريخ الميلاد",
+    "nbr-day" => "عدد الأيام",
     "Enter-day" => "أدخل التاريخ",
     "amount" => "المبلغ",
     "Enter_amount" => "أدخل المبلغ",
@@ -64,8 +65,10 @@ return [
     "Add-Subscription" => " إضافة اشتراك ",
     "settings"=>"إعدادات",
     "members" => "المنخرطون",
+    "all-members" => "كل الأعضاء",
     "users" => "المستخدمين",
     "plans" => "الخطط",
+    "plan" => "خطة",
 
     "pages"=>"صفحة",
     "member" => " منخرط ",
@@ -105,6 +108,8 @@ return [
 
     // invoices
     "invoices"=>"الفواتير",
+    "invoice"=>"الفاتورة",
+    "invoice-subscription"=>" فاتورة الاشتراك ",
     'N°' => "N°",
     "Amount-Received"  => "تم استلام المبلغ",
     "received"  => "الواردة",
@@ -152,6 +157,12 @@ return [
     "of" => "من",
     "Statistiques" => " إحصائيات ",
     "Report" => " تقرير ",
+
+    "renew" => " تجديد ",
+    "action" => " حذف ",
+    "overview"=>" ملخص ",
+    "edit-Profile" => " تعديل الملف الشخصي ",
+    "full-name"=>" الاسم الكامل ",
 
 
 

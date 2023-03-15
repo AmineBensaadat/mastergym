@@ -27,16 +27,12 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        //$request->session()->put('selected_gym', '5');
-        //session(['selected_gym' => 2]);
-        //$request->session()->forget('selected_gym');
-
         $user = auth()->user();
         $curtentUser = $this->userRepository->getCurrentUser();
         $expired_members =  $this->membersRepository->countMembersByStatus('expired', $request);
         $pending_paiment =  $this->membersRepository->countMembersByStatus('pending_paiment', $request);
         $monthlyJoined =  $this->membersRepository->countMembersByStatus('monthlyJoined', $request);
-        $allMembers =  $this->membersRepository->countMembersByStatus('', $request);
+        $allMembers =  $this->membersRepository->countMembersByStatus('all_members', $request);
         return view('dashboard.index', compact('curtentUser', 'expired_members',  'pending_paiment', 'monthlyJoined', 'allMembers'));
     }
 

@@ -47,6 +47,36 @@ class GymsController extends Controller{
         return view('gym.create');
     }
 
+       /**
+     * Switch gym.
+     *
+     * @return Response
+     */
+    public function switch(Request $request)
+    {
+        $user_id = auth()->user()->id;
+        $gym_id = $request['gym_id'];
+        $msg  = '';
+
+        try {
+            $this->gymsRepository->updateDefaultGym_id($gym_id, $user_id);
+            $msg  = 'Gym successfully changed';
+            $statu = true;
+           
+
+          } catch (\Exception $e) {
+            $msg  = 'sorry error occurred when changing the gym';
+            $statu = false;
+            //return $e->getMessage();
+          }
+          
+          $output = array(
+            "statu"       =>  $statu,
+            "msg"   =>  $msg
+           );
+          return $output;
+    }
+
     public function store(Request $request)
     {
         // tables
@@ -144,8 +174,7 @@ class GymsController extends Controller{
         $user = auth()->user();
         $gym = DB::table('gyms')
             ->join('users', 'gyms.created_by', '=', 'users.id')
-            ->join('files', 'gyms.id', '=', 'files.entitiy_id')
-            ->select('gyms.*','files.name as gym_img','files.ext','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
+            ->select('gyms.*','gyms.name as gym_name', 'gyms.created_at as gym_created_at', 'users.name as user_name')
             ->where([
                     ['gyms.id', $id],
                     ['gyms.account_id', $user->account_id],
@@ -155,9 +184,7 @@ class GymsController extends Controller{
         return view('gym.show',
             array( 
             "gym" => $gym,
-            "gym_name"  => $gym->gym_name,
-            "gym_img" => $gym->gym_img,
-            "ext" => $gym->ext
+            "gym_name"  => $gym->gym_name
        ));
     }
 

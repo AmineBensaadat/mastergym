@@ -6,16 +6,6 @@
     <div class="position-relative mx-n4 mt-n4">
         <div class="profile-wid-bg profile-setting-img">
             <img src="{{ URL::asset('assets/images/profile-bg.jpg') }}" class="profile-wid-img" alt="">
-            <div class="overlay-content">
-                <div class="text-end p-3">
-                    <div class="p-0 ms-auto rounded-circle profile-photo-edit">
-                        <input id="profile-foreground-img-file-input" type="file" class="profile-foreground-img-file-input">
-                        <label for="profile-foreground-img-file-input" class="profile-photo-edit btn btn-light">
-                            <i class="ri-image-edit-line align-bottom me-1"></i> Change Cover
-                        </label>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -25,43 +15,19 @@
                 <div class="card-body p-4">
                     <div class="text-center">
                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                            <img src="@if (Auth::user()->avatar != '') {{ URL::asset('images/' . Auth::user()->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }} @endif"
+                            <img src="{{URL::asset('assets/images/users/'.Helper::getImageByEntityId(Auth::user()->id, "users", "profile") )}}"
                                 class="  rounded-circle avatar-xl img-thumbnail user-profile-image"
                                 alt="user-profile-image">
                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                 <input id="profile-img-file-input" type="file" class="profile-img-file-input">
-                                <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
-                                    <span class="avatar-title rounded-circle bg-light text-body">
-                                        <i class="ri-camera-fill"></i>
-                                    </span>
-                                </label>
                             </div>
                         </div>
-                        <h5 class="fs-16 mb-1">Anna Adame</h5>
-                        <p class="text-muted mb-0">Lead Designer / Developer</p>
+                        <h5 class="fs-16 mb-1">{{Auth::user()->name}}</h5>
+                        {{-- <p class="text-muted mb-0">Lead Designer / Developer</p> --}}
                     </div>
                 </div>
             </div>
             <!--end card-->
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center mb-5">
-                        <div class="flex-grow-1">
-                            <h5 class="card-title mb-0">Complete Your Profile</h5>
-                        </div>
-                        <div class="flex-shrink-0">
-                            <a href="javascript:void(0);" class="badge bg-light text-primary fs-12"><i
-                                    class="ri-edit-box-line align-bottom me-1"></i> Edit</a>
-                        </div>
-                    </div>
-                    <div class="progress animated-progress custom-progress progress-label">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 30%" aria-valuenow="30"
-                            aria-valuemin="0" aria-valuemax="100">
-                            <div class="label">30%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-4">
@@ -144,7 +110,7 @@
                                                 <div class="mb-3">
                                                     <label for="jobTitle" class="form-label">Langue</label>
                                                     <div data-input-flag data-option-flag-img-name>
-                                                        <input type="text" name="lang" class="form-control rounded-end flag-input" style=" background-image: url(../assets/images/flags/{{ $curtentUser->lang ? $curtentUser->lang : 'fr' }}.svg);" readonly value="{{ __('translation.'.($curtentUser->lang ? $curtentUser->lang : 'fr')) }}" placeholder="Select country" data-bs-toggle="dropdown" aria-expanded="false" />
+                                                        <input type="text" name="lang" class="form-control rounded-end flag-input" style="background-repeat: no-repeat; background-image: url(../assets/images/flags/{{ $curtentUser->lang ? $curtentUser->lang : 'fr' }}.svg);" readonly value="{{ __('translation.'.($curtentUser->lang ? $curtentUser->lang : 'fr')) }}" placeholder="Select country" data-bs-toggle="dropdown" aria-expanded="false" />
                                                         <div class="dropdown-menu w-100">
                                                             <div class="p-2 px-3 pt-1 searchlist-input">
                                                                 <input type="text" class="form-control form-control-sm border search-countryList" placeholder="Search country name or country code..." />

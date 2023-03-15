@@ -42,6 +42,7 @@ return [
     "ico-list"=>"ICO List",
     "kyc-application"=>"KYC Application",
     "invoices"=>"Invoices",
+    "invoice"=>"Invoice",
     "details"=>"Invoice Details",
     "create-invoice"=>"Create Invoice",
     "supprt-tickets"=>"Support Tickets",
@@ -220,9 +221,10 @@ return [
     "subscriptions" => "Subscriptions",
     "Add-Subscription" => "Add Subscription",
     "members" => "members",
+    "all-members" =>  "all members",
     "users" => "users",
     "plans" => "plans",
-
+    "plan" => "plan",
 
 
 
@@ -255,6 +257,7 @@ return [
     "Service" => "Service",
     "Select_the_service" => "Select the service",
     "day" => "day",
+    "nbr-day" => "Number of days",
     "Enter-day" => "Enter day",
     "amount" => "amount",
     "Enter_amount" => "Enter amount",
@@ -268,8 +271,8 @@ return [
     "lastname" => " lastname",
     "entrer the" => " entrer the",
     "CNIE" => " CNIE",
-    "address" => " address ",
-    "phone" => " phone ",
+    "address" => " Address ",
+    "phone" => " Phone ",
     "gender" => " gender",
     "men" => " men",
     "female" => " female",
@@ -308,6 +311,7 @@ return [
 
     // invoices
     'N°' => "N°",
+    "invoice-subscription"=>"subscription invoice",
     "Amount-Received"  => "amount received",
     "received"  => "received",
     "amount-pending"  => "amount pending",
@@ -355,6 +359,13 @@ return [
     "Results" => "Results",
     "of" => "of",
     "Statistiques" => "Statistiques",
+    "Report" => "Report",
+
+    "renew" => "RENEW",
+    "action" => "action",
+    "edit-Profile" => "Edit Profile",
+    "full-name"=>" Full Name",
+
 
 
 
