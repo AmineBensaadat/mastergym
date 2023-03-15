@@ -28,7 +28,7 @@ php artisan serve
 4 - git commit -m "update 1 your text"
 5 - git push origin devlop          raf
 
-------------------------------------------------
+----------------Start--------------------------------
 laravel deployment
 
 Autoloader Optimization
@@ -42,4 +42,4 @@ php artisan route:cache
 
 Optimizing View Loading
 php artisan view:cache
-------------------------------------
+----------------End--------------------
