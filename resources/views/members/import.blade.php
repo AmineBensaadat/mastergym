@@ -24,6 +24,15 @@
                                 </div>
                             </div>
                         @endif
+
+                        
+                        @if (isset($errors) && $errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    {{ $error }}
+                                @endforeach
+                            </div>
+                        @endif
                         <div class="row">
                                 <form id="upload-file" method="POST"  action="{{ route('import_member_store') }}" novalidate enctype="multipart/form-data">
                                     @csrf

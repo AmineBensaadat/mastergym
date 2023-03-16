@@ -475,7 +475,7 @@ class MembersController extends Controller
         $file = $request->file('file')->store('import');
         $import = new MembersImport;
         $import->import($file);
-
+        //dd($import->errors());
         // try {
         //     $import->import('import-users.xlsx');
         // } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
@@ -489,7 +489,7 @@ class MembersController extends Controller
         //      }
         // }
         
-        dd($import->failures());
+        
 
         return back()->withStatus('excel file imported successfuly');
 
