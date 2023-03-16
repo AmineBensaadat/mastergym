@@ -17,7 +17,7 @@
 <div class="row">
     @if ($error)
     <!-- Toast -->
-    <div class="toast fade show center" role="alert" aria-live="assertive" data-bs-autohide="false" aria-atomic="true" style="width: auto;">
+    {{-- <div class="toast fade show center" role="alert" aria-live="assertive" data-bs-autohide="false" aria-atomic="true" style="width: auto;">
         <div class="toast-header">
             <img src="{{ URL::asset('assets/images/logo_1.png')}}" class="rounded me-2" alt="..." height="20">
             <span class="fw-semibold me-auto">Members</span>
@@ -28,8 +28,17 @@
         <div class="toast-body">
            {{$error}}
         </div>
-    </div>
+    </div> --}}
+    
     @endif
+
+    @if (session('status'))
+                            <div class="row">
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            </div>
+                        @endif
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header border-0 rounded">

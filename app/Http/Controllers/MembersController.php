@@ -463,6 +463,7 @@ class MembersController extends Controller
     }
 
     public function import(){
+     
         $members = $this->membersRepository->all();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
@@ -470,36 +471,63 @@ class MembersController extends Controller
     }
 
     public function storImportMembers(Request $request){
-         //validation form
-         $this->validate(
-            $request,
-                [
-                    'file'=> 'required|mimes:xlsx,csv,xls'
-                ],
-                [
-                    'file.required' => __('translation.require')
-                ],
-            );
 
-            $file = $request->file('file');
-         if($file = $request->hasFile('file')) {
-            try {
-                Excel::import(new MembersImport,$request->file('file')->store('files'));
+        $file = $request->file('file')->store('import');
+        $import = new MembersImport;
+        $import->import($file);
+
+        // try {
+        //     $import->import('import-users.xlsx');
+        // } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+        //      $failures = $e->failures();
+             
+        //      foreach ($failures as $failure) {
+        //          $failure->row(); // row that went wrong
+        //          $failure->attribute(); // either heading key (if using heading row concern) or column index
+        //          $failure->errors(); // Actual error messages from Laravel validator
+        //          $failure->values(); // The values of the row that has failed.
+        //      }
+        // }
+        
+        dd($import->failures());
+
+        return back()->withStatus('excel file imported successfuly');
+
+
+        //  //validation form
+        //  $this->validate(
+        //     $request,
+        //         [
+        //             'file'=> 'required|mimes:xlsx,csv,xls',
+        //             'gym' => new IsSelected,
+        //         ],
+        //         [
+        //             'file.required' => __('translation.require'),
+        //             'gym.required' => __('require'),
+        //         ],
+        //     );
+
+        //     $file = $request->file('file');
+        //  if($file = $request->hasFile('file')) {
+        //     Excel::import(new MembersImport, $request->file('file'));
+        //     return back()->withStatus('excel file imported successfuly');
+        //     try {
                 
-            }catch(\Exception $ex){
-                $error = $ex->getMessage();
-                $members = $this->membersRepository->all();
-                $gyms =  $this->gymsRepository->renderAllGymByCretedById();
-                $services =  $this->servicesRepository->renderAllServices();
-                return view('members.list', compact('members', 'gyms', 'services', 'error'));
                 
-            }
-            $error = false;
-            $members = $this->membersRepository->all();
-            $gyms =  $this->gymsRepository->renderAllGymByCretedById();
-            $services =  $this->servicesRepository->renderAllServices();
-            return view('members.list', compact('members', 'gyms', 'services', 'error'));
-         }
+        //     }catch(\Exception $ex){
+        //         $error = $ex->getMessage();
+        //         $members = $this->membersRepository->all();
+        //         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        //         $services =  $this->servicesRepository->renderAllServices();
+        //         return view('members.list', compact('members', 'gyms', 'services', 'error'));
+                
+        //     }
+        //     // $error = false;
+        //     // $members = $this->membersRepository->all();
+        //     // $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        //     // $services =  $this->servicesRepository->renderAllServices();
+        //     // return view('members.list', compact('members', 'gyms', 'services', 'error'));
+        //  }
     }
 
     public function delete(Request $request){
@@ -672,7 +700,7 @@ class MembersController extends Controller
     public function downloadExceCanva()
     {
         // return $file;
-        $myfile = public_path('assets/canvas/canva_member_import.xlsx');
+        $myfile = public_path('assets/excels/canvas/canva_member_import.xlsx');
         return response()->download($myfile);
     }
 

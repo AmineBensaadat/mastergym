@@ -17,6 +17,13 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
+                        @if (session('status'))
+                            <div class="row">
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            </div>
+                        @endif
                         <div class="row">
                                 <form id="upload-file" method="POST"  action="{{ route('import_member_store') }}" novalidate enctype="multipart/form-data">
                                     @csrf
