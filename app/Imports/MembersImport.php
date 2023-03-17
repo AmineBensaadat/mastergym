@@ -4,6 +4,8 @@ namespace App\Imports;
 
 use App\Models\Members;
 use App\Models\User;
+use App\Repositories\MembersRepository;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -20,7 +22,15 @@ use Throwable;
 
 class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValidation, SkipsOnFailure
 {
+ 
     use Importable, SkipsErrors;
+    public $membersRepository;
+    public $request;
+    public function __construct(MembersRepository $membersRepository)
+    {
+        $this->membersRepository = $membersRepository;
+    }
+
     /**
     * @param array $row
     *
@@ -28,12 +38,17 @@ class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValid
     */
     public function model(array $row)
     {
+        dd($request);
         if(!array_filter($row)) {
             return null;
          } 
-
-         return new User([
-            'email' => $row['email'],
+         $member = $this->membersRepository->checkifMemberIxistInGym($row);
+         if($member > 0){
+            return null;
+         }
+         return new Members([
+            'firstname' => $row['firstname'],
+            'lastname' => $row['lastname'],
         ]);
     }
 
@@ -58,8 +73,9 @@ class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValid
     public function rules(): array
     {
         return [
-            'email' => function($attribute, $value, $onFailure) {
+            'firstname' => function($attribute, $value, $onFailure) {
                 if ($value === 'bensaadat1.amine@gmail.com') {
+                    $this->membersRepository->checkifMemberIxistInGym($value);
                      $onFailure('Name is not Patrick Brouwers t1');
                 }
             }

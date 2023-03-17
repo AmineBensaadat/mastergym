@@ -561,8 +561,6 @@ class MembersRepository
         return $data;
     }
 
-    
-
     public function countMembersByStatus($status, $request){
         $data = array();
         $user = auth()->user();
@@ -630,8 +628,6 @@ class MembersRepository
         return $data->count();
 
     }
-
-    
 
     public function countAllMembersByGym($gym_id){
         $user = auth()->user();
@@ -755,6 +751,16 @@ class MembersRepository
     public function deleteMember($member_id){
         $deleted = Members::where('id', $member_id)->delete();
         return $deleted;
+    }
+
+    public function checkifMemberIxistInGym($row){
+        $user = auth()->user();
+        $members = Members::where([
+                ['members.firstname',  '=', $row['firstname']],
+                ['members.lastname',  '=', $row['lastname']]
+            ])->get();
+        $membersCount = $members->count();
+        return $membersCount;
     }
 
 }

@@ -473,7 +473,7 @@ class MembersController extends Controller
     public function storImportMembers(Request $request){
 
         $file = $request->file('file')->store('import');
-        $import = new MembersImport;
+        $import = new MembersImport($this->membersRepository);
         $import->import($file);
         //dd($import->errors());
         // try {
