@@ -18,6 +18,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Validators\Failure;
+use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Date;
 use Throwable;
 
 class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValidation, SkipsOnFailure
@@ -25,7 +26,7 @@ class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValid
  
     use Importable, SkipsErrors;
     public $membersRepository;
-    public $request;
+
     public function __construct(MembersRepository $membersRepository)
     {
         $this->membersRepository = $membersRepository;
@@ -37,8 +38,8 @@ class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValid
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function model(array $row)
-    {
-        dd($request);
+    {  
+       
         if(!array_filter($row)) {
             return null;
          } 
@@ -49,6 +50,7 @@ class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValid
          return new Members([
             'firstname' => $row['firstname'],
             'lastname' => $row['lastname'],
+            'DOB' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['dob'])->format('Y-m-d'),
         ]);
     }
 
