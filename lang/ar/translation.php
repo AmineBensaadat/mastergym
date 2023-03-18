@@ -67,6 +67,7 @@ return [
     "members" => "المنخرطون",
     "all-members" => "كل الأعضاء",
     "users" => "المستخدمين",
+    "user" => "مستخدم",
     "plans" => "الخطط",
     "plan" => "خطة",
 
@@ -152,6 +153,7 @@ return [
     "day-left" => "بقي يوم",
     "expired-at" => "منتهية الصلاحية في",
     "expired-days" => "أيام منتهية الصلاحية",
+    "expired-members" => " منخرطين منتهي الصلاحية ",
     "Showing" => "عرض",
     "Results" => "نتائج",
     "of" => "من",
@@ -163,7 +165,11 @@ return [
     "overview"=>" ملخص ",
     "edit-Profile" => " تعديل الملف الشخصي ",
     "full-name"=>" الاسم الكامل ",
+    "pages"=>" صفحة ",
 
+    "Search-for"=>"ابحث عن ",
+    "Search-for-members"=>"ابحث عن منخرطين",
+    "name-or-something"=>"اسم أو شيء من هذا القبيل ",
 
 
 

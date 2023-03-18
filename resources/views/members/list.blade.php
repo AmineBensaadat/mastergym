@@ -2,7 +2,7 @@
 @section('title') @lang('translation.members') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
 @slot('title') @lang('translation.members') @endslot
 @endcomponent
 
@@ -29,7 +29,7 @@
            {{$error}}
         </div>
     </div> --}}
-    
+
     @endif
 
     @if (session('status'))
@@ -45,7 +45,7 @@
                 <div class="row g-2">
                     <div class="col-xl-3 col-sm-2">
                         <div class="search-box">
-                            <input type="text" class="form-control search" placeholder="Search for members &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
+                            <input type="text" class="form-control search" placeholder="@lang('translation.Search-for-members') &amp; @lang('translation.name-or-something')"> <i class="ri-search-line search-icon"></i>
                         </div>
                     </div>
                     <!--end col-->
@@ -258,7 +258,7 @@
                 $('#members_dt').DataTable().destroy();
                 fill_datatable();
             });
-            
+
             var html = '';
 
         $("#filter_service").on("change",function(){
@@ -305,7 +305,7 @@
                     type:"POST",
                     cache:false,
                     data:{
-                        member_id:member_id, 
+                        member_id:member_id,
                         _token: $('meta[name="csrf-token"]').attr('content')
                     },
                     success:function(data){
@@ -327,10 +327,10 @@
                                 text: data,
                             })
                         }
-                        
+
                 }
             });
-                
+
             }
         });
         });

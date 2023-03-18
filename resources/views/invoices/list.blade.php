@@ -2,7 +2,7 @@
 @section('title') @lang('translation.team') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') @lang('translation.menu') @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
 @slot('title') @lang('translation.invoices') @endslot
 @endcomponent
 

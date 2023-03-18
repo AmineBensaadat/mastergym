@@ -228,6 +228,7 @@ return [
     "plans" => "plans",
     "plan" => "plan",
     "users" => "utilisateurs",
+    "user" => "utilisateur",
     "members" => "members",
     "all-members" =>  "tous les membres",
     "subscriptions" => "abonnements",
@@ -364,6 +365,7 @@ return [
     "day-left" => "jour restant",
     "expired-at" => "expiré à",
     "expired-days" => "jours expirés",
+    "expired-members" => "Membres expirés",
     "Showing" => "Montrant",
     "Results" => "Résultats",
     "of" => "de",
@@ -375,6 +377,9 @@ return [
     "edit-Profile" => "Editer le profil",
     "full-name"=>"Nom et Prénom",
 
+    "Search-for-members"=>"Rechercher des membres",
+    "name-or-something"=>"Nom ou quelque chose...",
+    "Search-for"=>"Rechercher ",
 
 
 
