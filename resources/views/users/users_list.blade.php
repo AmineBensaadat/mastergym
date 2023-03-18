@@ -1,9 +1,9 @@
 @extends('layouts.master')
-@section('title') @lang('translation.team') @endsection
+@section('title') @lang('translation.users') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
-@slot('title') Team @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
+@slot('title') @lang('translation.users') @endslot
 @endcomponent
 
 <!--datatable css-->
@@ -16,13 +16,13 @@
 <div class="row g-4 mb-4">
     <div class="col-sm-auto">
         <div>
-            <a href="{{ route('users_create') }}" class="btn btn-success"><i class="ri-add-line align-bottom me-1"></i> Add user</a>
+            <a href="{{ route('users_create') }}" class="btn btn-success"><i class="ri-add-line align-bottom me-1"></i> @lang('translation.add') @lang('translation.user')</a>
         </div>
     </div>
     <div class="col-sm">
         <div class="d-md-flex justify-content-sm-end gap-2">
             <div class="search-box ms-md-2 flex-shrink-0 mb-3 mb-md-0">
-                <input type="text" class="form-control search" id="searchJob" autocomplete="off" placeholder="Search for candidate name or designation..." />
+                <input type="text" class="form-control search" id="searchJob" autocomplete="off" placeholder="@lang('translation.Search-for') @lang('translation.name-or-something') " />
                 <i class="ri-search-line search-icon"></i>
             </div>
         </div>
@@ -91,7 +91,7 @@
                 fill_datatable(global_filter);
             });
 
-  
+
 
 
 

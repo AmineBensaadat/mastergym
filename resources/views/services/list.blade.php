@@ -2,8 +2,8 @@
 @section('title') @lang('translation.team') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
-@slot('title') Team @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
+@slot('title') @lang('translation.services') @endslot
 @endcomponent
 
 <div class="card">

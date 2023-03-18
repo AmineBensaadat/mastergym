@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Ecommerce @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
 @slot('title') @lang('translation.CREATE_PLAN') @endslot
 @endcomponent
 <form id="createplan-form" method="POST" class="needs-validation"  action="{{ route('plans_store') }}" novalidate enctype="multipart/form-data">

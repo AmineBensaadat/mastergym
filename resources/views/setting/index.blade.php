@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-4">
                         <div class="flex-grow-1">
-                            <h5 class="card-title mb-0">Portfolio</h5>
+                            <h5 class="card-title mb-0">Portfolio </h5>
                         </div>
                         <div class="flex-shrink-0">
                             <a href="javascript:void(0);" class="badge bg-light text-primary fs-12"><i
@@ -116,7 +116,7 @@
                                                                 <input type="text" class="form-control form-control-sm border search-countryList" placeholder="Search country name or country code..." />
                                                             </div>
                                                             <ul class="list-unstyled dropdown-menu-list mb-0">
-                                                                
+
                                                             </ul>
                                                         </div>
                                                     </div>

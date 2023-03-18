@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Ecommerce @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
 @slot('title') @lang('translation.Create-Memeber') @endslot
 @endcomponent
 
@@ -34,7 +34,7 @@
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
-                             
+
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="phone-input">@lang('translation.phone')</label>

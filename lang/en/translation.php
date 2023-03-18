@@ -222,7 +222,8 @@ return [
     "Add-Subscription" => "Add Subscription",
     "members" => "members",
     "all-members" =>  "all members",
-    "users" => "users",
+    "users" => "Users",
+    "user" => "User",
     "plans" => "plans",
     "plan" => "plan",
 
@@ -352,8 +353,10 @@ return [
     "Export" => "Export",
     "Joined-at" => "Joined at",
     "day-left" => "day left",
-    "expired-at" => "expired at",
-    "expired-days" => "expired days",
+    "expired-at" => "Expired at",
+    "expired-days" => "Expired days",
+    "expired-days" => "Expired days",
+    "expired-members" => "Expired Members",
     "Brand-Logo-Design" => "Brand Logo Design",
     "Showing" => "Showing",
     "Results" => "Results",
@@ -366,6 +369,9 @@ return [
     "edit-Profile" => "Edit Profile",
     "full-name"=>" Full Name",
 
+    "Search-for-members"=>"Search for members",
+    "name-or-something"=>"name or something...",
+    "Search-for"=>"Search for",
 
 
 
