@@ -77,6 +77,8 @@
                                     <select name="gender" class="form-select" id="choices-gender">
                                         <option value="men" selected>@lang('translation.men')</option>
                                         <option value="female">@lang('translation.female')</option>
+                                        <option value="girl" {{ $member->gender === "girl" ? "selected" : "" }} >@lang('translation.girl')</option>
+                                        <option value="boy" {{ $member->gender === "boy" ? "selected" : "" }} >@lang('translation.boy')</option>
                                     </select>
                                 </div>
 
