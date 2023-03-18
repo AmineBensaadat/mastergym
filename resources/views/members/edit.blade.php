@@ -190,6 +190,21 @@
                         @enderror
                     </div>
 
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="created_at-input">@lang('translation.created-at')</label>
+
+                        <div class="form-icon">
+                            <input type="date" class="form-control form-control-icon" name="created_at" id="created_at-input" value="{{ old('created_at') ? old('created_at') :  now()->format('Y-m-d')  }}"  required>
+                            <i class="ri-map-pin-time-line"></i>
+                        </div>
+
+                        @error('created_at')
+                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+
                     <div class="mb-3">
                         <label for="choices-status" class="form-label">@lang('translation.Status')</label>
                         <select name="status" class="form-select" id="choices-status">

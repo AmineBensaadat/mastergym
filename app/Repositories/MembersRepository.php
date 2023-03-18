@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Models\Files;
 use App\Models\Members;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class MembersRepository 
@@ -640,7 +641,9 @@ class MembersRepository
     }
 
     public function saveMember($request){
-        
+     
+        $created_at = Carbon::createFromFormat('Y-m-d', $request['created_at']);
+        //dd(date('Y-m-d H:i:s', strtotime($request['created_at'])));
         $user = auth()->user();
         $destinationPath = public_path().'/assets/images/members/' ;
         // save in member table
@@ -659,6 +662,7 @@ class MembersRepository
             'health_issues' =>  $request['health_issues'],
             'cin' => $request['cin'],
             'created_by' =>  $user->id,
+            'created_at' =>  $request['created_at'],
             'updated_by' =>  $user->id,
             'source' =>  $request['source'],
             'account_id' => $user->account_id
@@ -704,6 +708,7 @@ class MembersRepository
             'emergency_contact' => $request['emergency_contact'],
             'gender' => $request['gender'],
             'gym_id' => $request['gym'],
+            'created_at' =>  $request['created_at'],
             'health_issues' =>  $request['health_issues'],
             'cin' => $request['cin'],
             'updated_by' =>  $user->id,

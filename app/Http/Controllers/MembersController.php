@@ -583,6 +583,7 @@ class MembersController extends Controller
                     //'phone' => 'unique:members',
                     //'dob' => 'required',
                     //'emergency_contact' => 'unique:members',
+                    'created_at' => 'required',
                     'gym' => new IsSelected,
                     'start_date' => 'date|nullable',
                     'end_date' => 'date|nullable|after:start_date',
@@ -591,6 +592,7 @@ class MembersController extends Controller
                 [
                     'lastname.required' => __('translation.require'),
                     'firstname.required' => __('translation.require'),
+                    'created_at.required' => __('translation.require'),
                     //'cin.unique' => __('translation.unique'),
                     //'address.required' => __('translation.require'),
                     //'phone.unique' => __('translation.unique'),
@@ -628,6 +630,7 @@ class MembersController extends Controller
                 [
                     'lastname' => 'required',
                     'firstname' => 'required',
+                    'created_at' => 'required',
                     //'cin' => 'unique:members',
                     //'address' => 'required',
                     //'phone' => 'unique:members',
@@ -638,6 +641,7 @@ class MembersController extends Controller
                 [
                     'lastname.required' => __('translation.require'),
                     'firstname.required' => __('translation.require'),
+                    'created_at.required' => __('translation.require'),
                     //'cin.unique' => __('translation.unique'),
                     //'address.required' => __('translation.require'),
                     //'phone.unique' => __('translation.unique'),
