@@ -39,7 +39,7 @@ class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValid
     */
     public function model(array $row)
     {  
-       
+        $user = auth()->user();
         if(!array_filter($row)) {
             return null;
          } 
@@ -51,6 +51,8 @@ class MembersImport implements ToModel , WithHeadingRow, SkipsOnError, WithValid
             'firstname' => $row['firstname'],
             'lastname' => $row['lastname'],
             'DOB' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['dob'])->format('Y-m-d'),
+            'account_id' => $user->account_id,
+            'gym_id' => $user->default_gym_id,
         ]);
     }
 
