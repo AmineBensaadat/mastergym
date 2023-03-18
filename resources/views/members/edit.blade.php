@@ -195,7 +195,7 @@
                         <label class="form-label" for="created_at-input">@lang('translation.created-at')</label>
 
                         <div class="form-icon">
-                            <input type="date" class="form-control form-control-icon" name="created_at" id="created_at-input" value="{{ old('created_at') ? old('created_at') :  now()->format('Y-m-d')  }}"  required>
+                            <input type="date" class="form-control form-control-icon" name="created_at" id="created_at-input" value="{{ old('created_at') ? old('created_at') : date('Y-m-d', strtotime($member->created_at)) }}"  required>
                             <i class="ri-map-pin-time-line"></i>
                         </div>
 
