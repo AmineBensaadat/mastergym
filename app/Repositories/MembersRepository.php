@@ -5,6 +5,7 @@ use App\Models\Files;
 use App\Models\Members;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class MembersRepository 
 {
@@ -642,10 +643,8 @@ class MembersRepository
 
     public function saveMember($request){
      
-        $created_at = Carbon::createFromFormat('Y-m-d', $request['created_at']);
-        //dd(date('Y-m-d H:i:s', strtotime($request['created_at'])));
         $user = auth()->user();
-        $destinationPath = public_path().'/assets/images/members/' ;
+        $destinationPath = public_path().'/assets/images/members/'.$user->account_id.'/' ;
         // save in member table
         $member = Members::create([
             'firstname' => $request['firstname'],
@@ -670,31 +669,26 @@ class MembersRepository
 
          // save gym profile image
          $file = $request->file('profile_image');
+ 
          if($file = $request->hasFile('profile_image')) {
+                 // save the file
+                try {
+                    $extension = $request->file('profile_image')->extension();
+                    $fileName = "member_image_".$request['firstname']."_".$request['lastname']."_".$member->id.'_'.time().'.'.$extension;
+                    $this->filesRepository->saveFile($request, $member->id, $fileName ,$destinationPath, 'members', 'profile', 'profile_image');
+                } catch (Throwable $e) {
+                    report($e);
+            
+                    return $e;
+                }
  
-             // file data 
-             $file = $request->file('profile_image') ;
-             $extension = $request->file('profile_image')->extension();
-             $fileName = "member_image_".$member->id.'.'.$extension;
- 
-             // save gym image in file table
-             $files_table= new Files();
-             $files_table->name = $fileName;
-             $files_table->entity_name = 'members';
-             $files_table->ext = $extension;
-             $files_table->type = 'profile';
-             $files_table->entitiy_id = $member->id;   
-             $files_table->save();
- 
-             // move file in dericory
-             $file->move($destinationPath,$fileName);
          }
        return $member;
     }
 
     public function updateMember($request){ 
         $user = auth()->user();
-        $destinationPath = public_path().'/assets/images/members/' ;
+        $destinationPath = public_path().'/assets/images/members/'.$user->account_id.'/' ;
         Members::where('id', $request['member_id'])
         ->update([
             'firstname' => $request['firstname'],
@@ -717,38 +711,18 @@ class MembersRepository
 
          // save gym profile image
          $file = $request->file('profile_image');
-         $fileExist = $this->filesRepository->checkFileByEntityId($request['member_id'], 'members', 'profile');
+ 
          if($file = $request->hasFile('profile_image')) {
+                 // save the file
+                try {
+                    $extension = $request->file('profile_image')->extension();
+                    $fileName = "member_image_".$request['firstname']."_".$request['lastname']."_".$request['member_id'].'_'.time().'.'.$extension;
+                    $this->filesRepository->saveFile($request, $request['member_id'], $fileName ,$destinationPath, 'members', 'profile', 'profile_image');
+                } catch (Throwable $e) {
+                    report($e);
             
-            // file data 
-             $file = $request->file('profile_image') ;
-             $extension = $request->file('profile_image')->extension();
-             $fileName = "member_image_".$request['member_id'].'.'.$extension;
- 
- 
-             if(count($fileExist) > 0){ // update
- 
-                 $old_files_table = Files::findOrFail($fileExist[0]->id);
- 
-                 // update service image in file table
-                 $old_files_table->name = $fileName;
-                 $old_files_table->ext = $extension;
-                 $old_files_table->update();
- 
-             }else{ // insert
- 
-             // save gym image in file table
-             $files_table= new Files();
-             $files_table->name = $fileName;
-             $files_table->entity_name = 'members';
-             $files_table->ext = $extension;
-             $files_table->type = 'profile';
-             $files_table->entitiy_id = $request['member_id'];   
-             $files_table->save();
-             }
- 
-             // move file in dericory
-             $file->move($destinationPath,$fileName);
+                    return $e;
+                }
  
          }
     }

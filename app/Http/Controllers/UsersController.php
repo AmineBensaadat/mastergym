@@ -161,7 +161,7 @@ class UsersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//users/'.$this->filesRepository->getFileByEntityId($row->id, "users", "profile").'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->id, "users", "profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../users/show/'.$row->id. '">'.$row->name.'</a></div>            
             </div>';

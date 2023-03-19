@@ -35,15 +35,15 @@ class Helper
 
     public static function getImageByEntityId($entitiy_id, $entity_name, $entity_type){
         $result = DB::table('files')
-            ->select('files.name as file_name')
+            ->select('files.name as file_name', 'account_id')
             ->where('files.entitiy_id', $entitiy_id)
             ->where('files.entity_name', $entity_name)
             ->where('files.type', $entity_type)
             ->get();
             if(count($result) > 0){
-                return $result[0]->file_name;
+                return "/assets/images/".$entity_name."/".$result[0]->account_id."/".$result[0]->file_name;
             }
-            return "default.png";
+            return "/assets/images/".$entity_name."/default.png";
     }
 
     public static function countAllMembersByService($service_id){

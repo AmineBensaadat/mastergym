@@ -163,7 +163,7 @@
                                 </div>
                                 <div class="avatar-lg">
                                     <div class="avatar-title bg-light rounded">
-                                        <img src="{{URL::asset('assets/images/members/'.Helper::getImageByEntityId($member->id, "members", "profile") )}}" id="single-img" class="avatar-md" />
+                                        <img src="{{URL::asset(Helper::getImageByEntityId($member->id, "members", "profile") )}}" id="single-img" class="avatar-md" />
                                     </div>
                                 </div>
                             </div>

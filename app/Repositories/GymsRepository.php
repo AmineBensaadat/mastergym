@@ -31,9 +31,9 @@ class GymsRepository
     public function renderAllGymByCretedById(){
         $user = auth()->user();
         $gyms = DB::table('gyms')
-            ->join('users', 'gyms.created_by', '=', 'users.id')
+            //->join('users', 'gyms.created_by', '=', 'users.id')
             ->select('gyms.*')
-            ->where('gyms.created_by', $user->id)
+            //->where('gyms.created_by', $user->id)
             ->where('gyms.account_id', $user->account_id)
             ->get();
         return $gyms;
