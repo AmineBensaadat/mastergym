@@ -170,6 +170,11 @@ return [
     "Search-for"=>"ابحث عن ",
     "Search-for-members"=>"ابحث عن منخرطين",
     "name-or-something"=>"اسم أو شيء من هذا القبيل ",
+    "import-members"=>"  استيراد الأعضاء",
+    "Upload-File"=>" رفع الملفات",
+    "Excel-Canva"=>"برنامج Excel Canva",
+    "Download-the-canva-excel"=>"قم بتنزيل ملف canva excel لاستيراد الأعضاء",
+    "Click-here-to-Download-Excel-canva"=>"انقر هنا لتنزيل ملف  Excel canva",
 
 
 

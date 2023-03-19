@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Ecommerce @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
 @slot('title') @lang('translation.Create-Memeber') @endslot
 @endcomponent
 <div class="row">
@@ -25,7 +25,7 @@
                             </div>
                         @endif
 
-                        
+
                         @if (isset($errors) && $errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -60,14 +60,14 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label" >Upload File</label>
+                                        <label for="formFile" class="form-label" >@lang('translation.Upload-File')</label>
                                         <input class="form-control" name="file" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                                         @error('file')
                                             <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 <div class="d-flex align-items-start gap-3 mt-4">
-                                    <button type="submit" class="btn btn-success  ms-auto" >save</button>
+                                    <button type="submit" class="btn btn-success  ms-auto" >@lang('translation.save')</button>
                                 </form>
                                 </div>
                             </div>
@@ -82,11 +82,11 @@
                     <div class="text-center">
                         <div class="row justify-content-center">
                             <div class="col-lg-9">
-                                <h4 class="mt-4 fw-semibold">Excel Canva</h4>
-                                <p class="text-muted mt-3">Download the canva excel file to import the members</p>
+                                <h4 class="mt-4 fw-semibold">@lang('translation.Excel-Canva')</h4>
+                                <p class="text-muted mt-3">@lang('translation.Download-the-canva-excel')</p>
                                 <div class="mt-4">
-                                    <a class="btn btn-primary" href="{{route('download_canva')}}" download="">            
-                                        Click here to Download Excel canva
+                                    <a class="btn btn-primary" href="{{route('download_canva')}}" download="">
+                                    @lang('translation.Click-here-to-Download-Excel-canva')
                                     </a>
                                 </div>
                             </div>

@@ -372,6 +372,11 @@ return [
     "Search-for-members"=>"Search for members",
     "name-or-something"=>"name or something...",
     "Search-for"=>"Search for",
+    "import-members"=>"Import Members",
+    "Upload-File"=>"Upload File",
+    "Excel-Canva"=>"Excel Canva",
+    "Download-the-canva-excel"=>"Download the canva excel file to import the members",
+    "Click-here-to-Download-Excel-canva"=>"Click here to Download Excel canva",
 
 
 
