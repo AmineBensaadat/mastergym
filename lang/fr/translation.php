@@ -380,6 +380,11 @@ return [
     "Search-for-members"=>"Rechercher des membres",
     "name-or-something"=>"Nom ou quelque chose...",
     "Search-for"=>"Rechercher ",
+    "import-members"=>"importation de membres",
+    "Upload-File"=>"télécharger un fichier",
+    "Excel-Canva"=>"Excel Canva",
+    "Download-the-canva-excel"=>"Téléchargez le fichier canva excel pour importer les membres",
+    "Click-here-to-Download-Excel-canva"=>"Cliquez ici pour télécharger la toile Excel",
 
 
 
