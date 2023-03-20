@@ -50,7 +50,7 @@
                     @foreach ($plans as $plan)
                         <div class="col">
                             <div class="card team-box">
-                                <div class="team-cover"><img src="assets/images/small/img-3.jpg" alt="" class="img-fluid" /></div>
+                                <div class="team-cover"><img src="../assets/images/small/img-3.jpg" alt="" class="img-fluid" /></div>
                                 <div class="card-body p-4">
                                     <div class="row align-items-center team-row">
                                         <div class="col team-settings">

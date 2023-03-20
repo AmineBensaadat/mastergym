@@ -10,6 +10,7 @@ use App\Repositories\ServicesRepository;
 use App\Rules\IsSelected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class PlansController extends Controller{
 
@@ -86,9 +87,8 @@ class PlansController extends Controller{
     {
          // tables
          $palns= new Plans();
-         $files_table= new Files();
-         $destinationPath = public_path().'/assets/images/plans/' ;
          $user = auth()->user();
+         $destinationPath = public_path().'/assets/images/plans/'.$user->account_id.'/' ;
 
         //validation form 
         $this->validate(
@@ -125,22 +125,16 @@ class PlansController extends Controller{
         $file = $request->file('profile_image');
         if($file = $request->hasFile('profile_image')) {
 
-            // file data 
-            $file = $request->file('profile_image') ;
-            $extension = $request->file('profile_image')->extension();
-            $fileName = "profile_image_plan_".$palns->id.'.'.$extension;
-
-            // save plan image in file table
-            $files_table= new Files();
-            $files_table->name = $fileName;
-            $files_table->ext = $extension;
-            $files_table->entity_name = 'plans';
-            $files_table->type = 'profile';
-            $files_table->entitiy_id = $palns->id;   
-            $files_table->save();
-
-            // move file in dericory
-            $file->move($destinationPath,$fileName);
+             // save the file
+             try {
+                $extension = $request->file('profile_image')->extension();
+                $fileName = "plan_image_".$request['plan_name']."_".$palns->id.'_'.time().'.'.$extension;
+                $this->filesRepository->saveFile($request, $palns->id, $fileName ,$destinationPath, 'plans', 'profile', 'profile_image');
+            } catch (Throwable $e) {
+                report($e);
+        
+                return $e;
+            }
 
         }
 
@@ -153,8 +147,8 @@ class PlansController extends Controller{
         $plan = Plans::findOrFail($request['plan_id']);
        
         $files_table= new Files();
-        $destinationPath = public_path().'/assets/images/plans/' ;
         $user = auth()->user();
+        $destinationPath = public_path().'/assets/images/plans/'.$user->account_id.'/' ;
 
         $fileExist = $this->filesRepository->checkFileByEntityId($request['plan_id'], 'plans', 'profile');
        //validation form 
@@ -189,33 +183,16 @@ class PlansController extends Controller{
    
        $file = $request->file('profile_image');
        if($file = $request->hasFile('profile_image')) {
-           $file = $request->file('profile_image') ;
-           $extension = $request->file('profile_image')->extension();
-           $fileName = "profile_image_plan_".$request['plan_id'].'.'.$extension;
-
-
-           if(count($fileExist) > 0){ // update
-
-               $old_files_table = Files::findOrFail($fileExist[0]->id);
-
-               // update service image in file table
-               $old_files_table->name = $fileName;
-               $old_files_table->ext = $extension;
-               $old_files_table->update();
-
-           }else{ // insert
-
-           // save plan image in file table
-           $files_table->name = $fileName;
-           $files_table->ext = $extension;
-           $files_table->type = 'profile';
-           $files_table->entity_name = 'plans';
-           $files_table->entitiy_id = $plan->id;   
-           $files_table->save();
-           }
-
-           // move file in dericory
-           $file->move($destinationPath,$fileName);
+           // save the file
+           try {
+            $extension = $request->file('profile_image')->extension();
+            $fileName = "plan_image_".$request['plan_name']."_".$request['plan_id'].'_'.time().'.'.$extension;
+            $this->filesRepository->saveFile($request, $request['plan_id'], $fileName ,$destinationPath, 'plans', 'profile', 'profile_image');
+        } catch (Throwable $e) {
+            report($e);
+    
+            return $e;
+        }
 
        }
 

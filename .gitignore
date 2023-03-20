@@ -10,6 +10,10 @@ app/storage/
 # Laravel 5 & Lumen specific
 public/storage
 public/hot
+public/assets/assets/members
+public/assets/assets/services
+public/assets/assets/gyms
+public/assets/assets/plans 
 
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
