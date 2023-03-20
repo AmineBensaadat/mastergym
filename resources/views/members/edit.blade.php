@@ -192,6 +192,16 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label" for="services">@lang('translation.services')</label>
+                        <select name="service" id="services" class="form-select" aria-label=".form-select-sm example" required>
+                            <option value="0">@lang('translation.chose')@lang('translation.Service')</option>
+                            @foreach ($services as $service)
+                                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     
                     <div class="mb-3">
                         <label class="form-label" for="created_at-input">@lang('translation.created-at')</label>

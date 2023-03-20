@@ -44,7 +44,7 @@ class ServicesRepository
         $user= auth()->user();
         $services = DB::table('services')  
             ->select('services.*')
-            ->where('services.created_by', $user->id)
+            //->where('services.created_by', $user->id)
             ->where('services.account_id', $user->account_id)
             ->get(); 
         return $services;

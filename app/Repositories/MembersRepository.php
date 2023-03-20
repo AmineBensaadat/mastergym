@@ -28,13 +28,13 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')->groupBy('members.id')
             ->select(
                 'members.*',
                 'gyms.name as gym_name',
                 'gyms.id as gym_id',
-                'services.id as service_id',
+                'members.service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
                 'plans.plan_name as plan_name')
@@ -702,6 +702,7 @@ class MembersRepository
             'emergency_contact' => $request['emergency_contact'],
             'gender' => $request['gender'],
             'gym_id' => $request['gym'],
+            'service_id' => $request['service'],
             'created_at' =>  $request['created_at'],
             'health_issues' =>  $request['health_issues'],
             'cin' => $request['cin'],

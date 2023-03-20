@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->integer('account_id')->nullable();
+            //$table->integer('account_id')->nullable();
         });
     }
 

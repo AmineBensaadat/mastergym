@@ -673,8 +673,9 @@ class MembersController extends Controller
             )
             ->where('members.id', $id)->first();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        $services =  $this->servicesRepository->renderAllServices();
 
-        return view('members.edit', compact('gyms','member'));
+        return view('members.edit', compact('gyms','member', 'services'));
     }
 
     /**

@@ -25,6 +25,7 @@ class Members extends Model
         'updated_by',
         'cin',
         'account_id',
+        'service_id',
         'gym_id'
     ];
     
