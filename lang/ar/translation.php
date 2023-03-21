@@ -3,7 +3,6 @@ return [
 
     "all_gym" => "جميع النوادي",
     "gyms"=>"الصالات الرياضية",
-    "add_gym" => "إضافة",
     "require_gym_name" => "name is require",
     "add_gym" => " أضف ",
     "add" => " أضف ",
@@ -32,7 +31,7 @@ return [
     "Enter-plan-descreption-her" => "أدخل وصف الخطة ",
     "Service" => " خدمة ",
     "Select_the_service" => " اختر الخدمة ",
-    "day" => "تاريخ الميلاد",
+    "day" => " يوم",
     "nbr-day" => "عدد الأيام",
     "Enter-day" => "أدخل التاريخ",
     "amount" => "المبلغ",
@@ -176,6 +175,9 @@ return [
     "Download-the-canva-excel"=>"قم بتنزيل ملف canva excel لاستيراد الأعضاء",
     "Click-here-to-Download-Excel-canva"=>"انقر هنا لتنزيل ملف  Excel canva",
 
+    "girl" => " فتاة ",
+    "boy" => " ولد ",
+    "birth-day" => "تاريخ الميلاد",
 
 
 

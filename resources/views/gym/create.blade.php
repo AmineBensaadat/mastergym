@@ -1,11 +1,11 @@
 @extends('layouts.master')
-@section('title') @lang('translation.create-product') @endsection
+@section('title') @lang('translation.add') @lang('translation.gym') @endsection
 @section('css')
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Ecommerce @endslot
-@slot('title') Create Gym @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
+@slot('title') @lang('translation.add') @lang('translation.gym') @endslot
 @endcomponent
 
 <form id="createproduct-form" method="POST" class="needs-validation"  action="{{ route('store_gym') }}" novalidate enctype="multipart/form-data">

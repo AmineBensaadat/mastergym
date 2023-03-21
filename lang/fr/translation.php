@@ -263,7 +263,7 @@ return [
     "Enter-plan-descreption-her" => "Entrez la description de plan",
     "Service" => "Service",
     "Select_the_service" => "Sélectionnez la service",
-    "day" => "jour",
+    "day" => "Jour",
     "nbr-day" => "Nombre des jours",
     "Enter-day" => "Enter day",
     "amount" => "montante",
@@ -386,6 +386,9 @@ return [
     "Download-the-canva-excel"=>"Téléchargez le fichier canva excel pour importer les membres",
     "Click-here-to-Download-Excel-canva"=>"Cliquez ici pour télécharger la toile Excel",
 
+    "girl" => "Fille",
+    "boy" => "Garçon",
+    "birth-day" => "Date de naissance",
 
 
 

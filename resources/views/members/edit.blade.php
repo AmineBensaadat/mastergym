@@ -1,11 +1,11 @@
 @extends('layouts.master')
-@section('title') @lang('translation.add-member') @endsection
+@section('title') @lang('translation.edit-Profile') @endsection
 @section('css')
 @endsection
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') @lang('translation.member') @endslot
-@slot('title') @lang('translation.Update-Memeber') @endslot
+@slot('title') @lang('translation.edit-Profile') @endslot
 @endcomponent
 
 <form id="createMember-form" method="POST" class="needs-validation"  action="{{ route('members_update') }}" novalidate enctype="multipart/form-data">
@@ -83,7 +83,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="dob-input">@lang('translation.day')</label>
+                                    <label class="form-label" for="dob-input">@lang('translation.birth-day')</label>
 
                                     <div class="form-icon">
                                         <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') ? old('dob') : $member->DOB }}" >
@@ -202,7 +202,7 @@
                         </select>
                     </div>
 
-                    
+
                     <div class="mb-3">
                         <label class="form-label" for="created_at-input">@lang('translation.created-at')</label>
 
@@ -215,7 +215,7 @@
                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+
 
                     <div class="mb-3">
                         <label for="choices-status" class="form-label">@lang('translation.Status')</label>

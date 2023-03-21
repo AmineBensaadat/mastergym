@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') @lang('translation.add-member') @endsection
+@section('title') @lang('translation.add') @lang('translation.member') @endsection
 @section('css')
 @endsection
 @section('content')
@@ -357,7 +357,7 @@
                             <option value="0">@lang('translation.Inactive')</option>
                         </select>
                     </div>
-                    
+
 
                     <div class="mb-3">
                         <label class="form-label" for="health_issues-input">@lang('translation.health_issues')</label>

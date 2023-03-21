@@ -378,6 +378,11 @@ return [
     "Download-the-canva-excel"=>"Download the canva excel file to import the members",
     "Click-here-to-Download-Excel-canva"=>"Click here to Download Excel canva",
 
+    "girl" => "Girl",
+    "boy" => "Boy",
+    "birth-day" => "Day of Birth",
+
+
 
 
 ];
