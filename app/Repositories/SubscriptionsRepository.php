@@ -47,7 +47,7 @@ class SubscriptionsRepository
             ->join('users', 'subscriptions.created_by', '=', 'users.id') 
             ->join('members', 'subscriptions.member_id', '=', 'members.id')   
             ->join('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->join('services', 'members.service_id', '=', 'services.id')      
+            ->join('services', 'plans.service_id', '=', 'services.id')      
             ->select(
                 'subscriptions.*',
                 'members.id as member_id',
