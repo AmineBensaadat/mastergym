@@ -49,10 +49,9 @@ class Helper
     public static function countAllMembersByService($service_id){
         $data = array();
         $user = auth()->user();
-        $query = DB::table('members')->select('members.*')
-        ->join('subscriptions', 'members.id', '=', 'subscriptions.member_id');
+        $query = DB::table('members')->select('members.*');
         $query->where('members.account_id',  '=', $user->account_id);
-        $query->where('subscriptions.service_id',  '=', $service_id);
+        $query->where('members.service_id',  '=', $service_id);
             $data = $query->get();
             return $data->count();
     }
@@ -128,7 +127,7 @@ public static function countMembersByStatus($status){
     $query = DB::table('members')
         ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
         ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-        ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+        ->leftJoin('services', 'members.service_id', '=', 'services.id')  
         ->leftJoin('invoices', 'members.id', '=', 'invoices.member_id')
         ->join('gyms', 'members.gym_id', '=', 'gyms.id')
         ->select(

@@ -130,7 +130,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')->groupBy('members.id')
             ->select(
                 'members.*',
@@ -254,7 +254,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->join('invoices', 'members.id', '=', 'invoices.member_id')
             ->select(
@@ -357,7 +357,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->join('invoices', 'members.id', '=', 'invoices.member_id')
             ->select(
@@ -467,7 +467,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->join('invoices', 'members.id', '=', 'invoices.member_id')->groupBy('members.id')
             ->select(
@@ -569,7 +569,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->leftJoin('invoices', 'members.id', '=', 'invoices.member_id')
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
