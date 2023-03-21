@@ -586,7 +586,7 @@ class MembersController extends Controller
                     'created_at' => 'required',
                     'gym' => new IsSelected,
                     'start_date' => 'date|nullable',
-                    'end_date' => 'date|nullable|after:start_date',
+                    'end_date' => 'required',
                     //'amount-received' => 'required_unless:subscription-price.*,'
                 ],
                 [

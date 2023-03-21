@@ -69,7 +69,7 @@ class SubscriptionsController extends Controller
             $request,
                 [
                     'start_date' => 'date|nullable',
-                    'end_date' => 'date|nullable|after:start_date',
+                    'end_date' => 'required',
                     'amount-received' => 'required_unless:subscription-price.*,',
                     'amount-pending' => 'required',
                     
@@ -105,7 +105,7 @@ class SubscriptionsController extends Controller
             $request,
                 [
                     'start_date' => 'date|nullable',
-                    'end_date' => 'date|nullable|after:start_date',
+                    'end_date' => 'required',
                     'amount-received' => 'required_unless:subscription-price.*,',
                     'amount-pending' => 'required',
                 ],
