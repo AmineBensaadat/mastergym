@@ -40,7 +40,7 @@
                                             <select class="form-control" data-choices data-choices-removeItem name="service[]"multiple>
                                                 
                                                 @foreach ($services as $key => $service )
-                                                    <option value="{{ $service->id }}" {{ $service->id === $service->plan_service_id ? "selected" : "" }}>{{ $service->name }}  </option>
+                                                    <option value="{{ $service->id }}" {{ Helper::checkIfServiceSlected($service->id, $plan->id) ? "selected" : "" }}>{{ $service->name }}  </option>
                                                 @endforeach   
                                             </select> 
                                         </div>

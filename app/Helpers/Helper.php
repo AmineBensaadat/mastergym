@@ -121,6 +121,20 @@ public static function getGymServiceByServiceId($service_id){
     return $gym;
 }
 
+public static function checkIfServiceSlected($service_id, $plan_id){
+    $service = DB::table('plans_services')
+    ->select('plans_services.*')
+    ->where('service_id', $service_id)
+    ->where('plan_id', $plan_id)
+    ->get()->first();
+
+    if($service){
+        return true;
+    }
+    return false;
+
+}
+
 public static function countMembersByStatus($status){
     $data = array();
     $user = auth()->user();

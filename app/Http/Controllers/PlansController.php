@@ -79,9 +79,8 @@ class PlansController extends Controller{
      */
     public function edit($id)
     {
-        $services =  $this->servicesRepository->renderServicesChosed();
+        $services =  $this->servicesRepository->renderServicesChosed($id);
         $plans_services =  PlansServices::where('plan_id', '=', $id)->get();
-        //dd($plans_services[0]->service_id);
         $plan = Plans::findOrFail($id);
         // dd($services[1]->id, $plan->service_id);
         return view('plans.edit', compact('services', 'plan', 'plans_services'));
@@ -91,6 +90,7 @@ class PlansController extends Controller{
     {
          // tables
          $palns= new Plans();
+         $plans_services = new PlansServices();
          $user = auth()->user();
          $destinationPath = public_path().'/assets/images/plans/'.$user->account_id.'/' ;
         //validation form 
@@ -115,7 +115,6 @@ class PlansController extends Controller{
         // save plan in plans table
         $palns->plan_name = $request['plan_name'];
         $palns->plan_details = $request['plan_desc'];
-        $palns->service_id = $request['service'];
         $palns->days = $request['plan_day'];
         $palns->amount = $request['plan_amount'];
         $palns->status = $request['status'];
@@ -123,6 +122,18 @@ class PlansController extends Controller{
         $palns->updated_by = $user->id;
         $palns->account_id = $user->account_id;
         $palns->save();
+
+         // save plans services
+         if(count($request['service']) > 0){
+                foreach($request['service'] as $service){
+                    $data = array(
+                    'service_id' => $service,
+                    'plan_id' => $palns->id
+                    );
+                    $plans_services::insert($data);
+                }
+        }
+
 
         // save plan profile image
         $file = $request->file('profile_image');
