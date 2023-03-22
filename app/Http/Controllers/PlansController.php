@@ -34,8 +34,10 @@ class PlansController extends Controller{
     public function getPlansBySrvice() {
         $serviceId = $_POST['serviceId'];
         
-        $plans = Plans::select('id','plan_name', 'days', 'amount')
-                ->where('service_id', $serviceId)
+        $plans = DB::table('plans_services')
+                ->join('plans', 'plans_services.plan_id', '=', 'plans.id') 
+                ->select('*') 
+                ->where('plans_services.service_id', $serviceId)
                 ->get();
         return response()->json(array('plans'=> $plans), 200);
     }
