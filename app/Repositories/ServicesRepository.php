@@ -58,6 +58,17 @@ class ServicesRepository
             ->where('users.account_id', $user->account_id)
             ->get(); 
         return $services;
+    } 
+
+    public function renderServicesChosed(){
+        $user= auth()->user();
+        $services = DB::table('services')
+            ->join('users', 'services.created_by', '=', 'users.id')  
+            ->leftJoin('plans_services', 'services.id', '=', 'plans_services.service_id')  
+            ->select('services.*', 'plans_services.service_id as plan_service_id')
+            ->where('users.account_id', $user->account_id)
+            ->get(); 
+        return $services;
     }  
     
     public function getServiceProfileImage(){

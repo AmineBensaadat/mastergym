@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Files;
 use App\Models\Plans;
+use App\Models\PlansServices;
 use App\Models\Services;
 use App\Repositories\FilesRepository;
 use App\Repositories\PlansRepository;
@@ -71,16 +72,19 @@ class PlansController extends Controller{
         return view('plans.plans_create', compact('services'));
     }
 
-       /**
+    /**
      * Show create plan.
      *
      * @return Response
      */
     public function edit($id)
     {
-        $services = Services::all();
+        $services =  $this->servicesRepository->renderServicesChosed();
+        $plans_services =  PlansServices::where('plan_id', '=', $id)->get();
+        //dd($plans_services[0]->service_id);
         $plan = Plans::findOrFail($id);
-        return view('plans.edit', compact('services', 'plan'));
+        // dd($services[1]->id, $plan->service_id);
+        return view('plans.edit', compact('services', 'plan', 'plans_services'));
     }
 
     public function store(Request $request)
@@ -89,7 +93,6 @@ class PlansController extends Controller{
          $palns= new Plans();
          $user = auth()->user();
          $destinationPath = public_path().'/assets/images/plans/'.$user->account_id.'/' ;
-
         //validation form 
         $this->validate(
         $request, 
@@ -145,7 +148,9 @@ class PlansController extends Controller{
     {
         // tables
         $plan = Plans::findOrFail($request['plan_id']);
-       
+        $plans_services = new PlansServices();
+        
+         
         $files_table= new Files();
         $user = auth()->user();
         $destinationPath = public_path().'/assets/images/plans/'.$user->account_id.'/' ;
@@ -171,16 +176,26 @@ class PlansController extends Controller{
        // update plan in plans table
         $plan->plan_name = $request['plan_name'];
         $plan->plan_details = $request['plan_desc'];
-        $plan->service_id = $request['service'];
         $plan->days = $request['plan_day'];
         $plan->amount = $request['plan_amount'];
         $plan->status = $request['status'];
         $plan->updated_by = $user->id;
         $plan->update();
 
+         // save plans services
+        if(count($request['service']) > 0){
+            PlansServices::where('plan_id', '=', $request['plan_id'])->delete();
+                foreach($request['service'] as $service){
+                    $data = array(
+                    'service_id' => $service,
+                    'plan_id' => $request['plan_id']
+                    );
+                    $plans_services::insert($data);
+                }
+        }
+
 
        // save plan profile image
-   
        $file = $request->file('profile_image');
        if($file = $request->hasFile('profile_image')) {
            // save the file

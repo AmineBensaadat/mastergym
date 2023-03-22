@@ -36,12 +36,13 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="mb-3">
-                                            <select name="service" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
-                                                <option value="">@lang('translation.Select_the_service')</option>
-                                                @foreach ($services as $service)
-                                                    <option value="{{ $service['id'] }}" {{ $service['id'] === $plan->service_id ? "selected" : "" }}>{{ $service['name'] }}</option>
-                                                @endforeach
-                                            </select>
+                                
+                                            <select class="form-control" data-choices data-choices-removeItem name="service[]"multiple>
+                                                
+                                                @foreach ($services as $key => $service )
+                                                    <option value="{{ $service->id }}" {{ $service->id === $service->plan_service_id ? "selected" : "" }}>{{ $service->name }}  </option>
+                                                @endforeach   
+                                            </select> 
                                         </div>
                                         @error('service')
                                             <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
