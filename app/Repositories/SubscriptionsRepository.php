@@ -24,11 +24,11 @@ class SubscriptionsRepository
        return $subscription;
     }
 
-    public function updateSubscription($request, $subscription_id, $invoice_id){
+    public function updateSubscription($request, $subscription_id){
         $user_id= auth()->user()->id;
         Subscriptions::where('id', $subscription_id)
         ->update([
-            'invoice_id' => $invoice_id,
+            'service_id' => $request['service'],
             'plan_id' => $request['plans'],
             'start_date' => $request['start_date'],
             'end_date' => $request['end_date'],

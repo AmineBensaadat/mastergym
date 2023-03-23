@@ -348,7 +348,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="mt-3 pt-2">
-                                                    <a href="{{ route('subscriptions_renwe', ['subscription_id' =>  $member->subscription_id, 'member_id' => $member->id ]) }}" class="btn btn-info w-100">Renew</a>
+                                                    <a href="{{ route('subscriptions_edit', ['subscription_id' =>  $member->subscription_id]) }}" class="btn btn-info w-100">Edit</a>
                                                 </div>
                                             </div>
                                         </div>
