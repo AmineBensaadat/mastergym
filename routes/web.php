@@ -58,6 +58,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::post('/store', [UsersController::class, 'store'])->name('user_store');
     Route::get('/create', [UsersController::class, 'create'])->name('users_create');
     Route::post('/getAllUsers', [UsersController::class, 'getAllUsers'])->name('users_list_json');
+    Route::post('/update-password', [UsersController::class, 'updatePassword'])->name('updatePassword');
 });
 
 //Members
@@ -119,6 +120,5 @@ Route::get('/', [App\Http\Controllers\LendingController::class, 'index'])->name(
 
 //Update User Details
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
 
 Route::get('{any}', [DashboardController::class, 'index'])->name('index');

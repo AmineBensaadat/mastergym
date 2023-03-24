@@ -140,47 +140,37 @@
                         </div>
                         <!--end tab-pane-->
                         <div class="tab-pane" id="changePassword" role="tabpanel">
-                            <form action="javascript:void(0);">
+                            <form action="{{ route('updatePassword') }}" method="POST" id="change_password_form">
+                                @csrf
                                 <div class="row g-2">
                                     <div class="col-lg-4">
                                         <div>
-                                            <label for="oldpasswordInput" class="form-label">Old
-                                                Password*</label>
-                                            <input type="password" class="form-control" id="oldpasswordInput"
-                                                placeholder="Enter current password">
+                                            <label for="oldpasswordInput" class="form-label">OldPassword*</label>
+                                            <input type="password" name="current_password" class="form-control" id="oldpasswordInput" placeholder="Enter current password">
                                         </div>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-4">
                                         <div>
-                                            <label for="newpasswordInput" class="form-label">New
-                                                Password*</label>
-                                            <input type="password" class="form-control" id="newpasswordInput"
-                                                placeholder="Enter new password">
+                                            <label for="newpasswordInput" class="form-label">New Password*</label>
+                                            <input type="password" name="password" class="form-control" id="newpasswordInput" placeholder="Enter new password">
+                                            
+                                            <div class="invalid-feedback">
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-4">
                                         <div>
-                                            <label for="confirmpasswordInput" class="form-label">Confirm
-                                                Password*</label>
-                                            <input type="password" class="form-control" id="confirmpasswordInput"
-                                                placeholder="Confirm password">
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <a href="javascript:void(0);"
-                                                class="link-primary text-decoration-underline">Forgot
-                                                Password ?</a>
+                                            <label for="confirmpasswordInput" class="form-label">Confirm Password*</label>
+                                            <input type="password" name="confirm_password" class="form-control" id="confirmpasswordInput" placeholder="Confirm password">
                                         </div>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-12">
                                         <div class="text-end">
-                                            <button type="submit" class="btn btn-success">Change
-                                                Password</button>
+                                            <button type="submit" class="btn btn-success">Change Password</button>
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -228,4 +218,39 @@
 @section('script')
     <!-- input flag init -->
     <script src="{{URL::asset('assets/js/pages/flag-input.init.js')}}"></script>
+    <script src="{{ URL::asset('/assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#change_password_form").submit(function (event) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/users/update-password",
+                    data: {
+                        current_password:$("#oldpasswordInput").val(), 
+                        password:$("#newpasswordInput").val(),
+                        password_confirmation:$("#confirmpasswordInput").val(),
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: "json",
+                    encode: true,
+                    }).done(function (data) {
+                    console.log(data);
+                });
+                // $.ajax({
+                //     url :"/users/update-password",
+                //     type:"POST",
+                //     cache:false,
+                //     data:{
+                      
+                //         },
+                //     success:function(data){
+                //         alert(99);
+                //     }
+                // });
+
+                event.preventDefault();
+            });
+        });
+    </script>
 @endsection
