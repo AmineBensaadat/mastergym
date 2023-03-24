@@ -105,7 +105,7 @@
                 <div class="tab-content pt-4 text-muted">
                     <div class="tab-pane active" id="overview-tab" role="tabpanel">
                         <div class="row">
-                            <div class="col-xxl-3">
+                            <div class="col-md-3">
                                 {{-- <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title mb-5">Complete Your Profile</h5>
@@ -180,7 +180,7 @@
                                 <!--end card-->
                             </div>
                             <!--end col-->
-                            <div class="col-xxl-9">
+                            <div class="col-md-9">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -348,7 +348,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="mt-3 pt-2">
-                                                    <a href="{{ route('subscriptions_renwe', ['subscription_id' =>  $member->subscription_id, 'member_id' => $member->id ]) }}" class="btn btn-info w-100">Renew</a>
+                                                    <a href="{{ route('subscriptions_edit', ['subscription_id' =>  $member->subscription_id]) }}" class="btn btn-info w-100">Edit</a>
                                                 </div>
                                             </div>
                                         </div>
