@@ -64,8 +64,9 @@ class SubscriptionsController extends Controller
     {
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
+        $member = Members::findOrFail($id);
         $member_id = $id;
-        return view('subscriptions.create', compact('gyms','services', 'member_id'));
+        return view('subscriptions.create', compact('gyms','services', 'member_id', 'member'));
     }
 
     public function store(Request $request)
@@ -95,7 +96,7 @@ class SubscriptionsController extends Controller
                  $invoice = $this->invoicesRepository->addInvoice($request, $request->member_id);
             }
 
-            return redirect()->route('subscriptions_list');
+            return redirect()->route('members_show', array('id' => $request->member_id));
 
     }
 

@@ -125,7 +125,7 @@
                               <div class="col-sm">
                                 <div class="mb-3">
                                     <label class="form-label" for="discount-amount-input">@lang('translation.discount-amount')</label>
-                                    <input readonly type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
+                                    <input type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
                                     @error('discount-amount')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
@@ -171,7 +171,7 @@
                         <select name="gym" class="form-select" aria-label=".form-select-sm example" required>
                             <option value="0">@lang('translation.chose')@lang('translation.gym')</option>
                             @foreach ($gyms as $gym)
-                                <option {{ old('gym') == $gym->id ? "selected" : "" }} value="{{ $gym->id }}">{{ $gym->name }}</option>
+                                <option {{ old('gym') == $gym->id ? "selected" : ($gym->id == $member->gym_id ?  "selected" : "")}} value="{{ $gym->id }}">{{ $gym->name }}</option>
                             @endforeach
                         </select>
                         @error('gym')
