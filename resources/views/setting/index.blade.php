@@ -223,20 +223,6 @@
         $(document).ready(function () {
             $("#change_password_form").submit(function (event) {
 
-                $.ajax({
-                    type: "POST",
-                    url: "/users/update-password",
-                    data: {
-                        current_password:$("#oldpasswordInput").val(), 
-                        password:$("#newpasswordInput").val(),
-                        password_confirmation:$("#confirmpasswordInput").val(),
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: "json",
-                    encode: true,
-                    }).done(function (data) {
-                    console.log(data);
-                });
                 // $.ajax({
                 //     url :"/users/update-password",
                 //     type:"POST",
@@ -250,6 +236,78 @@
                 // });
 
                 event.preventDefault();
+
+
+                var member_id = $(this).attr('member_id');
+
+                Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                confirmButtonText: "Yes, delete it!",
+                buttonsStyling: false,
+                showCloseButton: true
+                }).then(function (result) {
+                    // $.ajax({
+                    //     type: "POST",
+                    //     url: "/users/update-password",
+                    //     data: {
+                    //         current_password:$("#oldpasswordInput").val(), 
+                    //         password:$("#newpasswordInput").val(),
+                    //         password_confirmation:$("#confirmpasswordInput").val(),
+                    //         _token: '{{csrf_token()}}'
+                    //     },
+                    //     dataType: "json",
+                    //     encode: true,
+                    //     }).done(function (data) {
+                    //     console.log(data);
+                    // });
+
+                      $.ajax({
+                            url: "/users/update-password",
+                            type:"POST",
+                            cache:false,
+                            data:{
+                                current_password:$("#oldpasswordInput").val(), 
+                                password:$("#newpasswordInput").val(),
+                                password_confirmation:$("#confirmpasswordInput").val(),
+                                _token: '{{csrf_token()}}'
+                                 },
+                                success:function(data){
+                                    if(data.isSuccess){
+                                            Swal.fire({
+                                            position: 'center',
+                                            icon: 'success',
+                                            title: data.Message,
+                                            showConfirmButton: true,
+                                            //timer: 1500,
+                                            showCloseButton: true
+                                        });
+                                        $('logout-form').submit();
+                                    }else{
+                                        console.log(data);
+                                        Swal.fire({
+                                        title: 'Error',
+                                        text: data.Message,
+                                        imageUrl: 'assets/images/logo-light.png',
+                                        imageHeight: 40,
+                                        confirmButtonClass: 'btn btn-primary w-xs mt-2',
+                                        buttonsStyling: false,
+                                        animation: false,
+                                        showCloseButton: true
+                                    });
+                                    }
+                                    
+                                    
+                                },
+                                error: function (request, status, error) {
+                                    console.log(request, status, error);
+                                }
+                        });
+                });
             });
         });
     </script>

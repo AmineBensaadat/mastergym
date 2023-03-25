@@ -200,9 +200,9 @@ class UsersController extends Controller
             ], 200); // Status code
         } else {
             $user = User::find(Auth::user()->id);
-            $user->password = Hash::make($request->get('password'));
-            $user->update();
             if ($user) {
+                $user->password = Hash::make($request->get('password'));
+                $user->update();
                 Session::flash('message', 'Password updated successfully!');
                 Session::flash('alert-class', 'alert-success');
                 return response()->json([
@@ -213,7 +213,7 @@ class UsersController extends Controller
                 Session::flash('message', 'Something went wrong!');
                 Session::flash('alert-class', 'alert-danger');
                 return response()->json([
-                    'isSuccess' => true,
+                    'isSuccess' => false,
                     'Message' => "Something went wrong!"
                 ], 200); // Status code here
             }
