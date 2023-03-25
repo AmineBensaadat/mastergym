@@ -10,7 +10,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xxl-3">
+        <div class="col-md-3">
             <div class="card mt-n5">
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -80,7 +80,7 @@
             <!--end card-->
         </div>
         <!--end col-->
-        <div class="col-xxl-9">
+        <div class="col-md-9">
             <div class="card mt-xxl-n5">
                 <div class="card-header">
                     <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
@@ -148,17 +148,19 @@
                                             <label for="oldpasswordInput" class="form-label">OldPassword*</label>
                                             <input type="password" name="current_password" class="form-control" id="oldpasswordInput" placeholder="Enter current password">
                                         </div>
+                                        <span class="invalid-feedback oldpasswordInput" role="alert">
+                                            <strong></strong>
+                                        </span>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-4">
                                         <div>
                                             <label for="newpasswordInput" class="form-label">New Password*</label>
                                             <input type="password" name="password" class="form-control" id="newpasswordInput" placeholder="Enter new password">
-                                            
-                                            <div class="invalid-feedback">
-                                            </div>
-                                            
                                         </div>
+                                        <span class="invalid-feedback password" role="alert">
+                                            <strong></strong>
+                                        </span>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-4">
@@ -166,6 +168,9 @@
                                             <label for="confirmpasswordInput" class="form-label">Confirm Password*</label>
                                             <input type="password" name="confirm_password" class="form-control" id="confirmpasswordInput" placeholder="Confirm password">
                                         </div>
+                                        <span class="invalid-feedback confirm_password" role="alert">
+                                            <strong></strong>
+                                        </span>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-12">
@@ -222,22 +227,7 @@
     <script>
         $(document).ready(function () {
             $("#change_password_form").submit(function (event) {
-
-                // $.ajax({
-                //     url :"/users/update-password",
-                //     type:"POST",
-                //     cache:false,
-                //     data:{
-                      
-                //         },
-                //     success:function(data){
-                //         alert(99);
-                //     }
-                // });
-
                 event.preventDefault();
-
-
                 var member_id = $(this).attr('member_id');
 
                 Swal.fire({
@@ -247,25 +237,10 @@
                 showCancelButton: true,
                 confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
                 cancelButtonClass: 'btn btn-danger w-xs mt-2',
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonText: "Yes, change it!",
                 buttonsStyling: false,
                 showCloseButton: true
                 }).then(function (result) {
-                    // $.ajax({
-                    //     type: "POST",
-                    //     url: "/users/update-password",
-                    //     data: {
-                    //         current_password:$("#oldpasswordInput").val(), 
-                    //         password:$("#newpasswordInput").val(),
-                    //         password_confirmation:$("#confirmpasswordInput").val(),
-                    //         _token: '{{csrf_token()}}'
-                    //     },
-                    //     dataType: "json",
-                    //     encode: true,
-                    //     }).done(function (data) {
-                    //     console.log(data);
-                    // });
-
                       $.ajax({
                             url: "/users/update-password",
                             type:"POST",
@@ -282,13 +257,16 @@
                                             position: 'center',
                                             icon: 'success',
                                             title: data.Message,
-                                            showConfirmButton: true,
-                                            //timer: 1500,
-                                            showCloseButton: true
+                                            showConfirmButton: false,
+                                            timer: 1500,
+                                            showCloseButton: false
                                         });
-                                        $('logout-form').submit();
+
+                                        $("#oldpasswordInput").val(""), 
+                                        $("#newpasswordInput").val(""),
+                                        $("#confirmpasswordInput").val("")
                                     }else{
-                                        console.log(data);
+                                        
                                         Swal.fire({
                                         title: 'Error',
                                         text: data.Message,
@@ -299,12 +277,46 @@
                                         animation: false,
                                         showCloseButton: true
                                     });
+                                        $(".oldpasswordInput").css("display", "block"); 
+                                        $(".oldpasswordInput strong").html(data.Message);
                                     }
                                     
                                     
                                 },
-                                error: function (request, status, error) {
-                                    console.log(request, status, error);
+                                error: function (jqXhr, json, errorThrown) {
+                                    var errors = jqXhr.responseJSON;
+                                    var error =  jqXhr.responseJSON.errors;
+                                    console.log(errors);
+                                    var errorsHtml = '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15">' + '<h4>Oops...! Something went Wrong !</h4>';
+                                    if(error.current_password){
+                                        $(".oldpasswordInput").css("display", "block"); 
+                                        $(".oldpasswordInput strong").html(error.current_password[0]);
+                                        errorsHtml += '<p class="text-muted mx-4 mb-0"> current password :  '+ error.current_password[0] +'</p>';
+
+                                    }
+                                    if(error.password){
+                                        $(".password").css("display", "block"); 
+                                        $(".password strong").html(error.password[0]);
+                                        errorsHtml += '<p class="text-muted mx-4 mb-0"> password :  '+ error.current_password[0] +'</p>';
+
+                                    }
+                                    if(error.password_confirmation){
+                                        $(".confirm_password").css("display", "block"); 
+                                        $(".confirm_password strong").html(error.password_confirmation[0]);
+                                        errorsHtml += '<p class="text-muted mx-4 mb-0"> password confirmation :  '+ error.current_password[0] +'</p>';
+
+                                    }
+                                        errorsHtml += '</div></div>';
+                                    //I use SweetAlert2 for this
+                                    Swal.fire({
+                                        html: errorsHtml,
+                                        showCancelButton: true,
+                                        showConfirmButton: false,
+                                        cancelButtonClass: 'btn btn-primary w-xs mb-1',
+                                        cancelButtonText: 'Dismiss',
+                                        buttonsStyling: false,
+                                        showCloseButton: true
+                                    });
                                 }
                         });
                 });

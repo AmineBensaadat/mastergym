@@ -190,6 +190,7 @@ class UsersController extends Controller
     {
         $request->validate([
             'current_password' => ['required', 'string'],
+            'password_confirmation' => ['required', 'string'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
         
