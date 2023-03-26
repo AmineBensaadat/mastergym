@@ -382,6 +382,12 @@ return [
     "boy" => "Boy",
     "birth-day" => "Day of Birth",
 
+    "Old-Password" => "Old Password",
+    "New-Password" => "New Password",
+    "Confirm-Password" => "Confirm Password",
+    "language" => "language",
+    "Change-Password" => "Change Password",
+
 
 
 
