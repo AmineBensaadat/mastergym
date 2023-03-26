@@ -1,5 +1,5 @@
 @extends('layouts.master-without-nav')
-@section('title') @lang('translation.Landing') @endsection
+@section('title') Gogym @endsection
 @section('css')
 <!--Swiper slider css-->
 <link href="{{ URL::asset('assets/libs/swiper/swiper.min.css') }}" rel="stylesheet" type="text/css" />
@@ -26,10 +26,10 @@
                             <a class="nav-link active" href="#hero">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#wallet">Wallet</a>
+                            <a class="nav-link" href="#wallet">about us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#marketplace">Marketplace</a>
+                            <a class="nav-link" href="#marketplace">clubs de sport</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#categories">Categories</a>
@@ -75,8 +75,11 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="text-center mb-5">
-                            <h2 class="mb-3 fw-semibold lh-base">Connect Gogym</h2>
-                            <p class="text-muted">A non-fungible token is a non-interchangeable unit of data stored on a blockchain, a form of digital ledger, that can be sold and traded.</p>
+                            <h2 class="mb-3 fw-semibold lh-base">Who is Gogym</h2>
+                            <p class="text-muted">Gogym is great software but we're all about the people who support you too. Our customer service ethos that’s better than anything you’ve ever tried before.</p>
+                        </div>
+                        <div class="text-center mb-5">
+                            <h2 class="mb-3 fw-semibold lh-base">Our values</h2>
                         </div>
                     </div><!-- end col -->
                 </div><!-- end row -->
@@ -98,7 +101,7 @@
                                 <img src="{{URL::asset('assets/images/nft/wallet/coinbase.png')}}" alt="" height="55" class="mb-3 pb-2">
                                 <h5>Coinbase Wallet</h5>
                                 <p class="text-muted pb-1">Coinbase Wallet is a self-custody wallet that gives you complete control of your crypto for your Wallet.</p>
-                                <a href="#!" class="btn btn-info">Change Wallet</a>
+                                <a href="#!" class="btn btn-soft-info">Change Wallet</a>
                             </div>
                         </div>
                     </div>
@@ -123,7 +126,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="text-center mb-5">
-                            <h2 class="mb-3 fw-semibold lh-base">Explore Products</h2>
+                            <h2 class="mb-3 fw-semibold lh-base">CLUBS ET SALLES DE SPORT DE TOUTES LES VILLES DU MAROC</h2>
                             <p class="text-muted mb-4">Collection widgets specialize in displaying many elements of the same type, such as a collection of pictures from a collection of articles.</p>
                             <ul class="nav nav-pills filter-btns justify-content-center" role="tablist">
                                 <li class="nav-item" role="presentation">
@@ -327,7 +330,7 @@
                         </div>
                     </div><!-- end col -->
                 </div><!-- end row -->
-                
+
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="card shadow-none">

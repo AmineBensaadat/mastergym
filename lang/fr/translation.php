@@ -390,6 +390,12 @@ return [
     "boy" => "Garçon",
     "birth-day" => "Date de naissance",
 
+    "Old-Password" => "ancien mot de passe",
+    "New-Password" => "nouveau mot de passe",
+    "Confirm-Password" => "Confirmez le mot de passe",
+    "language" => "langue",
+    "Change-Password" => "Changer le mot de passe",
+
 
 
 

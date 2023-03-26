@@ -179,6 +179,12 @@ return [
     "boy" => " ولد ",
     "birth-day" => "تاريخ الميلاد",
 
+    "Old-Password" => "كلمة المرور القديمة",
+    "New-Password" => " كلمة المرور الجديدة ",
+    "Confirm-Password" => " تأكيد كلمة المرور ",
+    "language" => " اللغة ",
+    "Change-Password" => " تغيير كلمة المرور ",
+
 
 
 
