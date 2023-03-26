@@ -106,7 +106,7 @@ class SubscriptionsController extends Controller
      * @return Response
      */
     public function update(Request $request)
-    {
+    {   
         //validation form
         $this->validate(
             $request,
@@ -126,14 +126,12 @@ class SubscriptionsController extends Controller
 
             $subscription = $this->subscriptionsRepository->updateSubscription($request, $request->subscription_id);
             //  // save subscription
-            // if($request['service'] != 0){
-            //     $invoice = $this->invoicesRepository->addInvoice($request, $request->member_id);
 
-            //    // save subscription in subscription table
-            //     $subscription = $this->subscriptionsRepository->updateSubscription($request, $request->subscription_id, $invoice->id);
+            if($request->facture){
+                 // add invoice
+                 $invoice = $this->invoicesRepository->addInvoice($request, $request->member_id);
 
-
-            // }
+            }
 
             return redirect()->route('subscriptions_edit', array('subscription_id' => $request->subscription_id));
     }
