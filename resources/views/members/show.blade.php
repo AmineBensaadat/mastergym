@@ -260,14 +260,15 @@
                                                         </td>
                                                         <td>{{ $invoice->payment_comment }}</td>
                                                         <td>
-                                                            <ul class="list-inline hstack gap-2 mb-0">
-                                                                <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove">
-                                                                    <a class="text-primary d-inline-block remove-item-btn" data-bs-toggle="modal" href="../../Invoices/download/{{$invoice->id }}" target="_blank">
-                                                                        <i class="ri-printer-fill fs-16"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-
+                                                            <div class="dropdown d-inline-block">
+                                                                <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <i class="ri-more-fill align-middle"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                                    <li><a href="{{route('invoices_download',$invoice->id)}}" class="dropdown-item"><i class="ri-printer-fill fs-16 align-bottom me-2 text-muted"></i> Imprimer</a></li>
+                                                                    <li><a href="{{route('invoices_update',$invoice->id)}}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+                                                                </ul>
+                                                            </div>
                                                         </td>
                                                     </tr>
 
@@ -447,6 +448,7 @@
                                                         </td>
                                                         <td>{{ $invoice->payment_comment }}</td>
                                                         <td>
+                                                            
                                                             <ul class="list-inline hstack gap-2 mb-0">
                                                                 <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove">
                                                                     <a class="text-primary d-inline-block remove-item-btn" data-bs-toggle="modal" href="../../Invoices/download/{{$invoice->id }}" target="_blank">
@@ -454,7 +456,6 @@
                                                                     </a>
                                                                 </li>
                                                             </ul>
-
                                                         </td>
                                                     </tr>
 

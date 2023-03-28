@@ -65,5 +65,9 @@ class InvoicesController extends Controller
         
     }
 
+    public function update($id){
+        dd($id);
+    }
+
 
 }
