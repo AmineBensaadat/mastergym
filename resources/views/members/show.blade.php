@@ -260,14 +260,23 @@
                                                         </td>
                                                         <td>{{ $invoice->payment_comment }}</td>
                                                         <td>
-                                                            <ul class="list-inline hstack gap-2 mb-0">
-                                                                <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove">
-                                                                    <a class="text-primary d-inline-block remove-item-btn" data-bs-toggle="modal" href="../../Invoices/download/{{$invoice->id }}" target="_blank">
-                                                                        <i class="ri-printer-fill fs-16"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-
+                                                            <div class="col text-end dropdown">
+                                                                <a href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <i class="ri-more-fill fs-17"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink14">
+                                                                    <li>
+                                                                        <a class="dropdown-item" href="{{ route('invoices_edit', ['id' => $invoice->id ]) }}">
+                                                                            <i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="dropdown-item" href="{{ route('invoices_download', ['id' => $invoice->id ]) }}" target="_blank">
+                                                                            <i class="ri-printer-fill fs-16 me-2 align-bottom text-muted"></i>Imprimer
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                         </td>
                                                     </tr>
 

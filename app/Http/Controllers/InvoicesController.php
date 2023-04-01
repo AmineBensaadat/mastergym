@@ -65,5 +65,10 @@ class InvoicesController extends Controller
         
     }
 
+    public function edit($id){
+        $invoice = $this->invoicesRepository->getInvoiceById($id);
+        return view('invoices.edit', compact('invoice'));
+    }
+
 
 }
