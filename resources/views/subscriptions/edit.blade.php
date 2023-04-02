@@ -22,7 +22,6 @@
                         <h6 class="card-title mb-0">@lang('translation.Enter-details-of-the-subscription')</h6>
                     </div>
                     <div class="card-body">
-                        <div class="container">
                             <div class="row">
                               <div class="col-sm">
                                 <div class="mb-3">
@@ -79,7 +78,6 @@
                                 </div>
                               </div>
                             </div>
-                        </div>
                     </div>
                 </div>
                 <!-- end card -->
@@ -91,7 +89,6 @@
                         <h6 class="card-title mb-0">@lang('translation.Enter-details-of-the-invoice')</h6>
                     </div>
                     <div class="card-body">
-                        <div class="container">
                             <div class="row">
                               <div class="col-sm">
                                 <div class="mb-3">
@@ -166,7 +163,6 @@
                                     <textarea  name="payment-comment" class="form-control" id="payment-comment" rows="3" placeholder="@lang('translation.entrer the')@lang('translation.payment-comment')"></textarea>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
                 <!-- end card -->

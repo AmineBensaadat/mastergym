@@ -114,12 +114,21 @@ class InvoicesRepository
     }
 
     public function updateInvoice($request){
-        $invoice = $page = Invoices::find($request['invoice_id']);
-        $new_amount = $invoice->amount_pending - $request['amount_pending'];
+        $user= auth()->user();
         Invoices::where('id', $request['invoice_id'])
         ->update(
             [
-                'amount_pending' => $new_amount
+                'service_id' => $request['service'],
+                'plan_id' => $request['plans'],
+                'amount_received' => $request['amount-received'] ? $request['amount-received'] : 0 ,
+                'subscription_price' => $request['subscription-price'] ? $request['subscription-price'] : 0,
+                'amount_pending' => $request['amount-pending'] ? $request['amount-pending'] : 0,
+                'discount' => $request['discount']  ? $request['discount'] : 0,
+                'discount_amount' => $request['discount-amount'] ? $request['discount-amount'] : 0 ,
+                'payment_mode' => $request['payment-mode'],
+                'additional_fees' => $request['additional-fees'] ? $request['additional-fees'] : 0 ,
+                'payment_comment' => $request['payment-comment'],
+                'updated_by' =>  $user->id,
             ]
             );
         }
