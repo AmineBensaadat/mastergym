@@ -88,11 +88,12 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     
 });
 
-//Members
+//Coach
 Route::group(['prefix' => 'coach', 'middleware' => ['auth']], function () {
     Route::get('/list', [CoachController::class, 'list'])->name('coach_list');
     Route::get('/add', [CoachController::class, 'create'])->name('coach_create');
     Route::post('/store', [CoachController::class, 'store'])->name('coach_store');
+    Route::get('/show/{id}', [CoachController::class, 'show'])->name('coach_show');
 });
 
 //Subscriptions

@@ -54,8 +54,18 @@ class CoachController extends Controller{
         
         // save Coach in coach table
         $coach = $this->coachRepository->saveCoach($request);
-
-        dd($coach);
+        return redirect()->route('coach_show', array('id' => $coach->id));
     }
 
+        /**
+     * Show coach.
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $coach = $this->coachRepository->getCoach($id);
+       
+        return view('coach.show', array("coach"  => $coach));
+    }
 }

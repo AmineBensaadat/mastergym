@@ -56,6 +56,16 @@ class CoachRepository
        return $coach;
     }
 
+    public function getCoach($id){
+        $user = auth()->user();
+        $coach = DB::table('coach')
+            ->select('coach.*')
+            ->where('coach.id', $id)
+            ->where('coach.account_id',  '=', $user->account_id)->first();
+        
+        return $coach;
+    }
+
     public function updateCoach($request){ 
         $user = auth()->user();
         $destinationPath = public_path().'/assets/images/members/'.$user->account_id.'/' ;
