@@ -76,7 +76,9 @@
                     <div class="col-lg-8">
                         <div class="text-center mb-5">
                             <h2 class="mb-3 fw-semibold lh-base">Who is Gogym</h2>
-                            <p class="text-muted">Gogym is great software but we're all about the people who support you too. Our customer service ethos that’s better than anything you’ve ever tried before.</p>
+                            <p class="text-muted">Gym management software is designed to help gym managers and owners organize and manage all the aspects of their business.
+                                From paperless onboarding for members and recurring payments to email campaigns, inventory management, and other administrative tasks, gym management software can do it all.
+                                Ideally, a gym management platform will be the only software tool a gym or fitness center needs to perform day-to-day operations.</p>
                         </div>
                         <div class="text-center mb-5">
                             <h2 class="mb-3 fw-semibold lh-base">Our values</h2>
@@ -86,33 +88,36 @@
 
                 <div class="row g-4">
                     <div class="col-lg-4">
-                        <div class="card text-center border shadow-none">
+                        <div class="card text-center shadow-none">
                             <div class="card-body py-5 px-4">
                                 <img src="{{URL::asset('assets/images/nft/wallet/metamask.png')}}" alt="" height="55" class="mb-3 pb-2">
-                                <h5>Metamask</h5>
-                                <p class="text-muted pb-1">MetaMask is a popular cryptocurrency wallet known for its ease of use, availability on both desktops.</p>
-                                <a href="#!" class="btn btn-soft-info">Connect Wallet</a>
+                                <h5>Be collaborative</h5>
+                                <p class="text-muted pb-1">We’re as passionate about our customers as we are about our team members. We thrive on sharing and learning
+                                    and adapting continuously, because a problem shared is a problem halved.</p>
+                                <!-- <a href="#!" class="btn btn-soft-info">Connect Wallet</a> -->
                             </div>
                         </div>
                     </div><!-- end col -->
                     <div class="col-lg-4">
-                        <div class="card text-center border shadow-none">
+                        <div class="card text-center shadow-none">
                             <div class="card-body py-5 px-4">
                                 <img src="{{URL::asset('assets/images/nft/wallet/coinbase.png')}}" alt="" height="55" class="mb-3 pb-2">
-                                <h5>Coinbase Wallet</h5>
-                                <p class="text-muted pb-1">Coinbase Wallet is a self-custody wallet that gives you complete control of your crypto for your Wallet.</p>
-                                <a href="#!" class="btn btn-soft-info">Change Wallet</a>
+                                <h5>Be curious</h5>
+                                <p class="text-muted pb-1">We’re empowered to learn and to listen intently to our customers and team members and
+                                    to question things that don’t make sense and to seek out the right answers.</p>
+                                <!-- <a href="#!" class="btn btn-soft-info">Change Wallet</a> -->
                             </div>
                         </div>
                     </div>
                     <!-- end col -->
                     <div class="col-lg-4">
-                        <div class="card text-center border shadow-none">
+                        <div class="card text-center shadow-none">
                             <div class="card-body py-5 px-4">
                                 <img src="{{URL::asset('assets/images/nft/wallet/binance.png')}}" alt="" height="55" class="mb-3 pb-2">
-                                <h5>Binance</h5>
-                                <p class="text-muted pb-1">Binance is considered a safe exchange that allows user account protection via the use of Two Authentication.</p>
-                                <a href="#!" class="btn btn-soft-info">Connect Wallet</a>
+                                <h5>Be generous</h5>
+                                <p class="text-muted pb-1">We aim to share our knowledge, experience and our time to help others.
+                                    We’re reciprocal by nature and aim to make sure our amazingness is never hidden away in a word doc or spreadsheet.</p>
+                                <!-- <a href="#!" class="btn btn-soft-info">Connect Wallet</a> -->
                             </div>
                         </div>
                     </div><!-- end col -->
@@ -912,6 +917,7 @@
                     </div>
                 </div>
             </div>
+
         </footer>
         <!-- end footer -->
 

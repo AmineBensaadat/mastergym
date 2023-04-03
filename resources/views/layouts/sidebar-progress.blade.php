@@ -66,6 +66,27 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarCoach" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMember">
+                        <i class="ri-team-line" ></i> <span data-key="t-dashboards">@lang('translation.coach')</span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarCoach" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('coach_list') }}">
+                                     @lang('translation.all-coachs')
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('members_create') }}">
+                                     @lang('translation.add')@lang('translation.coach')
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="ri-building-2-fill" ></i> <span data-key="t-dashboards">@lang('translation.gyms')</span>
                     </a>

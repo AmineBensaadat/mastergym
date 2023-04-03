@@ -585,8 +585,8 @@ class MembersController extends Controller
                     //'emergency_contact' => 'unique:members',
                     'created_at' => 'required',
                     'gym' => new IsSelected,
-                    'start_date' => 'date|nullable',
-                    'end_date' => 'required',
+                    // 'start_date' => 'date|nullable',
+                    // 'end_date' => 'required',
                     //'amount-received' => 'required_unless:subscription-price.*,'
                 ],
                 [
@@ -599,8 +599,8 @@ class MembersController extends Controller
                     //'dob.required' => __('translation.require'),
                     //'emergency_contact.unique' => __('translation.unique'),
                     'gym.required' => __('require'),
-                    'start_date' => __('require'),
-                    'end_date' => __('require'),
+                    // 'start_date' => __('require'),
+                    // 'end_date' => __('require'),
                 ],
             );
             // save member in member table

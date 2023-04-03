@@ -54,13 +54,13 @@
                                         <i class="ri-user-add-fill text-success"></i>
                                     </span>
                                 </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-medium text-muted mb-3">@lang('translation.Monthly-Joinings')</p>
+                                <div class="flex-grow-1 overflow-hidden ms-3">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate  mb-3">@lang('translation.Monthly-Joinings')</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
                                                 data-target="{{ $monthlyJoined }}">0</span></h4>
                                     </div>
-                                    <p class="text-muted mb-0">@lang('translation.Members-joines-per-month')</p>
+                                    <p class="text-muted text-truncate mb-0">@lang('translation.Members-joines-per-month')</p>
                                 </div>
                             </div>
                         </div><!-- end card body -->

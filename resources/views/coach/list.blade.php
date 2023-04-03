@@ -9,8 +9,8 @@
 <div class="card">
     <div class="card-body">
         <div class="row g-2">
-                <div class="col-sm-4">
-                <form method="GET"  action="{{ route('services_list') }}">
+            <div class="col-sm-4">
+                <form method="GET"  action="{{ route('coach_list') }}">
                     <div class="search-box">
                             <input type="text" name="query" class="form-control"  placeholder="Search for name or designation...">
                         <i class="ri-search-line search-icon"></i>
@@ -19,14 +19,15 @@
                 <!--end col-->
                 <div class="col-sm-2">
                 <button type="submit" class="btn btn-success addMembers-modal" ><i class="ri-search-line"></i></button></form>
+            </div>
+            <!--end col-->
+            <div class="col-sm-auto ms-auto">
+                <div class="list-grid-nav hstack gap-1">
+                    <button type="button" id="grid-view-button" class="btn btn-soft-info nav-link btn-icon fs-14 active filter-button"><i class="ri-grid-fill"></i></button>
+                    <button type="button" id="list-view-button" class="btn btn-soft-info nav-link  btn-icon fs-14 filter-button"><i class="ri-list-unordered"></i></button>
+                    <a href="{{ route('coach_create') }}" class="btn btn-success"><i class="ri-add-fill me-1 align-bottom"></i> Add Coach</a>
                 </div>
-                <div class="col-sm-auto ms-auto">
-                    <div class="list-grid-nav hstack gap-1">
-                        <button type="button" id="list-view-button" class="btn btn-soft-info nav-link  btn-icon fs-14 filter-button active"><i class="ri-list-unordered"></i></button>
-                        <button type="button" id="grid-view-button" class="btn btn-soft-info nav-link btn-icon fs-14 filter-button"><i class="ri-grid-fill"></i></button>
-                        <button class="btn btn-success addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> @lang('translation.add') @lang('translation.Service')</button>
-                    </div>
-                </div>
+            </div>
             <!--end col-->
         </div>
         <!--end row-->
@@ -38,7 +39,7 @@
         <div>
 
             <div id="teamlist">
-                <div class="team-list row list-view-filter" id="team-member-list">
+                <div class="team-list row grid-view-filter" id="team-member-list">
                     @foreach ($services as $service)
                         <div class="col">
                             <div class="card team-box">
