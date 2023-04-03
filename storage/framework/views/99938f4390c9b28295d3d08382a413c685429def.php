@@ -66,6 +66,27 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarCoach" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMember">
+                        <i class="ri-team-line" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.coach'); ?></span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarCoach" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('coach_list')); ?>">
+                                     <?php echo app('translator')->get('translation.all-coachs'); ?>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?php echo e(route('members_create')); ?>">
+                                     <?php echo app('translator')->get('translation.add'); ?><?php echo app('translator')->get('translation.coach'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="ri-building-2-fill" ></i> <span data-key="t-dashboards"><?php echo app('translator')->get('translation.gyms'); ?></span>
                     </a>

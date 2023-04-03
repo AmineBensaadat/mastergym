@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoachController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GymsController;
 use App\Http\Controllers\InvoicesController;
@@ -85,6 +86,13 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     Route::post('/updatePendingPayment', [MembersController::class, 'updatePendingPayment'])->name('updatePendingPayment');
     
     
+});
+
+//Members
+Route::group(['prefix' => 'coach', 'middleware' => ['auth']], function () {
+    Route::get('/list', [CoachController::class, 'list'])->name('coach_list');
+    Route::get('/add', [CoachController::class, 'create'])->name('coach_create');
+    Route::post('/store', [CoachController::class, 'store'])->name('coach_store');
 });
 
 //Subscriptions
