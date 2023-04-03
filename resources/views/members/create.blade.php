@@ -8,7 +8,7 @@
 @slot('title') @lang('translation.Create-Memeber') @endslot
 @endcomponent
 
-<form id="createMember-form" method="POST" class="needs-validation"  action="{{ ('members_store') }}" novalidate enctype="multipart/form-data">
+<form id="createMember-form" method="POST" class="needs-validation"  action="{{ route('members_store') }}" novalidate enctype="multipart/form-data">
 @csrf
     <div class="row">
         <!-- start col -->
