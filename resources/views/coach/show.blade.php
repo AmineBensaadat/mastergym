@@ -144,13 +144,20 @@
             });
         
             var calendar = $('#calendar').fullCalendar({
+                defaultView: 'agendaWeek',
                 editable:true,
                 header:{
                     left:'prev,next today',
                     center:'title',
                     right:'month,agendaWeek,agendaDay'
                 },
-                events:'/coach/show/1',
+                events: [{
+                        title:"My repeating event",
+                        start: '10:00', 
+                        end: '14:00', 
+                        dow: [0,1,2,3,4,5,6]
+                }],
+                //events:'/coach/show/1',
                 selectable:true,
                 selectHelper: true,
                 select:function(start, end, allDay)
