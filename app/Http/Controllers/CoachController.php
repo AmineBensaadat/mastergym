@@ -24,7 +24,7 @@ class CoachController extends Controller{
     }
 
     public function list(Request $request){
-        $services = $this->servicesRepository->getAllServices($request);
+        $services = $this->coachRepository->getAllCoachs($request);
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         return view('coach.list' , compact('services', 'gyms'));
     }

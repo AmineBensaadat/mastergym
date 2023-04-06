@@ -40,7 +40,7 @@
 
             <div id="teamlist">
                 <div class="team-list row grid-view-filter" id="team-member-list">
-                    @foreach ($services as $service)
+                    @foreach ($services as $coach)
                         <div class="col">
                             <div class="card team-box">
                                 <div class="team-cover"><img src="../assets/images/small/img-3.jpg" alt="" class="img-fluid" /></div>
@@ -52,7 +52,7 @@
                                                     <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"> <i class="ri-more-fill fs-17"></i> </a>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a service_gym_id="{{ Helper::getGymServiceByServiceId($service->id)->id }}" description="{{ $service->description}}" name="{{ $service->name}}" service_img="{{URL::asset(Helper::getImageByEntityId($service->id, "services", "profile") )}}" service_gym="{{ Helper::getGymServiceByServiceId($service->id)->id }}" class="dropdown-item edit-list update_service" service_id="{{ $service->id }}" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
+                                                            <a  name="kk" service_img="pp" service_gym="kk" class="dropdown-item edit-list update_service" service_id="kk" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
                                                         </li>
                                                         {{-- <li>
                                                             <a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="4"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a>
@@ -63,27 +63,27 @@
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="team-profile-img">
-                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img id="service_img" src="{{URL::asset(Helper::getImageByEntityId($service->id, "services", "profile") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
+                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img id="service_img" src="jj" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
-                                                    <a class="member-name member-overview" description="{{ $service->description}}" name="{{ $service->name}}" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $service->name}}</h5> </a>
-                                                    <p class="text-muted member-designation mb-0">{{ Helper::getGymServiceByServiceId($service->id)->name }}</p>
+                                                    <a class="member-name member-overview" description="d" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1"></h5> </a>
+                                                    <p class="text-muted member-designation mb-0">jjj</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="row text-muted text-center">
                                                 <div class="col-6 border-end border-end-dashed">
-                                                    <h5 class="mb-1 projects-num" id="member_count">{{ Helper::countAllMembersByService($service->id)  }}</h5>
+                                                    <h5 class="mb-1 projects-num" id="member_count">{{ Helper::countAllMembersByService($coach->id)  }}</h5>
                                                     <p class="text-muted mb-0">Members</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <h5 class="mb-1 tasks-num" id="plan_count">{{ Helper::countAllPlansByService($service->id) }}</h5>
+                                                    <h5 class="mb-1 tasks-num" id="plan_count">{{ Helper::countAllPlansByService($coach->id) }}</h5>
                                                     <p class="text-muted mb-0">Plans</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col">
-                                            <div class="text-end"><a  data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview" class="btn btn-light view-btn member-overview">View</a></div>
+                                            <div class="text-end"><a  href="{{ route('coach_show', ['id' => $coach->id ]) }}"  class="btn btn-light view-btn member-overview">View</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@
                     <div class="modal-content border-0">
 
                         <div class="modal-body">
-                            <form  method="POST" id="service-update-form" class="needs-validation" action="{{ route('services_update') }}" enctype="multipart/form-data">
+                            <form  method="POST" id="coach-update-form" class="needs-validation" action="{{ route('services_update') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">

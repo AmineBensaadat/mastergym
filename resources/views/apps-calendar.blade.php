@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') @lang('translation.calendar') @endsection
+@section('title') @lang('translation.calendar') @endsectionp
 @section('css')
     <link href="{{ URL::asset('/assets/libs/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet">
 @endsection
