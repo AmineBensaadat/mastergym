@@ -94,6 +94,7 @@ Route::group(['prefix' => 'coach', 'middleware' => ['auth']], function () {
     Route::get('/add', [CoachController::class, 'create'])->name('coach_create');
     Route::post('/store', [CoachController::class, 'store'])->name('coach_store');
     Route::get('/show/{id}', [CoachController::class, 'show'])->name('coach_show');
+    Route::post('/action', [CoachController::class, 'action']);
 });
 
 //Subscriptions

@@ -925,7 +925,7 @@
                                 <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt="" class="avatar-xs rounded-circle" />
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h6 class="fs-14 mb-1">Gogym - Admin Dashboard</h6>
+                                <h6 class="fs-14 mb-1">Gogym</h6>
                                 <p class="text-muted mb-0">$126.7k - 30 Dec, 2021</p>
                             </div>
                         </a>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Repositories\CoachRepository;
 use App\Repositories\GymsRepository;
 use App\Repositories\ServicesRepository;
@@ -24,7 +25,7 @@ class CoachController extends Controller{
     }
 
     public function list(Request $request){
-        $services = $this->servicesRepository->getAllServices($request);
+        $services = $this->coachRepository->getAllCoachs($request);
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         return view('coach.list' , compact('services', 'gyms'));
     }
@@ -62,10 +63,53 @@ class CoachController extends Controller{
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $coach = $this->coachRepository->getCoach($id);
+
+        if($request->ajax())
+    	{
+    		$data = Event::whereDate('start', '>=', $request->start)
+                       ->whereDate('end',   '<=', $request->end)
+                       ->get(['id', 'title', 'start', 'end']);
+            return response()->json($data);
+    	}
        
         return view('coach.show', array("coach"  => $coach));
+    }
+
+    public function action(Request $request)
+    {
+    	if($request->ajax())
+    	{
+    		if($request->type == 'add')
+    		{
+    			$event = Event::create([
+    				'title'		=>	$request->title,
+    				'start'		=>	$request->start,
+    				'end'		=>	$request->end
+    			]);
+
+    			return response()->json($event);
+    		}
+
+    		if($request->type == 'update')
+    		{
+    			$event = Event::find($request->id)->update([
+    				'title'		=>	$request->title,
+    				'start'		=>	$request->start,
+    				'end'		=>	$request->end
+    			]);
+
+    			return response()->json($event);
+    		}
+
+    		if($request->type == 'delete')
+    		{
+    			$event = Event::find($request->id)->delete();
+
+    			return response()->json($event);
+    		}
+    	}
     }
 }

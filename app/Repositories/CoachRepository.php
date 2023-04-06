@@ -108,6 +108,19 @@ class CoachRepository
          }
     }
 
+
+    public function getAllCoachs($request){
+        $user= auth()->user();
+        $query = $request['query'];
+        $coach = DB::table('coach')  
+            ->select('coach.*')
+            ->where('coach.account_id', $user->account_id)
+            ->where('coach.firstname','LIKE','%'.$query.'%')
+            ->where('coach.lastname','LIKE','%'.$query.'%')
+            ->paginate(10); 
+        return $coach;
+    }
+
    
 }
 
