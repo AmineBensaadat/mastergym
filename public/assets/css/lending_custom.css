@@ -1,0 +1,4 @@
+.bg-overlay-pattern {
+    background-image: url(../images/landing/lendin_bg.jpg) !important;
+    opacity: unset !important;
+}
