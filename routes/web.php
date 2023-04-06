@@ -117,12 +117,7 @@ Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
 Route::group(['prefix' => 'Invoices', 'middleware' => ['auth']], function () {
     Route::get('/all', [InvoicesController::class, 'index'])->name('invioces_list');
     Route::get('/download/{id}', [InvoicesController::class, 'downloadInvoice'])->name('invoices_download');
-<<<<<<< HEAD
-    Route::get('/edit/{id}', [InvoicesController::class, 'edit'])->name('invoices_edit');
-    Route::post('/update', [InvoicesController::class, 'update'])->name('invoices_update');
-=======
     Route::get('/Edit/{id}', [InvoicesController::class, 'update'])->name('invoices_update');
->>>>>>> 6df2dbe62bf38f586cab19dc156175c6e35fbba6
 });
 
 //setting
