@@ -1378,7 +1378,7 @@
                             <div class="card">
                                 <div class="card-body text-center p-4">
                                     <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/team/anass_hd.jpg') }}" alt="" class="img-fluid rounded-circle">
+                                        <img src="{{ URL::asset('assets/images/team/anass_hd.JPG') }}" alt="" class="img-fluid rounded-circle">
                                     </div>
                                     <!-- end card body -->
                                     <h5 class="mb-1"><a href="pages-profile" class="text-body">Anass Hdaoui</a></h5>
