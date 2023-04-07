@@ -1355,186 +1355,53 @@
                         <div class="col-lg-8">
                             <div class="text-center mb-5">
                                 <h3 class="mb-3 fw-semibold">Our <span class="text-danger">Team</span></h3>
-                                <p class="text-muted mb-4 ff-secondary">To achieve this, it would be necessary to have uniform grammar,
-                                    pronunciation and more common words. If several languages coalesce the grammar.</p>
                             </div>
                         </div>
                     </div>
                     <!-- end row -->
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-4 col-sm-6">
                             <div class="card">
                                 <div class="card-body text-center p-4">
                                     <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt="" class="img-fluid rounded-circle">
-                                        <a href="apps-mailbox"
-                                            class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                            <div class="avatar-title bg-transparent">
-                                                <i class="ri-mail-fill align-bottom"></i>
-                                            </div>
-                                        </a>
+                                        <img src="{{ URL::asset('assets/images/team/amine_bensaadat.jpg') }}" alt="" class="img-fluid rounded-circle">
                                     </div>
                                     <!-- end card body -->
-                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Nancy Martino</a></h5>
-                                    <p class="text-muted mb-0 ff-secondary">Team Leader</p>
-                                </div>
-                            </div>
-                            <!-- end card -->
-                        </div>
-                        <!-- end col -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-10.jpg') }}" alt="" class="img-fluid rounded-circle">
-                                        <a href="apps-mailbox"
-                                            class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                            <div class="avatar-title bg-transparent">
-                                                <i class="ri-mail-fill align-bottom"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- end card body -->
-                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Henry Baird</a></h5>
-                                    <p class="text-muted mb-0 ff-secondary">Full Stack Developer</p>
-                                </div>
-                            </div>
-                            <!-- end card -->
-                        </div>
-                        <!-- end col -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-3.jpg') }}" alt="" class="img-fluid rounded-circle">
-                                        <a href="apps-mailbox"
-                                            class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                            <div class="avatar-title bg-transparent">
-                                                <i class="ri-mail-fill align-bottom"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- end card body -->
-                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Frank Hook</a></h5>
+                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Amine Bensaadat</a></h5>
                                     <p class="text-muted mb-0 ff-secondary">Project Manager</p>
                                 </div>
                             </div>
                             <!-- end card -->
                         </div>
                         <!-- end col -->
-                        <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-4 col-sm-6">
                             <div class="card">
                                 <div class="card-body text-center p-4">
                                     <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-8.jpg') }}" alt="" class="img-fluid rounded-circle">
-                                        <a href="apps-mailbox"
-                                            class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                            <div class="avatar-title bg-transparent">
-                                                <i class="ri-mail-fill align-bottom"></i>
-                                            </div>
-                                        </a>
+                                        <img src="{{ URL::asset('assets/images/team/anass_hd.jpg') }}" alt="" class="img-fluid rounded-circle">
                                     </div>
                                     <!-- end card body -->
-                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Donald Palmer</a></h5>
-                                    <p class="text-muted mb-0 ff-secondary">UI/UX Designer</p>
+                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Anass Hdaoui</a></h5>
+                                    <p class="text-muted mb-0 ff-secondary">Developer</p>
                                 </div>
                             </div>
                             <!-- end card -->
                         </div>
                         <!-- end col -->
-                    </div>
-                    <!-- end row -->
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-4 col-sm-6">
                             <div class="card">
                                 <div class="card-body text-center p-4">
                                     <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-5.jpg') }}" alt="" class="img-fluid rounded-circle">
-                                        <a href="apps-mailbox"
-                                            class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                            <div class="avatar-title bg-transparent">
-                                                <i class="ri-mail-fill align-bottom"></i>
-                                            </div>
-                                        </a>
+                                        <img src="{{ URL::asset('assets/images/team/omar.jpg') }}" alt="" class="img-fluid rounded-circle">
                                     </div>
                                     <!-- end card body -->
-                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Erica Kernan</a></h5>
-                                    <p class="text-muted mb-0 ff-secondary">Web Designer</p>
+                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Omar Filali Belhadj</a></h5>
+                                    <p class="text-muted mb-0 ff-secondary">Commercial director</p>
                                 </div>
                             </div>
                             <!-- end card -->
                         </div>
                         <!-- end col -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-4.jpg') }}" alt="" class="img-fluid rounded-circle">
-                                        <a href="apps-mailbox"
-                                            class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                            <div class="avatar-title bg-transparent">
-                                                <i class="ri-mail-fill align-bottom"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- end card body -->
-                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Alexis Clarke</a></h5>
-                                    <p class="text-muted mb-0 ff-secondary">Backend Developer</p>
-                                </div>
-                            </div>
-                            <!-- end card -->
-                        </div>
-                        <!-- end col -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-6.jpg') }}" alt="" class="img-fluid rounded-circle">
-                                        <a href="apps-mailbox"
-                                            class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                            <div class="avatar-title bg-transparent">
-                                                <i class="ri-mail-fill align-bottom"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- end card body -->
-                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Marie Ward</a></h5>
-                                    <p class="text-muted mb-0 ff-secondary">Full Stack Developer</p>
-                                </div>
-                            </div>
-                            <!-- end card -->
-                        </div>
-                        <!-- end col -->
-
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-xl mx-auto mb-4 position-relative">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-7.jpg') }}" alt="" class="img-fluid rounded-circle">
-                                        <a href="apps-mailbox"
-                                            class="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
-                                            <div class="avatar-title bg-transparent">
-                                                <i class="ri-mail-fill align-bottom"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- end card body -->
-                                    <h5 class="mb-1"><a href="pages-profile" class="text-body">Jack Gough</a></h5>
-                                    <p class="text-muted mb-0 ff-secondary">React Js Developer</p>
-                                </div>
-                            </div>
-                            <!-- end card -->
-                        </div>
-                        <!-- end col -->
-                    </div>
-                    <!-- end row -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="text-center mt-2">
-                                <a href="pages-team" class="btn btn-primary">View All Members <i
-                                        class="ri-arrow-right-line ms-1 align-bottom"></i></a>
-                            </div>
-                        </div>
                     </div>
                     <!-- end row -->
                 </div>
@@ -1766,6 +1633,12 @@
             </footer>
             <!-- end footer -->
 
+            <!--start back-to-top-->
+            <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+                <i class="ri-arrow-up-line"></i>
+            </button>
+            <!--end back-to-top-->
+
         </div>
         <!-- end layout wrapper -->
 
@@ -1779,5 +1652,183 @@
     @endsection
     @section('script')
         <script src="{{ URL::asset('/assets/libs/swiper/swiper.min.js') }}"></script>
-        <script src="{{ URL::asset('/assets/js/pages/landing.init.js') }}"></script>
+        <script>
+                /*
+                Template Name: Gogym - Admin & Dashboard Template
+                Author: CapSolutions
+                Website: https://CapSolutions.com/
+                Contact: CapSolutions@gmail.com
+                File: landing Js File
+                */
+
+                //  Window scroll sticky class add
+                function windowScroll() {
+                    var navbar = document.getElementById("navbar");
+                    if (navbar) {
+                        if (document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50) {
+                            navbar.classList.add("is-sticky");
+                        } else {
+                            navbar.classList.remove("is-sticky");
+                        }
+                    }
+                }
+
+                window.addEventListener('scroll', function (ev) {
+                    ev.preventDefault();
+                    windowScroll();
+                });
+
+                // Collapse Menu
+                const navLinks = document.querySelectorAll('.nav-item');
+                const menuToggle = document.getElementById('navbarSupportedContent');
+                var bsCollapse = '';
+                if (navLinks && menuToggle) {
+                    window.addEventListener('load', function () {
+                        window.dispatchEvent(new Event('resize'));
+                    });
+                    window.addEventListener('resize', function () {
+                        var windowSize = document.documentElement.clientWidth;
+                        bsCollapse = new bootstrap.Collapse(menuToggle, {
+                            toggle: false
+                        });
+                        if (windowSize < 980) {
+                            Array.from(navLinks).forEach((link) => {
+                                link.addEventListener('click', () => {
+                                    toggleMenu();
+                                });
+                            });
+                        } else {
+                            toggleMenu();
+                        }
+                    });
+                }
+
+                function toggleMenu() {
+                    var windowSize = document.documentElement.clientWidth;
+                    if (windowSize < 980) {
+                        bsCollapse.toggle();
+                    } else {
+                        bsCollapse = '';
+                    }
+                }
+
+                // trusted-client-slider
+                var swiper = new Swiper(".trusted-client-slider", {
+                    spaceBetween: 30,
+                    loop: 'true',
+                    slidesPerView: 1,
+                    autoplay: {
+                        delay: 1000,
+                        disableOnInteraction: false,
+                    },
+                    breakpoints: {
+                        576: {
+                            slidesPerView: 2,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                        },
+                    },
+                });
+
+                // pricing
+                function check() {
+                    var checkBox = document.getElementById("plan-switch");
+                    var month = document.getElementsByClassName("month");
+                    var annual = document.getElementsByClassName("annual");
+
+                    var i = 0;
+                    Array.from(month).forEach(function (mon) {
+                        if (checkBox.checked == true) {
+                            annual[i].style.display = "block";
+                            mon.style.display = "none";
+                        } else if (checkBox.checked == false) {
+                            annual[i].style.display = "none";
+                            mon.style.display = "block";
+                        }
+                        i ++;
+                    });
+                }
+                check();
+
+                // client-review-swiper
+                var swiper = new Swiper(".client-review-swiper", {
+                    loop: false,
+                    autoplay: {
+                        delay: 2500,
+                        disableOnInteraction: false,
+                    },
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                    pagination: {
+                        clickable: true,
+                        el: ".swiper-pagination",
+                    },
+                });
+
+                // counter-value
+                function counter() {
+                    var counter = document.querySelectorAll('.counter-value');
+                    if (counter) {
+                        var speed = 250; // The lower the slower
+                        counter && Array.from(counter).forEach(function (counter_value) {
+                            function updateCount() {
+                                var target = +counter_value.getAttribute('data-target');
+                                var count = +counter_value.innerText;
+                                var inc = target / speed;
+                                if (inc < 1) {
+                                    inc = 1;
+                                }
+                                // Check if target is reached
+                                if (count < target) {
+                                    // Add inc to count and output in counter_value
+                                    counter_value.innerText = (count + inc).toFixed(0);
+                                    // Call function every ms
+                                    setTimeout(updateCount, 1);
+                                } else {
+                                    counter_value.innerText = numberWithCommas(target);
+                                }
+                                numberWithCommas(counter_value.innerText);
+                            };
+                            updateCount();
+                        });
+
+                        function numberWithCommas(x) {
+                            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        }
+                    }
+                };
+                counter();
+
+
+                //
+                /********************* scroll top js ************************/
+                //
+
+                var mybutton = document.getElementById("back-to-top");
+
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function () {
+                    scrollFunction();
+                };
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                        mybutton.style.display = "block";
+                    } else {
+                        mybutton.style.display = "none";
+                    }
+                }
+
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+        </script>
     @endsection
