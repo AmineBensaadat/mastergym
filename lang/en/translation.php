@@ -388,6 +388,8 @@ return [
     "language" => "language",
     "Change-Password" => "Change Password",
 
+    "coach" => " coach",
+    "all-coachs" => "all coachs",
 
 
 
