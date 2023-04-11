@@ -396,6 +396,9 @@ return [
     "language" => "langue",
     "Change-Password" => "Changer le mot de passe",
 
+    "coach" => "entraîneur",
+    "all-coachs" => "les entraîneurs",
+
 
 
 

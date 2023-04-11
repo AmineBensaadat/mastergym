@@ -185,6 +185,9 @@ return [
     "language" => " اللغة ",
     "Change-Password" => " تغيير كلمة المرور ",
 
+    "coach" => "مدرب",
+    "all-coachs" => "كل المدربين",
+
 
 
 
