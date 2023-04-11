@@ -260,7 +260,6 @@
                                                         </td>
                                                         <td>{{ $invoice->payment_comment }}</td>
                                                         <td>
-<<<<<<< HEAD
                                                             <div class="col text-end dropdown">
                                                                 <a href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown" aria-expanded="false">
                                                                     <i class="ri-more-fill fs-17"></i>
@@ -276,17 +275,6 @@
                                                                             <i class="ri-printer-fill fs-16 me-2 align-bottom text-muted"></i>Imprimer
                                                                         </a>
                                                                     </li>
-=======
-                                                            <div class="dropdown d-inline-block">
-                                                                <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <i class="ri-more-fill align-middle"></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                                    <li><a href="{{route('invoices_download',$invoice->id)}}" class="dropdown-item"><i class="ri-printer-fill fs-16 align-bottom me-2 text-muted"></i> Imprimer</a></li>
-                                                                    <li><a href="{{route('invoices_update',$invoice->id)}}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
->>>>>>> 6df2dbe62bf38f586cab19dc156175c6e35fbba6
-                                                                </ul>
-                                                            </div>
                                                         </td>
                                                     </tr>
 

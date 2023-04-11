@@ -94,7 +94,6 @@ Route::group(['prefix' => 'coach', 'middleware' => ['auth']], function () {
     Route::get('/add', [CoachController::class, 'create'])->name('coach_create');
     Route::post('/store', [CoachController::class, 'store'])->name('coach_store');
     Route::get('/show/{id}', [CoachController::class, 'show'])->name('coach_show');
-    Route::post('/action', [CoachController::class, 'action']);
 });
 
 //Subscriptions
@@ -117,7 +116,8 @@ Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
 Route::group(['prefix' => 'Invoices', 'middleware' => ['auth']], function () {
     Route::get('/all', [InvoicesController::class, 'index'])->name('invioces_list');
     Route::get('/download/{id}', [InvoicesController::class, 'downloadInvoice'])->name('invoices_download');
-    Route::get('/Edit/{id}', [InvoicesController::class, 'update'])->name('invoices_update');
+    Route::get('/edit/{id}', [InvoicesController::class, 'edit'])->name('invoices_edit');
+    Route::post('/update', [InvoicesController::class, 'update'])->name('invoices_update');
 });
 
 //setting

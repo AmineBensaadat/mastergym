@@ -69,7 +69,6 @@ class InvoicesController extends Controller
         
     }
 
-<<<<<<< HEAD
     public function edit($id){
         $invoice = $this->invoicesRepository->getInvoiceById($id);
         $services =  $this->servicesRepository->renderAllServices();
@@ -82,11 +81,7 @@ class InvoicesController extends Controller
         $this->invoicesRepository->updateInvoice($request);
 
         return redirect()->route('members_show', array('id' => $request['member_id']));
-=======
-    public function update($id){
-        dd($id);
->>>>>>> 6df2dbe62bf38f586cab19dc156175c6e35fbba6
-    }
+
 
 
 }
