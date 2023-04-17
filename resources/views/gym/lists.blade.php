@@ -11,9 +11,11 @@
                 <div class="flex-grow-1">
                     <h5 class="card-title mb-0 fw-bold fs-17">@lang('translation.all_gym')</h5>
                 </div>
-                <div class="flex-shrink-0 mt-4 mt-lg-0">
-                    <a href="{{ route('add_gym') }}" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.add_gym_lists')</a>
-                </div>
+                @can('gym-create-menu')
+                    <div class="flex-shrink-0 mt-4 mt-lg-0">
+                        <a href="{{ route('add_gym') }}" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.add_gym_lists')</a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>

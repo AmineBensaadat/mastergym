@@ -24,8 +24,10 @@
                     <div class="list-grid-nav hstack gap-1">
                         <button type="button" id="list-view-button" class="btn btn-soft-info nav-link  btn-icon fs-14 filter-button active"><i class="ri-list-unordered"></i></button>
                         <button type="button" id="grid-view-button" class="btn btn-soft-info nav-link btn-icon fs-14 filter-button"><i class="ri-grid-fill"></i></button>
-                        <button class="btn btn-success addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> @lang('translation.add') @lang('translation.Service')</button>
-                    </div>
+                        @can('services-create-menu')
+                            <button class="btn btn-success addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> @lang('translation.add') @lang('translation.Service')</button>
+                        @endcan
+                        </div>
                 </div>
             <!--end col-->
         </div>

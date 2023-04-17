@@ -25,7 +25,9 @@
                 <div class="list-grid-nav hstack gap-1">
                     <button type="button" id="grid-view-button" class="btn btn-soft-info nav-link btn-icon fs-14 active filter-button"><i class="ri-grid-fill"></i></button>
                     <button type="button" id="list-view-button" class="btn btn-soft-info nav-link  btn-icon fs-14 filter-button"><i class="ri-list-unordered"></i></button>
+                    @can('coach-add-button')
                     <a href="{{ route('coach_create') }}" class="btn btn-success"><i class="ri-add-fill me-1 align-bottom"></i> Add Coach</a>
+                    @endcan
                 </div>
             </div>
             <!--end col-->

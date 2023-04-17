@@ -287,9 +287,6 @@
 <div class="row row-cols-xl-5 row-cols-lg-3 row-cols-md-2 row-cols-1">
     <div class="col">
         <div class="card explore-box card-animate">
-            <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                <button type="button" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></button>
-            </div>
             <div class="explore-place-bid-img">
                 <img src="{{URL::asset('assets/images/nft/img-02.jpg')}}" alt="" class="card-img-top explore-img" />
                 <div class="bg-overlay"></div>
@@ -314,9 +311,6 @@
     </div>
     <div class="col">
         <div class="card explore-box card-animate">
-            <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                <button type="button" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></button>
-            </div>
             <div class="explore-place-bid-img">
                 <img src="{{URL::asset('assets/images/nft/gif/img-2.gif')}}" alt="" class="card-img-top explore-img" />
                 <div class="bg-overlay"></div>

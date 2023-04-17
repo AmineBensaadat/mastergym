@@ -32,8 +32,10 @@
                             <li><a class="dropdown-item" href="#">Last Month</a></li>
                             <li><a class="dropdown-item" href="#">Last Year</a></li>
                         </ul>
-                        <a href="{{ route('plans_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.Add-Plan')</a>
-                    </div>
+                        @can('plans-add-button')
+                            <a href="{{ route('plans_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.Add-Plan')</a>
+                        @endcan
+                        </div>
                 </div>
             <!--end col-->
         </div>

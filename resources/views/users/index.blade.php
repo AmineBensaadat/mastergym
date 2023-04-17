@@ -14,11 +14,13 @@
 
 
 <div class="row g-4 mb-4">
-    <div class="col-sm-auto">
-        <div>
-            <a href="{{ route('users_create') }}" class="btn btn-success"><i class="ri-add-line align-bottom me-1"></i> @lang('translation.add') @lang('translation.user')</a>
+    @can('users-add-button')
+        <div class="col-sm-auto">
+            <div>
+                <a href="{{ route('users_create') }}" class="btn btn-success"><i class="ri-add-line align-bottom me-1"></i> @lang('translation.add') @lang('translation.user')</a>
+            </div>
         </div>
-    </div>
+    @endcan
     <div class="col-sm">
         <div class="d-md-flex justify-content-sm-end gap-2">
             <div class="search-box ms-md-2 flex-shrink-0 mb-3 mb-md-0">
