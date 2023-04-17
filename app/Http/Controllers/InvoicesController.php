@@ -82,6 +82,6 @@ class InvoicesController extends Controller
 
         return redirect()->route('members_show', array('id' => $request['member_id']));
 
-
+    }
 
 }

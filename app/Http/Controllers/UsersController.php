@@ -35,7 +35,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.users_list', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -48,8 +48,6 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
-        dd($user);
-
         return view('users.show', compact('user'));
     }
 
@@ -61,7 +59,7 @@ class UsersController extends Controller
     public function create()
     {
        $gyms = $this->gymsRepository->getAllGymByCretedById();
-        return view('users.user_create', compact('gyms'));
+        return view('users.create', compact('gyms'));
     }
 
     /**

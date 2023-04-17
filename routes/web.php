@@ -6,6 +6,7 @@ use App\Http\Controllers\GymsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\PlansController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SubscriptionsController;
@@ -61,6 +62,11 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::post('/getAllUsers', [UsersController::class, 'getAllUsers'])->name('users_list_json');
     Route::post('/update-password', [UsersController::class, 'updatePassword'])->name('updatePassword');
 });
+
+//Roles
+Route::group(['prefix' => 'roles', 'middleware' => ['auth']], function () {
+    Route::get('/', [RoleController::class, 'index'])->name('roles_list');
+});   
 
 //Members
 Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {

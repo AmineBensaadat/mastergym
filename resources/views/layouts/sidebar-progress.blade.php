@@ -154,6 +154,12 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ route('roles_list') }}">
+                                     @lang('translation.roles')
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ route('users_create') }}">
                                      @lang('translation.Create-user')
                                 </a>
