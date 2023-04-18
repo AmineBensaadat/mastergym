@@ -184,40 +184,40 @@
                     </li>
                 @endcan
 
-                @can('users-nav')        
+                {{-- @can('users-nav')         --}}
                     <li class="nav-item">
                         <a class="nav-link menu-link collapsed" href="#sidebarUsers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUsers">
                             <i class="ri-group-line" ></i> <span data-key="t-dashboards">@lang('translation.users')</span>
                         </a>
                         <div class="menu-dropdown collapse" id="sidebarUsers" style="">
                             <ul class="nav nav-sm flex-column">
-                                @can('users-all-menu') 
+                                {{-- @can('users-all-menu')  --}}
                                     <li class="nav-item">
                                         <a class="nav-link menu-link" href="{{ route('users_list') }}">
                                             @lang('translation.users')
                                         </a>
                                     </li>
-                                @endcan
+                                {{-- @endcan --}}
 
-                                @can('role-list-menu')
+                                {{-- @can('role-list-menu') --}}
                                     <li class="nav-item">
                                         <a class="nav-link menu-link" href="{{ route('roles_list') }}">
                                             @lang('translation.roles')
                                         </a>
                                     </li>
-                                @endcan
+                                {{-- @endcan --}}
                                 
-                                @can('users-create-menu')
+                                {{-- @can('users-create-menu') --}}
                                     <li class="nav-item">
                                         <a class="nav-link menu-link" href="{{ route('users_create') }}">
                                             @lang('translation.Create-user')
                                         </a>
                                     </li>
-                                @endcan
+                                {{-- @endcan --}}
                             </ul>
                         </div>
                     </li>
-                @endcan
+                {{-- @endcan --}}
                 
                 @can('subscriptions-nav')
                     <li class="nav-item">
