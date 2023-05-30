@@ -228,6 +228,7 @@ return [
     "plans" => "plans",
     "plan" => "plan",
     "users" => "utilisateurs",
+    "user" => "utilisateur",
     "members" => "members",
     "all-members" =>  "tous les membres",
     "subscriptions" => "abonnements",
@@ -262,7 +263,7 @@ return [
     "Enter-plan-descreption-her" => "Entrez la description de plan",
     "Service" => "Service",
     "Select_the_service" => "Sélectionnez la service",
-    "day" => "jour",
+    "day" => "Jour",
     "nbr-day" => "Nombre des jours",
     "Enter-day" => "Enter day",
     "amount" => "montante",
@@ -364,6 +365,7 @@ return [
     "day-left" => "jour restant",
     "expired-at" => "expiré à",
     "expired-days" => "jours expirés",
+    "expired-members" => "Membres expirés",
     "Showing" => "Montrant",
     "Results" => "Résultats",
     "of" => "de",
@@ -375,7 +377,27 @@ return [
     "edit-Profile" => "Editer le profil",
     "full-name"=>"Nom et Prénom",
 
+    "Search-for-members"=>"Rechercher des membres",
+    "name-or-something"=>"Nom ou quelque chose...",
+    "Search-for"=>"Rechercher ",
+    "import-members"=>"importation de membres",
+    "Upload-File"=>"télécharger un fichier",
+    "Excel-Canva"=>"Excel Canva",
+    "Download-the-canva-excel"=>"Téléchargez le fichier canva excel pour importer les membres",
+    "Click-here-to-Download-Excel-canva"=>"Cliquez ici pour télécharger la toile Excel",
 
+    "girl" => "Fille",
+    "boy" => "Garçon",
+    "birth-day" => "Date de naissance",
+
+    "Old-Password" => "ancien mot de passe",
+    "New-Password" => "nouveau mot de passe",
+    "Confirm-Password" => "Confirmez le mot de passe",
+    "language" => "langue",
+    "Change-Password" => "Changer le mot de passe",
+
+    "coach" => "entraîneur",
+    "all-coachs" => "les entraîneurs",
 
 
 

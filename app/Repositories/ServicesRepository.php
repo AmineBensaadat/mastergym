@@ -44,7 +44,7 @@ class ServicesRepository
         $user= auth()->user();
         $services = DB::table('services')  
             ->select('services.*')
-            ->where('services.created_by', $user->id)
+            //->where('services.created_by', $user->id)
             ->where('services.account_id', $user->account_id)
             ->get(); 
         return $services;
@@ -56,6 +56,16 @@ class ServicesRepository
             ->join('users', 'services.created_by', '=', 'users.id')  
             ->select('services.*')
             ->where('users.account_id', $user->account_id)
+            ->get(); 
+        return $services;
+    } 
+
+    public function renderServicesChosed($plan_id){
+        $user= auth()->user();
+        $services = DB::table('services')
+            ->select('services.*')
+            ->where('services.account_id', $user->account_id)
+            //->where('plans_services.plan_id', $plan_id)
             ->get(); 
         return $services;
     }  

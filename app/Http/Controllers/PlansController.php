@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Files;
 use App\Models\Plans;
+use App\Models\PlansServices;
 use App\Models\Services;
 use App\Repositories\FilesRepository;
 use App\Repositories\PlansRepository;
@@ -10,6 +11,7 @@ use App\Repositories\ServicesRepository;
 use App\Rules\IsSelected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class PlansController extends Controller{
 
@@ -32,8 +34,10 @@ class PlansController extends Controller{
     public function getPlansBySrvice() {
         $serviceId = $_POST['serviceId'];
         
-        $plans = Plans::select('id','plan_name', 'days', 'amount')
-                ->where('service_id', $serviceId)
+        $plans = DB::table('plans_services')
+                ->join('plans', 'plans_services.plan_id', '=', 'plans.id') 
+                ->select('*') 
+                ->where('plans_services.service_id', $serviceId)
                 ->get();
         return response()->json(array('plans'=> $plans), 200);
     }
@@ -70,26 +74,27 @@ class PlansController extends Controller{
         return view('plans.plans_create', compact('services'));
     }
 
-       /**
+    /**
      * Show create plan.
      *
      * @return Response
      */
     public function edit($id)
     {
-        $services = Services::all();
+        $services =  $this->servicesRepository->renderServicesChosed($id);
+        $plans_services =  PlansServices::where('plan_id', '=', $id)->get();
         $plan = Plans::findOrFail($id);
-        return view('plans.edit', compact('services', 'plan'));
+        // dd($services[1]->id, $plan->service_id);
+        return view('plans.edit', compact('services', 'plan', 'plans_services'));
     }
 
     public function store(Request $request)
     {
          // tables
          $palns= new Plans();
-         $files_table= new Files();
-         $destinationPath = public_path().'/assets/images/plans/' ;
+         $plans_services = new PlansServices();
          $user = auth()->user();
-
+         $destinationPath = public_path().'/assets/images/plans/'.$user->account_id.'/' ;
         //validation form 
         $this->validate(
         $request, 
@@ -112,7 +117,6 @@ class PlansController extends Controller{
         // save plan in plans table
         $palns->plan_name = $request['plan_name'];
         $palns->plan_details = $request['plan_desc'];
-        $palns->service_id = $request['service'];
         $palns->days = $request['plan_day'];
         $palns->amount = $request['plan_amount'];
         $palns->status = $request['status'];
@@ -121,26 +125,32 @@ class PlansController extends Controller{
         $palns->account_id = $user->account_id;
         $palns->save();
 
+         // save plans services
+         if(count($request['service']) > 0){
+                foreach($request['service'] as $service){
+                    $data = array(
+                    'service_id' => $service,
+                    'plan_id' => $palns->id
+                    );
+                    $plans_services::insert($data);
+                }
+        }
+
+
         // save plan profile image
         $file = $request->file('profile_image');
         if($file = $request->hasFile('profile_image')) {
 
-            // file data 
-            $file = $request->file('profile_image') ;
-            $extension = $request->file('profile_image')->extension();
-            $fileName = "profile_image_plan_".$palns->id.'.'.$extension;
-
-            // save plan image in file table
-            $files_table= new Files();
-            $files_table->name = $fileName;
-            $files_table->ext = $extension;
-            $files_table->entity_name = 'plans';
-            $files_table->type = 'profile';
-            $files_table->entitiy_id = $palns->id;   
-            $files_table->save();
-
-            // move file in dericory
-            $file->move($destinationPath,$fileName);
+             // save the file
+             try {
+                $extension = $request->file('profile_image')->extension();
+                $fileName = "plan_image_".$request['plan_name']."_".$palns->id.'_'.time().'.'.$extension;
+                $this->filesRepository->saveFile($request, $palns->id, $fileName ,$destinationPath, 'plans', 'profile', 'profile_image');
+            } catch (Throwable $e) {
+                report($e);
+        
+                return $e;
+            }
 
         }
 
@@ -151,10 +161,12 @@ class PlansController extends Controller{
     {
         // tables
         $plan = Plans::findOrFail($request['plan_id']);
-       
+        $plans_services = new PlansServices();
+        
+         
         $files_table= new Files();
-        $destinationPath = public_path().'/assets/images/plans/' ;
         $user = auth()->user();
+        $destinationPath = public_path().'/assets/images/plans/'.$user->account_id.'/' ;
 
         $fileExist = $this->filesRepository->checkFileByEntityId($request['plan_id'], 'plans', 'profile');
        //validation form 
@@ -177,45 +189,38 @@ class PlansController extends Controller{
        // update plan in plans table
         $plan->plan_name = $request['plan_name'];
         $plan->plan_details = $request['plan_desc'];
-        $plan->service_id = $request['service'];
         $plan->days = $request['plan_day'];
         $plan->amount = $request['plan_amount'];
         $plan->status = $request['status'];
         $plan->updated_by = $user->id;
         $plan->update();
 
+         // save plans services
+        if(count($request['service']) > 0){
+            PlansServices::where('plan_id', '=', $request['plan_id'])->delete();
+                foreach($request['service'] as $service){
+                    $data = array(
+                    'service_id' => $service,
+                    'plan_id' => $request['plan_id']
+                    );
+                    $plans_services::insert($data);
+                }
+        }
+
 
        // save plan profile image
-   
        $file = $request->file('profile_image');
        if($file = $request->hasFile('profile_image')) {
-           $file = $request->file('profile_image') ;
-           $extension = $request->file('profile_image')->extension();
-           $fileName = "profile_image_plan_".$request['plan_id'].'.'.$extension;
-
-
-           if(count($fileExist) > 0){ // update
-
-               $old_files_table = Files::findOrFail($fileExist[0]->id);
-
-               // update service image in file table
-               $old_files_table->name = $fileName;
-               $old_files_table->ext = $extension;
-               $old_files_table->update();
-
-           }else{ // insert
-
-           // save plan image in file table
-           $files_table->name = $fileName;
-           $files_table->ext = $extension;
-           $files_table->type = 'profile';
-           $files_table->entity_name = 'plans';
-           $files_table->entitiy_id = $plan->id;   
-           $files_table->save();
-           }
-
-           // move file in dericory
-           $file->move($destinationPath,$fileName);
+           // save the file
+           try {
+            $extension = $request->file('profile_image')->extension();
+            $fileName = "plan_image_".$request['plan_name']."_".$request['plan_id'].'_'.time().'.'.$extension;
+            $this->filesRepository->saveFile($request, $request['plan_id'], $fileName ,$destinationPath, 'plans', 'profile', 'profile_image');
+        } catch (Throwable $e) {
+            report($e);
+    
+            return $e;
+        }
 
        }
 

@@ -8,6 +8,8 @@ php artisan make:migration create_users_table
 php artisan make:migration add_paid_to_users_table --table=users
 
 php artisan make:migration update_description_colomun --table=services
+----- make controller -------
+php artisan make:controller RoleController
 
 --- run the migration ---
 php artisan migrate
@@ -28,7 +30,7 @@ php artisan serve
 4 - git commit -m "update 1 your text"
 5 - git push origin devlop          raf
 
-------------------------------------------------
+----------------Start--------------------------------
 laravel deployment
 
 Autoloader Optimization
@@ -42,4 +44,4 @@ php artisan route:cache
 
 Optimizing View Loading
 php artisan view:cache
-------------------------------------
+----------------End--------------------

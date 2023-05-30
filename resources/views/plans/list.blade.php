@@ -32,8 +32,10 @@
                             <li><a class="dropdown-item" href="#">Last Month</a></li>
                             <li><a class="dropdown-item" href="#">Last Year</a></li>
                         </ul>
-                        <a href="{{ route('plans_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.Add-Plan')</a>
-                    </div>
+                        @can('plans-add-button')
+                            <a href="{{ route('plans_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.Add-Plan')</a>
+                        @endcan
+                        </div>
                 </div>
             <!--end col-->
         </div>
@@ -50,7 +52,7 @@
                     @foreach ($plans as $plan)
                         <div class="col">
                             <div class="card team-box">
-                                <div class="team-cover"><img src="assets/images/small/img-3.jpg" alt="" class="img-fluid" /></div>
+                                <div class="team-cover"><img src="../assets/images/small/img-3.jpg" alt="" class="img-fluid" /></div>
                                 <div class="card-body p-4">
                                     <div class="row align-items-center team-row">
                                         <div class="col team-settings">
@@ -75,9 +77,9 @@
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="team-profile-img">
-                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
+                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="{{URL::asset(Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
-                                                    <a class="member-name member-overview"  data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" > <h5 class="fs-16 mb-1" >{{ $plan->plan_name}}</h5> </a>
+                                                    <a class="member-name member-overview"  data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset(Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" > <h5 class="fs-16 mb-1" >{{ $plan->plan_name}}</h5> </a>
                                                     <p class="text-muted member-designation mb-0">{{ $plan->plan_details}}</p>
                                                 </div>
                                             </div>
@@ -92,7 +94,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col">
-                                            <div class="text-end"><a  href="#member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" aria-controls="member-overview" data-bs-toggle="offcanvas" class="btn btn-light view-btn member-overview">View</a></div>
+                                            <div class="text-end"><a  href="#member-overview" plan_services="{{ Helper::countAllPlansByService($plan->service_id)  }}" members_plan="{{ Helper::countAllMembersByPlan($plan->id)  }}" plan_img="{{URL::asset(Helper::getImageByEntityId($plan->id, "plans", "profile") )}}" description="{{ $plan->plan_details}}" name="{{ $plan->plan_name}}" aria-controls="member-overview" data-bs-toggle="offcanvas" class="btn btn-light view-btn member-overview">View</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -159,14 +161,14 @@
                                                             </div>
                                                         </div>
                                                     </label>
-                                                    <input class="form-control d-none" name="service_image" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg"
+                                                    <input class="form-control d-none" name="profile_image" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg"
                                                     onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])">
                                                 </div>
                                                 <div class="avatar-lg">
                                                     <div class="avatar-title bg-light rounded-circle">
                                                         <img src="{{URL::asset('assets/images/users/user-dummy-img.jpg')}}" id="single-img" class="avatar-md rounded-circle h-auto" />
                                                     </div>
-                                                    @error('service_image')
+                                                    @error('profile_image')
                                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                                     @enderror
                                                 </div>

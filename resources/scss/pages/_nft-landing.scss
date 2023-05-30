@@ -37,13 +37,13 @@
             opacity: 0;
             transition: all 0.5s ease;
         }
-    
+
         .place-bid-btn {
             top: 50%;
             position: absolute;
             left: 50%;
             transform: translate(-50%, -50%);
-    
+
             .btn {
                 opacity: 0;
                 bottom: -25px;
@@ -51,7 +51,7 @@
             }
         }
     }
-    
+
     &:hover {
         .explore-place-bid-img {
             .place-bid-btn {
@@ -60,7 +60,7 @@
                     bottom: 0;
                 }
             }
-    
+
             .bg-overlay {
                 opacity: 1;
             }

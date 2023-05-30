@@ -3,10 +3,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Files;
 use App\Models\Gyms;
+use App\Repositories\FilesRepository;
 use App\Repositories\GymsRepository;
 use App\Repositories\MembersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class GymsController extends Controller{
 
@@ -17,11 +19,13 @@ class GymsController extends Controller{
      */
     private $gymsRepository;
     private $membersRepository;
+    private $filesRepository;
 
-    public function __construct(GymsRepository $gymsRepository, MembersRepository $membersRepository)
+    public function __construct(GymsRepository $gymsRepository, MembersRepository $membersRepository, FilesRepository $filesRepository)
     {
         $this->gymsRepository = $gymsRepository;
         $this->membersRepository = $membersRepository;
+        $this->filesRepository = $filesRepository;
         $this->middleware('auth');
     }
 
@@ -81,9 +85,8 @@ class GymsController extends Controller{
     {
         // tables
         $gym= new Gyms();
-
-        $destinationPath = public_path().'/assets/images/gyms/' ;
-        $user_id = auth()->user()->id;
+        $user = auth()->user();
+        $destinationPath = public_path().'/assets/images/gyms/'.$user->account_id.'/' ;
 
         //validation form
           $this->validate(
@@ -112,7 +115,7 @@ class GymsController extends Controller{
         $gym->address = $request['gym_address'];
         $gym->desc = $request['gym_desc'];
         $gym->is_main = $request['is_main'];
-        $gym->created_by = $user_id;
+        $gym->created_by = $user->id;
         $gym->account_id = auth()->user()->account_id;
         $gym->save();
 
@@ -120,40 +123,32 @@ class GymsController extends Controller{
         $file = $request->file('profile_image');
         if($file = $request->hasFile('profile_image')) {
 
-            // file data
-            $file = $request->file('profile_image') ;
-            $fileName = time().rand(100,999).preg_replace('/\s+/', '', $file->getClientOriginalName());
-            $extension = $request->file('profile_image')->extension();
-
-            // save gym image in file table
-            $files_table= new Files();
-            $files_table->name = $fileName;
-            $files_table->ext = $extension;
-            $files_table->type = 'profile';
-            $files_table->entity_name = 'gyms';
-            $files_table->entitiy_id = $gym->id;
-            $files_table->save();
-
-            // move file in dericory
-            $file->move($destinationPath,$fileName);
+              // save the file
+              try {
+                $extension = $request->file('profile_image')->extension();
+                $fileName = "gym_image_".$request['gym_name']."_".$gym->id.'_'.time().'.'.$extension;
+                $this->filesRepository->saveFile($request, $gym->id, $fileName ,$destinationPath, 'gyms', 'profile', 'profile_image');
+            } catch (Throwable $e) {
+                report($e);
+        
+                return $e;
+            }
 
         }
 
          // save gallory images in files tabele
          if($request->hasFile('imgs_gallery')) {
             foreach($request->file('imgs_gallery') as $image)
-            {
-                $files_table= new Files();
-                $fileName = time().rand(100,999).preg_replace('/\s+/', '', $image->getClientOriginalName());
-                // save gym image in file table
-                $files_table->img_name = $fileName;
-                $files_table->ext = $image->extension();
-                $files_table->type = 'gallory';
-                $files_table->entitiy_id = $gym->id;
-                $files_table->save();
-
-                // move file in dericory
-                $image->move($destinationPath,$fileName);
+            {// save the file
+                try {
+                    $extension = $request->file('imgs_gallery')->extension();
+                    $fileName = "gym_image_".$request['gym_name']."_".$gym->id.'_'.time().'.'.$extension;
+                    $this->filesRepository->saveFile($request, $gym->id, $fileName ,$destinationPath, 'gyms', 'profile', 'imgs_gallery');
+                } catch (Throwable $e) {
+                    report($e);
+            
+                    return $e;
+                }
             }
         }
 

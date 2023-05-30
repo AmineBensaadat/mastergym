@@ -3,7 +3,6 @@ return [
 
     "all_gym" => "جميع النوادي",
     "gyms"=>"الصالات الرياضية",
-    "add_gym" => "إضافة",
     "require_gym_name" => "name is require",
     "add_gym" => " أضف ",
     "add" => " أضف ",
@@ -32,7 +31,7 @@ return [
     "Enter-plan-descreption-her" => "أدخل وصف الخطة ",
     "Service" => " خدمة ",
     "Select_the_service" => " اختر الخدمة ",
-    "day" => "تاريخ الميلاد",
+    "day" => " يوم",
     "nbr-day" => "عدد الأيام",
     "Enter-day" => "أدخل التاريخ",
     "amount" => "المبلغ",
@@ -67,6 +66,7 @@ return [
     "members" => "المنخرطون",
     "all-members" => "كل الأعضاء",
     "users" => "المستخدمين",
+    "user" => "مستخدم",
     "plans" => "الخطط",
     "plan" => "خطة",
 
@@ -152,6 +152,7 @@ return [
     "day-left" => "بقي يوم",
     "expired-at" => "منتهية الصلاحية في",
     "expired-days" => "أيام منتهية الصلاحية",
+    "expired-members" => " منخرطين منتهي الصلاحية ",
     "Showing" => "عرض",
     "Results" => "نتائج",
     "of" => "من",
@@ -163,8 +164,29 @@ return [
     "overview"=>" ملخص ",
     "edit-Profile" => " تعديل الملف الشخصي ",
     "full-name"=>" الاسم الكامل ",
+    "pages"=>" صفحة ",
 
+    "Search-for"=>"ابحث عن ",
+    "Search-for-members"=>"ابحث عن منخرطين",
+    "name-or-something"=>"اسم أو شيء من هذا القبيل ",
+    "import-members"=>"  استيراد الأعضاء",
+    "Upload-File"=>" رفع الملفات",
+    "Excel-Canva"=>"برنامج Excel Canva",
+    "Download-the-canva-excel"=>"قم بتنزيل ملف canva excel لاستيراد الأعضاء",
+    "Click-here-to-Download-Excel-canva"=>"انقر هنا لتنزيل ملف  Excel canva",
 
+    "girl" => " فتاة ",
+    "boy" => " ولد ",
+    "birth-day" => "تاريخ الميلاد",
+
+    "Old-Password" => "كلمة المرور القديمة",
+    "New-Password" => " كلمة المرور الجديدة ",
+    "Confirm-Password" => " تأكيد كلمة المرور ",
+    "language" => " اللغة ",
+    "Change-Password" => " تغيير كلمة المرور ",
+
+    "coach" => "مدرب",
+    "all-coachs" => "كل المدربين",
 
 
 

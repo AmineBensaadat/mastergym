@@ -2,7 +2,7 @@
 @section('title') @lang('translation.members') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
 @slot('title') @lang('translation.members') @endslot
 @endcomponent
 
@@ -17,7 +17,7 @@
 <div class="row">
     @if ($error)
     <!-- Toast -->
-    <div class="toast fade show center" role="alert" aria-live="assertive" data-bs-autohide="false" aria-atomic="true" style="width: auto;">
+    {{-- <div class="toast fade show center" role="alert" aria-live="assertive" data-bs-autohide="false" aria-atomic="true" style="width: auto;">
         <div class="toast-header">
             <img src="{{ URL::asset('assets/images/logo_1.png')}}" class="rounded me-2" alt="..." height="20">
             <span class="fw-semibold me-auto">Members</span>
@@ -28,15 +28,24 @@
         <div class="toast-body">
            {{$error}}
         </div>
-    </div>
+    </div> --}}
+
     @endif
+
+    @if (session('status'))
+                            <div class="row">
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            </div>
+                        @endif
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header border-0 rounded">
                 <div class="row g-2">
                     <div class="col-xl-3 col-sm-2">
                         <div class="search-box">
-                            <input type="text" class="form-control search" placeholder="Search for members &amp; owner name or something..."> <i class="ri-search-line search-icon"></i>
+                            <input type="text" class="form-control search" placeholder="@lang('translation.Search-for-members') &amp; @lang('translation.name-or-something')"> <i class="ri-search-line search-icon"></i>
                         </div>
                     </div>
                     <!--end col-->
@@ -46,8 +55,13 @@
                     <div class="col-lg-auto col-sm-2">
                         <div class="hstack gap-2">
                             <a class="btn btn-info add-btn" data-bs-toggle="offcanvas" href="#costum-filter" aria-controls="costum-filter"> <i class="ri-filter-2-line me-1 align-bottom"></i> @lang('translation.filter') </a>
-                            <a href="{{ route('members_import') }}" class="btn btn-soft-success">@lang('translation.Import')</a>
-                            <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> @lang('translation.add') @lang('translation.member')</a>
+                            @can('member-import-button')
+                                <a href="{{ route('members_import') }}" class="btn btn-soft-success">@lang('translation.Import')</a>
+                            @endcan
+
+                            @can('member-add-button')
+                                <a href="{{ route('members_create') }}" class="btn btn-success"> <i class="ri-add-circle-line align-bottom"></i> @lang('translation.add') @lang('translation.member')</a>
+                            @endcan
                         </div>
                     </div>
                     <!--end col-->
@@ -249,7 +263,7 @@
                 $('#members_dt').DataTable().destroy();
                 fill_datatable();
             });
-            
+
             var html = '';
 
         $("#filter_service").on("change",function(){
@@ -296,7 +310,7 @@
                     type:"POST",
                     cache:false,
                     data:{
-                        member_id:member_id, 
+                        member_id:member_id,
                         _token: $('meta[name="csrf-token"]').attr('content')
                     },
                     success:function(data){
@@ -318,10 +332,10 @@
                                 text: data,
                             })
                         }
-                        
+
                 }
             });
-                
+
             }
         });
         });

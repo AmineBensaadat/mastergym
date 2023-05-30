@@ -3,7 +3,9 @@ namespace App\Repositories;
 
 use App\Models\Files;
 use App\Models\Members;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class MembersRepository 
 {
@@ -26,13 +28,13 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')->groupBy('members.id')
             ->select(
                 'members.*',
                 'gyms.name as gym_name',
                 'gyms.id as gym_id',
-                'services.id as service_id',
+                'members.service_id',
                 'services.name as service_name',
                 'plans.id as plan_id',
                 'plans.plan_name as plan_name')
@@ -128,7 +130,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')->groupBy('members.id')
             ->select(
                 'members.*',
@@ -252,7 +254,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->join('invoices', 'members.id', '=', 'invoices.member_id')
             ->select(
@@ -355,7 +357,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->join('invoices', 'members.id', '=', 'invoices.member_id')
             ->select(
@@ -465,7 +467,7 @@ class MembersRepository
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->join('invoices', 'members.id', '=', 'invoices.member_id')->groupBy('members.id')
             ->select(
@@ -561,15 +563,13 @@ class MembersRepository
         return $data;
     }
 
-    
-
     public function countMembersByStatus($status, $request){
         $data = array();
         $user = auth()->user();
         $query = DB::table('members')
             ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
             ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-            ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+            ->leftJoin('services', 'members.service_id', '=', 'services.id')  
             ->leftJoin('invoices', 'members.id', '=', 'invoices.member_id')
             ->join('gyms', 'members.gym_id', '=', 'gyms.id')
             ->select(
@@ -631,8 +631,6 @@ class MembersRepository
 
     }
 
-    
-
     public function countAllMembersByGym($gym_id){
         $user = auth()->user();
         $members = Members::where([
@@ -644,9 +642,9 @@ class MembersRepository
     }
 
     public function saveMember($request){
-        
+     
         $user = auth()->user();
-        $destinationPath = public_path().'/assets/images/members/' ;
+        $destinationPath = public_path().'/assets/images/members/'.$user->account_id.'/' ;
         // save in member table
         $member = Members::create([
             'firstname' => $request['firstname'],
@@ -663,6 +661,7 @@ class MembersRepository
             'health_issues' =>  $request['health_issues'],
             'cin' => $request['cin'],
             'created_by' =>  $user->id,
+            'created_at' =>  $request['created_at'],
             'updated_by' =>  $user->id,
             'source' =>  $request['source'],
             'account_id' => $user->account_id
@@ -670,31 +669,26 @@ class MembersRepository
 
          // save gym profile image
          $file = $request->file('profile_image');
+ 
          if($file = $request->hasFile('profile_image')) {
+                 // save the file
+                try {
+                    $extension = $request->file('profile_image')->extension();
+                    $fileName = "member_image_".$request['firstname']."_".$request['lastname']."_".$member->id.'_'.time().'.'.$extension;
+                    $this->filesRepository->saveFile($request, $member->id, $fileName ,$destinationPath, 'members', 'profile', 'profile_image');
+                } catch (Throwable $e) {
+                    report($e);
+            
+                    return $e;
+                }
  
-             // file data 
-             $file = $request->file('profile_image') ;
-             $extension = $request->file('profile_image')->extension();
-             $fileName = "member_image_".$member->id.'.'.$extension;
- 
-             // save gym image in file table
-             $files_table= new Files();
-             $files_table->name = $fileName;
-             $files_table->entity_name = 'members';
-             $files_table->ext = $extension;
-             $files_table->type = 'profile';
-             $files_table->entitiy_id = $member->id;   
-             $files_table->save();
- 
-             // move file in dericory
-             $file->move($destinationPath,$fileName);
          }
        return $member;
     }
 
     public function updateMember($request){ 
         $user = auth()->user();
-        $destinationPath = public_path().'/assets/images/members/' ;
+        $destinationPath = public_path().'/assets/images/members/'.$user->account_id.'/' ;
         Members::where('id', $request['member_id'])
         ->update([
             'firstname' => $request['firstname'],
@@ -708,6 +702,8 @@ class MembersRepository
             'emergency_contact' => $request['emergency_contact'],
             'gender' => $request['gender'],
             'gym_id' => $request['gym'],
+            'service_id' => $request['service'],
+            'created_at' =>  $request['created_at'],
             'health_issues' =>  $request['health_issues'],
             'cin' => $request['cin'],
             'updated_by' =>  $user->id,
@@ -716,38 +712,18 @@ class MembersRepository
 
          // save gym profile image
          $file = $request->file('profile_image');
-         $fileExist = $this->filesRepository->checkFileByEntityId($request['member_id'], 'members', 'profile');
+ 
          if($file = $request->hasFile('profile_image')) {
+                 // save the file
+                try {
+                    $extension = $request->file('profile_image')->extension();
+                    $fileName = "member_image_".$request['firstname']."_".$request['lastname']."_".$request['member_id'].'_'.time().'.'.$extension;
+                    $this->filesRepository->saveFile($request, $request['member_id'], $fileName ,$destinationPath, 'members', 'profile', 'profile_image');
+                } catch (Throwable $e) {
+                    report($e);
             
-            // file data 
-             $file = $request->file('profile_image') ;
-             $extension = $request->file('profile_image')->extension();
-             $fileName = "member_image_".$request['member_id'].'.'.$extension;
- 
- 
-             if(count($fileExist) > 0){ // update
- 
-                 $old_files_table = Files::findOrFail($fileExist[0]->id);
- 
-                 // update service image in file table
-                 $old_files_table->name = $fileName;
-                 $old_files_table->ext = $extension;
-                 $old_files_table->update();
- 
-             }else{ // insert
- 
-             // save gym image in file table
-             $files_table= new Files();
-             $files_table->name = $fileName;
-             $files_table->entity_name = 'members';
-             $files_table->ext = $extension;
-             $files_table->type = 'profile';
-             $files_table->entitiy_id = $request['member_id'];   
-             $files_table->save();
-             }
- 
-             // move file in dericory
-             $file->move($destinationPath,$fileName);
+                    return $e;
+                }
  
          }
     }
@@ -755,6 +731,16 @@ class MembersRepository
     public function deleteMember($member_id){
         $deleted = Members::where('id', $member_id)->delete();
         return $deleted;
+    }
+
+    public function checkifMemberIxistInGym($row){
+        $user = auth()->user();
+        $members = Members::where([
+                ['members.firstname',  '=', $row['firstname']],
+                ['members.lastname',  '=', $row['lastname']]
+            ])->get();
+        $membersCount = $members->count();
+        return $membersCount;
     }
 
 }

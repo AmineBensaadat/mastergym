@@ -2,8 +2,8 @@
 @section('title') @lang('translation.team') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
-@slot('title') Team @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
+@slot('title') @lang('translation.services') @endslot
 @endcomponent
 
 <div class="card">
@@ -12,7 +12,6 @@
                 <div class="col-sm-4">
                 <form method="GET"  action="{{ route('services_list') }}">
                     <div class="search-box">
-                            @csrf
                             <input type="text" name="query" class="form-control"  placeholder="Search for name or designation...">
                         <i class="ri-search-line search-icon"></i>
                     </div>
@@ -25,15 +24,10 @@
                     <div class="list-grid-nav hstack gap-1">
                         <button type="button" id="list-view-button" class="btn btn-soft-info nav-link  btn-icon fs-14 filter-button active"><i class="ri-list-unordered"></i></button>
                         <button type="button" id="grid-view-button" class="btn btn-soft-info nav-link btn-icon fs-14 filter-button"><i class="ri-grid-fill"></i></button>
-                        <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-soft-info btn-icon fs-14"><i class="ri-more-2-fill"></i></button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                            <li><a class="dropdown-item" href="#">All</a></li>
-                            <li><a class="dropdown-item" href="#">Last Week</a></li>
-                            <li><a class="dropdown-item" href="#">Last Month</a></li>
-                            <li><a class="dropdown-item" href="#">Last Year</a></li>
-                        </ul>
-                        <button class="btn btn-success addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> @lang('translation.add') @lang('translation.Service')</button>
-                    </div>
+                        @can('services-create-menu')
+                            <button class="btn btn-success addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> @lang('translation.add') @lang('translation.Service')</button>
+                        @endcan
+                        </div>
                 </div>
             <!--end col-->
         </div>
@@ -59,7 +53,7 @@
                                                     <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"> <i class="ri-more-fill fs-17"></i> </a>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a service_gym_id="{{ Helper::getGymServiceByServiceId($service->id)->id }}" description="{{ $service->description}}" name="{{ $service->name}}" service_img="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services", "profile") )}}" service_gym="{{ Helper::getGymServiceByServiceId($service->id)->id }}" class="dropdown-item edit-list update_service" service_id="{{ $service->id }}" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
+                                                            <a service_gym_id="{{ Helper::getGymServiceByServiceId($service->id)->id }}" description="{{ $service->description}}" name="{{ $service->name}}" service_img="{{URL::asset(Helper::getImageByEntityId($service->id, "services", "profile") )}}" service_gym="{{ Helper::getGymServiceByServiceId($service->id)->id }}" class="dropdown-item edit-list update_service" service_id="{{ $service->id }}" href="#updateSeviceModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a>
                                                         </li>
                                                         {{-- <li>
                                                             <a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="4"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a>
@@ -70,7 +64,7 @@
                                         </div>
                                         <div class="col-lg-4 col">
                                             <div class="team-profile-img">
-                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img id="service_img" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($service->id, "services", "profile") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
+                                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img id="service_img" src="{{URL::asset(Helper::getImageByEntityId($service->id, "services", "profile") )}}" alt="" class="member-img img-fluid d-block rounded-circle" /></div>
                                                 <div class="team-content">
                                                     <a class="member-name member-overview" description="{{ $service->description}}" name="{{ $service->name}}" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview"> <h5 class="fs-16 mb-1">{{ $service->name}}</h5> </a>
                                                     <p class="text-muted member-designation mb-0">{{ Helper::getGymServiceByServiceId($service->id)->name }}</p>
@@ -157,14 +151,14 @@
                                                             </div>
                                                         </div>
                                                     </label>
-                                                    <input class="form-control d-none" name="service_image" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg"
+                                                    <input class="form-control d-none" name="profile_image" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg"
                                                     onchange="document.getElementById('single-img').src = window.URL.createObjectURL(this.files[0])">
                                                 </div>
                                                 <div class="avatar-lg">
                                                     <div class="avatar-title bg-light rounded-circle">
                                                         <img src="{{URL::asset('assets/images/users/user-dummy-img.jpg')}}" id="single-img" class="avatar-md rounded-circle h-auto" />
                                                     </div>
-                                                    @error('service_image')
+                                                    @error('profile_image')
                                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -195,7 +189,7 @@
 
                                         <div class="mb-4">
                                             <label for="description" class="form-label">@lang('translation.description')</label>
-                                            <input type="text" name="description" class="form-control" id="description" placeholder="@lang('translation.entrer the')@lang('translation.description')" required>
+                                            <input type="text" name="description" class="form-control" id="description" placeholder="@lang('translation.entrer the')@lang('translation.description')">
                                             @error('service_description')
                                                 <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                             @enderror
@@ -264,14 +258,14 @@
                                                             </div>
                                                         </div>
                                                     </label>
-                                                    <input class="form-control d-none" name="service_image_update" id="member-image-input-update" type="file" accept="image/png, image/gif, image/jpeg"
+                                                    <input class="form-control d-none" name="profile_image_update" id="member-image-input-update" type="file" accept="image/png, image/gif, image/jpeg"
                                                     onchange="document.getElementById('single-img-update').src = window.URL.createObjectURL(this.files[0])">
                                                 </div>
                                                 <div class="avatar-lg">
                                                     <div class="avatar-title bg-light rounded-circle">
                                                         <img src="{{URL::asset('assets/images/users/user-dummy-img.jpg')}}" id="single-img-update" class="avatar-md rounded-circle h-auto service_img_update" />
                                                     </div>
-                                                    @error('service_image')
+                                                    @error('profile_image')
                                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -302,7 +296,7 @@
 
                                         <div class="mb-4">
                                             <label for="descriptionUpdate" class="form-label">@lang('translation.description')</label>
-                                            <input type="text" name="descriptionUpdate" class="form-control description_update" placeholder="@lang('translation.entrer the')@lang('translation.description')" required>
+                                            <input type="text" name="descriptionUpdate" class="form-control description_update" placeholder="@lang('translation.entrer the')@lang('translation.description')">
                                             @error('service_description')
                                                 <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                             @enderror

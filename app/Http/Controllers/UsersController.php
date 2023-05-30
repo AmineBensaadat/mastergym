@@ -10,6 +10,7 @@ use App\Repositories\FilesRepository;
 use App\Repositories\GymsRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -34,7 +35,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.users_list', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -46,9 +47,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-
-        dd($user);
-
+        
         return view('users.show', compact('user'));
     }
 
@@ -60,7 +59,7 @@ class UsersController extends Controller
     public function create()
     {
        $gyms = $this->gymsRepository->getAllGymByCretedById();
-        return view('users.user_create', compact('gyms'));
+        return view('users.create', compact('gyms'));
     }
 
     /**
@@ -138,6 +137,8 @@ class UsersController extends Controller
         return redirect('users');
     }
 
+
+
     public function archive($id, Request $request)
     {
         $user = User::findOrFail($id);
@@ -161,7 +162,7 @@ class UsersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//users/'.$this->filesRepository->getFileByEntityId($row->id, "users", "profile").'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->id, "users", "profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../users/show/'.$row->id. '">'.$row->name.'</a></div>            
             </div>';
@@ -180,5 +181,41 @@ class UsersController extends Controller
            );
 
         return json_encode($output) ;
+    }
+
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required', 'string'],
+            'password_confirmation' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+        
+        if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
+            return response()->json([
+                'isSuccess' => false,
+                'Message' => "Your Current password does not matches with the password you provided. Please try again."
+            ], 200); // Status code
+        } else {
+            $user = User::find(Auth::user()->id);
+            if ($user) {
+                $user->password = Hash::make($request->get('password'));
+                $user->update();
+                Session::flash('message', 'Password updated successfully!');
+                Session::flash('alert-class', 'alert-success');
+                return response()->json([
+                    'isSuccess' => true,
+                    'Message' => "Password updated successfully!"
+                ], 200); // Status code here
+            } else {
+                Session::flash('message', 'Something went wrong!');
+                Session::flash('alert-class', 'alert-danger');
+                return response()->json([
+                    'isSuccess' => false,
+                    'Message' => "Something went wrong!"
+                ], 200); // Status code here
+            }
+        }
     }
 }

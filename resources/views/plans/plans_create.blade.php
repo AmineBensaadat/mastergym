@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Ecommerce @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
 @slot('title') @lang('translation.CREATE_PLAN') @endslot
 @endcomponent
 <form id="createplan-form" method="POST" class="needs-validation"  action="{{ route('plans_store') }}" novalidate enctype="multipart/form-data">
@@ -35,16 +35,18 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="mb-3">
-                                            <select name="service" class="form-control" data-choices name="choices-single-default" id="choices-single-default">
-                                                <option value="">@lang('translation.Select_the_service')</option>
-                                                @foreach ($services as $service)
-                                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('service')
-                                            <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                                        @enderror
+                                            <div class="mb-3">
+                                
+                                                <select class="form-control" data-choices data-choices-removeItem name="service[]"multiple>
+                                                    
+                                                    @foreach ($services as $key => $service )
+                                                        <option value="{{ $service->id }}">{{ $service->name }}  </option>
+                                                    @endforeach   
+                                                </select> 
+                                            </div>
+                                            @error('service')
+                                                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                                 <!-- end row -->

@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\CoachController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GymsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\PlansController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SubscriptionsController;
@@ -54,11 +56,17 @@ Route::group(['prefix' => 'plans', 'middleware' => ['auth']], function () {
 //Users
 Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::get('/all', [UsersController::class, 'index'])->name('users_list');
-    Route::get('/show/{id}', [UsersController::class, 'index'])->name('user_show');
+    Route::get('/show/{id}', [UsersController::class, 'show'])->name('user_show');
     Route::post('/store', [UsersController::class, 'store'])->name('user_store');
     Route::get('/create', [UsersController::class, 'create'])->name('users_create');
     Route::post('/getAllUsers', [UsersController::class, 'getAllUsers'])->name('users_list_json');
+    Route::post('/update-password', [UsersController::class, 'updatePassword'])->name('updatePassword');
 });
+
+//Roles
+Route::group(['prefix' => 'roles', 'middleware' => ['auth']], function () {
+    Route::get('/', [RoleController::class, 'index'])->name('roles_list');
+});   
 
 //Members
 Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
@@ -86,11 +94,19 @@ Route::group(['prefix' => 'members', 'middleware' => ['auth']], function () {
     
 });
 
+//Coach
+Route::group(['prefix' => 'coach', 'middleware' => ['auth']], function () {
+    Route::get('/list', [CoachController::class, 'list'])->name('coach_list');
+    Route::get('/add', [CoachController::class, 'create'])->name('coach_create');
+    Route::post('/store', [CoachController::class, 'store'])->name('coach_store');
+    Route::get('/show/{id}', [CoachController::class, 'show'])->name('coach_show');
+});
+
 //Subscriptions
 Route::group(['prefix' => 'subscriptions', 'middleware' => ['auth']], function () {
     Route::get('/all', [SubscriptionsController::class, 'index'])->name('subscriptions_list');
     Route::get('/add', [SubscriptionsController::class, 'add'])->name('subscriptions_add');
-    Route::get('/renwe/{subscription_id}/{member_id}', [SubscriptionsController::class, 'renwe'])->name('subscriptions_renwe');
+    Route::get('/edit/{subscription_id}', [SubscriptionsController::class, 'edit'])->name('subscriptions_edit');
     Route::post('/update', [SubscriptionsController::class, 'update'])->name('subscriptions_update');
     Route::post('/store', [SubscriptionsController::class, 'store'])->name('subscriptions_store');
 });
@@ -106,6 +122,8 @@ Route::group(['prefix' => 'services', 'middleware' => ['auth']], function () {
 Route::group(['prefix' => 'Invoices', 'middleware' => ['auth']], function () {
     Route::get('/all', [InvoicesController::class, 'index'])->name('invioces_list');
     Route::get('/download/{id}', [InvoicesController::class, 'downloadInvoice'])->name('invoices_download');
+    Route::get('/edit/{id}', [InvoicesController::class, 'edit'])->name('invoices_edit');
+    Route::post('/update', [InvoicesController::class, 'update'])->name('invoices_update');
 });
 
 //setting
@@ -119,6 +137,5 @@ Route::get('/', [App\Http\Controllers\LendingController::class, 'index'])->name(
 
 //Update User Details
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
 
 Route::get('{any}', [DashboardController::class, 'index'])->name('index');

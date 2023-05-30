@@ -18,7 +18,7 @@
         <div class="row g-4">
             <div class="col-auto">
                 <div class="avatar-lg">
-                    <img style="height: inherit;" src="{{URL::asset('assets/images/members/'.Helper::getImageByEntityId($member->id, "members", "profile") )}}" alt="user-img" class="img-thumbnail rounded-circle" />
+                    <img style="height: inherit;" src="{{URL::asset(Helper::getImageByEntityId($member->id, "members", "profile") )}}" alt="user-img" class="img-thumbnail rounded-circle" />
                 </div>
             </div>
             <!--end col-->
@@ -105,7 +105,7 @@
                 <div class="tab-content pt-4 text-muted">
                     <div class="tab-pane active" id="overview-tab" role="tabpanel">
                         <div class="row">
-                            <div class="col-xxl-3">
+                            <div class="col-md-3">
                                 {{-- <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title mb-5">Complete Your Profile</h5>
@@ -163,7 +163,7 @@
                                         </div>
                                         <div class="d-flex mb-4">
                                             <div class="flex-shrink-0">
-                                                <img src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($subscription->plan_id, "plans", "profile") )}}" alt=""
+                                                <img src="{{URL::asset(Helper::getImageByEntityId($subscription->plan_id, "plans", "profile") )}}" alt=""
                                                     height="50" class="rounded" />
                                             </div>
                                             <div class="flex-grow-1 ms-3 overflow-hidden">
@@ -180,7 +180,7 @@
                                 <!--end card-->
                             </div>
                             <!--end col-->
-                            <div class="col-xxl-9">
+                            <div class="col-md-9">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -242,7 +242,7 @@
                                                         </td>
                                                         <td><div class="d-flex align-items-center">
                                                             <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($invoice->service_id, "services", "profile") )}}">
+                                                                <img class="img-fluid d-block" alt="" src="{{URL::asset(Helper::getImageByEntityId($invoice->service_id, "services", "profile") )}}">
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $invoice->service_name }}</a></h5>
@@ -251,7 +251,7 @@
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($invoice->plan_id, "plans", "profile") )}}">
+                                                                        <img class="img-fluid d-block" alt="" src="{{URL::asset(Helper::getImageByEntityId($invoice->plan_id, "plans", "profile") )}}">
                                                                 </div>
                                                                 <div>
                                                                     <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $invoice->plan_name }}</a></h5>
@@ -260,14 +260,21 @@
                                                         </td>
                                                         <td>{{ $invoice->payment_comment }}</td>
                                                         <td>
-                                                            <ul class="list-inline hstack gap-2 mb-0">
-                                                                <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove">
-                                                                    <a class="text-primary d-inline-block remove-item-btn" data-bs-toggle="modal" href="../../Invoices/download/{{$invoice->id }}" target="_blank">
-                                                                        <i class="ri-printer-fill fs-16"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-
+                                                            <div class="col text-end dropdown">
+                                                                <a href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <i class="ri-more-fill fs-17"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink14">
+                                                                    <li>
+                                                                        <a class="dropdown-item" href="{{ route('invoices_edit', ['id' => $invoice->id ]) }}">
+                                                                            <i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="dropdown-item" href="{{ route('invoices_download', ['id' => $invoice->id ]) }}" target="_blank">
+                                                                            <i class="ri-printer-fill fs-16 me-2 align-bottom text-muted"></i>Imprimer
+                                                                        </a>
+                                                                    </li>
                                                         </td>
                                                     </tr>
 
@@ -348,7 +355,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="mt-3 pt-2">
-                                                    <a href="{{ route('subscriptions_renwe', ['subscription_id' =>  $member->subscription_id, 'member_id' => $member->id ]) }}" class="btn btn-info w-100">Renew</a>
+                                                    <a href="{{ route('subscriptions_edit', ['subscription_id' =>  $member->subscription_id]) }}" class="btn btn-info w-100">Edit</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -429,7 +436,7 @@
                                                         </td>
                                                         <td><div class="d-flex align-items-center">
                                                             <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/services/'.Helper::getImageByEntityId($invoice->service_id, "services", "profile") )}}">
+                                                                <img class="img-fluid d-block" alt="" src="{{URL::asset(Helper::getImageByEntityId($invoice->service_id, "services", "profile") )}}">
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $invoice->service_name }}</a></h5>
@@ -438,7 +445,7 @@
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img class="img-fluid d-block" alt="" src="{{URL::asset('assets/images/plans/'.Helper::getImageByEntityId($invoice->plan_id, "plans", "profile") )}}">
+                                                                        <img class="img-fluid d-block" alt="" src="{{URL::asset(Helper::getImageByEntityId($invoice->plan_id, "plans", "profile") )}}">
                                                                 </div>
                                                                 <div>
                                                                     <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">{{ $invoice->plan_name }}</a></h5>
@@ -447,6 +454,7 @@
                                                         </td>
                                                         <td>{{ $invoice->payment_comment }}</td>
                                                         <td>
+                                                            
                                                             <ul class="list-inline hstack gap-2 mb-0">
                                                                 <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove">
                                                                     <a class="text-primary d-inline-block remove-item-btn" data-bs-toggle="modal" href="../../Invoices/download/{{$invoice->id }}" target="_blank">
@@ -454,7 +462,6 @@
                                                                     </a>
                                                                 </li>
                                                             </ul>
-
                                                         </td>
                                                     </tr>
 

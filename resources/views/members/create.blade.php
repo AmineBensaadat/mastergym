@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title') @lang('translation.add-member') @endsection
+@section('title') @lang('translation.add') @lang('translation.member') @endsection
 @section('css')
 @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Ecommerce @endslot
+@slot('li_1') @lang('translation.pages') : @endslot
 @slot('title') @lang('translation.Create-Memeber') @endslot
 @endcomponent
 
@@ -34,7 +34,7 @@
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
                                 </div>
-                             
+
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="phone-input">@lang('translation.phone')</label>
@@ -245,7 +245,7 @@
                               <div class="col-sm">
                                 <div class="mb-3">
                                     <label class="form-label" for="discount-amount-input">@lang('translation.discount-amount')</label>
-                                    <input readonly type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
+                                    <input type="number" class="form-control" name="discount-amount" id="discount-amount-input" value="{{ old('discount-amount') }}" placeholder="@lang('translation.entrer the') @lang('translation.discount-amount')">
                                     @error('discount-amount')
                                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                                     @enderror
@@ -336,12 +336,26 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label" for="created_at-input">@lang('translation.created-at')</label>
+
+                        <div class="form-icon">
+                            <input type="date" class="form-control form-control-icon" name="created_at" id="created_at-input" value="{{ old('created_at') ? old('created_at') :  now()->format('Y-m-d')  }}"  required>
+                            <i class="ri-map-pin-time-line"></i>
+                        </div>
+
+                        @error('created_at')
+                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label for="choices-status" class="form-label">@lang('translation.Status')</label>
                         <select name="status" class="form-select" id="choices-status">
                             <option value="1" selected>@lang('translation.Active')</option>
                             <option value="0">@lang('translation.Inactive')</option>
                         </select>
                     </div>
+
 
                     <div class="mb-3">
                         <label class="form-label" for="health_issues-input">@lang('translation.health_issues')</label>

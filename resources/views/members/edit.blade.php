@@ -1,11 +1,11 @@
 @extends('layouts.master')
-@section('title') @lang('translation.add-member') @endsection
+@section('title') @lang('translation.edit-Profile') @endsection
 @section('css')
 @endsection
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') @lang('translation.member') @endslot
-@slot('title') @lang('translation.Update-Memeber') @endslot
+@slot('title') @lang('translation.edit-Profile') @endslot
 @endcomponent
 
 <form id="createMember-form" method="POST" class="needs-validation"  action="{{ route('members_update') }}" novalidate enctype="multipart/form-data">
@@ -32,6 +32,8 @@
                                     <select name="gender" class="form-select" id="choices-gender">
                                         <option value="men" {{ $member->gender === "men" ? "selected" : "" }}> @lang('translation.men')</option>
                                         <option value="female" {{ $member->gender === "female" ? "selected" : "" }} >@lang('translation.female')</option>
+                                        <option value="girl" {{ $member->gender === "girl" ? "selected" : "" }} >@lang('translation.girl')</option>
+                                        <option value="boy" {{ $member->gender === "boy" ? "selected" : "" }} >@lang('translation.boy')</option>
                                     </select>
                                 </div>
 
@@ -81,7 +83,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="dob-input">@lang('translation.day')</label>
+                                    <label class="form-label" for="dob-input">@lang('translation.birth-day')</label>
 
                                     <div class="form-icon">
                                         <input type="date" class="form-control form-control-icon" name="dob" id="dob-input" value="{{ old('dob') ? old('dob') : $member->DOB }}" >
@@ -161,7 +163,7 @@
                                 </div>
                                 <div class="avatar-lg">
                                     <div class="avatar-title bg-light rounded">
-                                        <img src="{{URL::asset('assets/images/members/'.Helper::getImageByEntityId($member->id, "members", "profile") )}}" id="single-img" class="avatar-md" />
+                                        <img src="{{URL::asset(Helper::getImageByEntityId($member->id, "members", "profile") )}}" id="single-img" class="avatar-md" />
                                     </div>
                                 </div>
                             </div>
@@ -189,6 +191,31 @@
                         <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="services">@lang('translation.services')</label>
+                        <select name="service" id="services" class="form-select" aria-label=".form-select-sm example" required>
+                            <option value="0">@lang('translation.chose')@lang('translation.Service')</option>
+                            @foreach ($services as $service)
+                                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label" for="created_at-input">@lang('translation.created-at')</label>
+
+                        <div class="form-icon">
+                            <input type="date" class="form-control form-control-icon" name="created_at" id="created_at-input" value="{{ old('created_at') ? old('created_at') : date('Y-m-d', strtotime($member->created_at)) }}"  required>
+                            <i class="ri-map-pin-time-line"></i>
+                        </div>
+
+                        @error('created_at')
+                        <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+
 
                     <div class="mb-3">
                         <label for="choices-status" class="form-label">@lang('translation.Status')</label>

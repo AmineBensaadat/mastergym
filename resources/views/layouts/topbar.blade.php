@@ -84,7 +84,7 @@
                                 @foreach (Helper::getAllGymByAccountId() as $gym)
                                 <div class="d-block dropdown-item dropdown-item-cart text-wrap px-3 py-2">
                                     <div class="d-flex align-items-center">
-                                        <img src="{{URL::asset('assets/images/gyms/'.Helper::getImageByEntityId($gym->id, "gyms", "profile") )}}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
+                                        <img src="{{URL::asset(Helper::getImageByEntityId($gym->id, "gyms", "profile") )}}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
                                         <div class="flex-1">
                                             <h6 class="mt-0 mb-1 fs-14">
                                                 <a href="{{ route('show_gym', ['id' => $gym->id ]) }}" class="text-reset">{{ $gym->name }}</a>
@@ -174,7 +174,7 @@
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle header-profile-user" src="{{URL::asset('assets/images/users/'.Helper::getImageByEntityId(Auth::user()->id, "users", "profile") )}}"
+                            <img class="rounded-circle header-profile-user" src="{{URL::asset(Helper::getImageByEntityId(Auth::user()->id, "users", "profile") )}}"
                                 alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{Auth::user()->name}}</span>

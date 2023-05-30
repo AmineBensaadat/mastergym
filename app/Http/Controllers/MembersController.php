@@ -84,14 +84,14 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms", "profile").'" alt="" class="avatar-xs">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms", "profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -99,7 +99,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -111,7 +111,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.$this->filesRepository->getFileByEntityId($row->plan_id, "plans", "profile") .'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->plan_id, "plans", "profile") .'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -157,14 +157,14 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms", "profile").'" alt="" class="avatar-xs">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms", "profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -172,7 +172,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -184,7 +184,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.$this->filesRepository->getFileByEntityId($row->plan_id, "plans", "profile") .'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->plan_id, "plans", "profile") .'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -219,14 +219,14 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members","profile").'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->id, "members","profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms","profile").'" alt="" class="avatar-xs">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->gym_id, "gyms","profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -234,7 +234,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.(file_exists('assets/images/services/'.$this->filesRepository->getFileByEntityId($row->id, "services","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "services","profile"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->service_id, "services","profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -246,7 +246,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "plans","profile"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->plan_id, "plans","profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -285,7 +285,7 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
@@ -295,7 +295,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -307,7 +307,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "plans","profile"): 'default.png').'" alt="" class="avatar-xs">
+                        <img src="'.(file_exists('assets/images/plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans","profile")) ? $this->filesRepository->getFileByEntityId($row->id, "plans","profile"): 'default.png').'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -362,7 +362,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->service_id, "services", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -374,7 +374,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans", "profile").'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->id, "plans", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -408,14 +408,14 @@ class MembersController extends Controller
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0">
-                    <img src="'.$url.'//members/'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->id, "members", "profile").'" alt="" class="avatar-xs rounded-circle">
                 </div>
                 <div class="flex-grow-1 ms-2 name"><a href="../members/show/'.$row->id. '">'.$row->lastname. ' '.$row->firstname.'</a></div>            
             </div>';
             $sub_array[] = '
             <div class="d-flex align-items-center">            
                 <div class="flex-shrink-0 ">
-                    <img src="'.$url.'//gyms/'.$this->filesRepository->getFileByEntityId($row->id, "gyms", "profile").'" alt="" class="avatar-xs">
+                    <img src="'.$this->filesRepository->getFileByEntityId($row->id, "gyms", "profile").'" alt="" class="avatar-xs">
                 </div>
                 <div class="flex-grow-1 ms-2 name">'.$row->gym_name.'</div>            
             </div>';
@@ -423,7 +423,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//services/'.$this->filesRepository->getFileByEntityId($row->id, "services", "profile").'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->id, "services", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->service_name.'</div>            
                 </div>';
@@ -435,7 +435,7 @@ class MembersController extends Controller
                 $sub_array[] = '
                 <div class="d-flex align-items-center">            
                     <div class="flex-shrink-0 ">
-                        <img src="'.$url.'//plans/'.$this->filesRepository->getFileByEntityId($row->id, "plans", "profile").'" alt="" class="avatar-xs">
+                        <img src="'.$this->filesRepository->getFileByEntityId($row->id, "plans", "profile").'" alt="" class="avatar-xs">
                     </div>
                     <div class="flex-grow-1 ms-2 name">'.$row->plan_name.'</div>            
                 </div>';
@@ -463,6 +463,7 @@ class MembersController extends Controller
     }
 
     public function import(){
+     
         $members = $this->membersRepository->all();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
@@ -470,36 +471,63 @@ class MembersController extends Controller
     }
 
     public function storImportMembers(Request $request){
-         //validation form
-         $this->validate(
-            $request,
-                [
-                    'file'=> 'required|mimes:xlsx,csv,xls'
-                ],
-                [
-                    'file.required' => __('translation.require')
-                ],
-            );
 
-            $file = $request->file('file');
-         if($file = $request->hasFile('file')) {
-            try {
-                Excel::import(new MembersImport,$request->file('file')->store('files'));
+        $file = $request->file('file');
+        $import = new MembersImport($this->membersRepository);
+        $import->import($file);
+        //dd($import->errors());
+        // try {
+        //     $import->import('import-users.xlsx');
+        // } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+        //      $failures = $e->failures();
+             
+        //      foreach ($failures as $failure) {
+        //          $failure->row(); // row that went wrong
+        //          $failure->attribute(); // either heading key (if using heading row concern) or column index
+        //          $failure->errors(); // Actual error messages from Laravel validator
+        //          $failure->values(); // The values of the row that has failed.
+        //      }
+        // }
+        
+        
+
+        return back()->withStatus('excel file imported successfuly');
+
+
+        //  //validation form
+        //  $this->validate(
+        //     $request,
+        //         [
+        //             'file'=> 'required|mimes:xlsx,csv,xls',
+        //             'gym' => new IsSelected,
+        //         ],
+        //         [
+        //             'file.required' => __('translation.require'),
+        //             'gym.required' => __('require'),
+        //         ],
+        //     );
+
+        //     $file = $request->file('file');
+        //  if($file = $request->hasFile('file')) {
+        //     Excel::import(new MembersImport, $request->file('file'));
+        //     return back()->withStatus('excel file imported successfuly');
+        //     try {
                 
-            }catch(\Exception $ex){
-                $error = $ex->getMessage();
-                $members = $this->membersRepository->all();
-                $gyms =  $this->gymsRepository->renderAllGymByCretedById();
-                $services =  $this->servicesRepository->renderAllServices();
-                return view('members.list', compact('members', 'gyms', 'services', 'error'));
                 
-            }
-            $error = false;
-            $members = $this->membersRepository->all();
-            $gyms =  $this->gymsRepository->renderAllGymByCretedById();
-            $services =  $this->servicesRepository->renderAllServices();
-            return view('members.list', compact('members', 'gyms', 'services', 'error'));
-         }
+        //     }catch(\Exception $ex){
+        //         $error = $ex->getMessage();
+        //         $members = $this->membersRepository->all();
+        //         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        //         $services =  $this->servicesRepository->renderAllServices();
+        //         return view('members.list', compact('members', 'gyms', 'services', 'error'));
+                
+        //     }
+        //     // $error = false;
+        //     // $members = $this->membersRepository->all();
+        //     // $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        //     // $services =  $this->servicesRepository->renderAllServices();
+        //     // return view('members.list', compact('members', 'gyms', 'services', 'error'));
+        //  }
     }
 
     public function delete(Request $request){
@@ -524,7 +552,7 @@ class MembersController extends Controller
     }
     
 
-    /**
+        /**
      * Show the form for creating a new resource.
      *
      * @return Response
@@ -555,22 +583,24 @@ class MembersController extends Controller
                     //'phone' => 'unique:members',
                     //'dob' => 'required',
                     //'emergency_contact' => 'unique:members',
+                    'created_at' => 'required',
                     'gym' => new IsSelected,
-                    'start_date' => 'date|nullable',
-                    'end_date' => 'date|nullable|after:start_date',
+                    // 'start_date' => 'date|nullable',
+                    // 'end_date' => 'required',
                     //'amount-received' => 'required_unless:subscription-price.*,'
                 ],
                 [
                     'lastname.required' => __('translation.require'),
                     'firstname.required' => __('translation.require'),
+                    'created_at.required' => __('translation.require'),
                     //'cin.unique' => __('translation.unique'),
                     //'address.required' => __('translation.require'),
                     //'phone.unique' => __('translation.unique'),
                     //'dob.required' => __('translation.require'),
                     //'emergency_contact.unique' => __('translation.unique'),
                     'gym.required' => __('require'),
-                    'start_date' => __('require'),
-                    'end_date' => __('require'),
+                    // 'start_date' => __('require'),
+                    // 'end_date' => __('require'),
                 ],
             );
             // save member in member table
@@ -600,6 +630,7 @@ class MembersController extends Controller
                 [
                     'lastname' => 'required',
                     'firstname' => 'required',
+                    'created_at' => 'required',
                     //'cin' => 'unique:members',
                     //'address' => 'required',
                     //'phone' => 'unique:members',
@@ -610,6 +641,7 @@ class MembersController extends Controller
                 [
                     'lastname.required' => __('translation.require'),
                     'firstname.required' => __('translation.require'),
+                    'created_at.required' => __('translation.require'),
                     //'cin.unique' => __('translation.unique'),
                     //'address.required' => __('translation.require'),
                     //'phone.unique' => __('translation.unique'),
@@ -641,8 +673,9 @@ class MembersController extends Controller
             )
             ->where('members.id', $id)->first();
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
+        $services =  $this->servicesRepository->renderAllServices();
 
-        return view('members.edit', compact('gyms','member'));
+        return view('members.edit', compact('gyms','member', 'services'));
     }
 
     /**
@@ -672,7 +705,7 @@ class MembersController extends Controller
     public function downloadExceCanva()
     {
         // return $file;
-        $myfile = public_path('assets/canvas/canva_member_import.xlsx');
+        $myfile = public_path('assets/excels/canvas/canva_member_import.xlsx');
         return response()->download($myfile);
     }
 

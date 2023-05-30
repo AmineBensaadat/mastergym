@@ -35,24 +35,23 @@ class Helper
 
     public static function getImageByEntityId($entitiy_id, $entity_name, $entity_type){
         $result = DB::table('files')
-            ->select('files.name as file_name')
+            ->select('files.name as file_name', 'account_id')
             ->where('files.entitiy_id', $entitiy_id)
             ->where('files.entity_name', $entity_name)
             ->where('files.type', $entity_type)
             ->get();
             if(count($result) > 0){
-                return $result[0]->file_name;
+                return "/assets/images/".$entity_name."/".$result[0]->account_id."/".$result[0]->file_name;
             }
-            return "default.png";
+            return "/assets/images/".$entity_name."/default.png";
     }
 
     public static function countAllMembersByService($service_id){
         $data = array();
         $user = auth()->user();
-        $query = DB::table('members')->select('members.*')
-        ->join('subscriptions', 'members.id', '=', 'subscriptions.member_id');
+        $query = DB::table('members')->select('members.*');
         $query->where('members.account_id',  '=', $user->account_id);
-        $query->where('subscriptions.service_id',  '=', $service_id);
+        $query->where('members.service_id',  '=', $service_id);
             $data = $query->get();
             return $data->count();
     }
@@ -122,13 +121,27 @@ public static function getGymServiceByServiceId($service_id){
     return $gym;
 }
 
+public static function checkIfServiceSlected($service_id, $plan_id){
+    $service = DB::table('plans_services')
+    ->select('plans_services.*')
+    ->where('service_id', $service_id)
+    ->where('plan_id', $plan_id)
+    ->get()->first();
+
+    if($service){
+        return true;
+    }
+    return false;
+
+}
+
 public static function countMembersByStatus($status){
     $data = array();
     $user = auth()->user();
     $query = DB::table('members')
         ->leftJoin('subscriptions', 'members.id', '=', 'subscriptions.member_id')
         ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
-        ->leftJoin('services', 'plans.service_id', '=', 'services.id')  
+        ->leftJoin('services', 'members.service_id', '=', 'services.id')  
         ->leftJoin('invoices', 'members.id', '=', 'invoices.member_id')
         ->join('gyms', 'members.gym_id', '=', 'gyms.id')
         ->select(

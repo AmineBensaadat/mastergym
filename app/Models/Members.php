@@ -20,10 +20,12 @@ class Members extends Model
         'emergency_contact',
         'health_issues',
         'source',  
-        'created_by',  
+        'created_by', 
+        'created_at',  
         'updated_by',
         'cin',
         'account_id',
+        'service_id',
         'gym_id'
     ];
     

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Files;
 use App\Models\Gyms;
 use App\Models\Members;
+use App\Models\Subscriptions;
 use App\Repositories\GymsRepository;
 use App\Repositories\InvoicesRepository;
 use App\Repositories\MembersRepository;
+use App\Repositories\PlansRepository;
 use App\Repositories\ServicesRepository;
 use App\Repositories\SubscriptionsRepository;
 use Illuminate\Http\Request;
@@ -20,15 +22,17 @@ class SubscriptionsController extends Controller
     private $servicesRepository;
     private $gymsRepository;
     private $invoicesRepository;
+    private $plansRepository;
 
-    public function __construct(InvoicesRepository $invoicesRepository, ServicesRepository $servicesRepository,GymsRepository $gymsRepository, MembersRepository $membersRepository, SubscriptionsRepository $subscriptionsRepository)
+    public function __construct(PlansRepository $plansRepository, InvoicesRepository $invoicesRepository, ServicesRepository $servicesRepository,GymsRepository $gymsRepository, MembersRepository $membersRepository, SubscriptionsRepository $subscriptionsRepository)
     {
         $this->membersRepository = $membersRepository;
         $this->gymsRepository = $gymsRepository;
         $this->servicesRepository = $servicesRepository;
         $this->subscriptionsRepository = $subscriptionsRepository;
         $this->invoicesRepository = $invoicesRepository;
-        $this->middleware('auth');
+        $this->plansRepository = $plansRepository;
+
     }
     /**
      * Display a listing of the resource.
@@ -41,11 +45,13 @@ class SubscriptionsController extends Controller
         return view('subscriptions.list', compact('subscriptions'));
     }
 
-    public function renwe($subscription_id, $member_id){
+    public function edit($id){
 
+        $subscription = Subscriptions::findOrFail($id);
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
-        return view('subscriptions.renew', compact('gyms', 'services', 'subscription_id', 'member_id'));
+        $plans_services = $this->plansRepository->getPlansBySrvice($subscription->service_id);
+        return view('subscriptions.edit', compact('gyms', 'services', 'subscription', 'plans_services'));
 
     }
 
@@ -58,8 +64,9 @@ class SubscriptionsController extends Controller
     {
         $gyms =  $this->gymsRepository->renderAllGymByCretedById();
         $services =  $this->servicesRepository->renderAllServices();
+        $member = Members::findOrFail($id);
         $member_id = $id;
-        return view('subscriptions.create', compact('gyms','services', 'member_id'));
+        return view('subscriptions.create', compact('gyms','services', 'member_id', 'member'));
     }
 
     public function store(Request $request)
@@ -69,7 +76,7 @@ class SubscriptionsController extends Controller
             $request,
                 [
                     'start_date' => 'date|nullable',
-                    'end_date' => 'date|nullable|after:start_date',
+                    'end_date' => 'required',
                     'amount-received' => 'required_unless:subscription-price.*,',
                     'amount-pending' => 'required',
                     
@@ -89,7 +96,7 @@ class SubscriptionsController extends Controller
                  $invoice = $this->invoicesRepository->addInvoice($request, $request->member_id);
             }
 
-            return redirect()->route('subscriptions_list');
+            return redirect()->route('members_show', array('id' => $request->member_id));
 
     }
 
@@ -99,41 +106,33 @@ class SubscriptionsController extends Controller
      * @return Response
      */
     public function update(Request $request)
-    {
+    {   
         //validation form
         $this->validate(
             $request,
                 [
                     'start_date' => 'date|nullable',
-                    'end_date' => 'date|nullable|after:start_date',
-                    'amount-received' => 'required_unless:subscription-price.*,',
-                    'amount-pending' => 'required',
+                    'end_date' => 'required',
+                    // 'amount-received' => 'required_unless:subscription-price.*,',
+                    // 'amount-pending' => 'required',
                 ],
                 [
                     'start_date' => __('require'),
                     'end_date' => __('require'),
-                    'amount-pending' => __('require'),
+                    //'amount-pending' => __('require'),
                     
                 ],
             );
-             // save subscription
-            if($request['service'] != 0){
-                $invoice = $this->invoicesRepository->addInvoice($request, $request->member_id);
 
-               // save subscription in subscription table
-                $subscription = $this->subscriptionsRepository->updateSubscription($request, $request->subscription_id, $invoice->id);
+            $subscription = $this->subscriptionsRepository->updateSubscription($request, $request->subscription_id);
+            //  // save subscription
 
+            if($request->facture){
+                 // add invoice
+                 $invoice = $this->invoicesRepository->addInvoice($request, $request->member_id);
 
             }
 
-            return redirect()->route('members_list');
+            return redirect()->route('subscriptions_edit', array('subscription_id' => $request->subscription_id));
     }
-
-    public function edit($id)
-    {
-        $user = User::findOrFail($id);
-
-        return view('users.edit', compact('user'));
-    }
-
 }

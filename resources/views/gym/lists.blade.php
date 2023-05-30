@@ -11,9 +11,11 @@
                 <div class="flex-grow-1">
                     <h5 class="card-title mb-0 fw-bold fs-17">@lang('translation.all_gym')</h5>
                 </div>
-                <div class="flex-shrink-0 mt-4 mt-lg-0">
-                    <a href="{{ route('add_gym') }}" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.add_gym_lists')</a>
-                </div>
+                @can('gym-create-menu')
+                    <div class="flex-shrink-0 mt-4 mt-lg-0">
+                        <a href="{{ route('add_gym') }}" class="btn btn-soft-primary"> <i class="ri-add-circle-line align-bottom"></i>@lang('translation.add_gym_lists')</a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>
@@ -26,7 +28,7 @@
                             <button type="button" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></button>
                         </div>
                         <div class="explore-place-bid-img">
-                            <img src="{{URL::asset('assets/images/gyms/'.Helper::getImageByEntityId($gym->id, "gyms", "profile") )}}" alt="" class="card-img-top explore-img" />
+                            <img src="{{URL::asset(Helper::getImageByEntityId($gym->id, "gyms", "profile") )}}" alt="" class="card-img-top explore-img" />
                             <div class="bg-overlay"></div>
                             <div class="place-bid-btn">
                                 <a href="../gym/show/{{ $gym->id }}" class="btn btn-success"><i class="ri-eye-line align-bottom me-1"></i>@lang('translation.View_')</a>

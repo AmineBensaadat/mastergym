@@ -9,6 +9,8 @@ use App\Repositories\FilesRepository;
 use App\Repositories\GymsRepository;
 use App\Repositories\InvoicesRepository;
 use App\Repositories\MembersRepository;
+use App\Repositories\PlansRepository;
+use App\Repositories\ServicesRepository;
 use App\Repositories\SubscriptionsRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -19,13 +21,15 @@ class InvoicesController extends Controller
 {
     private $invoicesRepository;
     private $filesRepository;
-    private $gymsRepository;
+    private $servicesRepository;
+    private $plansRepository;
 
-    public function __construct(InvoicesRepository $invoicesRepository, FilesRepository $filesRepository, GymsRepository $gymsRepository)
+    public function __construct(PlansRepository $plansRepository, InvoicesRepository $invoicesRepository, ServicesRepository $servicesRepository, FilesRepository $filesRepository, GymsRepository $gymsRepository)
     {
         $this->invoicesRepository = $invoicesRepository;
         $this->filesRepository = $filesRepository;
-        $this->gymsRepository = $gymsRepository;
+        $this->servicesRepository = $servicesRepository;
+        $this->plansRepository = $plansRepository;
         $this->middleware('auth');
     }
     /**
@@ -65,5 +69,19 @@ class InvoicesController extends Controller
         
     }
 
+    public function edit($id){
+        $invoice = $this->invoicesRepository->getInvoiceById($id);
+        $services =  $this->servicesRepository->renderAllServices();
+        $plans_services = $this->plansRepository->getPlansBySrvice($invoice->service_id);
+        return view('invoices.edit', compact('invoice', 'services', 'plans_services'));
+    }
+
+    public function update(Request $request){
+        // add invoice
+        $this->invoicesRepository->updateInvoice($request);
+
+        return redirect()->route('members_show', array('id' => $request['member_id']));
+
+    }
 
 }

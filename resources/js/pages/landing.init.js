@@ -1,3 +1,5 @@
+// A $( document ).ready() block.
+$( document ).ready(function() {
 /*
 Template Name: Gogym - Admin & Dashboard Template
 Author: CapSolutions
@@ -175,3 +177,4 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+});

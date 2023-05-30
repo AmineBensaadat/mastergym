@@ -27,6 +27,16 @@ class PlansRepository
             ->paginate(10); 
         return $plans;
     }
+
+    public function getPlansBySrvice($serviceId) {
+        
+        $plans = DB::table('plans_services')
+                ->join('plans', 'plans_services.plan_id', '=', 'plans.id') 
+                ->select('*') 
+                ->where('plans_services.service_id', $serviceId)
+                ->get();
+        return $plans;
+    }
     
  
 }
